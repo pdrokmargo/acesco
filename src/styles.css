@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --primaryBlue: #1A237E;
+  --white: #F5F5F5;
+  --darkIndigo: #1A237E;
+  --darkIndigo2: #03077e;
+}
+
+
+/*
+font-family: 'Oswald', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Roboto', sans-serif;
+*/

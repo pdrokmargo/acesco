@@ -1,0 +1,74 @@
+<div class="row procesco-container">
+  <div class="col-6 left">
+    <div class="row left-one">
+      <div class="col">
+        <h4 class="ml-2">Acesco
+          <fa-icon [icon]="faGoogleDrive"></fa-icon>
+        </h4>
+      </div>
+    </div>
+    <div class="row left-two">
+      <div class="col-12">
+        <h3>Procesco</h3>
+        <p class="with-underline">Proceso para proveedores Acesco</p>
+      </div>
+      <div class="col-12 mt-2">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam atque delectus dolor dolorem
+          eaque.</p>
+        <fa-icon [icon]="faLongArrowAltRight" class="faLongArrowAltRight"></fa-icon>
+      </div>
+    </div>
+    <div class="row left-three">
+      <div class="col-12 align-self-end">
+        <hr class="line">
+        <ul class="list">
+          <li>
+            <span>Acerias de Colombia - ACESCO SAS - Km 3 via Malambo - Sabanagrande</span>
+          </li>
+          <li>
+            <span>Linea de atención al cliente: 01-8000 514514</span>
+          </li>
+          <li>
+            <span>adm.procesco@acesco.com</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 right">
+    <div class="row right-one">
+      <div class="col text-right">
+        <ul class="list-inline social-list mt-1">
+          <li *ngFor="let social of socialLinks" [class]="social.classes">
+            <fa-icon [icon]="social.icon" class="icon"></fa-icon>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row right-two">
+      <div class="col">
+        <ul class="list-unstyled">
+          <li *ngFor="let button of buttons; let i = index">
+            <button class="acesco-button" (click)="nextPage(i)">
+              <fa-icon [icon]="button.icon"></fa-icon>
+              {{button.text}}
+              <fa-icon [icon]="faCaretRight"></fa-icon>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row right-three">
+      <div class="col align-self-end">
+        <ul class="list-unstyled text-right pr-3">
+          <li>
+            <span>Terminos y Condiciones • Proteccion y Autorizacion De Datos Personales • Contáctenos</span>
+          </li>
+          <li>
+            <span>© Copyright | All rights Reserved | Desarrollo Sergio Zapata</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

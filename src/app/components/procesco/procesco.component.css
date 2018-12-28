@@ -1,0 +1,72 @@
+.procesco-container {
+  margin: 0;
+}
+
+.left {
+  background-image: url("../../../assets/images/background1.jpg");
+  height: 100vh;
+  color: var(--white);
+}
+
+.with-underline::before {
+  content: "";
+  width: 30%;
+  height: 1px;
+  background-color: var(--white);
+  position: absolute;
+  bottom: 0;
+}
+
+.faLongArrowAltRight svg {
+  transform: scale(1.5,1);
+}
+.left-one,
+.right-one {
+  height: 5vh;
+}
+
+.left-two,
+.right-two {
+  padding: 100px 100px 0 100px;
+  height: 75vh;
+}
+
+.left-three,
+.right-three {
+  height: 20vh;
+  font-size: 10px;
+}
+
+.line {
+  background-color: var(--white);
+  height: 3px;
+}
+
+.social-list li {
+  border-radius: 50%;
+  border: 1px solid var(--darkIndigo);
+  background-color: var(--darkIndigo);
+  color: var(--white);
+  text-align: center;
+  height: 30px;
+  width: 30px;
+}
+
+.social-list li .icon {
+  vertical-align: middle;
+}
+
+.acesco-button {
+  background-color: var(--darkIndigo);
+  color: var(--white);
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 1rem;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.acesco-button:hover {
+  background-color: var(--darkIndigo2);
+}
