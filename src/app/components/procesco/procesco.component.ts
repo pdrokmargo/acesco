@@ -59,8 +59,8 @@ export class ProcescoComponent {
     ];
 
     this.explanation = '';
-    this.showRegister = true;
-    this.showLogin = false;
+    this.showRegister = false;
+    this.showLogin = true;
     this.user = {
       name: null,
       password: null,
@@ -77,7 +77,7 @@ export class ProcescoComponent {
         break;
       }
       case 1: {
-        this.showRegister = true;
+        this.showLogin = true;
         break;
       }
       case 2: {

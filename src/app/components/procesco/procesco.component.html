@@ -78,7 +78,7 @@
     </div>
   </div>
   <div class="col-6 align-self-center">
-    <app-login *ngIf="showLogin"></app-login>
+    <app-login *ngIf="showLogin" (back)="back($event)"></app-login>
     <app-register *ngIf="showRegister" (back)="back($event);"></app-register>
   </div>
 

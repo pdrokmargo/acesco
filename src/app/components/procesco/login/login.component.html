@@ -2,47 +2,43 @@
   <h5 class="card-title">Acesco
     <fa-icon [icon]="faGoogleDrive"></fa-icon>
   </h5>
-  <!--<form class="register-form" novalidate (submit)="submitForm(loginForm);" #loginForm="ngForm">
+  <form class="register-form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
     <div class="form-group">
       <fa-icon [icon]="faUser" class="input-icon"></fa-icon>
-      <input
-        [ngClass]="{'is-invalid': (name.errors?.required || name.errors?.minlength) && name.touched }"
-        type="text"
-        class="form-control"
-        placeholder="Ususario"
-        name="name"
-        minlength="2"
-        [(ngModel)]="user.name"
-        #name="ngModel"
-        required>
+      <input type="text"
+             class="form-control"
+             placeholder="Usuario"
+             name="name"
+             minlength="2"
+             [(ngModel)]="user.name"
+             #name="ngModel"
+             [disabled]="loading"
+             required>
       <small class="form-text text-muted pl-2">El usuario corresponde al numero de identificación tributaria/ Tax ID.
       </small>
     </div>
     <div class="form-group">
       <fa-icon [icon]="faUnlock" class="input-icon"></fa-icon>
-      <input
-        class="form-control"
-        placeholder="Contraseña"
-        type="password"
-        name="password"
-        minlength="6"
-        [ngClass]="{'is-invalid': (password.errors?.required || password.errors?.pattern) && password.touched }"
-        [(ngModel)]="user.password"
-        required
-        #password="ngModel"
-      >
+      <input type="password"
+             class="form-control"
+             placeholder="Digite su contraseña"
+             name="password"
+             [(ngModel)]="user.password"
+             #password="ngModel"
+             minlength="8"
+             [disabled]="loading"
+             required>
     </div>
-    <button type="submit" class="acesco-button" [disabled]="form.invalid">Ingresa
-      <fa-icon [icon]="faCaretRight"></fa-icon>
+    <button class="acesco-button" [disabled]="registerForm.invalid || loading">Ingresar
+      <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+      <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
     </button>
-    <div class="row mt-5">
-      <div class="col-6 text-left">
-        <button type="button" class="transparent-button" (click)="nextPage(3)">Aun no tienes una cuenta? <a href="">Registrate</a>
-        </button>
-      </div>
-      <div class="col-6 text-right">
-        <button type="button" class="transparent-button">Olvidaste tu contraseña?</button>
-      </div>
+    <div class="text-center">
+      <p class="back-button" (click)="backHome();">Cancelar</p>
     </div>
-  </form>-->
+  </form>
+  <div class="row">
+    <div class="col-6 text-left"><button class="transparent-button">Aun no tienes una cuenta ? <a href="">Registrate</a></button></div>
+    <div class="col-6 text-right"><button class="transparent-button">Olvidaste tu contraseña?</button></div>
+  </div>
 </div>

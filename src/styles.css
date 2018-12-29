@@ -73,6 +73,11 @@
   box-shadow: 0 0 10px var(--darkIndigo);
 }
 
+.back-button {
+  cursor: pointer;
+  margin-top: 10px;
+}
+
 @charset "UTF-8";
 
 /*!
