@@ -1,0 +1,6 @@
+.blueLine {
+  width: 50%;
+  background-color: var(--darkIndigo);
+  height: 1px;
+  margin: 60px auto;
+}

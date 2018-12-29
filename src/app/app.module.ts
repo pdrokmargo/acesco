@@ -14,6 +14,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProcescoComponent } from './components/procesco/procesco.component';
 import { SistemaDeGarantiasComponent } from './components/sistema-de-garantias/sistema-de-garantias.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { FaqComponent } from './components/procesco/faq/faq.component';
+import { EvaluacionComponent } from './components/procesco/evaluacion/evaluacion.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './components/procesco/login/login.component';
+import { RegisterComponent } from './components/procesco/register/register.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +26,17 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     MainComponent,
     NavbarComponent,
     ProcescoComponent,
-    SistemaDeGarantiasComponent
+    SistemaDeGarantiasComponent,
+    FaqComponent,
+    EvaluacionComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FontAwesomeModule,
+    FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [],

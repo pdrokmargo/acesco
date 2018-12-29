@@ -1,6 +1,16 @@
 import {Component} from '@angular/core';
 import {faFacebook, faGoogleDrive, faInstagram, faYoutube} from '@fortawesome/free-brands-svg-icons';
-import {faCaretRight, faClipboardCheck, faListAlt, faLongArrowAltRight, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
+import {
+  faCaretRight,
+  faClipboardCheck, faEnvelope,
+  faListAlt,
+  faLongArrowAltRight,
+  faQuestionCircle,
+  faUnlock,
+  faUser
+} from '@fortawesome/free-solid-svg-icons';
+import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-procesco',
@@ -11,6 +21,8 @@ export class ProcescoComponent {
   options: any [] = [];
   socialLinks: any [] = [];
   buttons: any [] = [];
+  user: any;
+  newUser: any;
   faGoogleDrive = faGoogleDrive;
   faLongArrowAltRight = faLongArrowAltRight;
   faYoutube = faYoutube;
@@ -19,9 +31,15 @@ export class ProcescoComponent {
   faQuestionCircle = faQuestionCircle;
   faListAlt = faListAlt;
   faClipboardCheck = faClipboardCheck;
+  faUnlock = faUnlock;
   faCaretRight = faCaretRight;
+  faUser = faUser;
+  faEnvelope = faEnvelope;
+  explanation: string;
+  showRegister: boolean;
+  showLogin: boolean;
 
-  constructor() {
+  constructor(private router: Router) {
     this.options = [
       {label: 'FAQs', tooltipMessage: 'Preguntas Frecuentes'},
       {label: 'Registro', tooltipMessage: 'Proceso para registrarse como proveedor'},
@@ -39,9 +57,64 @@ export class ProcescoComponent {
       {text: 'Registro', icon: faListAlt},
       {text: 'Evaluación', icon: faClipboardCheck}
     ];
+
+    this.explanation = '';
+    this.showRegister = true;
+    this.showLogin = false;
+    this.user = {
+      name: null,
+      password: null,
+      repeatPassword: null,
+      email: null
+    };
   }
 
   nextPage(index: number) {
-    console.log(index);
+    // this.router.navigate(['/artist', id]);
+    switch (index) {
+      case 0: {
+        this.router.navigate(['faq']);
+        break;
+      }
+      case 1: {
+        this.showLogin = true;
+        break;
+      }
+      case 2: {
+        this.router.navigate(['evaluacion']);
+        break;
+      }
+      case 3: {
+        this.showLogin = false;
+        this.showRegister = true;
+        break;
+      }
+    }
+  }
+
+  showExplanation(index: number) {
+    switch (index) {
+      case 0: {
+        this.explanation = 'Preguntas frecuentes.';
+        break;
+      }
+      case 1: {
+        this.explanation = 'Proceso para registrarse como proveedor.';
+        break;
+      }
+      case 2: {
+        this.explanation = 'Para proveedores activos con mas de 6 meses de relacionamiento.';
+        break;
+      }
+    }
+  }
+
+  hideExplanation() {
+    this.explanation = '';
+  }
+
+  submitForm(form: NgForm) {
+    console.log(form);
+    console.log(form.value);
   }
 }

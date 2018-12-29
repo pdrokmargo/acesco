@@ -1,0 +1,73 @@
+<div class="card animated fadeIn fast">
+  <h5 class="card-title">Acesco
+    <fa-icon [icon]="faGoogleDrive"></fa-icon>
+  </h5>
+  <form class="register-form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
+    <div class="form-group">
+      <fa-icon [icon]="faUser" class="input-icon"></fa-icon>
+      <input type="text"
+             [ngClass]="{'is-invalid': (name.errors?.required || name.errors?.minlength) && name.touched }"
+             class="form-control"
+             placeholder="Usuario"
+             name="name"
+             minlength="2"
+             [(ngModel)]="user.name"
+             #name="ngModel"
+             required>
+      <small class="form-text text-muted pl-2">El usuario corresponde al numero de identificación tributaria/ Tax ID.
+      </small>
+      <div *ngIf="name.errors?.required && name.touched"><span class="text-danger">Este campo es obligatorio</span></div>
+    </div>
+
+    <div class="form-group">
+      <fa-icon [icon]="faEnvelope" class="input-icon"></fa-icon>
+      <input type="email"
+             [ngClass]="{'is-invalid': (email.errors?.required || email.errors?.minlength) && email.touched }"
+             class="form-control"
+             placeholder="Email"
+             name="email"
+             [(ngModel)]="user.email"
+             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+             #email="ngModel"
+             required>
+    </div>
+    <div *ngIf="email.errors?.required && email.touched"><span class="text-danger">Este campo es obligatorio</span></div>
+    <div *ngIf="email.errors?.pattern && email.touched"><span class="text-danger">This email is invalid</span></div>
+    <hr class="blueLine">
+    <div class="form-group">
+      <fa-icon [icon]="faUnlock" class="input-icon"></fa-icon>
+      <input type="password"
+             [ngClass]="{'is-invalid': (password.errors?.required || password.errors?.minlength || !passwordsMatch) && password.touched }"
+             class="form-control"
+             placeholder="Digite su contraseña"
+             name="password"
+             [(ngModel)]="user.password"
+             #password="ngModel"
+             minlength="8"
+             (keyup)="validatePasswords();"
+             required>
+    </div>
+    <div *ngIf="password.errors?.required && password.touched"><span class="text-danger">Este campo es obligatorio</span></div>
+    <div *ngIf="password.errors?.minlength"><span class="text-danger">Debe ser de almenos {{ password.errors.minlength.requiredLength }} caracteres</span></div>
+    <div *ngIf="!passwordsMatch && password.touched"><span class="text-danger">Las contraseñas no coinciden</span></div>
+    <div class="form-group">
+      <fa-icon [icon]="faUnlock" class="input-icon"></fa-icon>
+      <input type="password"
+             [ngClass]="{'is-invalid': (repeatPassword.errors?.required || repeatPassword.errors?.minlength || !passwordsMatch) && repeatPassword.touched }"
+             class="form-control"
+             placeholder="Digite nuevamente la contraseña"
+             name="repeatPassword"
+             [(ngModel)]="user.repeatPassword"
+             (keyup)="validatePasswords();"
+             #repeatPassword="ngModel"
+             minlength="8"
+             required>
+    </div>
+    <div *ngIf="repeatPassword.errors?.required && repeatPassword.touched"><span class="text-danger">Este campo es obligatorio</span></div>
+    <div *ngIf="repeatPassword.errors?.minlength"><span class="text-danger">Debe ser de almenos {{ repeatPassword.errors.minlength.requiredLength }} caracteres</span></div>
+    <div *ngIf="!passwordsMatch && repeatPassword.touched"><span class="text-danger">Las contraseñas no coinciden</span></div>
+    <button class="acesco-button" [disabled]="registerForm.invalid || !passwordsMatch">Registrar
+      <fa-icon [icon]="faCaretRight"></fa-icon>
+    </button>
+  </form>
+</div>

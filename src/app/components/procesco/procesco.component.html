@@ -35,12 +35,14 @@
       </div>
     </div>
   </div>
-  <div class="col-6 right">
+  <div class="col-6 right" *ngIf="(!showLogin && !showRegister)">
     <div class="row right-one">
       <div class="col text-right">
         <ul class="list-inline social-list mt-1">
           <li *ngFor="let social of socialLinks" [class]="social.classes">
-            <fa-icon [icon]="social.icon" class="icon"></fa-icon>
+            <a [href]="social.url" target="_blank">
+              <fa-icon [icon]="social.icon" class="icon"></fa-icon>
+            </a>
           </li>
         </ul>
       </div>
@@ -49,13 +51,17 @@
       <div class="col">
         <ul class="list-unstyled">
           <li *ngFor="let button of buttons; let i = index">
-            <button class="acesco-button" (click)="nextPage(i)">
+            <button class="acesco-button" (click)="nextPage(i);" (mouseenter)="showExplanation(i);"
+                    (mouseleave)="hideExplanation();">
               <fa-icon [icon]="button.icon"></fa-icon>
               {{button.text}}
               <fa-icon [icon]="faCaretRight"></fa-icon>
             </button>
           </li>
         </ul>
+        <div class="alert alert-warning animated fadeIn fast mt-5" role="alert" *ngIf="explanation.length">
+          {{explanation}}
+        </div>
       </div>
     </div>
     <div class="row right-three">
@@ -71,4 +77,9 @@
       </div>
     </div>
   </div>
+  <div class="col-6 align-self-center">
+    <app-login *ngIf="showLogin"></app-login>
+    <app-register *ngIf="showRegister"></app-register>
+  </div>
+
 </div>
