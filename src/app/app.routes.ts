@@ -5,14 +5,18 @@ import {SistemaDeGarantiasComponent} from './components/sistema-de-garantias/sis
 import {FaqComponent} from './components/procesco/faq/faq.component';
 import {EvaluacionComponent} from './components/procesco/evaluacion/evaluacion.component';
 import {ProfileComponent} from './components/procesco/profile/profile.component';
+import {NewProviderComponent} from './components/procesco/new-provider/new-provider.component';
+import {UpdateComponent} from './components/procesco/update/update.component';
 
 export const ROUTES: Routes = [
   {path: 'main', component: MainComponent},
   {path: 'procesco', component: ProcescoComponent},
+  {path: 'procesco/nuevoProveedor', component: NewProviderComponent},
+  {path: 'procesco/actualizarDatos', component: UpdateComponent},
   {path: 'sistemaDeGarantias', component: SistemaDeGarantiasComponent},
   {path: 'faq', component: FaqComponent},
   {path: 'evaluacion', component: EvaluacionComponent},
-  {path: 'perfil', component: ProfileComponent},
+  {path: 'procesco/perfil', component: ProfileComponent},
   {path: '', pathMatch: 'full', redirectTo: 'main'},
   {path: '**', pathMatch: 'full', redirectTo: 'main'}
 ];

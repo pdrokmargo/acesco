@@ -22,6 +22,8 @@ import { RegisterComponent } from './components/procesco/register/register.compo
 import { ProfileComponent } from './components/procesco/profile/profile.component';
 import { LogoAndSocialComponent } from './components/shared/logo-and-social/logo-and-social.component';
 import { TogglesComponent } from './components/shared/toggles/toggles.component';
+import { NewProviderComponent } from './components/procesco/new-provider/new-provider.component';
+import { UpdateComponent } from './components/procesco/update/update.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { TogglesComponent } from './components/shared/toggles/toggles.component'
     RegisterComponent,
     ProfileComponent,
     LogoAndSocialComponent,
-    TogglesComponent
+    TogglesComponent,
+    NewProviderComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,

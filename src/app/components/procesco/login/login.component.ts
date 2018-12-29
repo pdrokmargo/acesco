@@ -33,7 +33,7 @@ export class LoginComponent {
       console.log(form.value);
       console.log('Logged In!!');
       this.loading = false;
-      this.router.navigate(['perfil']);
+      this.router.navigate(['procesco/perfil']);
     }, 3000);
   }
 
