@@ -29,7 +29,7 @@
              [disabled]="loading"
              required>
     </div>
-    <button class="acesco-button" [disabled]="registerForm.invalid || loading">Ingresar
+    <button type="submit" class="acesco-button" [disabled]="registerForm.invalid || loading">Ingresar
       <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
       <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
     </button>
@@ -38,7 +38,7 @@
     </div>
   </form>
   <div class="row">
-    <div class="col-6 text-left"><button class="transparent-button">Aun no tienes una cuenta ? <a href="">Registrate</a></button></div>
-    <div class="col-6 text-right"><button class="transparent-button">Olvidaste tu contraseña?</button></div>
+    <div class="col-6 text-left"><button type="button" class="transparent-button" (click)="backHome('register')">Aun no tienes una cuenta ? <b class="text-primary">Registrate</b></button></div>
+    <div class="col-6 text-right"><button type="button" class="transparent-button">Olvidaste tu contraseña?</button></div>
   </div>
 </div>

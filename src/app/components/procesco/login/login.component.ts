@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {faGoogleDrive} from '@fortawesome/free-brands-svg-icons';
 import {faCaretRight, faSpinner, faUnlock, faUser} from '@fortawesome/free-solid-svg-icons';
 import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent {
   user: any;
   loading: boolean;
 
-  constructor() {
+  constructor(private router: Router) {
     this.user = {
       name: null,
       password: null
@@ -32,10 +33,15 @@ export class LoginComponent {
       console.log(form.value);
       console.log('Logged In!!');
       this.loading = false;
+      this.router.navigate(['perfil']);
     }, 3000);
   }
 
-  backHome() {
+  backHome(where?: string) {
+    if (where) {
+      this.back.emit(where);
+      return;
+    }
     this.back.emit('menu');
   }
 

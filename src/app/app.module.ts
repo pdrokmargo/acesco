@@ -19,6 +19,9 @@ import { EvaluacionComponent } from './components/procesco/evaluacion/evaluacion
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './components/procesco/login/login.component';
 import { RegisterComponent } from './components/procesco/register/register.component';
+import { ProfileComponent } from './components/procesco/profile/profile.component';
+import { LogoAndSocialComponent } from './components/shared/logo-and-social/logo-and-social.component';
+import { TogglesComponent } from './components/shared/toggles/toggles.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { RegisterComponent } from './components/procesco/register/register.compo
     FaqComponent,
     EvaluacionComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent,
+    LogoAndSocialComponent,
+    TogglesComponent
   ],
   imports: [
     BrowserModule,

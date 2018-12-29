@@ -44,28 +44,7 @@
   border-radius: 25px;
 }
 
-.social-list li {
-  border-radius: 50%;
-  border: 1px solid var(--darkIndigo);
-  background-color: var(--darkIndigo);
 
-  text-align: center;
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-}
-.social-list li:hover {
-  background-color: var(--darkIndigo2);
-  box-shadow: 0 0 10px var(--darkIndigo);
-}
-
-.social-list li a {
-  color: var(--white);
-}
-
-.social-list li .icon {
-  vertical-align: middle;
-}
 
 
 

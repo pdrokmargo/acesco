@@ -10,7 +10,6 @@ import {
   faUser
 } from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
-import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-procesco',
@@ -22,7 +21,6 @@ export class ProcescoComponent {
   socialLinks: any [] = [];
   buttons: any [] = [];
   user: any;
-  newUser: any;
   faGoogleDrive = faGoogleDrive;
   faLongArrowAltRight = faLongArrowAltRight;
   faYoutube = faYoutube;
@@ -113,7 +111,7 @@ export class ProcescoComponent {
     this.explanation = '';
   }
 
-  back(event: Event) {
+  back(event: string) {
     switch (event) {
       case 'menu': {
         this.showRegister = false;
@@ -125,6 +123,12 @@ export class ProcescoComponent {
         this.showLogin = true;
         break;
       }
+      case 'register': {
+        this.showRegister = true;
+        this.showLogin = false;
+        break;
+      }
+
     }
   }
 }
