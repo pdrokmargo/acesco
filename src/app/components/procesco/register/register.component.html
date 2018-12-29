@@ -13,10 +13,12 @@
              minlength="2"
              [(ngModel)]="user.name"
              #name="ngModel"
+             [disabled]="loading"
              required>
       <small class="form-text text-muted pl-2">El usuario corresponde al numero de identificación tributaria/ Tax ID.
       </small>
-      <div *ngIf="name.errors?.required && name.touched"><span class="text-danger">Este campo es obligatorio</span></div>
+      <div *ngIf="name.errors?.required && name.touched"><span class="text-danger">Este campo es obligatorio</span>
+      </div>
     </div>
 
     <div class="form-group">
@@ -29,9 +31,11 @@
              [(ngModel)]="user.email"
              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
              #email="ngModel"
+             [disabled]="loading"
              required>
     </div>
-    <div *ngIf="email.errors?.required && email.touched"><span class="text-danger">Este campo es obligatorio</span></div>
+    <div *ngIf="email.errors?.required && email.touched"><span class="text-danger">Este campo es obligatorio</span>
+    </div>
     <div *ngIf="email.errors?.pattern && email.touched"><span class="text-danger">This email is invalid</span></div>
     <hr class="blueLine">
     <div class="form-group">
@@ -44,11 +48,14 @@
              [(ngModel)]="user.password"
              #password="ngModel"
              minlength="8"
+             [disabled]="loading"
              (keyup)="validatePasswords();"
              required>
     </div>
-    <div *ngIf="password.errors?.required && password.touched"><span class="text-danger">Este campo es obligatorio</span></div>
-    <div *ngIf="password.errors?.minlength"><span class="text-danger">Debe ser de almenos {{ password.errors.minlength.requiredLength }} caracteres</span></div>
+    <div *ngIf="password.errors?.required && password.touched"><span
+      class="text-danger">Este campo es obligatorio</span></div>
+    <div *ngIf="password.errors?.minlength"><span class="text-danger">Debe ser de almenos {{ password.errors.minlength.requiredLength }} caracteres</span>
+    </div>
     <div *ngIf="!passwordsMatch && password.touched"><span class="text-danger">Las contraseñas no coinciden</span></div>
     <div class="form-group">
       <fa-icon [icon]="faUnlock" class="input-icon"></fa-icon>
@@ -61,13 +68,25 @@
              (keyup)="validatePasswords();"
              #repeatPassword="ngModel"
              minlength="8"
+             [disabled]="loading"
              required>
     </div>
-    <div *ngIf="repeatPassword.errors?.required && repeatPassword.touched"><span class="text-danger">Este campo es obligatorio</span></div>
-    <div *ngIf="repeatPassword.errors?.minlength"><span class="text-danger">Debe ser de almenos {{ repeatPassword.errors.minlength.requiredLength }} caracteres</span></div>
-    <div *ngIf="!passwordsMatch && repeatPassword.touched"><span class="text-danger">Las contraseñas no coinciden</span></div>
-    <button class="acesco-button" [disabled]="registerForm.invalid || !passwordsMatch">Registrar
-      <fa-icon [icon]="faCaretRight"></fa-icon>
+    <div *ngIf="repeatPassword.errors?.required && repeatPassword.touched">
+      <span class="text-danger">Este campo es obligatorio</span>
+    </div>
+    <div *ngIf="repeatPassword.errors?.minlength">
+      <span
+        class="text-danger">Debe ser de almenos {{ repeatPassword.errors.minlength.requiredLength }} caracteres</span>
+    </div>
+    <div *ngIf="!passwordsMatch && repeatPassword.touched">
+      <span class="text-danger">Las contraseñas no coinciden</span>
+    </div>
+    <button class="acesco-button" [disabled]="registerForm.invalid || !passwordsMatch || loading">Registrar
+      <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+      <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
     </button>
+    <div class="text-center">
+      <p class="back-button" (click)="backHome();">Cancelar</p>
+    </div>
   </form>
 </div>

@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  <div class="col-6 right" *ngIf="(!showLogin && !showRegister)">
+  <div class="col-6 right animated fadeIn fast" *ngIf="(!showLogin && !showRegister)">
     <div class="row right-one">
       <div class="col text-right">
         <ul class="list-inline social-list mt-1">
@@ -79,7 +79,7 @@
   </div>
   <div class="col-6 align-self-center">
     <app-login *ngIf="showLogin"></app-login>
-    <app-register *ngIf="showRegister"></app-register>
+    <app-register *ngIf="showRegister" (back)="back($event);"></app-register>
   </div>
 
 </div>

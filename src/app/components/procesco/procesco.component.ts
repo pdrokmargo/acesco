@@ -77,7 +77,7 @@ export class ProcescoComponent {
         break;
       }
       case 1: {
-        this.showLogin = true;
+        this.showRegister = true;
         break;
       }
       case 2: {
@@ -113,8 +113,18 @@ export class ProcescoComponent {
     this.explanation = '';
   }
 
-  submitForm(form: NgForm) {
-    console.log(form);
-    console.log(form.value);
+  back(event: Event) {
+    switch (event) {
+      case 'menu': {
+        this.showRegister = false;
+        this.showLogin = false;
+        break;
+      }
+      case 'login': {
+        this.showRegister = false;
+        this.showLogin = true;
+        break;
+      }
+    }
   }
 }
