@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-6 ">
+    <h4 class="ml-2 pl-3 title">Acesco
+      <fa-icon [icon]="faGoogleDrive"></fa-icon>
+    </h4>
+  </div>
+  <div class="col-6 text-right">
+    <ul class="list-inline social-list mt-1 pr-3">
+      <li *ngFor="let social of socialLinks" [class]="social.classes">
+        <a [href]="social.url" target="_blank">
+          <fa-icon [icon]="social.icon" class="icon"></fa-icon>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+

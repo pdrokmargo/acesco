@@ -1,0 +1,27 @@
+#app-new-provider {
+  height: 100vh;
+  background-image: url("../../../../assets/images/background.jpg");
+}
+
+.whiteLine {
+  height: 1px;
+  background-color: var(--white);
+  width: 5%;
+  margin: 50px auto;
+}
+
+ul.text-justify {
+  padding-left: 16px;
+}
+
+.list-inline-item {
+  border: 1px solid var(--secondary);
+  padding: 10px;
+}
+
+.dataProtection,
+.habeas {
+  border: 1px solid var(--secondary);
+  font-size: 14px;
+  height: 600px;
+}

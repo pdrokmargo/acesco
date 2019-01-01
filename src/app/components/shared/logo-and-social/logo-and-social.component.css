@@ -1,0 +1,12 @@
+.title {
+  color: var(--white);
+}
+
+.social-list li {
+  background-color: var(--white);
+  border-color: var(--white);
+}
+
+.social-list li a {
+  color: var(--secondary);
+}

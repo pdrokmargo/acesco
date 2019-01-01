@@ -24,6 +24,9 @@ import { LogoAndSocialComponent } from './components/shared/logo-and-social/logo
 import { TogglesComponent } from './components/shared/toggles/toggles.component';
 import { NewProviderComponent } from './components/procesco/new-provider/new-provider.component';
 import { UpdateComponent } from './components/procesco/update/update.component';
+import { TimelineComponent } from './components/shared/timeline/timeline.component';
+import { FormTitleComponent } from './components/shared/form-title/form-title.component';
+import { ToggleComponent } from './components/shared/toggle/toggle.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { UpdateComponent } from './components/procesco/update/update.component';
     LogoAndSocialComponent,
     TogglesComponent,
     NewProviderComponent,
-    UpdateComponent
+    UpdateComponent,
+    TimelineComponent,
+    FormTitleComponent,
+    ToggleComponent
   ],
   imports: [
     BrowserModule,

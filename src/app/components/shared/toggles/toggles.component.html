@@ -1,0 +1,11 @@
+<div class="row mt-2 animated fadeIn" *ngFor="let item of items">
+  <div class="col-6">
+    <p>{{item.label}}</p>
+  </div>
+  <div class="col-6 text-right">
+    <label class="switch mt-2">
+      <input type="checkbox" [checked]="item.active" [(ngModel)]="item.active" [disabled]="loading">
+      <span class="slider round"></span>
+    </label>
+  </div>
+</div>

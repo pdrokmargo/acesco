@@ -1,0 +1,44 @@
+.timelineCircle {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  background-color: var(--white);
+  margin: 0 auto;
+  line-height: 35px;
+}
+
+.timelineCircle.active {
+  background-color: var(--dark);
+  color: white;
+}
+
+.list-inline-item {
+  width: 50%;
+}
+
+.list-inline-item:first-child {
+  position: absolute;
+  left: -15px;
+  top: 15px;
+}
+
+.list-inline-item:last-child {
+  position: absolute;
+  right: -5px;
+  top: 15px;
+}
+
+.left-line,
+.right-line {
+  width: 100%;
+  height: 5px;
+  background-color: var(--white);
+}
+
+.left-line.active,
+.right-line.active {
+  width: 100%;
+  height: 5px;
+  background-color: var(--dark);
+}
+

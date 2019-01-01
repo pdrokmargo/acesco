@@ -1,0 +1,118 @@
+<section id="app-new-provider">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-white text-center mt-5">
+        <h4 class="mt-5">Pre Registro</h4>
+        <hr class="whiteLine">
+        <p><b>Estimado proveedor: </b>para un debido proceso de inscripción como proveedor de ACESCO o de autorización
+          de sus
+          datos, agradecemos diligenciar el siguiente formulario.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <app-timeline [currentStep]="0"></app-timeline>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <form>
+            <app-form-title [text]="'Autorizaciones'"></app-form-title>
+            <div class="row justify-content-between">
+              <div class="col-6 pr-4 box">
+                <div class="row mt-3">
+                  <div class="col-2 dataProtection">
+                    <app-toggle [model]="preRegistro.dataProtection"
+                                [prop]="'dataProtection'"
+                                (updatedValue)="updateValue($event)">
+                    </app-toggle>
+                  </div>
+                  <div class="col-10 text-justify dataProtection right">
+                    <p>PROTECCION DE DATOS PERSONALES. Autorizo de forma previa, volutaria, expresa y explicita a
+                      ACERIAS DE COLOMBIA ACESCO S.A.S. como responsable del tratamiento de los datos personales en
+                      virtud de las relaciones comerciales, los cuales serán compilados, almacenados, consultados,
+                      usados, compartidos e intercambiados, para las siguientes finalizades legitimas de acuerdo con la
+                      Polotica de Proteccion de Datos Personales que se encuentra en la página web
+                      <a href="www.acesco.com" target="_blank">www.acesco.com:</a></p>
+
+                    <ul class="text-justify">
+                      <li>Contactar con fines comerciales, de servicio al cliente publicitarios.</li>
+                      <li>Cumplir obligaciones contractuales, sin limitarse a facturación, pagos o asuntos lógicos.</li>
+                      <li>Enviar noticias e información relevante sobre productos, politicas y eventos.</li>
+                      <li>Cumplir obligaciones legales y enviar reportes o información a las autoridades, sin limitarse
+                        a asuntos laborales, tributarios, migratorios.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 pl-4 box">
+                <div class="row mt-3">
+                  <div class="col-2 habeas">
+                    <app-toggle [model]="preRegistro.habeas"
+                                [prop]="'habeas'"
+                                (updatedValue)="updateValue($event)"></app-toggle>
+                  </div>
+                  <div class="col-10 habeas">
+                    <p>HABEAS DATA FINANCIERO. Autorizo expresa e irrevocablemente a ACERIAS DE COLOMBIA ACESCO S.A.S. o
+                      a quien represente sus derechos u ostente en el futuro cualquier titulo la calidad de acreedor
+                      a:</p>
+                    <ul class="text-justify">
+                      <li>Consultar en cualquier tiempo en Centrales de Riesgo a toda la información que se refiere a mi
+                        comportamiento crediticio, financiero y comercial, solicitudes de credito e información
+                        socioeconomica.
+                      </li>
+                      <li>Suministrar, reportar y divulgar a centrales de Riesgo, de manera directa o indirecta a través
+                        den entidades publicas que ejerzan control y vigilancia sobre los datos financieros toda la
+                        información descrita en el literal a/o la que haya entregado o consten en registros o bases de
+                        datos públicas para conocer mi desempeño como deudor, capacidad de pago o valoración en riesgo,
+                        cumplimiento oportuno o incumplimiento de obligaciones crediticias o deberes de contenido
+                        patrimonial. Asi mismo, autorizo a ACERIAS DE COLOMBIA ACESCO S.A.S. como a las Centrales de
+                        Riesgo, a conservar información descrita anteriormente, debidamente actualizada y durante el
+                        periodo de tiempo necesario.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <input type="date" class="form-control" [(ngModel)]="preRegistro.createdAt" name="createdAt" disabled>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Persona de contacto en ACESCO"
+                         [(ngModel)]="preRegistro.whoRefers" name="whoRefers">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <select class="form-control" [(ngModel)]="preRegistro.classification" name="classification">
+                    <option [ngValue]="null">Clasificación</option>
+                    <option *ngFor="let classification of classifications">{{classification.label}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-6">
+                <p>Escoja de acuerdo con objeto social <a href="">Descripciones</a></p>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" placeholder="Descripcion de bien o servicio a ofrecer"></textarea>
+                </div>
+              </div>
+            </div>
+            <app-form-title [text]="'información general'"></app-form-title>
+            <button class="acesco-button" (click)="submitPreRegistro();">Enviar
+              <fa-icon [icon]="faCaretRight"></fa-icon>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

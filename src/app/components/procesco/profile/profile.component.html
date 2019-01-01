@@ -1,0 +1,33 @@
+<section id="app-profile" class="animated fadeIn fast">
+  <app-logo-and-social></app-logo-and-social>
+  <header class="row">
+    <div class="col-12">
+      <h3 class="text-center">Definición Perfil/Supplier Profile</h3>
+    </div>
+  </header>
+  <hr class="whiteLine mt-5">
+  <div class="row mt-5">
+    <div class="card">
+      <div class="row">
+        <div class="col-6 left">
+          <h3 class="title">Nacional/National</h3>
+          <hr class="lightBlueLine">
+          <div class="container">
+            <app-toggles [items]="nationalOptions" [loading]="loading"></app-toggles>
+          </div>
+        </div>
+        <div class="col-6 right">
+          <h3 class="title">Internacional/International</h3>
+          <hr class="lightBlueLine">
+          <div class="container">
+            <app-toggles [items]="internationalOptions" [loading]="loading"></app-toggles>
+          </div>
+        </div>
+        <button class="acesco-button" (click)="submitProfile();" [disabled]="loading">Enviar
+          <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+          <fa-icon [icon]="faSpinner" *ngIf="loading" [spin]="true"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
