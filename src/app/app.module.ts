@@ -27,6 +27,7 @@ import { UpdateComponent } from './components/procesco/update/update.component';
 import { TimelineComponent } from './components/shared/timeline/timeline.component';
 import { FormTitleComponent } from './components/shared/form-title/form-title.component';
 import { ToggleComponent } from './components/shared/toggle/toggle.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ToggleComponent } from './components/shared/toggle/toggle.component';
     UpdateComponent,
     TimelineComponent,
     FormTitleComponent,
-    ToggleComponent
+    ToggleComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

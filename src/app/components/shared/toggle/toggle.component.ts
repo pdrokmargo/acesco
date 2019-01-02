@@ -8,16 +8,27 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class ToggleComponent {
   @Input() model: boolean;
   @Input() prop: string;
+  @Input() prop2: string;
   @Output() updatedValue: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
   }
 
   updateValue() {
-    const obj = {
-      key: this.prop,
-      value: this.model
-    };
+    let obj = {};
+    if (this.prop2) {
+      obj = {
+        key: this.prop,
+        key2: this.prop2,
+        value: this.model
+      };
+    } else {
+      obj = {
+        key: this.prop,
+        value: this.model
+      };
+    }
+
     this.updatedValue.emit(obj);
   }
 }

@@ -12,6 +12,8 @@ export class NewProviderComponent {
   faCaretRight = faCaretRight;
   now: Date = new Date();
   classifications: any[] = [];
+  documentType: any[] = [];
+  countries: any[] = [];
 
   constructor() {
     const day = ('0' + this.now.getDate()).slice(-2);
@@ -22,19 +24,68 @@ export class NewProviderComponent {
       {label: 'CLasificación 3', value: 'classification3'},
       {label: 'CLasificación 4', value: 'classification4'}
     ];
+
     this.preRegistro = {
-      dataProtection: true,
-      habeas: true,
-      createdAt: this.now.getFullYear() + '-' + (month) + '-' + (day),
-      whoRefers: null,
-      classification: null,
-      description: null
-    }
-    ;
+      autorizations: {
+        personalDataProtection: true,
+        habeas: true,
+        createdAt: this.now.getFullYear() + '-' + (month) + '-' + (day),
+        whoRefers: null,
+        classification: null,
+        serviceDescription: null,
+      },
+      generalInfo: {
+        documentType: null,
+        documentNumber: null,
+        documentIssued: null,
+        businessName: null,
+        comercialName: null,
+        ciiu: null,
+        professionalCard: null,
+      },
+      supplierContactInfo: {
+        contactName: null,
+        position: null,
+        address: null,
+        country: null,
+        dpto: null,
+        city: null,
+        zipcode: null,
+        phone: null,
+        mobile: null,
+        fax: null,
+        email: null,
+        website: null
+      },
+      managementSystemInformation: {
+        iso9001: false,
+        iso14001: false,
+        oshas18001: false,
+        antiCorruptionPolicy: false,
+        sustainability: false,
+        dueDiligence: false,
+        socialResponsability: false,
+        socialResponsabilityName: null,
+        productSeal: false,
+        productSealName: null
+      }
+    };
+    this.documentType = [
+      {label: 'CC', value: 'cc'},
+      {label: 'TI', value: 'ti'},
+    ];
+    this.countries = [
+      {label: 'Colombia', value: 'colombia'},
+      {label: 'Argentina', value: 'argentina'}
+    ];
   }
 
   updateValue(newValue: ToggleInterface) {
-    this.preRegistro[newValue.key] = newValue.value;
+    if (newValue.key2) {
+      this.preRegistro[newValue.key][newValue.key2] = newValue.value;
+    } else {
+      this.preRegistro[newValue.key] = newValue.value;
+    }
   }
 
   submitPreRegistro() {

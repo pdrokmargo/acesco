@@ -1,5 +1,4 @@
 #app-new-provider {
-  height: 100vh;
   background-image: url("../../../../assets/images/background.jpg");
 }
 
@@ -24,4 +23,37 @@ ul.text-justify {
   border: 1px solid var(--secondary);
   font-size: 14px;
   height: 600px;
+}
+
+.text-block {
+  border: 1px solid var(--secondary);
+  padding: 10px;
+}
+
+.managementSystemInformation {
+  padding: 0;
+}
+
+.sustainability,
+.socialResponsability {
+  border-top: 1px solid var(--secondary);
+  border-right: 1px solid var(--secondary);
+}
+
+.managementSystemInformation .dueDiligence {
+  border-top: 1px solid var(--secondary);
+}
+
+.col-2.rule {
+  padding: 0;
+  border-right: 1px solid var(--secondary);
+  height: 100%;
+}
+
+.col-2.rule span,
+.antiCorruptionPolicy,
+.managementSystemInformation .col-6 {
+  font-size: 10px;
+  line-height: 2;
+  text-align: center;
 }

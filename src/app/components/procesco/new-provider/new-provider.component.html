@@ -23,8 +23,9 @@
               <div class="col-6 pr-4 box">
                 <div class="row mt-3">
                   <div class="col-2 dataProtection">
-                    <app-toggle [model]="preRegistro.dataProtection"
-                                [prop]="'dataProtection'"
+                    <app-toggle [model]="preRegistro.autorizations.personalDataProtection"
+                                [prop]="'autorizations'"
+                                [prop2]="'personalDataProtection'"
                                 (updatedValue)="updateValue($event)">
                     </app-toggle>
                   </div>
@@ -50,8 +51,9 @@
               <div class="col-6 pl-4 box">
                 <div class="row mt-3">
                   <div class="col-2 habeas">
-                    <app-toggle [model]="preRegistro.habeas"
-                                [prop]="'habeas'"
+                    <app-toggle [model]="preRegistro.autorizations.habeas"
+                                [prop]="'autorizations'"
+                                [prop2]="'habeas'"
                                 (updatedValue)="updateValue($event)"></app-toggle>
                   </div>
                   <div class="col-10 habeas">
@@ -77,21 +79,23 @@
                 </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row mt-5">
               <div class="col-6">
                 <div class="form-group">
-                  <input type="date" class="form-control" [(ngModel)]="preRegistro.createdAt" name="createdAt" disabled>
+                  <input type="date" class="form-control" [(ngModel)]="preRegistro.autorizations.createdAt"
+                         name="createdAt" disabled>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Persona de contacto en ACESCO"
-                         [(ngModel)]="preRegistro.whoRefers" name="whoRefers">
+                         [(ngModel)]="preRegistro.autorizations.whoRefers" name="whoRefers">
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <select class="form-control" [(ngModel)]="preRegistro.classification" name="classification">
+                  <select class="form-control" [(ngModel)]="preRegistro.autorizations.classification"
+                          name="classification">
                     <option [ngValue]="null">Clasificación</option>
                     <option *ngFor="let classification of classifications">{{classification.label}}</option>
                   </select>
@@ -102,11 +106,262 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <textarea class="form-control" rows="3" placeholder="Descripcion de bien o servicio a ofrecer"></textarea>
+                  <textarea class="form-control" rows="6" [(ngModel)]="preRegistro.autorizations.serviceDescription"
+                            name="serviceDescription"
+                            placeholder="Descripcion de bien o servicio a ofrecer"></textarea>
                 </div>
               </div>
             </div>
             <app-form-title [text]="'información general'"></app-form-title>
+            <div class="row mt-3">
+              <div class="col-12">
+                <div class="form-row">
+                  <div class="form-group col-3">
+                    <p class="text-center mt-1">Documento de identidad</p>
+                  </div>
+                  <div class="form-group col-1">
+                    <select class="form-control"
+                            [(ngModel)]="preRegistro.generalInfo.documentType"
+                            name="documentType">
+                      <option *ngFor="let type of documentType">{{type.label}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="No.:"
+                           [(ngModel)]="preRegistro.generalInfo.documentNumber"
+                           name="documentNumber">
+                  </div>
+                  <div class="form-group col-md-2">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="De:"
+                           [(ngModel)]="preRegistro.generalInfo.documentIssued"
+                           name="documentIssued">
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="text-block">
+                  <ul class="list-unstyled">
+                    <li>
+                      <p>IMPORTANTE: Señor proveedor, tenga en cuenta que toda persona natural que contrate ACESCO por
+                        un monto superior a un salario minimo legal mensual vigente (SMMLV). debe:</p>
+                    </li>
+                    <li>
+                      <p>1) Estar afiliado al sistema de seguridad social como trabajador independiente, sin importar
+                        que este aportando como trabajador independiente de una empresa.</p>
+                    </li>
+                    <li>
+                      <p>2) Al presentar su factura por concepto de servicios, esta debe presentar el numero de
+                        trabjadores que involucró en la actividad y venir acompañada de la planilla de aportes a la
+                        seguridad social del mes correspondiente al de la prestación del servicio. </p>
+                    </li>
+                    <li>
+                      <p>3) La base para realizar los aportes a la seguridad socual no debe ser inferior al 40% del
+                        valor mensual facturado antes de IVA y si este cálculo resulta inferior a un SMMLV. entonces
+                        debe calcular sobre la base del salario minimo, sin superar los 25 SMMLV.</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-12 mt-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Razon social/Nombre completo"
+                         [(ngModel)]="preRegistro.generalInfo.businessName" name="businessName">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Razon comercial"
+                         [(ngModel)]="preRegistro.generalInfo.comercialName" name="comercialName">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Cod. CIIU"
+                         [(ngModel)]="preRegistro.generalInfo.ciiu" name="ciiu">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Nombres y apellidos del representante legal:"
+                         [(ngModel)]="preRegistro.generalInfo.legalRepresentative" name="legalRepresentative">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Profesion y oficio:"
+                         [(ngModel)]="preRegistro.generalInfo.profession" name="profession">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Tarjeta o registro profesional No:"
+                         [(ngModel)]="preRegistro.generalInfo.professionalCard" name="professionalCard">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Expedido por:"
+                         [(ngModel)]="preRegistro.generalInfo.issuedBy" name="issuedBy">
+                </div>
+              </div>
+            </div>
+            <app-form-title [text]="'Datos de contacto del proveedor'"></app-form-title>
+            <div class="row mt-3">
+              <div class="col 8">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Persona de contacto:"
+                         [(ngModel)]="preRegistro.supplierContactInfo.contactName" name="contactName">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Cargo:"
+                         [(ngModel)]="preRegistro.supplierContactInfo.position" name="position">
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Dirección:"
+                         [(ngModel)]="preRegistro.supplierContactInfo.address" name="address">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <div class="form-group">
+                    <select class="form-control" [(ngModel)]="preRegistro.supplierContactInfo.country"
+                            name="country">
+                      <option [ngValue]="null">Pais</option>
+                      <option *ngFor="let country of countries">{{country.label}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Dpto:"
+                         [(ngModel)]="preRegistro.supplierContactInfo.dpto" name="dpto">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Ciudad:"
+                         [(ngModel)]="preRegistro.supplierContactInfo.city" name="city">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Codigo postal:"
+                         [(ngModel)]="preRegistro.supplierContactInfo.zipcode" name="zipcode">
+                </div>
+              </div>
+
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="tel" class="form-control" placeholder="Telefono:"
+                         [(ngModel)]="preRegistro.supplierContactInfo.phone" name="phone">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Celular:"
+                         [(ngModel)]="preRegistro.supplierContactInfo.mobile" name="mobile">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Fax:"
+                         [(ngModel)]="preRegistro.supplierContactInfo.fax" name="fax">
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="E-mail:"
+                         [(ngModel)]="preRegistro.supplierContactInfo.email" name="email">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Pagina Web:"
+                         [(ngModel)]="preRegistro.supplierContactInfo.website" name="website">
+                </div>
+              </div>
+            </div>
+            <app-form-title [text]="'información de sistema de gestión'"></app-form-title>
+            <div class="row text-block mt-3 managementSystemInformation">
+              <div class="col-2 rule">
+                <span>ISO 9001: SI
+                  <app-toggle [model]="preRegistro.managementSystemInformation.iso9001"
+                              [prop]="'managementSystemInformation'"
+                              [prop2]="'iso9001'"
+                              (updatedValue)="updateValue($event)"></app-toggle> NO
+                </span>
+              </div>
+              <div class="col-2 rule">
+                <span>ISO 14001: SI
+                  <app-toggle [model]="preRegistro.managementSystemInformation.iso14001"
+                              [prop]="'managementSystemInformation'"
+                              [prop2]="'iso14001'"
+                              (updatedValue)="updateValue($event)"></app-toggle> NO
+                </span>
+              </div>
+              <div class="col-2 rule">
+                <span>OSHAS 18001: SI
+                  <app-toggle [model]="preRegistro.managementSystemInformation.oshas18001"
+                              [prop]="'managementSystemInformation'"
+                              [prop2]="'oshas18001'"
+                              (updatedValue)="updateValue($event)"></app-toggle> NO
+                </span>
+              </div>
+              <div class="col-6 antiCorruptionPolicy">
+                <span>Tiene politica de anti corrupción y soborno: NO
+                  <app-toggle [prop]="'managementSystemInformation'"
+                              [prop2]="'antiCorruptionPolicy'"
+                              [model]="preRegistro.managementSystemInformation.antiCorruptionPolicy"
+                              (updatedValue)="updateValue($event)"></app-toggle> SI</span>
+              </div>
+              <div class="col-6 sustainability">
+                <span>Posee Reporte de Sostenibilidad NO
+                  <app-toggle [prop]="'managementSystemInformation'"
+                              [prop2]="'sustainability'"
+                              [model]="preRegistro.managementSystemInformation.sustainability"
+                              (updatedValue)="updateValue($event)"></app-toggle> SI</span>
+              </div>
+              <div class="col-6 dueDiligence">
+                <span>Tiene implementado el proceso de la debida diligencia NO
+                  <app-toggle [prop]="'managementSystemInformation'"
+                              [prop2]="'dueDiligence'"
+                              [model]="preRegistro.managementSystemInformation.dueDiligence"
+                              (updatedValue)="updateValue($event)"></app-toggle> SI</span>
+              </div>
+              <div class="col-6 socialResponsability">
+                <span>Posee fundación o responsabilidad social NO
+                  <app-toggle [prop]="'managementSystemInformation'"
+                              [prop2]="'socialResponsability'"
+                              [model]="preRegistro.managementSystemInformation.socialResponsability"
+                              (updatedValue)="updateValue($event)"></app-toggle> SI</span>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Cual?" [disabled]="!preRegistro.managementSystemInformation.socialResponsability"
+                         [(ngModel)]="preRegistro.managementSystemInformation.socialResponsabilityName" name="socialResponsabilityName">
+                </div>
+              </div>
+              <div class="col-6 productSeal">
+<span>Posee sello de producto NO
+                  <app-toggle [prop]="'managementSystemInformation'"
+                              [prop2]="'productSeal'"
+                              [model]="preRegistro.managementSystemInformation.productSeal"
+                              (updatedValue)="updateValue($event)"></app-toggle> SI</span>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Cual?" [disabled]="!preRegistro.managementSystemInformation.productSeal"
+                         [(ngModel)]="preRegistro.managementSystemInformation.productSealName" name="productSealName">
+                </div>
+              </div>
+            </div>
             <button class="acesco-button" (click)="submitPreRegistro();">Enviar
               <fa-icon [icon]="faCaretRight"></fa-icon>
             </button>
