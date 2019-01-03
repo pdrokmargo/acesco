@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import {faFacebook, faGoogleDrive, faInstagram, faYoutube} from '@fortawesome/free-brands-svg-icons';
 import {
   faCaretRight,
@@ -16,11 +16,12 @@ import {Router} from '@angular/router';
   templateUrl: './procesco.component.html',
   styleUrls: ['./procesco.component.css']
 })
-export class ProcescoComponent {
+export class ProcescoComponent implements AfterViewInit {
   options: any [] = [];
   socialLinks: any [] = [];
   buttons: any [] = [];
   user: any;
+  loading: boolean;
   faGoogleDrive = faGoogleDrive;
   faLongArrowAltRight = faLongArrowAltRight;
   faYoutube = faYoutube;
@@ -36,8 +37,10 @@ export class ProcescoComponent {
   explanation: string;
   showRegister: boolean;
   showLogin: boolean;
+  height: number;
 
   constructor(private router: Router) {
+    this.loading = false;
     this.options = [
       {label: 'FAQs', tooltipMessage: 'Preguntas Frecuentes'},
       {label: 'Registro', tooltipMessage: 'Proceso para registrarse como proveedor'},
@@ -67,8 +70,11 @@ export class ProcescoComponent {
     };
   }
 
+  ngAfterViewInit() {
+    this.height = document.body.offsetHeight;
+  }
+
   nextPage(index: number) {
-    // this.router.navigate(['/artist', id]);
     switch (index) {
       case 0: {
         this.router.navigate(['faq']);
@@ -130,5 +136,9 @@ export class ProcescoComponent {
       }
 
     }
+  }
+
+  isLoading(event: boolean) {
+    this.loading = event;
   }
 }

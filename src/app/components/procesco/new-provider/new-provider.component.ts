@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {ToggleInterface} from '../../../Interfaces/toggle.interface';
 import {Router} from '@angular/router';
@@ -8,10 +8,11 @@ import {Router} from '@angular/router';
   templateUrl: './new-provider.component.html',
   styleUrls: ['./new-provider.component.css']
 })
-export class NewProviderComponent {
+export class NewProviderComponent implements AfterViewInit {
   preRegistro: Object;
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
+  height: number;
   now: Date = new Date();
   classifications: any[] = [];
   documentType: any[] = [];
@@ -82,6 +83,10 @@ export class NewProviderComponent {
       {label: 'Colombia', value: 'colombia'},
       {label: 'Argentina', value: 'argentina'}
     ];
+  }
+
+  ngAfterViewInit() {
+    this.height = document.body.offsetHeight;
   }
 
   updateValue(newValue: ToggleInterface) {

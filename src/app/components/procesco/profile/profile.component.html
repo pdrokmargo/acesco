@@ -1,4 +1,5 @@
 <section id="app-profile" class="animated fadeIn fast">
+  <app-loader [loading]="loading" [height]="height"></app-loader>
   <app-logo-and-social></app-logo-and-social>
   <header class="row">
     <div class="col-12">
@@ -29,5 +30,8 @@
         </button>
       </div>
     </div>
+  </div>
+  <div class="container">
+    <app-footer></app-footer>
   </div>
 </section>

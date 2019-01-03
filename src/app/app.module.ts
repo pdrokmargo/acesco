@@ -29,6 +29,7 @@ import { FormTitleComponent } from './components/shared/form-title/form-title.co
 import { ToggleComponent } from './components/shared/toggle/toggle.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { ConfirmationComponent } from './components/shared/confirmation/confirmation.component';
+import { LoaderComponent } from './components/shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ConfirmationComponent } from './components/shared/confirmation/confirma
     FormTitleComponent,
     ToggleComponent,
     FooterComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

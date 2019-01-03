@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent {
   @Output() back: EventEmitter<any> = new EventEmitter();
+  @Output() isLoading: EventEmitter<any> = new EventEmitter();
   faGoogleDrive = faGoogleDrive;
   faUser = faUser;
   faUnlock = faUnlock;
@@ -20,6 +21,7 @@ export class LoginComponent {
   loading: boolean;
 
   constructor(private router: Router) {
+    this.loading = false;
     this.user = {
       name: null,
       password: null
@@ -29,10 +31,12 @@ export class LoginComponent {
 
   onSubmit(form: NgForm) {
     this.loading = true;
+    this.isLoading.emit(this.loading);
     setTimeout(() => {
       console.log(form.value);
       console.log('Logged In!!');
       this.loading = false;
+      this.isLoading.emit(this.loading);
       this.router.navigate(['procesco/perfil']);
     }, 3000);
   }

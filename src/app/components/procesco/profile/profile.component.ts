@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 
@@ -7,12 +7,13 @@ import {Router} from '@angular/router';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements AfterViewInit {
   nationalOptions: any [] = [];
   internationalOptions: any [] = [];
   loading: boolean;
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
+  height: number;
 
   constructor(private router: Router) {
     this.nationalOptions = [
@@ -30,6 +31,10 @@ export class ProfileComponent {
     ];
   }
 
+  ngAfterViewInit() {
+    this.height = document.body.offsetHeight;
+  }
+
   submitProfile() {
     const newProvider = this.nationalOptions.find(element => element.value === 'nuevo');
     const updateProvider = this.nationalOptions.find(element => element.value === 'actualizacion');
@@ -38,7 +43,6 @@ export class ProfileComponent {
     }
     this.loading = true;
     setTimeout(() => {
-
       if (newProvider.active) {
         this.router.navigate(['procesco/nuevoProveedor']);
       } else if (updateProvider.active) {

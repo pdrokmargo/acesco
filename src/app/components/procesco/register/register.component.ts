@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Output} from '@angular/core';
 import {faGoogleDrive} from '@fortawesome/free-brands-svg-icons';
 import {faCaretRight, faEnvelope, faSpinner, faUnlock, faUser} from '@fortawesome/free-solid-svg-icons';
 import {NgForm} from '@angular/forms';
@@ -9,8 +9,9 @@ import {Router} from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements AfterViewInit {
   @Output() back: EventEmitter<any> = new EventEmitter();
+  @Output() isLoading: EventEmitter<any> = new EventEmitter();
   faGoogleDrive = faGoogleDrive;
   faUser = faUser;
   faEnvelope = faEnvelope;
@@ -20,6 +21,7 @@ export class RegisterComponent {
   user: any;
   passwordsMatch: boolean;
   loading: boolean;
+  height: number;
 
   constructor(private router: Router) {
     this.user = {
@@ -32,11 +34,17 @@ export class RegisterComponent {
     this.loading = false;
   }
 
+  ngAfterViewInit() {
+    this.height = document.body.offsetHeight;
+  }
+
   onSubmit(form: NgForm) {
     console.log(form.value);
     this.loading = true;
+    this.isLoading.emit(this.loading);
     setTimeout(() => {
       this.loading = false;
+      this.isLoading.emit(this.loading);
       this.back.emit('login');
     }, 3000);
   }
