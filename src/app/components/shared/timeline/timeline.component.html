@@ -5,7 +5,7 @@
         <div class="left-line" *ngIf="i !== 0" [ngClass]="{'active': currentStep === i}"></div>
       </li>
       <li class="list-inline-item">
-        <div class="timelineCircle" [ngClass]="{'active': currentStep === i}">{{i}}</div>
+        <div class="timelineCircle" [ngClass]="{'active': currentStep === i}">{{i+1}}</div>
       </li>
       <li class="list-inline-item">
         <div class="right-line" *ngIf="i !== 3" [ngClass]="{'active': currentStep === i}"></div>

@@ -28,6 +28,7 @@ import { TimelineComponent } from './components/shared/timeline/timeline.compone
 import { FormTitleComponent } from './components/shared/form-title/form-title.component';
 import { ToggleComponent } from './components/shared/toggle/toggle.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { ConfirmationComponent } from './components/shared/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     TimelineComponent,
     FormTitleComponent,
     ToggleComponent,
-    FooterComponent
+    FooterComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

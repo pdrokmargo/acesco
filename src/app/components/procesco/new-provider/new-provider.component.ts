@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {faCaretRight} from '@fortawesome/free-solid-svg-icons';
+import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {ToggleInterface} from '../../../Interfaces/toggle.interface';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-new-provider',
@@ -10,12 +11,15 @@ import {ToggleInterface} from '../../../Interfaces/toggle.interface';
 export class NewProviderComponent {
   preRegistro: Object;
   faCaretRight = faCaretRight;
+  faSpinner = faSpinner;
   now: Date = new Date();
   classifications: any[] = [];
   documentType: any[] = [];
   countries: any[] = [];
+  loading: boolean;
 
-  constructor() {
+  constructor(private router: Router) {
+    this.loading = false;
     const day = ('0' + this.now.getDate()).slice(-2);
     const month = ('0' + (this.now.getMonth() + 1)).slice(-2);
     this.classifications = [
@@ -89,7 +93,12 @@ export class NewProviderComponent {
   }
 
   submitPreRegistro() {
+    this.loading = true;
     console.log(this.preRegistro);
+    setTimeout(() => {
+      this.loading = false;
+      this.router.navigate(['procesco/confirmacion']);
+    }, 3000);
   }
 
 }

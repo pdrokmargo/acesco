@@ -1,0 +1,39 @@
+<section id="app-confirmation" class="animated fadeIn">
+  <app-logo-and-social></app-logo-and-social>
+  <div class="row">
+    <div class="col">
+      <div class="card text-center">
+        <div class="icon-border ">
+          <fa-icon [icon]="faCheck" class="faCheck"></fa-icon>
+        </div>
+        <div class="card-body">
+          <div class="card-title">
+            <h4 class="card-title">Gracias por su interés</h4>
+          </div>
+          <p class="card-text">
+            <b>en hacer parte del grupo de proveedores de Acesco</b>
+          </p>
+          <hr class="line">
+          <p class="card-text">
+            <small>
+              Usted ha culminado exitosamente la {{steps[step].position}} etapa ( {{steps[step].step}} ) del proceso de
+              inscripción como proveedor en Acesco. Procederemos a validar nuestros requerimientos de suministro para
+              habilitar su paso a la {{steps[step + 1].position}} etapa ( {{ steps[step + 1].step }} ). Lo estaremos
+              contactando al E-mail registrado por usted.
+            </small>
+          </p>
+          <button type="button"
+                  [disabled]="loading"
+                  (click)="submit();"
+                  class="acesco-button">
+            <fa-icon [icon]="faEnvelope"></fa-icon>
+            Ver email
+            <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+            <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</section>

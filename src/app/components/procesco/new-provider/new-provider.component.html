@@ -1,4 +1,5 @@
-<section id="app-new-provider">
+<section id="app-new-provider" class="animated fadeIn">
+  <app-logo-and-social></app-logo-and-social>
   <div class="container">
     <div class="row">
       <div class="col-12 text-white text-center mt-5">
@@ -26,6 +27,7 @@
                     <app-toggle [model]="preRegistro.autorizations.personalDataProtection"
                                 [prop]="'autorizations'"
                                 [prop2]="'personalDataProtection'"
+                                [loading]="loading"
                                 (updatedValue)="updateValue($event)">
                     </app-toggle>
                   </div>
@@ -54,6 +56,7 @@
                     <app-toggle [model]="preRegistro.autorizations.habeas"
                                 [prop]="'autorizations'"
                                 [prop2]="'habeas'"
+                                [loading]="loading"
                                 (updatedValue)="updateValue($event)"></app-toggle>
                   </div>
                   <div class="col-10 habeas">
@@ -82,20 +85,29 @@
             <div class="row mt-5">
               <div class="col-6">
                 <div class="form-group">
-                  <input type="date" class="form-control" [(ngModel)]="preRegistro.autorizations.createdAt"
-                         name="createdAt" disabled>
+                  <input type="date"
+                         class="form-control"
+                         [(ngModel)]="preRegistro.autorizations.createdAt"
+                         name="createdAt"
+                         disabled>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Persona de contacto en ACESCO"
-                         [(ngModel)]="preRegistro.autorizations.whoRefers" name="whoRefers">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Persona de contacto en ACESCO"
+                         [(ngModel)]="preRegistro.autorizations.whoRefers"
+                         name="whoRefers"
+                         [disabled]="loading">
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <select class="form-control" [(ngModel)]="preRegistro.autorizations.classification"
-                          name="classification">
+                  <select class="form-control"
+                          [(ngModel)]="preRegistro.autorizations.classification"
+                          name="classification"
+                          [disabled]="loading">
                     <option [ngValue]="null">Clasificación</option>
                     <option *ngFor="let classification of classifications">{{classification.label}}</option>
                   </select>
@@ -106,8 +118,11 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <textarea class="form-control" rows="6" [(ngModel)]="preRegistro.autorizations.serviceDescription"
+                  <textarea class="form-control"
+                            rows="6"
+                            [(ngModel)]="preRegistro.autorizations.serviceDescription"
                             name="serviceDescription"
+                            [disabled]="loading"
                             placeholder="Descripcion de bien o servicio a ofrecer"></textarea>
                 </div>
               </div>
@@ -122,7 +137,8 @@
                   <div class="form-group col-1">
                     <select class="form-control"
                             [(ngModel)]="preRegistro.generalInfo.documentType"
-                            name="documentType">
+                            name="documentType"
+                            [disabled]="loading">
                       <option *ngFor="let type of documentType">{{type.label}}</option>
                     </select>
                   </div>
@@ -130,6 +146,7 @@
                     <input type="text"
                            class="form-control"
                            placeholder="No.:"
+                           [disabled]="loading"
                            [(ngModel)]="preRegistro.generalInfo.documentNumber"
                            name="documentNumber">
                   </div>
@@ -137,6 +154,7 @@
                     <input type="text"
                            class="form-control"
                            placeholder="De:"
+                           [disabled]="loading"
                            [(ngModel)]="preRegistro.generalInfo.documentIssued"
                            name="documentIssued">
                   </div>
@@ -168,44 +186,72 @@
               </div>
               <div class="col-12 mt-3">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Razon social/Nombre completo"
-                         [(ngModel)]="preRegistro.generalInfo.businessName" name="businessName">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Razon social/Nombre completo"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.generalInfo.businessName"
+                         name="businessName">
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Razon comercial"
-                         [(ngModel)]="preRegistro.generalInfo.comercialName" name="comercialName">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Razon comercial"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.generalInfo.comercialName"
+                         name="comercialName">
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Cod. CIIU"
-                         [(ngModel)]="preRegistro.generalInfo.ciiu" name="ciiu">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Cod. CIIU"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.generalInfo.ciiu"
+                         name="ciiu">
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Nombres y apellidos del representante legal:"
-                         [(ngModel)]="preRegistro.generalInfo.legalRepresentative" name="legalRepresentative">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Nombres y apellidos del representante legal:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.generalInfo.legalRepresentative"
+                         name="legalRepresentative">
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Profesion y oficio:"
-                         [(ngModel)]="preRegistro.generalInfo.profession" name="profession">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Profesion y oficio:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.generalInfo.profession"
+                         name="profession">
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Tarjeta o registro profesional No:"
-                         [(ngModel)]="preRegistro.generalInfo.professionalCard" name="professionalCard">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Tarjeta o registro profesional No:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.generalInfo.professionalCard"
+                         name="professionalCard">
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Expedido por:"
-                         [(ngModel)]="preRegistro.generalInfo.issuedBy" name="issuedBy">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Expedido por:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.generalInfo.issuedBy"
+                         name="issuedBy">
                 </div>
               </div>
             </div>
@@ -213,26 +259,40 @@
             <div class="row mt-3">
               <div class="col 8">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Persona de contacto:"
-                         [(ngModel)]="preRegistro.supplierContactInfo.contactName" name="contactName">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Persona de contacto:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.supplierContactInfo.contactName"
+                         name="contactName">
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Cargo:"
-                         [(ngModel)]="preRegistro.supplierContactInfo.position" name="position">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Cargo:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.supplierContactInfo.position"
+                         name="position">
                 </div>
               </div>
               <div class="col-8">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Dirección:"
-                         [(ngModel)]="preRegistro.supplierContactInfo.address" name="address">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Dirección:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.supplierContactInfo.address"
+                         name="address">
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
                   <div class="form-group">
-                    <select class="form-control" [(ngModel)]="preRegistro.supplierContactInfo.country"
+                    <select class="form-control"
+                            [(ngModel)]="preRegistro.supplierContactInfo.country"
+                            [disabled]="loading"
                             name="country">
                       <option [ngValue]="null">Pais</option>
                       <option *ngFor="let country of countries">{{country.label}}</option>
@@ -243,52 +303,84 @@
 
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Dpto:"
-                         [(ngModel)]="preRegistro.supplierContactInfo.dpto" name="dpto">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Dpto:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.supplierContactInfo.dpto"
+                         name="dpto">
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Ciudad:"
-                         [(ngModel)]="preRegistro.supplierContactInfo.city" name="city">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Ciudad:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.supplierContactInfo.city"
+                         name="city">
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Codigo postal:"
-                         [(ngModel)]="preRegistro.supplierContactInfo.zipcode" name="zipcode">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Codigo postal:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.supplierContactInfo.zipcode"
+                         name="zipcode">
                 </div>
               </div>
 
               <div class="col-4">
                 <div class="form-group">
-                  <input type="tel" class="form-control" placeholder="Telefono:"
-                         [(ngModel)]="preRegistro.supplierContactInfo.phone" name="phone">
+                  <input type="tel"
+                         class="form-control"
+                         placeholder="Telefono:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.supplierContactInfo.phone"
+                         name="phone">
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Celular:"
-                         [(ngModel)]="preRegistro.supplierContactInfo.mobile" name="mobile">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Celular:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.supplierContactInfo.mobile"
+                         name="mobile">
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Fax:"
-                         [(ngModel)]="preRegistro.supplierContactInfo.fax" name="fax">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Fax:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.supplierContactInfo.fax"
+                         name="fax">
                 </div>
               </div>
 
               <div class="col-6">
                 <div class="form-group">
-                  <input type="email" class="form-control" placeholder="E-mail:"
-                         [(ngModel)]="preRegistro.supplierContactInfo.email" name="email">
+                  <input type="email"
+                         class="form-control"
+                         placeholder="E-mail:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.supplierContactInfo.email"
+                         name="email">
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Pagina Web:"
-                         [(ngModel)]="preRegistro.supplierContactInfo.website" name="website">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Pagina Web:"
+                         [disabled]="loading"
+                         [(ngModel)]="preRegistro.supplierContactInfo.website"
+                         name="website">
                 </div>
               </div>
             </div>
@@ -299,6 +391,7 @@
                   <app-toggle [model]="preRegistro.managementSystemInformation.iso9001"
                               [prop]="'managementSystemInformation'"
                               [prop2]="'iso9001'"
+                              [loading]="loading"
                               (updatedValue)="updateValue($event)"></app-toggle> NO
                 </span>
               </div>
@@ -307,6 +400,7 @@
                   <app-toggle [model]="preRegistro.managementSystemInformation.iso14001"
                               [prop]="'managementSystemInformation'"
                               [prop2]="'iso14001'"
+                              [loading]="loading"
                               (updatedValue)="updateValue($event)"></app-toggle> NO
                 </span>
               </div>
@@ -315,6 +409,7 @@
                   <app-toggle [model]="preRegistro.managementSystemInformation.oshas18001"
                               [prop]="'managementSystemInformation'"
                               [prop2]="'oshas18001'"
+                              [loading]="loading"
                               (updatedValue)="updateValue($event)"></app-toggle> NO
                 </span>
               </div>
@@ -322,6 +417,7 @@
                 <span>Tiene politica de anti corrupción y soborno: NO
                   <app-toggle [prop]="'managementSystemInformation'"
                               [prop2]="'antiCorruptionPolicy'"
+                              [loading]="loading"
                               [model]="preRegistro.managementSystemInformation.antiCorruptionPolicy"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
@@ -329,6 +425,7 @@
                 <span>Posee Reporte de Sostenibilidad NO
                   <app-toggle [prop]="'managementSystemInformation'"
                               [prop2]="'sustainability'"
+                              [loading]="loading"
                               [model]="preRegistro.managementSystemInformation.sustainability"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
@@ -336,6 +433,7 @@
                 <span>Tiene implementado el proceso de la debida diligencia NO
                   <app-toggle [prop]="'managementSystemInformation'"
                               [prop2]="'dueDiligence'"
+                              [loading]="loading"
                               [model]="preRegistro.managementSystemInformation.dueDiligence"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
@@ -343,31 +441,45 @@
                 <span>Posee fundación o responsabilidad social NO
                   <app-toggle [prop]="'managementSystemInformation'"
                               [prop2]="'socialResponsability'"
+                              [loading]="loading"
                               [model]="preRegistro.managementSystemInformation.socialResponsability"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Cual?" [disabled]="!preRegistro.managementSystemInformation.socialResponsability"
-                         [(ngModel)]="preRegistro.managementSystemInformation.socialResponsabilityName" name="socialResponsabilityName">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Cual?"
+                         [disabled]="!preRegistro.managementSystemInformation.socialResponsability || loading"
+                         [(ngModel)]="preRegistro.managementSystemInformation.socialResponsabilityName"
+                         name="socialResponsabilityName">
                 </div>
               </div>
               <div class="col-6 productSeal">
-<span>Posee sello de producto NO
+                  <span>Posee sello de producto NO
                   <app-toggle [prop]="'managementSystemInformation'"
                               [prop2]="'productSeal'"
+                              [loading]="loading"
                               [model]="preRegistro.managementSystemInformation.productSeal"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Cual?" [disabled]="!preRegistro.managementSystemInformation.productSeal"
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Cual?"
+                         [disabled]="!preRegistro.managementSystemInformation.productSeal || loading"
                          [(ngModel)]="preRegistro.managementSystemInformation.productSealName" name="productSealName">
                 </div>
               </div>
             </div>
-            <button class="acesco-button" (click)="submitPreRegistro();">Enviar
-              <fa-icon [icon]="faCaretRight"></fa-icon>
+            <button class="acesco-button"
+                    (click)="submitPreRegistro();"
+                    [disabled]="loading">Enviar
+              <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+              <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
             </button>
           </form>
         </div>
       </div>
     </div>
   </div>
+  <app-footer></app-footer>
 </section>
+

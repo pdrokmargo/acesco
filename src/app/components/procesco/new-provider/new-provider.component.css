@@ -1,5 +1,9 @@
 #app-new-provider {
-  background-image: url("../../../../assets/images/background.jpg");
+  background: #2daddc; /* Old browsers */
+  background: -moz-linear-gradient(left, #2daddc 0%, #29c2ad 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #2daddc 0%,#29c2ad 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #2daddc 0%,#29c2ad 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2daddc', endColorstr='#29c2ad',GradientType=1 ); /* IE6-9 */
 }
 
 .whiteLine {
@@ -56,4 +60,16 @@ ul.text-justify {
   font-size: 10px;
   line-height: 2;
   text-align: center;
+}
+
+input, select {
+  border: none;
+  border-bottom: 1px solid var(--secondary);
+  border-radius: 0;
+}
+
+input:focus,
+select:focus {
+  border-color: unset;
+  box-shadow: unset;
 }

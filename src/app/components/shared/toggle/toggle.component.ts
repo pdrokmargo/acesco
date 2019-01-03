@@ -9,6 +9,7 @@ export class ToggleComponent {
   @Input() model: boolean;
   @Input() prop: string;
   @Input() prop2: string;
+  @Input() loading: boolean;
   @Output() updatedValue: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {

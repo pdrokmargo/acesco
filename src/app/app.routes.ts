@@ -7,12 +7,14 @@ import {EvaluacionComponent} from './components/procesco/evaluacion/evaluacion.c
 import {ProfileComponent} from './components/procesco/profile/profile.component';
 import {NewProviderComponent} from './components/procesco/new-provider/new-provider.component';
 import {UpdateComponent} from './components/procesco/update/update.component';
+import {ConfirmationComponent} from './components/shared/confirmation/confirmation.component';
 
 export const ROUTES: Routes = [
   {path: 'main', component: MainComponent},
   {path: 'procesco', component: ProcescoComponent},
   {path: 'procesco/nuevoProveedor', component: NewProviderComponent},
   {path: 'procesco/actualizarDatos', component: UpdateComponent},
+  {path: 'procesco/confirmacion', component: ConfirmationComponent},
   {path: 'sistemaDeGarantias', component: SistemaDeGarantiasComponent},
   {path: 'faq', component: FaqComponent},
   {path: 'evaluacion', component: EvaluacionComponent},
