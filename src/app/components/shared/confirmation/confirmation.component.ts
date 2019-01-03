@@ -15,11 +15,12 @@ export class ConfirmationComponent {
   faSpinner = faSpinner;
   steps: any[] = [];
   loading: boolean;
-  constructor(private router: Router) {
+  constructor() {
     this.step = 0;
     this.steps = [
       { position: 'Primera', step: 'Pre - registro' },
       { position: 'Segunda', step: 'Pre - selección' },
+      { position: 'Tercera', step: 'Pre - selección-etapa B' },
     ];
     this.loading = false;
   }

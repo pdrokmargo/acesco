@@ -1,5 +1,6 @@
 .title {
   color: var(--white);
+  cursor: pointer;
 }
 
 .social-list li {
