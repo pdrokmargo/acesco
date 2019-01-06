@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
 import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {ToggleInterface} from '../../../Interfaces/toggle.interface';
 import {Router} from '@angular/router';
@@ -19,7 +19,7 @@ export class NewProviderComponent implements AfterViewInit {
   countries: any[] = [];
   loading: boolean;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private cdRef: ChangeDetectorRef) {
     this.loading = false;
     const day = ('0' + this.now.getDate()).slice(-2);
     const month = ('0' + (this.now.getMonth() + 1)).slice(-2);
@@ -87,6 +87,7 @@ export class NewProviderComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.height = document.body.offsetHeight;
+    this.cdRef.detectChanges();
   }
 
   updateValue(newValue: ToggleInterface) {

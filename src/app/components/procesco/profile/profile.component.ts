@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
 import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 
@@ -15,7 +15,7 @@ export class ProfileComponent implements AfterViewInit {
   faSpinner = faSpinner;
   height: number;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private cdRef: ChangeDetectorRef) {
     this.nationalOptions = [
       {label: 'Proveedor', value: 'proveedor', active: false},
       {label: 'Tercero', value: 'tercero', active: false},
@@ -33,6 +33,7 @@ export class ProfileComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.height = document.body.offsetHeight;
+    this.cdRef.detectChanges();
   }
 
   submitProfile() {

@@ -2,23 +2,43 @@
   margin: 0;
 }
 
+.acesco-button {
+  width: 60%;
+}
+
 .left {
   background: #2daddc; /* Old browsers */
   background: -moz-linear-gradient(left, #2daddc 0%, #29c2ad 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(left, #2daddc 0%, #29c2ad 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to right, #2daddc 0%, #29c2ad 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2daddc', endColorstr='#29c2ad', GradientType=1); /* IE6-9 */
-  height: 100vh;
   color: var(--white);
+}
+
+.left:after {
+  content: "";
+  background: url("../../../assets/images/hands.jpeg");
+  background-size: cover;
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+.with-underline {
+  position: relative;
+  padding-bottom: 10px;
 }
 
 .with-underline::before {
   content: "";
-  width: 30%;
+  width: 20%;
   height: 1px;
+  bottom: 0;
   background-color: var(--white);
   position: absolute;
-  bottom: 0;
   border-radius: 25px;
 }
 

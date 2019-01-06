@@ -3,18 +3,16 @@
   <div class="col-6 left">
     <div class="row left-one">
       <div class="col">
-        <h4 class="ml-2 brand">Acesco
+        <h4 class="ml-2 brand mt-3">Acesco
           <fa-icon [icon]="faGoogleDrive"></fa-icon>
         </h4>
       </div>
     </div>
     <div class="row left-two">
-      <div class="col-12">
-        <h3>Procesco</h3>
+      <div class="col-12 mt-5">
+        <h3 class="mt-5">PROCESCO</h3>
         <p class="with-underline">Proceso para proveedores Acesco</p>
-      </div>
-      <div class="col-12 mt-2">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam atque delectus dolor dolorem
+        <p class="mt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam atque delectus dolor dolorem
           eaque.</p>
         <fa-icon [icon]="faLongArrowAltRight" class="faLongArrowAltRight"></fa-icon>
       </div>
@@ -39,7 +37,7 @@
   <div class="col-6 right animated fadeIn fast" *ngIf="(!showLogin && !showRegister)">
     <div class="row right-one">
       <div class="col text-right">
-        <ul class="list-inline social-list mt-1">
+        <ul class="list-inline social-list mt-3">
           <li *ngFor="let social of socialLinks" [class]="social.classes">
             <a [href]="social.url" target="_blank">
               <fa-icon [icon]="social.icon" class="icon"></fa-icon>
@@ -50,7 +48,7 @@
     </div>
     <div class="row right-two">
       <div class="col">
-        <ul class="list-unstyled">
+        <ul class="list-unstyled text-center mt-5">
           <li *ngFor="let button of buttons; let i = index">
             <button class="acesco-button" (click)="nextPage(i);" (mouseenter)="showExplanation(i);"
                     (mouseleave)="hideExplanation();">

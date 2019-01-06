@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Output} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Output} from '@angular/core';
 import {faGoogleDrive} from '@fortawesome/free-brands-svg-icons';
 import {faCaretRight, faEnvelope, faSpinner, faUnlock, faUser} from '@fortawesome/free-solid-svg-icons';
 import {NgForm} from '@angular/forms';
@@ -23,7 +23,7 @@ export class RegisterComponent implements AfterViewInit {
   loading: boolean;
   height: number;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private cdRef: ChangeDetectorRef) {
     this.user = {
       name: null,
       email: null,
@@ -36,6 +36,7 @@ export class RegisterComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.height = document.body.offsetHeight;
+    this.cdRef.detectChanges();
   }
 
   onSubmit(form: NgForm) {

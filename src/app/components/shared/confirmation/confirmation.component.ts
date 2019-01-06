@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input} from '@angular/core';
 import {faCaretRight, faCheck, faEnvelope, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 
@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.css']
 })
-export class ConfirmationComponent {
+export class ConfirmationComponent implements AfterViewInit{
   @Input() step: number;
   faCheck = faCheck;
   faEnvelope = faEnvelope;
@@ -15,7 +15,8 @@ export class ConfirmationComponent {
   faSpinner = faSpinner;
   steps: any[] = [];
   loading: boolean;
-  constructor() {
+  height: number;
+  constructor(private cdRef: ChangeDetectorRef) {
     this.step = 0;
     this.steps = [
       { position: 'Primera', step: 'Pre - registro' },
@@ -23,6 +24,11 @@ export class ConfirmationComponent {
       { position: 'Tercera', step: 'Pre - selección-etapa B' },
     ];
     this.loading = false;
+  }
+
+  ngAfterViewInit() {
+    this.height = document.body.offsetHeight;
+    this.cdRef.detectChanges();
   }
 
   submit() {

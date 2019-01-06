@@ -1,0 +1,19 @@
+.card, input {
+  background-color: #F4F5F5;
+}
+
+.card {
+  width: 70%;
+}
+
+small {
+  font-size: 10px;
+}
+
+form .ng-fa-icon{
+  color: #1DBCA5;
+}
+
+form .ng-fa-icon:last-child {
+  color: white;
+}

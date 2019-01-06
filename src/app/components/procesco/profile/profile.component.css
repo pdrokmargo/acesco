@@ -6,6 +6,18 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2daddc', endColorstr='#29c2ad',GradientType=1 ); /* IE6-9 */
 }
 
+#app-profile:after {
+  content: "";
+  background: url("../../../../assets/images/office.jpg");
+  background-size: cover;
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
 header {
   color: var(--white);
 }
@@ -28,10 +40,22 @@ header {
 
 .left {
   border-right: 1px solid crimson;
+  padding: 30px;
+}
+
+.right {
+  padding: 30px;
 }
 
 .acesco-button {
-  width: 50%;
+  width: 200px;
+  height: 40px;
   margin: 0 auto;
   margin-top: 30px;
+}
+
+.card {
+  width: 65%;
+  padding: 50px;
+  z-index: 2;
 }

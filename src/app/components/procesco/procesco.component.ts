@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
 import {faFacebook, faGoogleDrive, faInstagram, faYoutube} from '@fortawesome/free-brands-svg-icons';
 import {
   faCaretRight,
@@ -39,7 +39,7 @@ export class ProcescoComponent implements AfterViewInit {
   showLogin: boolean;
   height: number;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private cdRef: ChangeDetectorRef) {
     this.loading = false;
     this.options = [
       {label: 'FAQs', tooltipMessage: 'Preguntas Frecuentes'},
@@ -61,7 +61,7 @@ export class ProcescoComponent implements AfterViewInit {
 
     this.explanation = '';
     this.showRegister = false;
-    this.showLogin = true;
+    this.showLogin = false;
     this.user = {
       name: null,
       password: null,
@@ -72,6 +72,7 @@ export class ProcescoComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.height = document.body.offsetHeight;
+    this.cdRef.detectChanges();
   }
 
   nextPage(index: number) {

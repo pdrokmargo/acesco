@@ -2,7 +2,7 @@
 :root {
   --primaryBlue: #1A237E;
   --white: #F5F5F5;
-  --darkIndigo: #1A237E;
+  --darkIndigo: #293549;
   --darkIndigo2: #03077e;
 }
 
@@ -34,11 +34,12 @@
   border-radius: 50%;
   border: 1px solid var(--darkIndigo);
   background-color: var(--darkIndigo);
-
   text-align: center;
-  height: 30px;
-  width: 30px;
+  height: 24px;
+  width: 24px;
+  line-height: 21px;
   cursor: pointer;
+  font-size: 13px;
 }
 
 .social-list li:hover {
@@ -98,6 +99,11 @@
 .back-button {
   cursor: pointer;
   margin-top: 10px;
+}
+
+.card {
+  box-shadow: 0 0 5px rgba(0,0,0,.125);
+  border-radius: 0 !important;
 }
 
 @charset "UTF-8";
