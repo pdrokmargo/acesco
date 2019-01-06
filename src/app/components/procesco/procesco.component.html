@@ -12,7 +12,8 @@
       <div class="col-12 mt-5">
         <h3 class="mt-5">PROCESCO</h3>
         <p class="with-underline">Proceso para proveedores Acesco</p>
-        <p class="mt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam atque delectus dolor dolorem
+        <p class="mt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam atque delectus dolor
+          dolorem
           eaque.</p>
         <fa-icon [icon]="faLongArrowAltRight" class="faLongArrowAltRight"></fa-icon>
       </div>
@@ -76,8 +77,32 @@
       </div>
     </div>
   </div>
-  <div class="col-6 align-self-center">
-    <app-login *ngIf="showLogin" (back)="back($event)" (isLoading)="isLoading($event)"></app-login>
-    <app-register *ngIf="showRegister" (back)="back($event);" (isLoading)="isLoading($event)"></app-register>
+  <div class="col-6 right animated fadeIn fast" *ngIf="showLogin || showRegister">
+    <div class="row right-one">
+      <div class="col text-right">
+        <ul class="list-inline social-list mt-3">
+          <li *ngFor="let social of socialLinks" [class]="social.classes">
+            <a [href]="social.url" target="_blank">
+              <fa-icon [icon]="social.icon" class="icon"></fa-icon>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row right-two justify-content-center">
+      <app-login *ngIf="showLogin" (back)="back($event)" (isLoading)="isLoading($event)"></app-login>
+      <app-register *ngIf="showRegister" (back)="back($event);" (isLoading)="isLoading($event)"></app-register>
+    </div>
+    <div class="row right-three">
+      <div class="col align-self-end">
+        <ul class="list-unstyled text-right pr-3">
+          <li>
+            <span>Terminos y Condiciones • Proteccion y Autorizacion De Datos Personales • Contáctenos</span>
+          </li>
+          <li>
+            <span>© Copyright | All rights Reserved | Desarrollo Sergio Zapata</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-</div>

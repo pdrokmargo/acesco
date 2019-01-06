@@ -1,13 +1,13 @@
-.card, input {
+.card, input, input:focus {
   background-color: #F4F5F5;
-}
-
-.card {
-  width: 70%;
 }
 
 small {
   font-size: 10px;
+}
+
+.card {
+  width: 100%;
 }
 
 form .ng-fa-icon{
@@ -16,4 +16,8 @@ form .ng-fa-icon{
 
 form .ng-fa-icon:last-child {
   color: white;
+}
+
+.extra-buttons button {
+  font-size: 7px;
 }
