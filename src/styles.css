@@ -106,6 +106,10 @@
   border-radius: 0 !important;
 }
 
+.form-control.is-invalid:focus, .was-validated .form-control:invalid:focus {
+  box-shadow: none !important;
+}
+
 @charset "UTF-8";
 
 /*!

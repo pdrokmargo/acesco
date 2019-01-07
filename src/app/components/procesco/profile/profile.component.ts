@@ -1,6 +1,7 @@
-import {AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter} from '@angular/core';
 import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
+import {ProcescoService} from '../../../services/procesco.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,8 +15,10 @@ export class ProfileComponent implements AfterViewInit {
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
   height: number;
+  action: string;
+  providerType: string;
 
-  constructor(private router: Router, private cdRef: ChangeDetectorRef) {
+  constructor(private router: Router, private cdRef: ChangeDetectorRef, public procescoService: ProcescoService) {
     this.nationalOptions = [
       {label: 'Proveedor', value: 'proveedor', active: false},
       {label: 'Tercero', value: 'tercero', active: false},
@@ -37,20 +40,70 @@ export class ProfileComponent implements AfterViewInit {
   }
 
   submitProfile() {
-    const newProvider = this.nationalOptions.find(element => element.value === 'nuevo');
-    const updateProvider = this.nationalOptions.find(element => element.value === 'actualizacion');
-    if (!newProvider.active && !updateProvider.active) {
+    if (!this.action) {
       return;
     }
     this.loading = true;
     setTimeout(() => {
-      if (newProvider.active) {
-        this.router.navigate(['procesco/nuevoProveedor']);
-      } else if (updateProvider.active) {
-        this.router.navigate(['procesco/actualizarDatos']);
+      const user = this.procescoService.getLogedUser();
+      switch (this.providerType) {
+        case 'national': {
+          user['nationalOptions'] = this.nationalOptions;
+          this.procescoService.updateUser(user);
+          this.router.navigate(['procesco/nuevoProveedor']);
+          break;
+        }
+        case 'international': {
+          user['internationalOptions'] = this.internationalOptions;
+          break;
+        }
       }
       this.loading = false;
     }, 3000);
   }
 
+  updatedValue(event: EventEmitter) {
+    this.providerType = this.checkProviderType(event);
+    if (this.providerType === 'national') {
+      this.internationalOptions.forEach(element => element.active = false);
+      const index = this.nationalOptions.findIndex(element => element.value === event.key);
+      switch (event.key) {
+        case 'nuevo': {
+          this.nationalOptions[3].active = false;
+          event.value ? this.action = event.key : this.action = null;
+          break;
+        }
+        case 'actualizacion': {
+          this.nationalOptions[2].active = false;
+          event.value ? this.action = event.key : this.action = null;
+        }
+      }
+      this.nationalOptions[index].active = event.value;
+    } else {
+      this.nationalOptions.forEach(element => element.active = false);
+      const index = this.internationalOptions.findIndex(element => element.value === event.key);
+      switch (event.key) {
+        case 'new': {
+          this.internationalOptions[3].active = false;
+          event.value ? this.action = event.key : this.action = null;
+          break;
+        }
+        case 'update': {
+          this.internationalOptions[2].active = false;
+          event.value ? this.action = event.key : this.action = null;
+        }
+      }
+      this.internationalOptions[index].active = event.value;
+    }
+  }
+
+  checkProviderType(obj: object) {
+    let type = 'international';
+    this.nationalOptions.forEach(element => {
+      if (element.value === obj.key) {
+        type = 'national';
+      }
+    });
+    return type;
+  }
 }

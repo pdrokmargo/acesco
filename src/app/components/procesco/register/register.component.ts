@@ -3,6 +3,7 @@ import {faGoogleDrive} from '@fortawesome/free-brands-svg-icons';
 import {faCaretRight, faEnvelope, faSpinner, faUnlock, faUser} from '@fortawesome/free-solid-svg-icons';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
+import {ProcescoService} from '../../../services/procesco.service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,7 @@ export class RegisterComponent implements AfterViewInit {
   loading: boolean;
   height: number;
 
-  constructor(private router: Router, private cdRef: ChangeDetectorRef) {
+  constructor(private router: Router, private cdRef: ChangeDetectorRef, public procescoService: ProcescoService) {
     this.user = {
       name: null,
       email: null,
@@ -40,7 +41,9 @@ export class RegisterComponent implements AfterViewInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
+    form.value['userType'] = 'user';
+    form.value['currentStep'] = 0;
+    this.procescoService.createNewUser(form.value);
     this.loading = true;
     this.isLoading.emit(this.loading);
     setTimeout(() => {

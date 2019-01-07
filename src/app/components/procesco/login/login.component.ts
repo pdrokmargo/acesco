@@ -3,6 +3,7 @@ import {faGoogleDrive} from '@fortawesome/free-brands-svg-icons';
 import {faCaretRight, faSpinner, faUnlock, faUser} from '@fortawesome/free-solid-svg-icons';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
+import {ProcescoService} from '../../../services/procesco.service';
 
 @Component({
   selector: 'app-login',
@@ -19,9 +20,15 @@ export class LoginComponent {
   faSpinner = faSpinner;
   user: any;
   loading: boolean;
+  loginInfo: object;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public procescoService: ProcescoService) {
     this.loading = false;
+    this.loginInfo = {
+      error: false,
+      errorType: null,
+      message: null
+    };
     this.user = {
       name: null,
       password: null
@@ -33,11 +40,17 @@ export class LoginComponent {
     this.loading = true;
     this.isLoading.emit(this.loading);
     setTimeout(() => {
-      console.log(form.value);
-      console.log('Logged In!!');
+      this.loginInfo = this.procescoService.validateUser(form.value);
       this.loading = false;
       this.isLoading.emit(this.loading);
-      this.router.navigate(['procesco/perfil']);
+      console.log(this.loginInfo);
+      if (!this.loginInfo.error) {
+        if (this.loginInfo.user.userType === 'user') {
+          this.router.navigate(['procesco/perfil']);
+        } else if (this.loginInfo.user.userType === 'admin') {
+
+        }
+      }
     }, 3000);
   }
 

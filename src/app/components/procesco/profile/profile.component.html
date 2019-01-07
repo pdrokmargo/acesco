@@ -11,17 +11,39 @@
     <div class="card">
       <div class="row">
         <div class="col-6 left">
-          <h3 class="title">Nacional/National</h3>
+          <h3 class="title">Nacional</h3>
           <hr class="lightBlueLine">
           <div class="container">
-            <app-toggles [items]="nationalOptions" [loading]="loading"></app-toggles>
+            <div class="row border-bottom" *ngFor="let option of nationalOptions">
+              <div class="col-6 text-left">
+                {{option.label}}
+              </div>
+              <div class="col-6 text-right">
+                <app-toggle [loading]="loading"
+                            [model]="option.active"
+                            [prop]="option.value"
+                            (updatedValue)="updatedValue($event);">
+                </app-toggle>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-6 right">
-          <h3 class="title">Internacional/International</h3>
+          <h3 class="title">International</h3>
           <hr class="lightBlueLine">
           <div class="container">
-            <app-toggles [items]="internationalOptions" [loading]="loading"></app-toggles>
+            <div class="row border-bottom" *ngFor="let option of internationalOptions">
+              <div class="col-6 text-left">
+                {{option.label}}
+              </div>
+              <div class="col-6 text-right">
+                <app-toggle [loading]="loading"
+                            [model]="option.active"
+                            [prop]="option.value"
+                            (updatedValue)="updatedValue($event);">
+                </app-toggle>
+              </div>
+            </div>
           </div>
         </div>
         <button class="acesco-button" (click)="submitProfile();" [disabled]="loading">Enviar

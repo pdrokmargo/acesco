@@ -2,6 +2,8 @@ import {AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
 import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {ToggleInterface} from '../../../Interfaces/toggle.interface';
 import {Router} from '@angular/router';
+import {ProcescoService} from '../../../services/procesco.service';
+import {UserInterface} from '../../../Interfaces/user.interface';
 
 @Component({
   selector: 'app-new-provider',
@@ -18,8 +20,11 @@ export class NewProviderComponent implements AfterViewInit {
   documentType: any[] = [];
   countries: any[] = [];
   loading: boolean;
+  currentStep: number;
+  currentUser: UserInterface;
 
-  constructor(private router: Router, private cdRef: ChangeDetectorRef) {
+  constructor(private router: Router, private cdRef: ChangeDetectorRef, procescoService: ProcescoService) {
+    this.currentUser = procescoService.getLogedUser();
     this.loading = false;
     const day = ('0' + this.now.getDate()).slice(-2);
     const month = ('0' + (this.now.getMonth() + 1)).slice(-2);

@@ -7,6 +7,7 @@
       <fa-icon [icon]="faUser" class="input-icon"></fa-icon>
       <input type="text"
              class="form-control"
+             [ngClass]="{'is-invalid': (name.errors?.required || name.errors?.minlength) && name.touched }"
              placeholder="Usuario"
              name="name"
              minlength="2"
@@ -16,11 +17,17 @@
              required>
       <small class="form-text text-muted pl-2">El usuario corresponde al numero de identificación tributaria/ Tax ID.
       </small>
+      <div *ngIf="name.errors?.required && name.touched"><span class="text-danger">Este campo es obligatorio</span>
+      </div>
+      <div *ngIf="loginInfo.error && loginInfo.errorType === 'username'"><span
+        class="text-danger">{{loginInfo.message}}</span>
+      </div>
     </div>
     <div class="form-group">
       <fa-icon [icon]="faUnlock" class="input-icon"></fa-icon>
       <input type="password"
              class="form-control"
+             [ngClass]="{'is-invalid': (password.errors?.required || password.errors?.minlength) && password.touched }"
              placeholder="Digite su contraseña"
              name="password"
              [(ngModel)]="user.password"
@@ -28,6 +35,12 @@
              minlength="8"
              [disabled]="loading"
              required>
+      <div *ngIf="password.errors?.required && password.touched"><span
+        class="text-danger">Este campo es obligatorio</span>
+      </div>
+      <div *ngIf="loginInfo.error && loginInfo.errorType === 'password'"><span
+        class="text-danger">{{loginInfo.message}}</span>
+      </div>
     </div>
     <button type="submit" class="acesco-button" [disabled]="registerForm.invalid || loading">Ingresar
       <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
@@ -38,7 +51,12 @@
     </div>
   </form>
   <div class="row extra-buttons">
-    <div class="col-6 text-left"><button type="button" class="transparent-button" (click)="backHome('register')">Aun no tienes una cuenta ? <b class="text-primary">Registrate</b></button></div>
-    <div class="col-6 text-right"><button type="button" class="transparent-button">Olvidaste tu contraseña?</button></div>
+    <div class="col-6 text-left">
+      <button type="button" class="transparent-button" (click)="backHome('register')">Aun no tienes una cuenta ? <b
+        class="text-primary">Registrate</b></button>
+    </div>
+    <div class="col-6 text-right">
+      <button type="button" class="transparent-button">Olvidaste tu contraseña?</button>
+    </div>
   </div>
 </div>

@@ -48,7 +48,7 @@
       </div>
     </div>
     <div class="row right-two">
-      <div class="col">
+      <div class="col mt-5">
         <ul class="list-unstyled text-center mt-5">
           <li *ngFor="let button of buttons; let i = index">
             <button class="acesco-button" (click)="nextPage(i);" (mouseenter)="showExplanation(i);"
@@ -90,7 +90,7 @@
       </div>
     </div>
     <div class="row right-two justify-content-center">
-      <app-login *ngIf="showLogin" (back)="back($event)" (isLoading)="isLoading($event)"></app-login>
+      <app-login class="mt-5" *ngIf="showLogin" (back)="back($event)" (isLoading)="isLoading($event)"></app-login>
       <app-register *ngIf="showRegister" (back)="back($event);" (isLoading)="isLoading($event)"></app-register>
     </div>
     <div class="row right-three">
@@ -106,3 +106,4 @@
       </div>
     </div>
   </div>
+</div>

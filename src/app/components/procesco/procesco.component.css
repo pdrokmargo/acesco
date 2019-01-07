@@ -42,10 +42,6 @@
   border-radius: 25px;
 }
 
-.faLongArrowAltRight svg {
-  transform: scale(1.5, 1);
-}
-
 .left-one,
 .right-one {
   height: 5vh;
@@ -53,8 +49,8 @@
 
 .left-two,
 .right-two {
-  padding: 100px 100px 0 100px;
-  height: 75vh;
+  padding: 50px 100px 0 100px;
+  height: 550px;
 }
 
 .left-three,

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-toggles',
@@ -8,7 +8,10 @@ import {Component, Input} from '@angular/core';
 export class TogglesComponent {
   @Input() items;
   @Input() loading;
+  @Output() updatedValue: EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
-
+  updateValue() {
+    this.updatedValue.emit(this.items);
+  }
 }
