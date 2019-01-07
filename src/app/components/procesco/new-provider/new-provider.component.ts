@@ -25,6 +25,7 @@ export class NewProviderComponent implements AfterViewInit {
 
   constructor(private router: Router, private cdRef: ChangeDetectorRef, procescoService: ProcescoService) {
     this.currentUser = procescoService.getLogedUser();
+    this.currentStep = this.currentUser.currentStep;
     this.loading = false;
     const day = ('0' + this.now.getDate()).slice(-2);
     const month = ('0' + (this.now.getMonth() + 1)).slice(-2);

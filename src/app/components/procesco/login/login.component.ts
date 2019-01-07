@@ -44,10 +44,10 @@ export class LoginComponent {
       this.loading = false;
       this.isLoading.emit(this.loading);
       console.log(this.loginInfo);
-      if (!this.loginInfo.error) {
-        if (this.loginInfo.user.userType === 'user') {
+      if (!this.loginInfo['error']) {
+        if (this.loginInfo['user'].userType === 'user') {
           this.router.navigate(['procesco/perfil']);
-        } else if (this.loginInfo.user.userType === 'admin') {
+        } else if (this.loginInfo['user'].userType === 'admin') {
 
         }
       }

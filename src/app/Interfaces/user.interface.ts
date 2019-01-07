@@ -3,6 +3,7 @@ export interface UserInterface {
   email: string;
   password: string;
   userType?: string;
+  currentStep: number;
   preRegistro?: {
     autorizations: {
       personalDataProtection: boolean;

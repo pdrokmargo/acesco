@@ -62,7 +62,7 @@ export class ProfileComponent implements AfterViewInit {
     }, 3000);
   }
 
-  updatedValue(event: EventEmitter) {
+  updatedValue(event: any) {
     this.providerType = this.checkProviderType(event);
     if (this.providerType === 'national') {
       this.internationalOptions.forEach(element => element.active = false);
@@ -97,7 +97,7 @@ export class ProfileComponent implements AfterViewInit {
     }
   }
 
-  checkProviderType(obj: object) {
+  checkProviderType(obj: any) {
     let type = 'international';
     this.nationalOptions.forEach(element => {
       if (element.value === obj.key) {
