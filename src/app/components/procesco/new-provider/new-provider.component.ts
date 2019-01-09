@@ -4,6 +4,7 @@ import {ToggleInterface} from '../../../Interfaces/toggle.interface';
 import {Router} from '@angular/router';
 import {ProcescoService} from '../../../services/procesco.service';
 import {UserInterface} from '../../../Interfaces/user.interface';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-new-provider',
@@ -17,15 +18,15 @@ export class NewProviderComponent implements AfterViewInit {
   height: number;
   now: Date = new Date();
   classifications: any[] = [];
-  documentType: any[] = [];
+  documentTypes: any[] = [];
   countries: any[] = [];
   loading: boolean;
-  currentStep: number;
+  step: number;
   currentUser: UserInterface;
 
   constructor(private router: Router, private cdRef: ChangeDetectorRef, procescoService: ProcescoService) {
     this.currentUser = procescoService.getLogedUser();
-    this.currentStep = this.currentUser.currentStep;
+    this.step = this.currentUser.currentStep;
     this.loading = false;
     const day = ('0' + this.now.getDate()).slice(-2);
     const month = ('0' + (this.now.getMonth() + 1)).slice(-2);
@@ -37,53 +38,47 @@ export class NewProviderComponent implements AfterViewInit {
     ];
 
     this.preRegistro = {
-      autorizations: {
-        personalDataProtection: true,
-        habeas: true,
-        createdAt: this.now.getFullYear() + '-' + (month) + '-' + (day),
-        whoRefers: null,
-        classification: null,
-        serviceDescription: null,
-      },
-      generalInfo: {
-        documentType: null,
-        documentNumber: null,
-        documentIssued: null,
-        businessName: null,
-        comercialName: null,
-        ciiu: null,
-        professionalCard: null,
-      },
-      supplierContactInfo: {
-        contactName: null,
-        position: null,
-        address: null,
-        country: null,
-        dpto: null,
-        city: null,
-        zipcode: null,
-        phone: null,
-        mobile: null,
-        fax: null,
-        email: null,
-        website: null
-      },
-      managementSystemInformation: {
-        iso9001: false,
-        iso14001: false,
-        oshas18001: false,
-        antiCorruptionPolicy: false,
-        sustainability: false,
-        dueDiligence: false,
-        socialResponsability: false,
-        socialResponsabilityName: null,
-        productSeal: false,
-        productSealName: null
-      }
+      whoRefers: null,
+      personalDataProtection: true,
+      habeas: true,
+      createdAt: this.now.getFullYear() + '-' + (month) + '-' + (day),
+      classification: null,
+      serviceDescription: null,
+      documentType: null,
+      documentNumber: null,
+      documentIssued: null,
+      businessName: null,
+      commercialName: null,
+      ciiu: null,
+      profession: null,
+      professionalCard: null,
+      issuedBy: null,
+      contactName: null,
+      position: null,
+      address: null,
+      country: null,
+      dpto: null,
+      city: null,
+      zipcode: null,
+      phone: null,
+      mobile: null,
+      fax: null,
+      email: null,
+      website: null,
+      iso9001: false,
+      iso14001: false,
+      oshas18001: false,
+      antiCorruptionPolicy: false,
+      sustainability: false,
+      dueDiligence: false,
+      socialResponsability: false,
+      socialResponsabilityName: null,
+      productSeal: false,
+      productSealName: null,
     };
-    this.documentType = [
+    this.documentTypes = [
       {label: 'CC', value: 'cc'},
-      {label: 'TI', value: 'ti'},
+      {label: 'TI', value: 'ti'}
     ];
     this.countries = [
       {label: 'Colombia', value: 'colombia'},
@@ -104,13 +99,14 @@ export class NewProviderComponent implements AfterViewInit {
     }
   }
 
-  submitPreRegistro() {
+  onSubmit(form: NgForm) {
+    console.log(form);
     this.loading = true;
+    console.log(form.value);
     console.log(this.preRegistro);
     setTimeout(() => {
       this.loading = false;
       this.router.navigate(['procesco/confirmacion']);
     }, 3000);
   }
-
 }
