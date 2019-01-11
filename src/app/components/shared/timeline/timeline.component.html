@@ -2,13 +2,13 @@
   <div class="col text-center" *ngFor="let step of steps; let i = index;">
     <ul class="list-inline">
       <li class="list-inline-item">
-        <div class="left-line" *ngIf="i !== 0" [ngClass]="{'active': currentStep === i}"></div>
+        <div class="left-line" *ngIf="i !== 0" [ngClass]="{'active': currentStep >= i}"></div>
       </li>
       <li class="list-inline-item">
-        <div class="timelineCircle" [ngClass]="{'active': currentStep === i}">{{i+1}}</div>
+        <div class="timelineCircle" [ngClass]="{'active': currentStep >= i}">{{i+1}}</div>
       </li>
       <li class="list-inline-item">
-        <div class="right-line" *ngIf="i !== 3" [ngClass]="{'active': currentStep === i}"></div>
+        <div class="right-line" *ngIf="i !== 3" [ngClass]="{'active': currentStep >= i }"></div>
       </li>
     </ul>
     <p class="text-white">{{step.label}}</p>

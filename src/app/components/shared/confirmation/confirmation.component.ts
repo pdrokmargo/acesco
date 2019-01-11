@@ -1,6 +1,8 @@
 import {AfterViewInit, ChangeDetectorRef, Component, Input} from '@angular/core';
 import {faCaretRight, faCheck, faEnvelope, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
+import {ProcescoService} from '../../../services/procesco.service';
+import {UserInterface} from '../../../Interfaces/user.interface';
 
 @Component({
   selector: 'app-confirmation',
@@ -16,11 +18,14 @@ export class ConfirmationComponent implements AfterViewInit{
   steps: any[] = [];
   loading: boolean;
   height: number;
-  constructor(private cdRef: ChangeDetectorRef) {
-    this.step = 0;
+  currentUser: UserInterface;
+
+  constructor(private cdRef: ChangeDetectorRef, public procescoService: ProcescoService) {
+    this.currentUser = procescoService.getLogedUser();
+    this.step = this.currentUser.currentStep;
     this.steps = [
       { position: 'Primera', step: 'Pre - registro' },
-      { position: 'Segunda', step: 'Pre - selección' },
+      { position: 'Segunda', step: 'Pre - selección-etapa A' },
       { position: 'Tercera', step: 'Pre - selección-etapa B' },
     ];
     this.loading = false;

@@ -61,27 +61,28 @@
     <div class="form-group">
       <fa-icon [icon]="faUnlock" class="input-icon"></fa-icon>
       <input type="password"
-             [ngClass]="{'is-invalid': (repeatPassword.errors?.required || repeatPassword.errors?.minlength || !passwordsMatch) && repeatPassword.touched }"
+             [ngClass]="{'is-invalid': (password_confirmation.errors?.required || password_confirmation.errors?.minlength || !passwordsMatch) && password_confirmation.touched }"
              class="form-control"
              placeholder="Digite nuevamente la contraseña"
-             name="repeatPassword"
-             [(ngModel)]="user.repeatPassword"
+             name="password_confirmation"
+             [(ngModel)]="user.password_confirmation"
              (keyup)="validatePasswords();"
-             #repeatPassword="ngModel"
+             #password_confirmation="ngModel"
              minlength="8"
              [disabled]="loading"
              required>
     </div>
-    <div *ngIf="repeatPassword.errors?.required && repeatPassword.touched">
+    <div *ngIf="password_confirmation.errors?.required && password_confirmation.touched">
       <span class="text-danger">Este campo es obligatorio</span>
     </div>
-    <div *ngIf="repeatPassword.errors?.minlength">
+    <div *ngIf="password_confirmation.errors?.minlength">
       <span
-        class="text-danger">Debe ser de almenos {{ repeatPassword.errors.minlength.requiredLength }} caracteres</span>
+        class="text-danger">Debe ser de almenos {{ password_confirmation.errors.minlength.requiredLength }} caracteres</span>
     </div>
-    <div *ngIf="!passwordsMatch && repeatPassword.touched">
+    <div *ngIf="!passwordsMatch && password_confirmation.touched">
       <span class="text-danger">Las contraseñas no coinciden</span>
     </div>
+    <div *ngIf="errorMessage"> <span class="text-danger">{{errorMessage}}</span></div>
     <button class="acesco-button" [disabled]="registerForm.invalid || !passwordsMatch || loading">Registrar
       <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
       <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>

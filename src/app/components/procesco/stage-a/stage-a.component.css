@@ -1,0 +1,20 @@
+#app-stage-a {
+  background: #2daddc; /* Old browsers */
+  background: -moz-linear-gradient(left, #2daddc 0%, #29c2ad 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #2daddc 0%, #29c2ad 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #2daddc 0%, #29c2ad 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2daddc', endColorstr='#29c2ad', GradientType=1); /* IE6-9 */
+}
+
+.whiteLine {
+  height: 1px;
+  background-color: var(--white);
+  width: 5%;
+  margin: 50px auto;
+}
+
+input {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #dee2e6 !important;
+}

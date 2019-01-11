@@ -16,12 +16,11 @@ import {SistemaDeGarantiasComponent} from './components/sistema-de-garantias/sis
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FaqComponent} from './components/procesco/faq/faq.component';
 import {EvaluacionComponent} from './components/procesco/evaluacion/evaluacion.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {LoginComponent} from './components/procesco/login/login.component';
 import {RegisterComponent} from './components/procesco/register/register.component';
 import {ProfileComponent} from './components/procesco/profile/profile.component';
 import {LogoAndSocialComponent} from './components/shared/logo-and-social/logo-and-social.component';
-import {TogglesComponent} from './components/shared/toggles/toggles.component';
 import {NewProviderComponent} from './components/procesco/new-provider/new-provider.component';
 import {UpdateComponent} from './components/procesco/update/update.component';
 import {TimelineComponent} from './components/shared/timeline/timeline.component';
@@ -30,7 +29,7 @@ import {ToggleComponent} from './components/shared/toggle/toggle.component';
 import {FooterComponent} from './components/shared/footer/footer.component';
 import {ConfirmationComponent} from './components/shared/confirmation/confirmation.component';
 import {LoaderComponent} from './components/shared/loader/loader.component';
-import {ProcescoService} from './services/procesco.service';
+import { StageAComponent } from './components/procesco/stage-a/stage-a.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +44,6 @@ import {ProcescoService} from './services/procesco.service';
     RegisterComponent,
     ProfileComponent,
     LogoAndSocialComponent,
-    TogglesComponent,
     NewProviderComponent,
     UpdateComponent,
     TimelineComponent,
@@ -53,7 +51,8 @@ import {ProcescoService} from './services/procesco.service';
     ToggleComponent,
     FooterComponent,
     ConfirmationComponent,
-    LoaderComponent
+    LoaderComponent,
+    StageAComponent
   ],
   imports: [
     BrowserModule,

@@ -23,13 +23,14 @@ export class RegisterComponent implements AfterViewInit {
   passwordsMatch: boolean;
   loading: boolean;
   height: number;
+  errorMessage: string;
 
   constructor(private router: Router, private cdRef: ChangeDetectorRef, public procescoService: ProcescoService) {
     this.user = {
       name: null,
       email: null,
       password: null,
-      repeatPassword: null
+      password_confirmation: null
     };
     this.passwordsMatch = true;
     this.loading = false;
@@ -41,20 +42,21 @@ export class RegisterComponent implements AfterViewInit {
   }
 
   onSubmit(form: NgForm) {
-    form.value['userType'] = 'user';
-    form.value['currentStep'] = 0;
-    this.procescoService.createNewUser(form.value);
+    form.value['user_profile_id'] = 2;
     this.loading = true;
     this.isLoading.emit(this.loading);
-    setTimeout(() => {
+    this.procescoService.createNewUser(form.value).subscribe((response: any) => {
       this.loading = false;
       this.isLoading.emit(this.loading);
       this.back.emit('login');
-    }, 3000);
+    }, error1 => {
+      this.loading = false;
+      this.errorMessage = error1.error.message;
+    });
   }
 
   validatePasswords() {
-    this.passwordsMatch = this.user.password === this.user.repeatPassword;
+    this.passwordsMatch = this.user.password === this.user.password_confirmation;
   }
 
   backHome() {

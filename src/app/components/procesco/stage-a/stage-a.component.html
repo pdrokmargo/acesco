@@ -1,0 +1,632 @@
+<section id="app-stage-a">
+  <app-loader [loading]="loading" [height]="height"></app-loader>
+  <app-logo-and-social></app-logo-and-social>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-white text-center mt-5">
+        <h4 class="mt-5">Pre Selección Estapa A</h4>
+        <hr class="whiteLine">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <app-timeline [currentStep]="step"></app-timeline>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <form #stageAForm="ngForm" (ngSubmit)="onSubmit(stageAForm)" novalidate>
+            <app-form-title [text]="'si es persona expuesta politicamente (pep)'"></app-form-title>
+            <div class="row mb-3">
+              <div class="col-12 border mt-3">
+                <p>Relacione a continuación os representantes legales, miembros de la junta directiva o
+                  accionistas/socios
+                  de la sociedad que represente, que hayan ocupado cargos publicos en los ultimos dos (2) años. De
+                  acuerco
+                  con el decreto 1674 del 2016.</p>
+              </div>
+              <div class="col-12 border-bottom border-left border-right">
+                <p>
+                  <b>Es persona expuesta politicamente (pep): NO </b>
+                  <app-toggle [prop]="'pep'" [model]="stageA.pep" (updatedValue)="updatedValue($event);"></app-toggle>
+                  <b> SI</b>
+                </p>
+              </div>
+            </div>
+            <app-form-title [text]="'información tributaria'"></app-form-title>
+            <div class="row mt-3 mb-3">
+              <div class="col-12 border">
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <b>Responsable del IVA: Régimen común </b>
+                    <app-toggle
+                      [model]="stageA.commonRegime"
+                      [prop]="'commonRegime'"
+                      (updatedValue)="updatedValue($event);"></app-toggle>
+                  </li>
+                  <li class="list-inline-item">
+                    <b>Régimen simplificado </b>
+                    <app-toggle
+                      [model]="stageA.simplifiedRegimen"
+                      [prop]="'simplifiedRegimen'"
+                      (updatedValue)="updatedValue($event);"></app-toggle>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-6 border-right border-left border-bottom">
+                <p><b>Gran Contribuyente: NO </b>
+                  <app-toggle [model]="stageA.greatContributor"
+                              [prop]="'greatContributor'"
+                              (updatedValue)="updatedValue($event)">
+                  </app-toggle>
+                  <b> SI</b></p>
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Res. No.*"
+                         [(ngModel)]="stageA.greatContributorRes"
+                         [ngClass]="{'is-invalid': greatContributorRes.errors?.required && greatContributorRes.touched }"
+                         name="greatContributorRes"
+                         minlength="2"
+                         #greatContributorRes="ngModel"
+                         required
+                         [disabled]="loading || !stageA.greatContributor">
+                  <div *ngIf="greatContributorRes.errors?.required && greatContributorRes.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="date"
+                         class="form-control"
+                         placeholder="De*"
+                         [(ngModel)]="stageA.greatContributorFrom"
+                         [ngClass]="{'is-invalid': greatContributorFrom.errors?.required && greatContributorFrom.touched }"
+                         name="greatContributorFrom"
+                         minlength="2"
+                         #greatContributorFrom="ngModel"
+                         required
+                         [disabled]="loading || !stageA.greatContributor">
+                  <div *ngIf="greatContributorFrom.errors?.required && greatContributorFrom.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 border-right border-left border-bottom">
+                <p><b>Auto retenedor por renta: NO </b>
+                  <app-toggle [model]="stageA.selfWithholdingByRent"
+                              [prop]="'selfWithholdingByRent'"
+                              (updatedValue)="updatedValue($event)">
+                  </app-toggle>
+                  <b> SI</b></p>
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Res. No.*"
+                         [(ngModel)]="stageA.selfWithholdingByRentRes"
+                         [ngClass]="{'is-invalid': selfWithholdingByRentRes.errors?.required && selfWithholdingByRentRes.touched }"
+                         name="selfWithholdingByRentRes"
+                         minlength="2"
+                         #selfWithholdingByRentRes="ngModel"
+                         required
+                         [disabled]="loading || !stageA.selfWithholdingByRent">
+                  <div *ngIf="selfWithholdingByRentRes.errors?.required && selfWithholdingByRentRes.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="date"
+                         class="form-control"
+                         placeholder="De:*"
+                         [(ngModel)]="stageA.selfWithholdingByRentFrom"
+                         [ngClass]="{'is-invalid': selfWithholdingByRentFrom.errors?.required && selfWithholdingByRentFrom.touched }"
+                         name="selfWithholdingByRentFrom"
+                         minlength="2"
+                         #selfWithholdingByRentFrom="ngModel"
+                         required
+                         [disabled]="loading || !stageA.selfWithholdingByRent">
+                  <div *ngIf="selfWithholdingByRentFrom.errors?.required && selfWithholdingByRentFrom.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 border-left border-right border-bottom">
+                <p>Impuesto de industria y comercio</p>
+                <div class="row">
+                  <div class="col-2">
+                    <ul class="list-inline">
+                      <li class="list-inline-item">
+                        Bogotá
+                      </li>
+                      <li class="list-inline-item">
+                        <app-toggle
+                          [prop]="'industryAndCommerceTaxBogota'"
+                          [model]="industryAndCommerceTaxBogota"
+                          (updatedValue)="updatedValue($event)">
+                        </app-toggle>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-5">
+                    <div class="form-group">
+                      <input type="text"
+                             class="form-control"
+                             placeholder="Cód Actividad:*"
+                             [(ngModel)]="stageA.industryAndCommerceTaxCodBogota"
+                             [ngClass]="{'is-invalid': industryAndCommerceTaxCodBogota.errors?.required && industryAndCommerceTaxCodBogota.touched }"
+                             name="industryAndCommerceTaxCodBogota"
+                             minlength="2"
+                             #industryAndCommerceTaxCodBogota="ngModel"
+                             required
+                             [disabled]="loading || !stageA.industryAndCommerceTaxBogota">
+                      <div
+                        *ngIf="industryAndCommerceTaxCodBogota.errors?.required && industryAndCommerceTaxCodBogota.touched"><span
+                        class="text-danger">Este campo es obligatorio</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <div class="form-group">
+                      <input type="text"
+                             class="form-control"
+                             placeholder="Tarifa:*"
+                             [(ngModel)]="stageA.industryAndCommerceTaxRateBogota"
+                             [ngClass]="{'is-invalid': industryAndCommerceTaxRateBogota.errors?.required && industryAndCommerceTaxRateBogota.touched }"
+                             name="industryAndCommerceTaxRateBogota"
+                             minlength="2"
+                             #industryAndCommerceTaxRateBogota="ngModel"
+                             required
+                             [disabled]="loading || !stageA.industryAndCommerceTaxBogota">
+                      <div
+                        *ngIf="industryAndCommerceTaxRateBogota.errors?.required && industryAndCommerceTaxRateBogota.touched"><span
+                        class="text-danger">Este campo es obligatorio</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-2">
+                    <ul class="list-inline">
+                      <li class="list-inline-item">
+                        Malambo
+                      </li>
+                      <li class="list-inline-item">
+                        <app-toggle
+                          [prop]="'industryAndCommerceTaxMalambo'"
+                          [model]="industryAndCommerceTaxMalambo"
+                          (updatedValue)="updatedValue($event)">
+                        </app-toggle>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-5">
+                    <div class="form-group">
+                      <input type="text"
+                             class="form-control"
+                             placeholder="Cód Actividad:*"
+                             [(ngModel)]="stageA.industryAndCommerceTaxCodMalambo"
+                             [ngClass]="{'is-invalid': industryAndCommerceTaxCodMalambo.errors?.required && industryAndCommerceTaxCodMalambo.touched }"
+                             name="industryAndCommerceTaxCodMalambo"
+                             minlength="2"
+                             #industryAndCommerceTaxCodMalambo="ngModel"
+                             required
+                             [disabled]="loading || !stageA.industryAndCommerceTaxMalambo">
+                      <div
+                        *ngIf="industryAndCommerceTaxCodMalambo.errors?.required && industryAndCommerceTaxCodMalambo.touched"><span
+                        class="text-danger">Este campo es obligatorio</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <div class="form-group">
+                      <input type="text"
+                             class="form-control"
+                             placeholder="Tarifa:*"
+                             [(ngModel)]="stageA.industryAndCommerceTaxRateMalambo"
+                             [ngClass]="{'is-invalid': industryAndCommerceTaxRateMalambo.errors?.required && industryAndCommerceTaxRateMalambo.touched }"
+                             name="industryAndCommerceTaxRateMalambo"
+                             minlength="2"
+                             #industryAndCommerceTaxRateMalambo="ngModel"
+                             required
+                             [disabled]="loading || !stageA.industryAndCommerceTaxMalambo">
+                      <div
+                        *ngIf="industryAndCommerceTaxRateMalambo.errors?.required && industryAndCommerceTaxRateMalambo.touched"><span
+                        class="text-danger">Este campo es obligatorio</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-3">
+                    <div class="form-group">
+                      <input type="text"
+                             class="form-control"
+                             placeholder="Otro*"
+                             [(ngModel)]="stageA.industryAndCommerceTaxOther"
+                             name="industryAndCommerceTaxOther"
+                             minlength="2"
+                             #industryAndCommerceTaxOther="ngModel"
+                             required
+                             [disabled]="loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <input type="text"
+                             class="form-control"
+                             placeholder="Cód Actividad:*"
+                             [(ngModel)]="stageA.industryAndCommerceTaxCodOther"
+                             name="industryAndCommerceTaxCodOther"
+                             minlength="2"
+                             #industryAndCommerceTaxCodOther="ngModel"
+                             required
+                             [disabled]="loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo">
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <div class="form-group">
+                      <input type="text"
+                             class="form-control"
+                             placeholder="Tarifa:*"
+                             [(ngModel)]="stageA.industryAndCommerceTaxRateOther"
+                             name="industryAndCommerceTaxRateOther"
+                             minlength="2"
+                             #industryAndCommerceTaxRateOther="ngModel"
+                             required
+                             [disabled]="loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <app-form-title [text]="'información tributaria'"></app-form-title>
+            <div class="row mt-3">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         [(ngModel)]="stageA.tributaryYear"
+                         [ngClass]="{'is-invalid': tributaryYear.errors?.required && tributaryYear.touched }"
+                         name="tributaryYear"
+                         minlength="2"
+                         #tributaryYear="ngModel"
+                         required
+                         [disabled]="true">
+                  <div
+                    *ngIf="tributaryYear.errors?.required && tributaryYear.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="number"
+                         class="form-control"
+                         placeholder="Ingresos operacionales: $*"
+                         [(ngModel)]="stageA.tributaryOperationalIncome"
+                         [ngClass]="{'is-invalid': tributaryOperationalIncome.errors?.required && tributaryOperationalIncome.touched }"
+                         name="tributaryOperationalIncome"
+                         minlength="2"
+                         #tributaryOperationalIncome="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div *ngIf="tributaryOperationalIncome.errors?.required && tributaryOperationalIncome.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="number"
+                         class="form-control"
+                         placeholder="Gastos operacionales: $*"
+                         [(ngModel)]="stageA.tributaryOperationalExpenses"
+                         [ngClass]="{'is-invalid': tributaryOperationalExpenses.errors?.required && tributaryOperationalExpenses.touched }"
+                         name="tributaryOperationalExpenses"
+                         minlength="2"
+                         #tributaryOperationalExpenses="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div
+                    *ngIf="tributaryOperationalExpenses.errors?.required && tributaryOperationalExpenses.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="number"
+                         class="form-control"
+                         placeholder="Total Ingresos: $*"
+                         [(ngModel)]="stageA.totalIncome"
+                         [ngClass]="{'is-invalid': totalIncome.errors?.required && totalIncome.touched }"
+                         name="totalIncome"
+                         minlength="2"
+                         #totalIncome="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div *ngIf="totalIncome.errors?.required && totalIncome.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="number"
+                         class="form-control"
+                         placeholder="Total Activos: $*"
+                         [(ngModel)]="stageA.totalActive"
+                         [ngClass]="{'is-invalid': totalActive.errors?.required && totalActive.touched }"
+                         name="totalActive"
+                         minlength="2"
+                         #totalActive="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div *ngIf="totalActive.errors?.required && totalActive.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="number"
+                         class="form-control"
+                         placeholder="Total Pasivos: $*"
+                         [(ngModel)]="stageA.totalPassive"
+                         [ngClass]="{'is-invalid': totalPassive.errors?.required && totalPassive.touched }"
+                         name="totalPassive"
+                         minlength="2"
+                         #totalPassive="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div *ngIf="totalPassive.errors?.required && totalPassive.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <app-form-title [text]="'referencias comerciales'"></app-form-title>
+            <div class="row mt-3">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Empresa 1*"
+                         [(ngModel)]="stageA.commercialReferenceName1"
+                         [ngClass]="{'is-invalid': commercialReferenceName1.errors?.required && commercialReferenceName1.touched }"
+                         name="commercialReferenceName1"
+                         minlength="2"
+                         #commercialReferenceName1="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div
+                    *ngIf="commercialReferenceName1.errors?.required && commercialReferenceName1.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="tel"
+                         class="form-control"
+                         placeholder="Telefono:*"
+                         [(ngModel)]="stageA.commercialReferencePhone1"
+                         [ngClass]="{'is-invalid': commercialReferencePhone1.errors?.required && commercialReferencePhone1.touched }"
+                         name="commercialReferencePhone1"
+                         minlength="2"
+                         #commercialReferencePhone1="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div
+                    *ngIf="commercialReferencePhone1.errors?.required && commercialReferencePhone1.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Contacto: *"
+                         [(ngModel)]="stageA.commercialReferenceContact1"
+                         [ngClass]="{'is-invalid': commercialReferenceContact1.errors?.required && commercialReferenceContact1.touched }"
+                         name="commercialReferenceContact1"
+                         minlength="2"
+                         #commercialReferenceContact1="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div
+                    *ngIf="commercialReferenceContact1.errors?.required && commercialReferenceContact1.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Empresa 2"
+                         [(ngModel)]="stageA.commercialReferenceName2"
+                         name="commercialReferenceName2"
+                         minlength="2"
+                         #commercialReferenceName2="ngModel"
+                         [disabled]="loading">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="tel"
+                         class="form-control"
+                         placeholder="Telefono:"
+                         [(ngModel)]="stageA.commercialReferencePhone2"
+                         name="commercialReferencePhone2"
+                         minlength="2"
+                         #commercialReferencePhone2="ngModel"
+                         [disabled]="loading">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Contacto:"
+                         [(ngModel)]="stageA.commercialReferenceContact2"
+                         name="commercialReferenceContact2"
+                         minlength="2"
+                         #commercialReferenceContact2="ngModel"
+                         [disabled]="loading">
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Empresa 3"
+                         [(ngModel)]="stageA.commercialReferenceName3"
+                         name="commercialReferenceName3"
+                         minlength="2"
+                         #commercialReferenceName3="ngModel"
+                         [disabled]="loading">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="tel"
+                         class="form-control"
+                         placeholder="Telefono:"
+                         [(ngModel)]="stageA.commercialReferencePhone3"
+                         name="commercialReferencePhone3"
+                         minlength="2"
+                         #commercialReferencePhone3="ngModel"
+                         [disabled]="loading">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Contacto:"
+                         [(ngModel)]="stageA.commercialReferenceContact3"
+                         name="commercialReferenceContact3"
+                         minlength="2"
+                         #commercialReferenceContact3="ngModel"
+                         [disabled]="loading">
+                </div>
+              </div>
+            </div>
+            <app-form-title [text]="'referencia personal'"></app-form-title>
+            <div class="row mt-3">
+              <div class="col-8">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Persona de contácto*"
+                         [(ngModel)]="stageA.personalReferenceName"
+                         [ngClass]="{'is-invalid': personalReferenceName.errors?.required && personalReferenceName.touched }"
+                         name="personalReferenceName"
+                         minlength="2"
+                         #personalReferenceName="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div
+                    *ngIf="personalReferenceName.errors?.required && personalReferenceName.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="E-mail*"
+                         [(ngModel)]="stageA.personalReferenceEmail"
+                         [ngClass]="{'is-invalid': personalReferenceEmail.errors?.required && personalReferenceEmail.touched }"
+                         name="personalReferenceEmail"
+                         minlength="2"
+                         #personalReferenceEmail="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div
+                    *ngIf="personalReferenceEmail.errors?.required && personalReferenceEmail.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Cargo:*"
+                         [(ngModel)]="stageA.personalReferencePosition"
+                         [ngClass]="{'is-invalid': personalReferencePosition.errors?.required && personalReferencePosition.touched }"
+                         name="personalReferencePosition"
+                         minlength="2"
+                         #personalReferencePosition="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div
+                    *ngIf="personalReferencePosition.errors?.required && personalReferencePosition.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Telefono:*"
+                         [(ngModel)]="stageA.personalReferencePhone"
+                         [ngClass]="{'is-invalid': personalReferencePhone.errors?.required && personalReferencePhone.touched }"
+                         name="personalReferencePhone"
+                         minlength="2"
+                         #personalReferencePhone="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div
+                    *ngIf="personalReferencePhone.errors?.required && personalReferencePhone.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Celular:*"
+                         [(ngModel)]="stageA.personalReferenceMobile"
+                         [ngClass]="{'is-invalid': personalReferenceMobile.errors?.required && personalReferenceMobile.touched }"
+                         name="personalReferenceMobile"
+                         minlength="2"
+                         #personalReferenceMobile="ngModel"
+                         required
+                         [disabled]="loading">
+                  <div
+                    *ngIf="personalReferenceMobile.errors?.required && personalReferenceMobile.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col text-center">
+                <button type="submit" class="acesco-button" [disabled]="loading">Enviar
+                  <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+                  <fa-icon [icon]="faSpinner" *ngIf="loading" [spin]="true"></fa-icon>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</section>
