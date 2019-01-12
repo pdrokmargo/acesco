@@ -78,7 +78,7 @@ export class StageAComponent implements AfterViewInit {
       case 'industryAndCommerceTaxBogota': {
         if (event.value) {
           this.stageA['industryAndCommerceTaxMalambo'] = false;
-          console.log(this.stageA.industryAndCommerceTaxMalambo);
+          console.log(this.stageA['industryAndCommerceTaxMalambo']);
         }
         break;
       }
@@ -86,7 +86,7 @@ export class StageAComponent implements AfterViewInit {
         console.log('industryAndCommerceTaxMalambo');
         if (event.value) {
           this.stageA['industryAndCommerceTaxBogota'] = false;
-          console.log(this.stageA.industryAndCommerceTaxBogota);
+          console.log(this.stageA['industryAndCommerceTaxBogota']);
         }
         break;
       }

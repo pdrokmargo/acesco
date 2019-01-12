@@ -17,7 +17,7 @@ export class ProcescoService {
     console.log(users);
     localStorage.setItem('acescoUsers', JSON.stringify(users));*/
 
-    const url = 'http://acescocambiatutecho.com/acescoservice/public/api/auth/signup';
+     const url = 'http://acescocambiatutecho.com/acescoservice/public/api/auth/signup';
     // const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest'});
     // console.log(data);
     return this.http.post(url, data);

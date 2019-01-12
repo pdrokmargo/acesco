@@ -101,6 +101,13 @@
   margin-top: 10px;
 }
 
+.whiteLine {
+  height: 1px;
+  background-color: var(--white);
+  width: 5%;
+  margin: 50px auto;
+}
+
 .card {
   box-shadow: 0 0 5px rgba(0,0,0,.125);
   border-radius: 0 !important;

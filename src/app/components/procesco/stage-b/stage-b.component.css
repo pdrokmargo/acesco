@@ -1,4 +1,4 @@
-#app-stage-a {
+#app-stage-b {
   background: #2daddc; /* Old browsers */
   background: -moz-linear-gradient(left, #2daddc 0%, #29c2ad 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(left, #2daddc 0%, #29c2ad 100%); /* Chrome10-25,Safari5.1-6 */
@@ -6,8 +6,6 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2daddc', endColorstr='#29c2ad', GradientType=1); /* IE6-9 */
 }
 
-input {
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid #dee2e6 !important;
+.icon {
+  font-size: 35px;
 }

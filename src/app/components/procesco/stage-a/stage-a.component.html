@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col text-center">
         <app-timeline [currentStep]="step"></app-timeline>
       </div>
     </div>
@@ -141,7 +141,7 @@
                       <li class="list-inline-item">
                         <app-toggle
                           [prop]="'industryAndCommerceTaxBogota'"
-                          [model]="industryAndCommerceTaxBogota"
+                          [model]="stageA.industryAndCommerceTaxBogota"
                           (updatedValue)="updatedValue($event)">
                         </app-toggle>
                       </li>
@@ -193,7 +193,7 @@
                       <li class="list-inline-item">
                         <app-toggle
                           [prop]="'industryAndCommerceTaxMalambo'"
-                          [model]="industryAndCommerceTaxMalambo"
+                          [model]="stageA.industryAndCommerceTaxMalambo"
                           (updatedValue)="updatedValue($event)">
                         </app-toggle>
                       </li>
@@ -617,7 +617,7 @@
             </div>
             <div class="row">
               <div class="col text-center">
-                <button type="submit" class="acesco-button" [disabled]="loading">Enviar
+                <button type="submit" class="acesco-button" [disabled]="loading || stageAForm.invalid">Enviar
                   <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
                   <fa-icon [icon]="faSpinner" *ngIf="loading" [spin]="true"></fa-icon>
                 </button>

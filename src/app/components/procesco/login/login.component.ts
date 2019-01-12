@@ -50,7 +50,7 @@ export class LoginComponent {
           break;
         }
         case 1: {
-          this.router.navigate(['procesco/preseleccionStapaA']);
+          this.router.navigate(['procesco/preseleccionEtapaA']);
           break;
         }
         case 2: {

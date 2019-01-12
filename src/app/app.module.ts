@@ -30,6 +30,7 @@ import {FooterComponent} from './components/shared/footer/footer.component';
 import {ConfirmationComponent} from './components/shared/confirmation/confirmation.component';
 import {LoaderComponent} from './components/shared/loader/loader.component';
 import { StageAComponent } from './components/procesco/stage-a/stage-a.component';
+import { StageBComponent } from './components/procesco/stage-b/stage-b.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { StageAComponent } from './components/procesco/stage-a/stage-a.component
     FooterComponent,
     ConfirmationComponent,
     LoaderComponent,
-    StageAComponent
+    StageAComponent,
+    StageBComponent
   ],
   imports: [
     BrowserModule,

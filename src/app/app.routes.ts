@@ -9,6 +9,7 @@ import {NewProviderComponent} from './components/procesco/new-provider/new-provi
 import {UpdateComponent} from './components/procesco/update/update.component';
 import {ConfirmationComponent} from './components/shared/confirmation/confirmation.component';
 import {StageAComponent} from './components/procesco/stage-a/stage-a.component';
+import {StageBComponent} from './components/procesco/stage-b/stage-b.component';
 
 export const ROUTES: Routes = [
   {path: 'main', component: MainComponent},
@@ -16,7 +17,8 @@ export const ROUTES: Routes = [
   {path: 'procesco/nuevoProveedor', component: NewProviderComponent},
   {path: 'procesco/actualizarDatos', component: UpdateComponent},
   {path: 'procesco/confirmacion', component: ConfirmationComponent},
-  {path: 'procesco/preseleccionStapaA', component: StageAComponent},
+  {path: 'procesco/preseleccionEtapaA', component: StageAComponent},
+  {path: 'procesco/preseleccionEtapaB', component: StageBComponent},
   {path: 'sistemaDeGarantias', component: SistemaDeGarantiasComponent},
   {path: 'faq', component: FaqComponent},
   {path: 'evaluacion', component: EvaluacionComponent},

@@ -5,6 +5,8 @@ export interface UserInterface {
   password_confirmation: string;
   userType: number;
   currentStep: number;
+  nationalOptions: Array<object>;
+  internationalOptions: Array<object>;
   preRegistro?: {
     personalDataProtection: boolean;
     habeas: boolean;
@@ -41,5 +43,38 @@ export interface UserInterface {
     socialResponsabilityName: string;
     productSeal: boolean;
     productSealName: string;
+  };
+  stageB: {
+    acescoElementsProtection: boolean;
+    activitiesAsSocialReason: boolean;
+    additionalSafetyMeasures: boolean;
+    authoritiesReporting: boolean;
+    confidentiality: boolean;
+    containersIntegity: boolean;
+    continuousCommunication: boolean;
+    dissuasionElements: boolean;
+    documentationAndSystemsConfidentiality: boolean;
+    economicActivityEvidence: boolean;
+    illicitActivitiesAbsence: boolean;
+    legalRequirementsAndRegulations: boolean;
+    manifest: boolean;
+    minimumSafetyRequirements: boolean;
+    perimetersControl: boolean;
+    physicalAccessControls: boolean;
+    physicalSecurityAgreements: boolean;
+    physicalSecurityGuarantee: boolean;
+    protectionProgram: boolean;
+    qualityCertifications: boolean;
+    recommendations: boolean;
+    sanitaryRegulations: boolean;
+    secureFacilities: boolean;
+    securityAgreements: boolean;
+    securityDocuments: boolean;
+    securityService: boolean;
+    selectionProgram: boolean;
+    shippingDocumentation: boolean;
+    storageAndTransportIntegrity: boolean;
+    trainingPrograms: boolean;
+    warningDevices: boolean;
   };
 }
