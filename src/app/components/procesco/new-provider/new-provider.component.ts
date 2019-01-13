@@ -24,17 +24,16 @@ export class NewProviderComponent implements AfterViewInit {
   step: number;
   currentUser: UserInterface;
   id: string;
+  isAdminUser: boolean;
 
   constructor(private router: Router,
               private cdRef: ChangeDetectorRef,
               public procescoService: ProcescoService,
               private activatedRoute: ActivatedRoute) {
     this.procescoService.getLogedUser().subscribe((response: any) => {
+      this.isAdminUser = false;
       this.currentUser = response;
       this.step = this.currentUser.currentStep;
-      if (this.currentUser.hasOwnProperty('preRegister')) {
-        this.preRegister = this.currentUser['preRegister'];
-      }
       console.log(response);
     });
     this.loading = false;
@@ -99,6 +98,10 @@ export class NewProviderComponent implements AfterViewInit {
     this.activatedRoute.params.subscribe((response => {
       this.procescoService.getUserById(response.id).subscribe((data: any) => {
         console.log(data);
+        if (data) {
+          this.isAdminUser = true;
+        }
+        this.preRegister = data;
       });
     }));
   }

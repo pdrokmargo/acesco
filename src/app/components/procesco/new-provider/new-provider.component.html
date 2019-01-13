@@ -104,7 +104,7 @@
                          minlength="2"
                          #whoRefers="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div *ngIf="whoRefers.errors?.required && whoRefers.touched"><span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
@@ -117,7 +117,7 @@
                           name="classification"
                           required
                           #classification="ngModel"
-                          [disabled]="loading">
+                          [disabled]="isAdminUser || loading">
                     <option [ngValue]="null">Clasificación*</option>
                     <option *ngFor="let classification of classifications">{{classification.label}}</option>
                   </select>
@@ -136,7 +136,7 @@
                             [ngClass]="{'is-invalid': serviceDescription.errors?.required && serviceDescription.touched }"
                             name="serviceDescription"
                             #serviceDescription="ngModel"
-                            [disabled]="loading"
+                            [disabled]="isAdminUser || loading"
                             placeholder="Descripcion de bien o servicio a ofrecer*"
                             required></textarea>
                   <div *ngIf="serviceDescription?.errors?.required && serviceDescription.touched"><span
@@ -159,7 +159,7 @@
                             name="documentType"
                             #documentType="ngModel"
                             required
-                            [disabled]="loading">
+                            [disabled]="isAdminUser || loading">
                       <option [ngValue]="null">Elije uno*</option>
                       <option *ngFor="let type of documentTypes">{{type.label}}</option>
                     </select>
@@ -171,7 +171,7 @@
                     <input type="text"
                            class="form-control"
                            placeholder="No.:*"
-                           [disabled]="loading"
+                           [disabled]="isAdminUser || loading"
                            required
                            name="documentNumber"
                            #documentNumber="ngModel"
@@ -184,7 +184,7 @@
                     <input type="text"
                            class="form-control"
                            placeholder="De:*"
-                           [disabled]="loading"
+                           [disabled]="isAdminUser || loading"
                            required
                            [(ngModel)]="preRegister.documentIssued"
                            [ngClass]="{'is-invalid': documentIssued.errors?.required && documentIssued.touched }"
@@ -224,7 +224,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Razon social/Nombre completo*"
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          required
                          [(ngModel)]="preRegister.businessName"
                          [ngClass]="{'is-invalid': businessName.errors?.required && businessName.touched }"
@@ -239,7 +239,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Razon comercial*"
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          required
                          [(ngModel)]="preRegister.commercialName"
                          [ngClass]="{'is-invalid': commercialName.errors?.required && commercialName.touched }"
@@ -254,7 +254,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Cod. CIIU*"
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          required
                          [(ngModel)]="preRegister.ciiu"
                          [ngClass]="{'is-invalid': ciiu.errors?.required && ciiu.touched }"
@@ -270,7 +270,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Nombres y apellidos del representante legal:*"
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          required
                          [(ngModel)]="preRegister.legalRepresentative"
                          [ngClass]="{'is-invalid': serviceDescription.errors?.required && serviceDescription.touched }"
@@ -286,7 +286,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Profesion y oficio:*"
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          required
                          [(ngModel)]="preRegister.profession"
                          [ngClass]="{'is-invalid': profession.errors?.required && profession.touched }"
@@ -301,7 +301,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Tarjeta o registro profesional No:"
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.professionalCard"
                          [ngClass]="{'is-invalid': professionalCard.errors?.required && professionalCard.touched }"
                          name="professionalCard"
@@ -313,7 +313,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Expedido por:"
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.issuedBy"
                          [ngClass]="{'is-invalid': issuedBy.errors?.required && issuedBy.touched }"
                          name="issuedBy"
@@ -328,7 +328,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Persona de contacto:*"
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          required
                          [(ngModel)]="preRegister.contactName"
                          [ngClass]="{'is-invalid': contactName.errors?.required && contactName.touched }"
@@ -343,7 +343,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Cargo:*"
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          required
                          [(ngModel)]="preRegister.position"
                          [ngClass]="{'is-invalid': position.errors?.required && position.touched }"
@@ -359,7 +359,7 @@
                          class="form-control"
                          placeholder="Dirección:*"
                          required
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.address"
                          [ngClass]="{'is-invalid': address.errors?.required && address.touched }"
                          name="address"
@@ -374,7 +374,7 @@
                     <select class="form-control"
                             [(ngModel)]="preRegister.country"
                             [ngClass]="{'is-invalid': country.errors?.required && country.touched }"
-                            [disabled]="loading"
+                            [disabled]="isAdminUser || loading"
                             required
                             name="country"
                             #country="ngModel">
@@ -393,7 +393,7 @@
                          class="form-control"
                          placeholder="Dpto:*"
                          required
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.dpto"
                          [ngClass]="{'is-invalid': dpto.errors?.required && dpto.touched }"
                          name="dpto"
@@ -409,7 +409,7 @@
                          class="form-control"
                          placeholder="Ciudad:*"
                          required
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.city"
                          [ngClass]="{'is-invalid': city.errors?.required && city.touched }"
                          name="city"
@@ -425,7 +425,7 @@
                          class="form-control"
                          placeholder="Codigo postal:*"
                          required
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.zipcode"
                          [ngClass]="{'is-invalid': zipcode.errors?.required && zipcode.touched }"
                          name="zipcode"
@@ -440,7 +440,7 @@
                          class="form-control"
                          placeholder="Telefono:*"
                          required
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.phone"
                          [ngClass]="{'is-invalid': phone.errors?.required && phone.touched }"
                          name="phone"
@@ -455,7 +455,7 @@
                          class="form-control"
                          placeholder="Celular:*"
                          required
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.mobile"
                          [ngClass]="{'is-invalid': mobile.errors?.required && mobile.touched }"
                          name="mobile"
@@ -469,7 +469,7 @@
                   <input type="number"
                          class="form-control"
                          placeholder="Fax:"
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.fax"
                          name="fax"
                          #fax="ngModel">
@@ -481,7 +481,7 @@
                          class="form-control"
                          placeholder="E-mail:*"
                          required
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.email"
                          [ngClass]="{'is-invalid': email.errors?.required && email.touched }"
                          name="email"
@@ -495,7 +495,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Pagina Web:"
-                         [disabled]="loading"
+                         [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.website"
                          name="website"
                          #website="ngModel">
@@ -559,7 +559,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Cual?"
-                         [disabled]="!preRegister.socialResponsability || loading"
+                         [disabled]="isAdminUser || !preRegister.socialResponsability || loading"
                          [(ngModel)]="preRegister.socialResponsabilityName"
                          name="socialResponsabilityName"
                          #socialResponsabilityName="ngModel">
@@ -576,7 +576,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Cual?"
-                         [disabled]="!preRegister.productSeal || loading"
+                         [disabled]="isAdminUser || !preRegister.productSeal || loading"
                          [(ngModel)]="preRegister.productSealName"
                          name="productSealName"
                          #productSealName="ngModel">
@@ -585,7 +585,8 @@
             </div>
             <button class="acesco-button"
                     type="submit"
-                    [disabled]="providerForm.invalid || loading">Enviar
+                    *ngIf="!isAdminUser"
+                    [disabled]=" providerForm.invalid || loading">Enviar
               <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
               <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
             </button>
