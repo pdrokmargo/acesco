@@ -1,7 +1,7 @@
 import {AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
 import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {ToggleInterface} from '../../../Interfaces/toggle.interface';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ProcescoService} from '../../../services/procesco.service';
 import {UserInterface} from '../../../Interfaces/user.interface';
 import {NgForm} from '@angular/forms';
@@ -12,7 +12,7 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./new-provider.component.css']
 })
 export class NewProviderComponent implements AfterViewInit {
-  preRegistro: Object;
+  preRegister: Object;
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
   height: number;
@@ -23,10 +23,20 @@ export class NewProviderComponent implements AfterViewInit {
   loading: boolean;
   step: number;
   currentUser: UserInterface;
+  id: string;
 
-  constructor(private router: Router, private cdRef: ChangeDetectorRef, procescoService: ProcescoService) {
-    this.currentUser = procescoService.getLogedUser();
-    this.step = this.currentUser.currentStep;
+  constructor(private router: Router,
+              private cdRef: ChangeDetectorRef,
+              public procescoService: ProcescoService,
+              private activatedRoute: ActivatedRoute) {
+    this.procescoService.getLogedUser().subscribe((response: any) => {
+      this.currentUser = response;
+      this.step = this.currentUser.currentStep;
+      if (this.currentUser.hasOwnProperty('preRegister')) {
+        this.preRegister = this.currentUser['preRegister'];
+      }
+      console.log(response);
+    });
     this.loading = false;
     const day = ('0' + this.now.getDate()).slice(-2);
     const month = ('0' + (this.now.getMonth() + 1)).slice(-2);
@@ -37,7 +47,7 @@ export class NewProviderComponent implements AfterViewInit {
       {label: 'CLasificación 4', value: 'classification4'}
     ];
 
-    this.preRegistro = {
+    this.preRegister = {
       whoRefers: null,
       personalDataProtection: true,
       habeas: true,
@@ -50,6 +60,7 @@ export class NewProviderComponent implements AfterViewInit {
       businessName: null,
       commercialName: null,
       ciiu: null,
+      legalRepresentative: null,
       profession: null,
       professionalCard: null,
       issuedBy: null,
@@ -84,6 +95,12 @@ export class NewProviderComponent implements AfterViewInit {
       {label: 'Colombia', value: 'colombia'},
       {label: 'Argentina', value: 'argentina'}
     ];
+
+    this.activatedRoute.params.subscribe((response => {
+      this.procescoService.getUserById(response.id).subscribe((data: any) => {
+        console.log(data);
+      });
+    }));
   }
 
   ngAfterViewInit() {
@@ -93,20 +110,65 @@ export class NewProviderComponent implements AfterViewInit {
 
   updateValue(newValue: ToggleInterface) {
     if (newValue.key2) {
-      this.preRegistro[newValue.key][newValue.key2] = newValue.value;
+      this.preRegister[newValue.key][newValue.key2] = newValue.value;
     } else {
-      this.preRegistro[newValue.key] = newValue.value;
+      this.preRegister[newValue.key] = newValue.value;
     }
   }
 
+  autoFill() {
+    this.preRegister = {
+      whoRefers: 'Tu madre',
+      personalDataProtection: true,
+      habeas: true,
+      classification: 'Clasificación 1',
+      serviceDescription: 'serviceDescription',
+      documentType: 'documentType',
+      documentNumber: 'documentNumber',
+      documentIssued: 'documentIssued',
+      businessName: 'businessName',
+      commercialName: 'commercialName',
+      ciiu: 'ciiu',
+      legalRepresentative: 'legalRepresentative',
+      profession: 'profession',
+      professionalCard: 'professionalCard',
+      issuedBy: 'issuedBy',
+      contactName: 'contactName',
+      position: 'position',
+      address: 'address',
+      country: 'country',
+      dpto: 'dpto',
+      city: 'city',
+      zipcode: 11111,
+      phone: 5235325235,
+      mobile: 25352523523,
+      fax: 52352,
+      email: 'email',
+      website: 'website',
+      iso9001: true,
+      iso14001: true,
+      oshas18001: true,
+      antiCorruptionPolicy: true,
+      sustainability: true,
+      dueDiligence: true,
+      socialResponsability: true,
+      socialResponsabilityName: 'socialResponsabilityName',
+      productSeal: true,
+      productSealName: 'productSealName',
+    };
+  }
+
   onSubmit(form: NgForm) {
-    console.log(form);
     this.loading = true;
-    console.log(form.value);
-    console.log(this.preRegistro);
-    setTimeout(() => {
+    this.procescoService.updateUser(this.preRegister, 'pre-register').subscribe((response: any) => {
+      console.log(response);
+      this.router.navigate(['procesco/confirmacion']);
+    }, error1 => {
+      console.log(error1);
+    });
+    /*setTimeout(() => {
       this.loading = false;
       this.router.navigate(['procesco/confirmacion']);
-    }, 3000);
+    }, 3000);*/
   }
 }

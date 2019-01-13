@@ -2,6 +2,7 @@ import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter} from '@angula
 import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 import {ProcescoService} from '../../../services/procesco.service';
+import {UserInterface} from '../../../Interfaces/user.interface';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +18,7 @@ export class ProfileComponent implements AfterViewInit {
   height: number;
   action: string;
   providerType: string;
+  user: UserInterface;
 
   constructor(private router: Router, private cdRef: ChangeDetectorRef, public procescoService: ProcescoService) {
     this.nationalOptions = [
@@ -32,6 +34,10 @@ export class ProfileComponent implements AfterViewInit {
       {label: 'New', value: 'new', active: false},
       {label: 'Update', value: 'update', active: false}
     ];
+    /*this.procescoService.getLogedUser().subscribe((response: any) => {
+      console.log(response);
+      this.user = response;
+    });*/
   }
 
   ngAfterViewInit() {
@@ -44,22 +50,29 @@ export class ProfileComponent implements AfterViewInit {
       return;
     }
     this.loading = true;
-    setTimeout(() => {
-      const user = this.procescoService.getLogedUser();
-      switch (this.providerType) {
-        case 'national': {
-          user['nationalOptions'] = this.nationalOptions;
-          this.procescoService.updateUser(user);
-          this.router.navigate(['procesco/nuevoProveedor']);
-          break;
-        }
-        case 'international': {
-          user['internationalOptions'] = this.internationalOptions;
-          break;
-        }
-      }
-      this.loading = false;
-    }, 3000);
+    /*this.user['national'] = this.providerType === 'national';*/
+    if (this.providerType === 'national') {
+      /*this.user['supplier'] = this.nationalOptions[0].active;
+      this.user['inHouse'] = this.nationalOptions[1].active;*/
+      const supplier = this.nationalOptions[0].active ? 0 : 1;
+      const inHouse = this.nationalOptions[1].active ? 0 : 1;
+      const national = this.providerType === 'national' ? 0 : 1;
+      this.procescoService.updateUser({supplier: supplier, inHouse: inHouse, national: national}, 'profile').subscribe((response:any) => {
+        console.log(response);
+        this.loading = false;
+        this.router.navigate(['procesco/nuevoProveedor']);
+      }, error1 => {
+        console.log(error1);
+        this.loading = false;
+      });
+
+    } else {
+      const supplier = this.internationalOptions[0].active;
+      const inHouse = this.internationalOptions[1].active;
+      this.procescoService.updateUser({supplier: supplier, inHouse: inHouse}, 'profile');
+    }
+
+
   }
 
   updatedValue(event: any) {

@@ -22,7 +22,6 @@ export class LoginComponent {
   user: any;
   loading: boolean;
   loginInfo: object;
-  currentUser: UserInterface;
 
   constructor(private router: Router, public procescoService: ProcescoService) {
     this.loading = false;
@@ -42,52 +41,42 @@ export class LoginComponent {
     this.loading = true;
     this.isLoading.emit(this.loading);
     this.procescoService.validateUser(form.value).subscribe((response: any) => {
-      localStorage.setItem('acctnk', JSON.stringify(response.access_token));
+      localStorage.setItem('acctkn', JSON.stringify(response.access_token));
       console.log(response);
-      switch (response.currentStep) {
-        case 0: {
-          this.router.navigate(['procesco/perfil']);
+      switch (response.user.userType) {
+        case '0': {
+          this.router.navigate(['procesco/admin']);
           break;
         }
-        case 1: {
-          this.router.navigate(['procesco/preseleccionEtapaA']);
-          break;
-        }
-        case 2: {
-          break;
-        }
-        case 3: {
+        case '1': {
+          switch (response.user.currentStep) {
+            case '0': {
+              this.router.navigate(['procesco/perfil']);
+              break;
+            }
+            case '1': {
+              this.router.navigate(['procesco/preseleccionEtapaA']);
+              break;
+            }
+            case '2': {
+              this.router.navigate(['procesco/preseleccionEtapaB']);
+              break;
+            }
+            case '3': {
+              break;
+            }
+          }
           break;
         }
       }
+
       this.loading = false;
       this.isLoading.emit(this.loading);
     }, error1 => {
       console.log(error1);
-    });
-    /*setTimeout(() => {
-      this.loginInfo = this.procescoService.validateUser(form.value);
       this.loading = false;
       this.isLoading.emit(this.loading);
-      console.log(this.loginInfo);
-      if (!this.loginInfo['error']) {
-        if (this.loginInfo['user'].userType === 'user') {
-          this.user = this.procescoService.getLogedUser();
-          switch (this.user.currentStep) {
-            case 0: {
-              this.router.navigate(['procesco/perfil']);
-              break;
-            }
-            case 1: {
-              this.router.navigate(['procesco/preseleccionStapaA']);
-            }
-          }
-
-        } else if (this.loginInfo['user'].userType === 'admin') {
-
-        }
-      }
-    }, 3000);*/
+    });
   }
 
   backHome(where?: string) {

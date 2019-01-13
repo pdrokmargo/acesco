@@ -210,13 +210,17 @@
             </div>
           </div>
           <app-form-title [text]="'anexo de documentos obligatorios'"></app-form-title>
-          <div class="row border">
+          <div class="row border" *ngFor="let toggle of annex1Toggles">
             <div class="col-8">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <p>{{toggle.text}}</p>
             </div>
             <div class="col-4">
               <div class="form-group">
-                <input type="file" class="form-control-file" (change)="fileChange($event)" accept=".pdf,.doc,.docx">
+                <input
+                  type="file"
+                  class="form-control-file"
+                  (change)="fileChange($event)"
+                  accept=".pdf,.doc,.docx">
               </div>
             </div>
           </div>

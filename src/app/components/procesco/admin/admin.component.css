@@ -1,0 +1,15 @@
+table {
+  font-size: 12px;
+}
+
+.table td, .table th {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.acesco-button {
+  height: 30px;
+  font-size: 12px;
+  padding: 5px;
+  margin-top: 0;
+}

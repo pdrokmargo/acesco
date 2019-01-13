@@ -3,6 +3,8 @@ import {faCaretDown, faCaretRight, faCaretUp, faSpinner} from '@fortawesome/free
 import {UserInterface} from '../../../Interfaces/user.interface';
 import {ProcescoService} from '../../../services/procesco.service';
 import {ToggleInterface} from '../../../Interfaces/toggle.interface';
+import {UploadService} from '../../../services/upload.service';
+import {HttpEventType, HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-stage-b',
@@ -23,6 +25,7 @@ export class StageBComponent implements AfterViewInit {
   selfEvaluation: boolean;
   selfEvaluationToggles: any [] = [];
   physicalSecurityAgreementsToggles: any [] = [];
+  annex1Toggles: any [] = [];
   annex2Toggles: any [] = [];
 
   constructor(public procescoService: ProcescoService, private cdRef: ChangeDetectorRef) {
@@ -172,6 +175,18 @@ export class StageBComponent implements AfterViewInit {
         text: 'Estaremos dispuestos a suministrar a ACESCO, en caso de ser requerido, los documentos y registros en materia de seguridad relacionados con el suministro de bienes y servicios, y atender visitas periódicas para evaluar el cumplimiento de este acuerdo.'
       },
     ];
+    this.annex1Toggles = [
+      {model: 'chamberCommerce', value: false, text: 'Certificado de cámara de comercio (Vigencia no mayor a un (1) mes).'},
+      {model: 'identificationCard', value: false, text: 'Fotocopia de la cédula del representante legal.'},
+      {model: 'rut', value: false, text: 'Copia del RUT (Fecha de impresión no mayor a un (1) mes).'},
+      {model: 'shareholdingStructure', value: false, text: 'Composición accionaria.'},
+      {
+        model: 'rucAndBasc',
+        value: false,
+        text: 'Copias de la calificación en ruc y de las certificaciones/acreditaciones en sistemas de gestión, BASC y sello de producto que pose vigentes.'
+      },
+      {model: 'declarationOfRiskPrevention', value: false, text: 'Declaración de prevención del riesgo - la/fa (anexo página 5)'},
+    ];
     this.annex2Toggles = [
       {model: 'annex6', value: false, text: 'Declaración de compromiso de seguridad (anexo pagina 6)'},
       {model: 'safetyData', value: false, text: 'Ficha de seguridad de los productos'},
@@ -182,7 +197,7 @@ export class StageBComponent implements AfterViewInit {
       {model: 'relationshipRequirements', value: false, text: 'Requisitos varios especificos del relaciónamiento con Acesco'},
     ];
     this.selfEvaluation = false;
-    this.user = this.procescoService.getLogedUser();
+    //this.user = this.procescoService.getLogedUser();
     this.step = this.user.currentStep;
     this.stageB = {
       minimumSafetyRequirements: true,
@@ -211,8 +226,22 @@ export class StageBComponent implements AfterViewInit {
       return;
     }
     const file: File = fileList[0];
-    const formData: FormData = new FormData();
     console.log(file);
+    /*this.uploadService.uploadFile(this.appCfg.baseUrl + '/api/flash/upload', file)
+      .subscribe(event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            const percentDone = Math.round(100 * event.loaded / event.total);
+            console.log(`File is ${percentDone}% loaded.`);
+          } else if (event instanceof HttpResponse) {
+            console.log('File is completely loaded!');
+          }
+        },
+        (err) => {
+          console.log('Upload Error:', err);
+        }, () => {
+          console.log('Upload done');
+        }
+      );*/
   }
 
   onSubmit() {

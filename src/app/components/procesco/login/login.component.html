@@ -32,7 +32,7 @@
              name="password"
              [(ngModel)]="user.password"
              #password="ngModel"
-             minlength="8"
+             minlength="6"
              [disabled]="loading"
              required>
       <div *ngIf="password.errors?.required && password.touched"><span

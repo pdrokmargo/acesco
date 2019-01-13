@@ -1,0 +1,42 @@
+<section id="app-userList">
+  <div class="row mt-5">
+    <div class="col">
+      <div class="container">
+        <table class="table table-striped table-responsive">
+          <thead >
+          <tr>
+            <th *ngFor="let title of tableTitles; let odd = odd; let even = even;" class="text-white" [ngClass]="{'bg-info': odd, 'bg-dark': even}">{{title.label}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let user of userList" class="animated fadeIn">
+            <tr *ngIf="user.userType === '1'">
+              <td>
+                10184
+              </td>
+              <td>
+                {{user.name}}
+              </td>
+              <td>{{ user['pre_registro']['commercialName'] || 'Empty'}}</td>
+              <td>Empty</td>
+              <td>Empty</td>
+              <td>Empty</td>
+              <td>Empty</td>
+              <td>Empty</td>
+              <td>Empty</td>
+              <td>{{states[user.currentStep]}}</td>
+              <td>Empty</td>
+              <td>Empty</td>
+              <td>Empty</td>
+              <td>Empty</td>
+              <td>
+                <button class="acesco-button" (click)="onButtonClick(user);">Seleccionar</button>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

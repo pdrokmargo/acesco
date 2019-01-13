@@ -23,7 +23,7 @@ export class StageAComponent implements AfterViewInit {
 
   constructor(private cdRef: ChangeDetectorRef, public procescoService: ProcescoService, private router: Router) {
     this.loading = false;
-    this.user = this.procescoService.getLogedUser();
+    //this.user = this.procescoService.getLogedUser();
     this.step = this.user.currentStep;
     this.stageA = {
       pep: false,

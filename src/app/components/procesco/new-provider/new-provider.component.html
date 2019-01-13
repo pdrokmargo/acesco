@@ -25,7 +25,7 @@
               <div class="col-6 pr-4 box">
                 <div class="row mt-3">
                   <div class="col-2 dataProtection">
-                    <app-toggle [model]="preRegistro.personalDataProtection"
+                    <app-toggle [model]="preRegister.personalDataProtection"
                                 [prop]="'personalDataProtection'"
                                 [loading]="loading"
                                 (updatedValue)="updateValue($event)">
@@ -53,7 +53,7 @@
               <div class="col-6 pl-4 box">
                 <div class="row mt-3">
                   <div class="col-2 habeas">
-                    <app-toggle [model]="preRegistro.habeas"
+                    <app-toggle [model]="preRegister.habeas"
                                 [prop]="'habeas'"
                                 [loading]="loading"
                                 (updatedValue)="updateValue($event)"></app-toggle>
@@ -86,7 +86,7 @@
                 <div class="form-group">
                   <input type="date"
                          class="form-control"
-                         [(ngModel)]="preRegistro.createdAt"
+                         [(ngModel)]="preRegister.createdAt"
                          name="createdAt"
                          #createdAt="ngModel"
                          required
@@ -98,7 +98,7 @@
                   <input type="text"
                          class="form-control"
                          placeholder="Persona de contacto en ACESCO*"
-                         [(ngModel)]="preRegistro.whoRefers"
+                         [(ngModel)]="preRegister.whoRefers"
                          [ngClass]="{'is-invalid': whoRefers.errors?.required && whoRefers.touched }"
                          name="whoRefers"
                          minlength="2"
@@ -112,7 +112,7 @@
               <div class="col-6">
                 <div class="form-group">
                   <select class="form-control"
-                          [(ngModel)]="preRegistro.classification"
+                          [(ngModel)]="preRegister.classification"
                           [ngClass]="{'is-invalid': classification.errors?.required && classification.touched }"
                           name="classification"
                           required
@@ -132,7 +132,7 @@
                 <div class="form-group">
                   <textarea class="form-control"
                             rows="6"
-                            [(ngModel)]="preRegistro.serviceDescription"
+                            [(ngModel)]="preRegister.serviceDescription"
                             [ngClass]="{'is-invalid': serviceDescription.errors?.required && serviceDescription.touched }"
                             name="serviceDescription"
                             #serviceDescription="ngModel"
@@ -154,7 +154,7 @@
                   </div>
                   <div class="form-group col-1">
                     <select class="form-control"
-                            [(ngModel)]="preRegistro.documentType"
+                            [(ngModel)]="preRegister.documentType"
                             [ngClass]="{'is-invalid': documentType.errors?.required && documentType.touched }"
                             name="documentType"
                             #documentType="ngModel"
@@ -175,7 +175,7 @@
                            required
                            name="documentNumber"
                            #documentNumber="ngModel"
-                           [(ngModel)]="preRegistro.documentNumber"
+                           [(ngModel)]="preRegister.documentNumber"
                            [ngClass]="{'is-invalid': documentNumber.errors?.required && documentNumber.touched }">
                     <div *ngIf="documentNumber.errors?.required && documentNumber.touched"><span class="text-danger">Este campo es obligatorio</span>
                     </div>
@@ -186,7 +186,7 @@
                            placeholder="De:*"
                            [disabled]="loading"
                            required
-                           [(ngModel)]="preRegistro.documentIssued"
+                           [(ngModel)]="preRegister.documentIssued"
                            [ngClass]="{'is-invalid': documentIssued.errors?.required && documentIssued.touched }"
                            name="documentIssued"
                            #documentIssued="ngModel">
@@ -226,7 +226,7 @@
                          placeholder="Razon social/Nombre completo*"
                          [disabled]="loading"
                          required
-                         [(ngModel)]="preRegistro.businessName"
+                         [(ngModel)]="preRegister.businessName"
                          [ngClass]="{'is-invalid': businessName.errors?.required && businessName.touched }"
                          name="businessName"
                          #businessName="ngModel">
@@ -241,7 +241,7 @@
                          placeholder="Razon comercial*"
                          [disabled]="loading"
                          required
-                         [(ngModel)]="preRegistro.commercialName"
+                         [(ngModel)]="preRegister.commercialName"
                          [ngClass]="{'is-invalid': commercialName.errors?.required && commercialName.touched }"
                          name="commercialName"
                          #commercialName="ngModel">
@@ -256,7 +256,7 @@
                          placeholder="Cod. CIIU*"
                          [disabled]="loading"
                          required
-                         [(ngModel)]="preRegistro.ciiu"
+                         [(ngModel)]="preRegister.ciiu"
                          [ngClass]="{'is-invalid': ciiu.errors?.required && ciiu.touched }"
                          name="ciiu"
                          #ciiu="ngModel">
@@ -272,7 +272,7 @@
                          placeholder="Nombres y apellidos del representante legal:*"
                          [disabled]="loading"
                          required
-                         [(ngModel)]="preRegistro.legalRepresentative"
+                         [(ngModel)]="preRegister.legalRepresentative"
                          [ngClass]="{'is-invalid': serviceDescription.errors?.required && serviceDescription.touched }"
                          name="legalRepresentative"
                          #legalRepresentative="ngModel">
@@ -288,7 +288,7 @@
                          placeholder="Profesion y oficio:*"
                          [disabled]="loading"
                          required
-                         [(ngModel)]="preRegistro.profession"
+                         [(ngModel)]="preRegister.profession"
                          [ngClass]="{'is-invalid': profession.errors?.required && profession.touched }"
                          name="profession"
                          #profession="ngModel">
@@ -302,7 +302,7 @@
                          class="form-control"
                          placeholder="Tarjeta o registro profesional No:"
                          [disabled]="loading"
-                         [(ngModel)]="preRegistro.professionalCard"
+                         [(ngModel)]="preRegister.professionalCard"
                          [ngClass]="{'is-invalid': professionalCard.errors?.required && professionalCard.touched }"
                          name="professionalCard"
                          #professionalCard="ngModel">
@@ -314,7 +314,7 @@
                          class="form-control"
                          placeholder="Expedido por:"
                          [disabled]="loading"
-                         [(ngModel)]="preRegistro.issuedBy"
+                         [(ngModel)]="preRegister.issuedBy"
                          [ngClass]="{'is-invalid': issuedBy.errors?.required && issuedBy.touched }"
                          name="issuedBy"
                          #issuedBy="ngModel">
@@ -330,7 +330,7 @@
                          placeholder="Persona de contacto:*"
                          [disabled]="loading"
                          required
-                         [(ngModel)]="preRegistro.contactName"
+                         [(ngModel)]="preRegister.contactName"
                          [ngClass]="{'is-invalid': contactName.errors?.required && contactName.touched }"
                          name="contactName"
                          #contactName="ngModel">
@@ -345,7 +345,7 @@
                          placeholder="Cargo:*"
                          [disabled]="loading"
                          required
-                         [(ngModel)]="preRegistro.position"
+                         [(ngModel)]="preRegister.position"
                          [ngClass]="{'is-invalid': position.errors?.required && position.touched }"
                          name="position"
                          #position="ngModel">
@@ -360,7 +360,7 @@
                          placeholder="Dirección:*"
                          required
                          [disabled]="loading"
-                         [(ngModel)]="preRegistro.address"
+                         [(ngModel)]="preRegister.address"
                          [ngClass]="{'is-invalid': address.errors?.required && address.touched }"
                          name="address"
                          #address="ngModel">
@@ -372,7 +372,7 @@
                 <div class="form-group">
                   <div class="form-group">
                     <select class="form-control"
-                            [(ngModel)]="preRegistro.country"
+                            [(ngModel)]="preRegister.country"
                             [ngClass]="{'is-invalid': country.errors?.required && country.touched }"
                             [disabled]="loading"
                             required
@@ -394,7 +394,7 @@
                          placeholder="Dpto:*"
                          required
                          [disabled]="loading"
-                         [(ngModel)]="preRegistro.dpto"
+                         [(ngModel)]="preRegister.dpto"
                          [ngClass]="{'is-invalid': dpto.errors?.required && dpto.touched }"
                          name="dpto"
                          #dpto="ngModel">
@@ -410,7 +410,7 @@
                          placeholder="Ciudad:*"
                          required
                          [disabled]="loading"
-                         [(ngModel)]="preRegistro.city"
+                         [(ngModel)]="preRegister.city"
                          [ngClass]="{'is-invalid': city.errors?.required && city.touched }"
                          name="city"
                          #city="ngModel">
@@ -421,12 +421,12 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text"
+                  <input type="number"
                          class="form-control"
                          placeholder="Codigo postal:*"
                          required
                          [disabled]="loading"
-                         [(ngModel)]="preRegistro.zipcode"
+                         [(ngModel)]="preRegister.zipcode"
                          [ngClass]="{'is-invalid': zipcode.errors?.required && zipcode.touched }"
                          name="zipcode"
                          #zipcode="ngModel">
@@ -436,12 +436,12 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="tel"
+                  <input type="number"
                          class="form-control"
                          placeholder="Telefono:*"
                          required
                          [disabled]="loading"
-                         [(ngModel)]="preRegistro.phone"
+                         [(ngModel)]="preRegister.phone"
                          [ngClass]="{'is-invalid': phone.errors?.required && phone.touched }"
                          name="phone"
                          #phone="ngModel">
@@ -451,12 +451,12 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text"
+                  <input type="number"
                          class="form-control"
                          placeholder="Celular:*"
                          required
                          [disabled]="loading"
-                         [(ngModel)]="preRegistro.mobile"
+                         [(ngModel)]="preRegister.mobile"
                          [ngClass]="{'is-invalid': mobile.errors?.required && mobile.touched }"
                          name="mobile"
                          #mobile="ngModel">
@@ -466,11 +466,11 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text"
+                  <input type="number"
                          class="form-control"
                          placeholder="Fax:"
                          [disabled]="loading"
-                         [(ngModel)]="preRegistro.fax"
+                         [(ngModel)]="preRegister.fax"
                          name="fax"
                          #fax="ngModel">
                 </div>
@@ -482,7 +482,7 @@
                          placeholder="E-mail:*"
                          required
                          [disabled]="loading"
-                         [(ngModel)]="preRegistro.email"
+                         [(ngModel)]="preRegister.email"
                          [ngClass]="{'is-invalid': email.errors?.required && email.touched }"
                          name="email"
                          #email="ngModel">
@@ -496,7 +496,7 @@
                          class="form-control"
                          placeholder="Pagina Web:"
                          [disabled]="loading"
-                         [(ngModel)]="preRegistro.website"
+                         [(ngModel)]="preRegister.website"
                          name="website"
                          #website="ngModel">
                 </div>
@@ -506,7 +506,7 @@
             <div class="row text-block mt-3 managementSystemInformation">
               <div class="col-2 rule">
                 <span>ISO 9001: SI
-                  <app-toggle [model]="preRegistro.iso9001"
+                  <app-toggle [model]="preRegister.iso9001"
                               [prop]="'iso9001'"
                               [loading]="loading"
                               (updatedValue)="updateValue($event)"></app-toggle> NO
@@ -514,7 +514,7 @@
               </div>
               <div class="col-2 rule">
                 <span>ISO 14001: SI
-                  <app-toggle [model]="preRegistro.iso14001"
+                  <app-toggle [model]="preRegister.iso14001"
                               [prop]="'iso14001'"
                               [loading]="loading"
                               (updatedValue)="updateValue($event)"></app-toggle> NO
@@ -522,7 +522,7 @@
               </div>
               <div class="col-2 rule">
                 <span>OSHAS 18001: SI
-                  <app-toggle [model]="preRegistro.oshas18001"
+                  <app-toggle [model]="preRegister.oshas18001"
                               [prop]="'oshas18001'"
                               [loading]="loading"
                               (updatedValue)="updateValue($event)"></app-toggle> NO
@@ -532,35 +532,35 @@
                 <span>Tiene politica de anti corrupción y soborno: NO
                   <app-toggle [prop]="'antiCorruptionPolicy'"
                               [loading]="loading"
-                              [model]="preRegistro.antiCorruptionPolicy"
+                              [model]="preRegister.antiCorruptionPolicy"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
               <div class="col-6 sustainability">
                 <span>Posee Reporte de Sostenibilidad NO
                   <app-toggle [prop]="'sustainability'"
                               [loading]="loading"
-                              [model]="preRegistro.sustainability"
+                              [model]="preRegister.sustainability"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
               <div class="col-6 dueDiligence">
                 <span>Tiene implementado el proceso de la debida diligencia NO
                   <app-toggle [prop]="'dueDiligence'"
                               [loading]="loading"
-                              [model]="preRegistro.dueDiligence"
+                              [model]="preRegister.dueDiligence"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
               <div class="col-6 socialResponsability">
                 <span>Posee fundación o responsabilidad social NO
                   <app-toggle [prop]="'socialResponsability'"
                               [loading]="loading"
-                              [model]="preRegistro.socialResponsability"
+                              [model]="preRegister.socialResponsability"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
                 <div class="form-group">
                   <input type="text"
                          class="form-control"
                          placeholder="Cual?"
-                         [disabled]="!preRegistro.socialResponsability || loading"
-                         [(ngModel)]="preRegistro.socialResponsabilityName"
+                         [disabled]="!preRegister.socialResponsability || loading"
+                         [(ngModel)]="preRegister.socialResponsabilityName"
                          name="socialResponsabilityName"
                          #socialResponsabilityName="ngModel">
                 </div>
@@ -570,14 +570,14 @@
                   <app-toggle [prop]="'managementSystemInformation'"
                               [prop2]="'productSeal'"
                               [loading]="loading"
-                              [model]="preRegistro.productSeal"
+                              [model]="preRegister.productSeal"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
                 <div class="form-group">
                   <input type="text"
                          class="form-control"
                          placeholder="Cual?"
-                         [disabled]="!preRegistro.productSeal || loading"
-                         [(ngModel)]="preRegistro.productSealName"
+                         [disabled]="!preRegister.productSeal || loading"
+                         [(ngModel)]="preRegister.productSealName"
                          name="productSealName"
                          #productSealName="ngModel">
                 </div>
@@ -590,6 +590,7 @@
               <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
             </button>
           </form>
+          <button class="btn-outline-dark" (click)="autoFill();" type="button">Autorellenar</button>
         </div>
       </div>
     </div>

@@ -48,7 +48,7 @@
              name="password"
              [(ngModel)]="user.password"
              #password="ngModel"
-             minlength="8"
+             minlength="6"
              [disabled]="loading"
              (keyup)="validatePasswords();"
              required>
@@ -68,7 +68,7 @@
              [(ngModel)]="user.password_confirmation"
              (keyup)="validatePasswords();"
              #password_confirmation="ngModel"
-             minlength="8"
+             minlength="6"
              [disabled]="loading"
              required>
     </div>

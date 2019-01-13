@@ -31,6 +31,7 @@ import {ConfirmationComponent} from './components/shared/confirmation/confirmati
 import {LoaderComponent} from './components/shared/loader/loader.component';
 import { StageAComponent } from './components/procesco/stage-a/stage-a.component';
 import { StageBComponent } from './components/procesco/stage-b/stage-b.component';
+import { AdminComponent } from './components/procesco/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { StageBComponent } from './components/procesco/stage-b/stage-b.component
     ConfirmationComponent,
     LoaderComponent,
     StageAComponent,
-    StageBComponent
+    StageBComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

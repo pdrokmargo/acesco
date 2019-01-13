@@ -16,7 +16,7 @@
           </p>
           <hr class="line">
           <p class="card-text">
-            <small>
+            <small *ngIf="step">
               Usted ha culminado exitosamente la {{steps[step].position}} etapa ( {{steps[step].step}} ) del proceso de
               inscripción como proveedor en Acesco. Procederemos a validar nuestros requerimientos de suministro para
               habilitar su paso a la {{steps[step + 1].position}} etapa ( {{ steps[step + 1].step }} ). Lo estaremos
