@@ -32,6 +32,7 @@ import {LoaderComponent} from './components/shared/loader/loader.component';
 import { StageAComponent } from './components/procesco/stage-a/stage-a.component';
 import { StageBComponent } from './components/procesco/stage-b/stage-b.component';
 import { AdminComponent } from './components/procesco/admin/admin.component';
+import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AdminComponent } from './components/procesco/admin/admin.component';
     LoaderComponent,
     StageAComponent,
     StageBComponent,
-    AdminComponent
+    AdminComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

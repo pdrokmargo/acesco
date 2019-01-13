@@ -31,12 +31,11 @@ export class NewProviderComponent implements AfterViewInit {
               public procescoService: ProcescoService,
               private activatedRoute: ActivatedRoute) {
     this.procescoService.getLogedUser().subscribe((response: any) => {
-      this.isAdminUser = false;
       this.currentUser = response;
       this.step = this.currentUser.currentStep;
+      this.isAdminUser = this.currentUser.userType === '0';
       console.log(response);
     });
-    this.loading = false;
     const day = ('0' + this.now.getDate()).slice(-2);
     const month = ('0' + (this.now.getMonth() + 1)).slice(-2);
     this.classifications = [

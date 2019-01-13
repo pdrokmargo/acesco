@@ -13,8 +13,10 @@ export class AdminComponent implements OnInit {
   token: string;
   tableTitles: any [] = [];
   states: any [] = [];
+  loading: boolean;
 
   constructor(public procescoService: ProcescoService, private router: Router) {
+    this.loading = true;
     this.states = [
       'Pre selección',
       'Etapa A',
@@ -40,6 +42,7 @@ export class AdminComponent implements OnInit {
     ];
     this.procescoService.getAllUsers().subscribe((response: any) => {
       this.userList = response;
+      this.loading = false;
       console.log(this.userList);
     });
   }
