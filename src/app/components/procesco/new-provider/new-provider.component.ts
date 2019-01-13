@@ -98,10 +98,10 @@ export class NewProviderComponent implements AfterViewInit {
     this.activatedRoute.params.subscribe((response => {
       this.procescoService.getUserById(response.id).subscribe((data: any) => {
         console.log(data);
-        if (data) {
+        if (data.length) {
           this.isAdminUser = true;
+          this.preRegister = data;
         }
-        this.preRegister = data;
       });
     }));
   }
