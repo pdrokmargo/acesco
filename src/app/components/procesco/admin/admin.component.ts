@@ -31,7 +31,6 @@ export class AdminComponent implements OnInit {
       {label: 'Tipo Identificación'},
       {label: 'Numero Identificación'},
       {label: 'Ciudad Exp IDE'},
-      {label: 'Tipo Persona'},
       {label: 'Tipo Clasific.'},
       {label: 'Estado'},
       {label: 'Fecha Elaboración'},
@@ -54,10 +53,11 @@ export class AdminComponent implements OnInit {
     console.log(user);
     switch (user.currentStep) {
       case '0': {
-        this.router.navigate(['procesco/nuevoProveedor/', user.preregistro_id]);
+        this.router.navigate(['procesco/nuevoProveedor/', user.id]);
         break;
       }
       case '1': {
+        this.router.navigate(['procesco/preseleccionEtapaA/', user.id]);
         break;
       }
       case '2': {

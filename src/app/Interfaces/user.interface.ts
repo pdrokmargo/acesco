@@ -4,8 +4,9 @@ export interface UserInterface {
   password: string;
   password_confirmation: string;
   userType: number;
-  currentStep: number;
+  currentStep: string;
   preregistro_id: string;
+  id: number;
   nationalOptions: Array<object>;
   internationalOptions: Array<object>;
   preRegistro?: {

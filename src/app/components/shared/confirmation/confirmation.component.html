@@ -16,10 +16,12 @@
           </p>
           <hr class="line">
           <p class="card-text">
-            <small *ngIf="step">
-              Usted ha culminado exitosamente la {{steps[step].position}} etapa ( {{steps[step].step}} ) del proceso de
+            <small *ngIf="currentStep" class="animated fadeIn fast">
+              Usted ha culminado exitosamente la {{steps[currentStep].position}} etapa ( {{steps[currentStep].stepText}}
+              ) del proceso de
               inscripción como proveedor en Acesco. Procederemos a validar nuestros requerimientos de suministro para
-              habilitar su paso a la {{steps[step + 1].position}} etapa ( {{ steps[step + 1].step }} ). Lo estaremos
+              habilitar su paso a la {{steps[currentStep + 1].position}} etapa ( {{ steps[currentStep + 1].stepText }}
+              ). Lo estaremos
               contactando al E-mail registrado por usted.
             </small>
           </p>

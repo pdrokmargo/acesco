@@ -10,25 +10,24 @@
           </thead>
           <tbody>
           <ng-container *ngFor="let user of userList" class="animated fadeIn">
-            <tr *ngIf="user.userType === '1'">
+            <tr *ngIf="user.userType === '1' && user['pre_registro']">
               <td>
-                10184
+                {{ user['id'] || 'Sin diligenciar'}}
               </td>
               <td>
                 {{user.name}}
               </td>
-              <td>{{ user['pre_registro']['commercialName'] || 'Empty'}}</td>
-              <td>Empty</td>
-              <td>Empty</td>
-              <td>Empty</td>
-              <td>Empty</td>
-              <td>Empty</td>
-              <td>Empty</td>
+              <td>{{ user['pre_registro']['commercialName'] || 'Sin diligenciar'}}</td>
+              <td>{{ user['pre_registro']['ciiu'] || 'Sin diligenciar'}}</td>
+              <td>{{ user['pre_registro']['documentType'] || 'Sin diligenciar'}}</td>
+              <td>{{ user['pre_registro']['documentNumber'] || 'Sin diligenciar'}}</td>
+              <td>{{ user['pre_registro']['issuedBy'] || 'Sin diligenciar'}}</td>
+              <td>{{ user['pre_registro']['classification'] || 'Sin diligenciar'}}</td>
               <td>{{states[user.currentStep]}}</td>
-              <td>Empty</td>
-              <td>Empty</td>
-              <td>Empty</td>
-              <td>Empty</td>
+              <td>{{ user['pre_registro']['created_at'] || 'Sin diligenciar'}}</td>
+              <td>{{ user['pre_registro']['whoRefers'] || 'Sin diligenciar'}}</td>
+              <td>{{(user.national === '0') ? 'Nacional' : 'Internacional'}}</td>
+              <td>Sin diligenciar</td>
               <td>
                 <button class="acesco-button" (click)="onButtonClick(user);">Seleccionar</button>
               </td>

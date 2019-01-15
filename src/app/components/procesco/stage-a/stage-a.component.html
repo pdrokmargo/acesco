@@ -71,7 +71,7 @@
                          minlength="2"
                          #greatContributorRes="ngModel"
                          required
-                         [disabled]="loading || !stageA.greatContributor">
+                         [disabled]="isAdminUser || loading || !stageA.greatContributor">
                   <div *ngIf="greatContributorRes.errors?.required && greatContributorRes.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
                   </div>
@@ -86,7 +86,7 @@
                          minlength="2"
                          #greatContributorFrom="ngModel"
                          required
-                         [disabled]="loading || !stageA.greatContributor">
+                         [disabled]="isAdminUser || loading || !stageA.greatContributor">
                   <div *ngIf="greatContributorFrom.errors?.required && greatContributorFrom.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
                   </div>
@@ -109,7 +109,7 @@
                          minlength="2"
                          #selfWithholdingByRentRes="ngModel"
                          required
-                         [disabled]="loading || !stageA.selfWithholdingByRent">
+                         [disabled]="isAdminUser || loading || !stageA.selfWithholdingByRent">
                   <div *ngIf="selfWithholdingByRentRes.errors?.required && selfWithholdingByRentRes.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
                   </div>
@@ -124,7 +124,7 @@
                          minlength="2"
                          #selfWithholdingByRentFrom="ngModel"
                          required
-                         [disabled]="loading || !stageA.selfWithholdingByRent">
+                         [disabled]="isAdminUser || loading || !stageA.selfWithholdingByRent">
                   <div *ngIf="selfWithholdingByRentFrom.errors?.required && selfWithholdingByRentFrom.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
                   </div>
@@ -149,7 +149,7 @@
                   </div>
                   <div class="col-5">
                     <div class="form-group">
-                      <input type="text"
+                      <input type="number"
                              class="form-control"
                              placeholder="Cód Actividad:*"
                              [(ngModel)]="stageA.industryAndCommerceTaxCodBogota"
@@ -158,7 +158,7 @@
                              minlength="2"
                              #industryAndCommerceTaxCodBogota="ngModel"
                              required
-                             [disabled]="loading || !stageA.industryAndCommerceTaxBogota">
+                             [disabled]="isAdminUser || loading || !stageA.industryAndCommerceTaxBogota">
                       <div
                         *ngIf="industryAndCommerceTaxCodBogota.errors?.required && industryAndCommerceTaxCodBogota.touched"><span
                         class="text-danger">Este campo es obligatorio</span>
@@ -176,7 +176,7 @@
                              minlength="2"
                              #industryAndCommerceTaxRateBogota="ngModel"
                              required
-                             [disabled]="loading || !stageA.industryAndCommerceTaxBogota">
+                             [disabled]="isAdminUser || loading || !stageA.industryAndCommerceTaxBogota">
                       <div
                         *ngIf="industryAndCommerceTaxRateBogota.errors?.required && industryAndCommerceTaxRateBogota.touched"><span
                         class="text-danger">Este campo es obligatorio</span>
@@ -201,7 +201,7 @@
                   </div>
                   <div class="col-5">
                     <div class="form-group">
-                      <input type="text"
+                      <input type="number"
                              class="form-control"
                              placeholder="Cód Actividad:*"
                              [(ngModel)]="stageA.industryAndCommerceTaxCodMalambo"
@@ -210,7 +210,7 @@
                              minlength="2"
                              #industryAndCommerceTaxCodMalambo="ngModel"
                              required
-                             [disabled]="loading || !stageA.industryAndCommerceTaxMalambo">
+                             [disabled]="isAdminUser || loading || !stageA.industryAndCommerceTaxMalambo">
                       <div
                         *ngIf="industryAndCommerceTaxCodMalambo.errors?.required && industryAndCommerceTaxCodMalambo.touched"><span
                         class="text-danger">Este campo es obligatorio</span>
@@ -228,7 +228,7 @@
                              minlength="2"
                              #industryAndCommerceTaxRateMalambo="ngModel"
                              required
-                             [disabled]="loading || !stageA.industryAndCommerceTaxMalambo">
+                             [disabled]="isAdminUser || loading || !stageA.industryAndCommerceTaxMalambo">
                       <div
                         *ngIf="industryAndCommerceTaxRateMalambo.errors?.required && industryAndCommerceTaxRateMalambo.touched"><span
                         class="text-danger">Este campo es obligatorio</span>
@@ -247,7 +247,7 @@
                              minlength="2"
                              #industryAndCommerceTaxOther="ngModel"
                              required
-                             [disabled]="loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo">
+                             [disabled]="isAdminUser || loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo">
                     </div>
                   </div>
                   <div class="col-4">
@@ -260,7 +260,7 @@
                              minlength="2"
                              #industryAndCommerceTaxCodOther="ngModel"
                              required
-                             [disabled]="loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo">
+                             [disabled]="isAdminUser || loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo">
                     </div>
                   </div>
                   <div class="col-5">
@@ -273,7 +273,7 @@
                              minlength="2"
                              #industryAndCommerceTaxRateOther="ngModel"
                              required
-                             [disabled]="loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo">
+                             [disabled]="isAdminUser || loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo">
                     </div>
                   </div>
                 </div>
@@ -291,7 +291,7 @@
                          minlength="2"
                          #tributaryYear="ngModel"
                          required
-                         [disabled]="true">
+                         [disabled]="isAdminUser || true">
                   <div
                     *ngIf="tributaryYear.errors?.required && tributaryYear.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
@@ -309,7 +309,7 @@
                          minlength="2"
                          #tributaryOperationalIncome="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div *ngIf="tributaryOperationalIncome.errors?.required && tributaryOperationalIncome.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
                   </div>
@@ -326,7 +326,7 @@
                          minlength="2"
                          #tributaryOperationalExpenses="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div
                     *ngIf="tributaryOperationalExpenses.errors?.required && tributaryOperationalExpenses.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
@@ -346,7 +346,7 @@
                          minlength="2"
                          #totalIncome="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div *ngIf="totalIncome.errors?.required && totalIncome.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
                   </div>
@@ -363,7 +363,7 @@
                          minlength="2"
                          #totalActive="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div *ngIf="totalActive.errors?.required && totalActive.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
                   </div>
@@ -380,7 +380,7 @@
                          minlength="2"
                          #totalPassive="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div *ngIf="totalPassive.errors?.required && totalPassive.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
                   </div>
@@ -400,7 +400,7 @@
                          minlength="2"
                          #commercialReferenceName1="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div
                     *ngIf="commercialReferenceName1.errors?.required && commercialReferenceName1.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
@@ -409,7 +409,7 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="tel"
+                  <input type="number"
                          class="form-control"
                          placeholder="Telefono:*"
                          [(ngModel)]="stageA.commercialReferencePhone1"
@@ -418,7 +418,7 @@
                          minlength="2"
                          #commercialReferencePhone1="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div
                     *ngIf="commercialReferencePhone1.errors?.required && commercialReferencePhone1.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
@@ -436,7 +436,7 @@
                          minlength="2"
                          #commercialReferenceContact1="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div
                     *ngIf="commercialReferenceContact1.errors?.required && commercialReferenceContact1.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
@@ -454,19 +454,19 @@
                          name="commercialReferenceName2"
                          minlength="2"
                          #commercialReferenceName2="ngModel"
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="tel"
+                  <input type="number"
                          class="form-control"
                          placeholder="Telefono:"
                          [(ngModel)]="stageA.commercialReferencePhone2"
                          name="commercialReferencePhone2"
                          minlength="2"
                          #commercialReferencePhone2="ngModel"
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                 </div>
               </div>
               <div class="col-4">
@@ -478,7 +478,7 @@
                          name="commercialReferenceContact2"
                          minlength="2"
                          #commercialReferenceContact2="ngModel"
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                 </div>
               </div>
             </div>
@@ -492,19 +492,19 @@
                          name="commercialReferenceName3"
                          minlength="2"
                          #commercialReferenceName3="ngModel"
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="tel"
+                  <input type="number"
                          class="form-control"
                          placeholder="Telefono:"
                          [(ngModel)]="stageA.commercialReferencePhone3"
                          name="commercialReferencePhone3"
                          minlength="2"
                          #commercialReferencePhone3="ngModel"
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                 </div>
               </div>
               <div class="col-4">
@@ -516,7 +516,7 @@
                          name="commercialReferenceContact3"
                          minlength="2"
                          #commercialReferenceContact3="ngModel"
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                 </div>
               </div>
             </div>
@@ -533,7 +533,7 @@
                          minlength="2"
                          #personalReferenceName="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div
                     *ngIf="personalReferenceName.errors?.required && personalReferenceName.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
@@ -551,7 +551,7 @@
                          minlength="2"
                          #personalReferenceEmail="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div
                     *ngIf="personalReferenceEmail.errors?.required && personalReferenceEmail.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
@@ -571,7 +571,7 @@
                          minlength="2"
                          #personalReferencePosition="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div
                     *ngIf="personalReferencePosition.errors?.required && personalReferencePosition.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
@@ -580,7 +580,7 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text"
+                  <input type="number"
                          class="form-control"
                          placeholder="Telefono:*"
                          [(ngModel)]="stageA.personalReferencePhone"
@@ -589,7 +589,7 @@
                          minlength="2"
                          #personalReferencePhone="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div
                     *ngIf="personalReferencePhone.errors?.required && personalReferencePhone.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
@@ -598,7 +598,7 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text"
+                  <input type="number"
                          class="form-control"
                          placeholder="Celular:*"
                          [(ngModel)]="stageA.personalReferenceMobile"
@@ -607,7 +607,7 @@
                          minlength="2"
                          #personalReferenceMobile="ngModel"
                          required
-                         [disabled]="loading">
+                         [disabled]="isAdminUser || loading">
                   <div
                     *ngIf="personalReferenceMobile.errors?.required && personalReferenceMobile.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
@@ -617,13 +617,14 @@
             </div>
             <div class="row">
               <div class="col text-center">
-                <button type="submit" class="acesco-button" [disabled]="loading || stageAForm.invalid">Enviar
+                <button *ngIf="!isAdminUser" type="submit" class="acesco-button" [disabled]="isAdminUser || loading || stageAForm.invalid">Enviar
                   <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
                   <fa-icon [icon]="faSpinner" *ngIf="loading" [spin]="true"></fa-icon>
                 </button>
               </div>
             </div>
           </form>
+          <button *ngIf="!isAdminUser" (click)="autoFill();">autorellenar</button>
         </div>
       </div>
     </div>

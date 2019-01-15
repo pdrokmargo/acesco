@@ -4,7 +4,7 @@ import {ProcescoService} from '../../../services/procesco.service';
 import {ToggleInterface} from '../../../Interfaces/toggle.interface';
 import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {NgForm} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-stage-a',
@@ -16,15 +16,25 @@ export class StageAComponent implements AfterViewInit {
   faSpinner = faSpinner;
   height: number;
   loading: boolean;
-  step: number;
+  step: string;
   user: UserInterface;
   stageA: object;
   now: Date = new Date();
+  id: number;
+  isAdminUser: boolean;
 
-  constructor(private cdRef: ChangeDetectorRef, public procescoService: ProcescoService, private router: Router) {
+  constructor(private cdRef: ChangeDetectorRef,
+              public procescoService: ProcescoService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
     this.loading = false;
-    //this.user = this.procescoService.getLogedUser();
-    this.step = this.user.currentStep;
+    this.procescoService.getLogedUser().subscribe((response: any) => {
+      console.log(response);
+      this.user = response;
+      this.step = this.user.currentStep;
+      this.isAdminUser = this.user.userType === '0';
+    });
+
     this.stageA = {
       pep: false,
       commonRegime: false,
@@ -65,6 +75,21 @@ export class StageAComponent implements AfterViewInit {
       personalReferencePhone: null,
       personalReferenceMobile: null
     };
+    this.activatedRoute.params.subscribe((response => {
+      if (!response) {
+        return;
+      }
+      this.id = response.id;
+      this.procescoService.getUserById(response.id).subscribe((user: any) => {
+        this.step = user.currentStep;
+        this.procescoService.getStepById(user.stagea_id, 'stage-a').subscribe((data: any) => {
+          this.stageA = data;
+        });
+      }, error1 => {
+        console.log(error1);
+      });
+
+    }));
   }
 
   ngAfterViewInit() {
@@ -96,10 +121,58 @@ export class StageAComponent implements AfterViewInit {
 
   onSubmit(form: NgForm) {
     this.loading = true;
-    console.log(form);
-    setTimeout(() => {
-      this.loading = false;
+    console.log(this.stageA);
+    this.procescoService.updateUser(this.stageA, 'stage-a').subscribe((response: any) => {
+      console.log(response);
       this.router.navigate(['procesco/confirmacion']);
-    }, 3000);
+      this.loading = false;
+    }, error1 => {
+      console.log(error1);
+    });
+  }
+
+  autoFill() {
+    const day = ('0' + this.now.getDate()).slice(-2);
+    const month = ('0' + (this.now.getMonth() + 1)).slice(-2);
+    this.stageA = {
+      pep: true,
+      commonRegime: true,
+      simplifiedRegimen: true,
+      greatContributor: true,
+      tributaryYear: this.now.getFullYear() - 1,
+      greatContributorRes: 'greatContributorRes',
+      greatContributorFrom: this.now.getFullYear() + '-' + (month) + '-' + (day),
+      selfWithholdingByRent: true,
+      selfWithholdingByRentRes: 'selfWithholdingByRentRes',
+      selfWithholdingByRentFrom: this.now.getFullYear() + '-' + (month) + '-' + (day),
+      industryAndCommerceTaxBogota: true,
+      industryAndCommerceTaxCodBogota: 79823759825,
+      industryAndCommerceTaxRateBogota: parseFloat('635253255'),
+      industryAndCommerceTaxMalambo: true,
+      industryAndCommerceTaxCodMalambo: 79823759825,
+      industryAndCommerceTaxRateMalambo: parseFloat('346632626'),
+      industryAndCommerceTaxOther: 'industryAndCommerceTaxOther',
+      industryAndCommerceTaxCodOther: 59863578623587,
+      industryAndCommerceTaxRateOther: parseFloat('762336623'),
+      tributaryOperationalIncome: parseFloat('762336623'),
+      tributaryOperationalExpenses: parseFloat('762336623'),
+      totalIncome: parseFloat('762336623'),
+      totalActive: parseFloat('762336623'),
+      totalPassive: parseFloat('762336623'),
+      commercialReferenceName1: 'commercialReferenceName1',
+      commercialReferencePhone1: 8478917259,
+      commercialReferenceContact1: 'commercialReferenceContact1',
+      commercialReferenceName2: 'commercialReferenceName2',
+      commercialReferencePhone2: 8478917259,
+      commercialReferenceContact2: 'commercialReferenceContact2',
+      commercialReferenceName3: 'commercialReferenceName3',
+      commercialReferencePhone3: 8478917259,
+      commercialReferenceContact3: 'commercialReferenceContact3',
+      personalReferenceName: 'personalReferenceName',
+      personalReferenceEmail: 'personalReferenceEmail',
+      personalReferencePosition: 'personalReferencePosition',
+      personalReferencePhone: 8478917259,
+      personalReferenceMobile: 98479817421
+    };
   }
 }

@@ -12,7 +12,7 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./new-provider.component.css']
 })
 export class NewProviderComponent implements AfterViewInit {
-  preRegister: Object;
+  preRegister: any;
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
   height: number;
@@ -21,7 +21,7 @@ export class NewProviderComponent implements AfterViewInit {
   documentTypes: any[] = [];
   countries: any[] = [];
   loading: boolean;
-  step: number;
+  step: string;
   currentUser: UserInterface;
   id: string;
   isAdminUser: boolean;
@@ -47,6 +47,8 @@ export class NewProviderComponent implements AfterViewInit {
 
     this.preRegister = {
       whoRefers: null,
+      currentStep: null,
+      id: null,
       personalDataProtection: true,
       habeas: true,
       createdAt: this.now.getFullYear() + '-' + (month) + '-' + (day),
@@ -95,12 +97,16 @@ export class NewProviderComponent implements AfterViewInit {
     ];
 
     this.activatedRoute.params.subscribe((response => {
-      this.procescoService.getUserById(response.id).subscribe((data: any) => {
-        console.log(data);
-        if (data.length) {
-          this.isAdminUser = true;
+      if (!response) {
+        return;
+      }
+      this.id = response.id;
+      this.procescoService.getUserById(response.id).subscribe((user: any) => {
+        console.log(user);
+        this.procescoService.getStepById(user.preregistro_id, 'pre-register').subscribe((data: any) => {
+          console.log(data);
           this.preRegister = data;
-        }
+        });
       });
     }));
   }
@@ -116,6 +122,16 @@ export class NewProviderComponent implements AfterViewInit {
     } else {
       this.preRegister[newValue.key] = newValue.value;
     }
+  }
+
+  approval() {
+    this.preRegister.currentStep = 1;
+    this.procescoService.adminApproval(this.id, this.preRegister).subscribe((response: any) => {
+      console.log(response);
+      this.router.navigate(['procesco/admin']);
+    }, error1 => {
+      console.log(error1);
+    });
   }
 
   autoFill() {
@@ -168,9 +184,5 @@ export class NewProviderComponent implements AfterViewInit {
     }, error1 => {
       console.log(error1);
     });
-    /*setTimeout(() => {
-      this.loading = false;
-      this.router.navigate(['procesco/confirmacion']);
-    }, 3000);*/
   }
 }

@@ -16,7 +16,7 @@ export class ProcescoService {
   getHeader() {
     const token = this.getCurrentToken();
     return new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Accept': 'application/json',
       'Authorization': `Bearer ${token}`
     });
   }
@@ -43,8 +43,20 @@ export class ProcescoService {
     return this.http.get(url, {headers}).pipe(map((response: any) => response.data));
   }
 
-  getUserById(id: string) {
-    const url = `${this.nodeUrl}/pre-register/${id}`;
+  adminApproval(id: any, params: any) {
+    const url = `${this.nodeUrl}/users/${id}}`;
+    const headers = this.getHeader();
+    return this.http.put(url, params, {headers});
+  }
+
+  getUserById(id: any) {
+    const url = `${this.nodeUrl}/users/${id}}`;
+    const headers = this.getHeader();
+    return this.http.get(url, {headers});
+  }
+
+  getStepById(id: string, query: string) {
+    const url = `${this.nodeUrl}/${query}/${id}`;
     const headers = this.getHeader();
     return this.http.get(url, {headers});
   }

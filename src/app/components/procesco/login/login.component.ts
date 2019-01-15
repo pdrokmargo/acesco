@@ -42,7 +42,6 @@ export class LoginComponent {
     this.isLoading.emit(this.loading);
     this.procescoService.validateUser(form.value).subscribe((response: any) => {
       localStorage.setItem('acctkn', JSON.stringify(response.access_token));
-      console.log(response);
       switch (response.user.userType) {
         case '0': {
           this.router.navigate(['procesco/admin']);

@@ -19,18 +19,21 @@ export class ConfirmationComponent implements AfterViewInit{
   loading: boolean;
   height: number;
   currentUser: UserInterface;
+  currentStep: any;
 
   constructor(private cdRef: ChangeDetectorRef, public procescoService: ProcescoService) {
+    this.currentStep = null;
     this.procescoService.getLogedUser().subscribe((response: any) => {
       console.log(response);
       this.currentUser = response;
-      this.step = this.currentUser.currentStep;
+      this.currentStep = +this.currentUser.currentStep + 1;
     });
 
     this.steps = [
-      { position: 'Primera', step: 'Pre - registro' },
-      { position: 'Segunda', step: 'Pre - selección-etapa A' },
-      { position: 'Tercera', step: 'Pre - selección-etapa B' },
+      {},
+      { position: 'Primera', stepText: 'Pre - registro' },
+      { position: 'Segunda', stepText: 'Pre - selección-etapa A' },
+      { position: 'Tercera', stepText: 'Pre - selección-etapa B' },
     ];
     this.loading = false;
   }

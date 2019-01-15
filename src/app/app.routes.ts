@@ -21,6 +21,7 @@ export const ROUTES: Routes = [
   {path: 'procesco/actualizarDatos', component: UpdateComponent},
   {path: 'procesco/confirmacion', component: ConfirmationComponent},
   {path: 'procesco/preseleccionEtapaA', component: StageAComponent},
+  {path: 'procesco/preseleccionEtapaA/:id', component: StageAComponent},
   {path: 'procesco/preseleccionEtapaB', component: StageBComponent},
   {path: 'sistemaDeGarantias', component: SistemaDeGarantiasComponent},
   {path: 'faq', component: FaqComponent},
