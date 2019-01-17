@@ -9,7 +9,7 @@ import {ToggleInterface} from '../../../Interfaces/toggle.interface';
   templateUrl: './stage-b.component.html',
   styleUrls: ['./stage-b.component.css']
 })
-export class StageBComponent implements AfterViewInit {
+export class StageBComponent {
   faCaretRight = faCaretRight;
   faCaretDown = faCaretDown;
   faCaretUp = faCaretUp;

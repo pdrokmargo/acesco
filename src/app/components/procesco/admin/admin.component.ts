@@ -42,7 +42,6 @@ export class AdminComponent {
       console.log(response);
       this.userList = response;
       this.loading = false;
-      console.log(this.userList);
     });
   }
 
