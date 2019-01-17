@@ -1,4 +1,3 @@
-<app-loader [loading]="loading" [height]="height"></app-loader>
 <div class="card animated fadeIn fast">
   <h5 class="card-title">Acesco
     <fa-icon [icon]="faGoogleDrive"></fa-icon>
@@ -6,7 +5,7 @@
   <form class="register-form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
     <div class="form-group">
       <fa-icon [icon]="faUser" class="input-icon"></fa-icon>
-      <input type="text"
+      <input type="number"
              [ngClass]="{'is-invalid': (name.errors?.required || name.errors?.minlength) && name.touched }"
              class="form-control"
              placeholder="Usuario"

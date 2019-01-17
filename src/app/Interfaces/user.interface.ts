@@ -1,9 +1,9 @@
 export interface UserInterface {
-  name: string;
+  name: number;
   email: string;
   password: string;
   password_confirmation: string;
-  userType: number;
+  userType: string;
   currentStep: string;
   preregistro_id: string;
   id: number;

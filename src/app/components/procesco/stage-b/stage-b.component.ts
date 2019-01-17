@@ -1,10 +1,8 @@
-import {AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
+import { ChangeDetectorRef, Component} from '@angular/core';
 import {faCaretDown, faCaretRight, faCaretUp, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {UserInterface} from '../../../Interfaces/user.interface';
 import {ProcescoService} from '../../../services/procesco.service';
 import {ToggleInterface} from '../../../Interfaces/toggle.interface';
-import {UploadService} from '../../../services/upload.service';
-import {HttpEventType, HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-stage-b',
@@ -197,18 +195,13 @@ export class StageBComponent implements AfterViewInit {
       {model: 'relationshipRequirements', value: false, text: 'Requisitos varios especificos del relaciónamiento con Acesco'},
     ];
     this.selfEvaluation = false;
-    //this.user = this.procescoService.getLogedUser();
-    this.step = this.user.currentStep;
+    // this.user = this.procescoService.getLogedUser();
+    // this.step = this.user.currentStep;
     this.stageB = {
       minimumSafetyRequirements: true,
       manifest: true,
       physicalSecurityAgreements: true,
     };
-  }
-
-  ngAfterViewInit() {
-    this.height = document.body.offsetHeight;
-    this.cdRef.detectChanges();
   }
 
   updatedValue(event: ToggleInterface) {

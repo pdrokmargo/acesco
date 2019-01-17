@@ -11,7 +11,7 @@ import {NgForm} from '@angular/forms';
   templateUrl: './new-provider.component.html',
   styleUrls: ['./new-provider.component.css']
 })
-export class NewProviderComponent implements AfterViewInit {
+export class NewProviderComponent {
   preRegister: any;
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
@@ -51,7 +51,7 @@ export class NewProviderComponent implements AfterViewInit {
       id: null,
       personalDataProtection: true,
       habeas: true,
-      createdAt: this.now.getFullYear() + '-' + (month) + '-' + (day),
+      created_at: this.now.getFullYear() + '-' + (month) + '-' + (day),
       classification: null,
       serviceDescription: null,
       documentType: null,
@@ -97,7 +97,7 @@ export class NewProviderComponent implements AfterViewInit {
     ];
 
     this.activatedRoute.params.subscribe((response => {
-      if (!response) {
+      if (!response['id']) {
         return;
       }
       this.id = response.id;
@@ -109,11 +109,6 @@ export class NewProviderComponent implements AfterViewInit {
         });
       });
     }));
-  }
-
-  ngAfterViewInit() {
-    this.height = document.body.offsetHeight;
-    this.cdRef.detectChanges();
   }
 
   updateValue(newValue: ToggleInterface) {

@@ -68,7 +68,6 @@ export class LoginComponent {
           break;
         }
       }
-
       this.loading = false;
       this.isLoading.emit(this.loading);
     }, error1 => {

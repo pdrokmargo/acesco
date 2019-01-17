@@ -4,6 +4,12 @@
   --white: #F5F5F5;
   --darkIndigo: #293549;
   --darkIndigo2: #03077e;
+
+  --main_color: #29354A;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
 }
 
 .acesco-button {

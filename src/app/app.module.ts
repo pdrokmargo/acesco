@@ -65,7 +65,7 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
     HttpClientModule,
     FontAwesomeModule,
     FormsModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES, {useHash: true})
   ],
   providers: [],
   bootstrap: [AppComponent]

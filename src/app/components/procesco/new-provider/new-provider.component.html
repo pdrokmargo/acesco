@@ -1,5 +1,4 @@
 <section id="app-new-provider" class="animated fadeIn">
-  <app-loader [loading]="loading" [height]="height"></app-loader>
   <app-logo-and-social></app-logo-and-social>
   <div class="container">
     <div class="row">
@@ -86,9 +85,9 @@
                 <div class="form-group">
                   <input type="date"
                          class="form-control"
-                         [(ngModel)]="preRegister.createdAt"
-                         name="createdAt"
-                         #createdAt="ngModel"
+                         [(ngModel)]="preRegister.created_at"
+                         name="created_at"
+                         #created_at="ngModel"
                          required
                          disabled>
                 </div>

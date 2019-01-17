@@ -10,7 +10,7 @@
              [ngClass]="{'is-invalid': (name.errors?.required || name.errors?.minlength) && name.touched }"
              placeholder="Usuario"
              name="name"
-             minlength="2"
+             minlength="1"
              [(ngModel)]="user.name"
              #name="ngModel"
              [disabled]="loading"

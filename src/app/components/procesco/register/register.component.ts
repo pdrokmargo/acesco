@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Output} from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output} from '@angular/core';
 import {faGoogleDrive} from '@fortawesome/free-brands-svg-icons';
 import {faCaretRight, faEnvelope, faSpinner, faUnlock, faUser} from '@fortawesome/free-solid-svg-icons';
 import {NgForm} from '@angular/forms';
@@ -10,7 +10,7 @@ import {ProcescoService} from '../../../services/procesco.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements AfterViewInit {
+export class RegisterComponent {
   @Output() back: EventEmitter<any> = new EventEmitter();
   @Output() isLoading: EventEmitter<any> = new EventEmitter();
   faGoogleDrive = faGoogleDrive;
@@ -34,11 +34,6 @@ export class RegisterComponent implements AfterViewInit {
     };
     this.passwordsMatch = true;
     this.loading = false;
-  }
-
-  ngAfterViewInit() {
-    this.height = document.body.offsetHeight;
-    this.cdRef.detectChanges();
   }
 
   onSubmit(form: NgForm) {

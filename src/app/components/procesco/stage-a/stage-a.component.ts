@@ -11,7 +11,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   templateUrl: './stage-a.component.html',
   styleUrls: ['./stage-a.component.css']
 })
-export class StageAComponent implements AfterViewInit {
+export class StageAComponent  {
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
   height: number;
@@ -76,7 +76,7 @@ export class StageAComponent implements AfterViewInit {
       personalReferenceMobile: null
     };
     this.activatedRoute.params.subscribe((response => {
-      if (!response) {
+      if (!response.length) {
         return;
       }
       this.id = response.id;
@@ -90,11 +90,6 @@ export class StageAComponent implements AfterViewInit {
       });
 
     }));
-  }
-
-  ngAfterViewInit() {
-    this.height = document.body.offsetHeight;
-    this.cdRef.detectChanges();
   }
 
   updatedValue(event: ToggleInterface) {
