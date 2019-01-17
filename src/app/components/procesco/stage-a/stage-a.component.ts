@@ -32,7 +32,7 @@ export class StageAComponent  {
       console.log(response);
       this.user = response;
       this.step = this.user.currentStep;
-      this.isAdminUser = this.user.userType === '0';
+      this.isAdminUser = this.user.userType === 0;
     });
 
     this.stageA = {
