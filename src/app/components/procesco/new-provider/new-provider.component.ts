@@ -25,6 +25,7 @@ export class NewProviderComponent {
   currentUser: UserInterface;
   id: string;
   isAdminUser: boolean;
+  toggleDisabled: boolean;
 
   constructor(private router: Router,
               private cdRef: ChangeDetectorRef,
@@ -33,17 +34,24 @@ export class NewProviderComponent {
     this.procescoService.getLogedUser().subscribe((response: any) => {
       this.currentUser = response;
       this.step = this.currentUser.currentStep;
-      this.isAdminUser = this.currentUser.userType === '0';
-      console.log(response);
+      this.isAdminUser = this.currentUser.userType === 0;
+      this.procescoService.getCointriesList().subscribe((data: Array<object>) => {
+        this.countries = data;
+        if (this.currentUser.national === 0) {
+          this.preRegister.country = this.countries.find(el => el.id === 48);
+          console.log(this.preRegister.country);
+        }
+      });
+    }, error1 => {
+      console.log(error1);
     });
+    this.procescoService.getClassificationsList().subscribe((data: Array<object>) => {
+      this.classifications = data;
+    });
+
+
     const day = ('0' + this.now.getDate()).slice(-2);
     const month = ('0' + (this.now.getMonth() + 1)).slice(-2);
-    this.classifications = [
-      {label: 'CLasificación 1', value: 'classification1'},
-      {label: 'CLasificación 2', value: 'classification2'},
-      {label: 'CLasificación 3', value: 'classification3'},
-      {label: 'CLasificación 4', value: 'classification4'}
-    ];
 
     this.preRegister = {
       whoRefers: null,
@@ -52,7 +60,7 @@ export class NewProviderComponent {
       personalDataProtection: true,
       habeas: true,
       created_at: this.now.getFullYear() + '-' + (month) + '-' + (day),
-      classification: null,
+      classification_id: null,
       serviceDescription: null,
       documentType: null,
       documentNumber: null,
@@ -67,7 +75,7 @@ export class NewProviderComponent {
       contactName: null,
       position: null,
       address: null,
-      country: null,
+      country_id: null,
       dpto: null,
       city: null,
       zipcode: null,
@@ -91,21 +99,18 @@ export class NewProviderComponent {
       {label: 'CC', value: 'cc'},
       {label: 'TI', value: 'ti'}
     ];
-    this.countries = [
-      {label: 'Colombia', value: 'colombia'},
-      {label: 'Argentina', value: 'argentina'}
-    ];
 
     this.activatedRoute.params.subscribe((response => {
       if (!response['id']) {
         return;
       }
       this.id = response.id;
+      this.toggleDisabled = true;
       this.procescoService.getUserById(response.id).subscribe((user: any) => {
         console.log(user);
         this.procescoService.getStepById(user.preregistro_id, 'pre-register').subscribe((data: any) => {
-          console.log(data);
-          this.preRegister = data;
+          console.log(data.register);
+          this.preRegister = data.register;
         });
       });
     }));
@@ -121,6 +126,8 @@ export class NewProviderComponent {
 
   approval() {
     this.preRegister.currentStep = 1;
+    console.log(this.id);
+    console.log(this.preRegister);
     this.procescoService.adminApproval(this.id, this.preRegister).subscribe((response: any) => {
       console.log(response);
       this.router.navigate(['procesco/admin']);
@@ -130,45 +137,41 @@ export class NewProviderComponent {
   }
 
   autoFill() {
-    this.preRegister = {
-      whoRefers: 'Tu madre',
-      personalDataProtection: true,
-      habeas: true,
-      classification: 'Clasificación 1',
-      serviceDescription: 'serviceDescription',
-      documentType: 'documentType',
-      documentNumber: 'documentNumber',
-      documentIssued: 'documentIssued',
-      businessName: 'businessName',
-      commercialName: 'commercialName',
-      ciiu: 'ciiu',
-      legalRepresentative: 'legalRepresentative',
-      profession: 'profession',
-      professionalCard: 'professionalCard',
-      issuedBy: 'issuedBy',
-      contactName: 'contactName',
-      position: 'position',
-      address: 'address',
-      country: 'country',
-      dpto: 'dpto',
-      city: 'city',
-      zipcode: 11111,
-      phone: 5235325235,
-      mobile: 25352523523,
-      fax: 52352,
-      email: 'email',
-      website: 'website',
-      iso9001: true,
-      iso14001: true,
-      oshas18001: true,
-      antiCorruptionPolicy: true,
-      sustainability: true,
-      dueDiligence: true,
-      socialResponsability: true,
-      socialResponsabilityName: 'socialResponsabilityName',
-      productSeal: true,
-      productSealName: 'productSealName',
-    };
+      this.preRegister.whoRefers = 'Tu madre';
+      this.preRegister.personalDataProtection = true;
+      this.preRegister.habeas = true;
+      this.preRegister.serviceDescription = 'serviceDescription';
+      this.preRegister.documentType = 'documentType';
+      this.preRegister.documentNumber = 'documentNumber';
+      this.preRegister.documentIssued = 'documentIssued';
+      this.preRegister.businessName = 'businessName';
+      this.preRegister.commercialName = 'commercialName';
+      this.preRegister.ciiu = 'ciiu';
+      this.preRegister.legalRepresentative = 'legalRepresentative';
+      this.preRegister.profession = 'profession';
+      this.preRegister.professionalCard = 'professionalCard';
+      this.preRegister.issuedBy = 'issuedBy';
+      this.preRegister.contactName = 'contactName';
+      this.preRegister.position = 'position';
+      this.preRegister.address = 'address';
+      this.preRegister.city = 'City';
+      this.preRegister.dpto = 'dpto';
+      this.preRegister.zipcode = 11111;
+      this.preRegister.phone = 5235325235;
+      this.preRegister.mobile = 253525235;
+      this.preRegister.fax = 52352;
+      this.preRegister.email = 'email';
+      this.preRegister.website = 'website';
+      this.preRegister.iso9001 = true;
+      this.preRegister.iso14001 = true;
+      this.preRegister.oshas18001 = true;
+      this.preRegister.antiCorruptionPolicy = true;
+      this.preRegister.sustainability = true;
+      this.preRegister.dueDiligence = true;
+      this.preRegister.socialResponsability = true;
+      this.preRegister.socialResponsabilityName = 'socialResponsabilityName';
+      this.preRegister.productSeal = true;
+      this.preRegister.productSealName = 'productSealName';
   }
 
   onSubmit(form: NgForm) {

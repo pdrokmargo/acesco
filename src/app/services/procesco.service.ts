@@ -21,6 +21,18 @@ export class ProcescoService {
     });
   }
 
+  getClassificationsList() {
+    const url = `${this.nodeUrl}/classifications`;
+    const headers = this.getHeader();
+    return this.http.get(url, {headers}).pipe(map((data: any) => data.classifications));
+  }
+
+  getCointriesList() {
+    const url = `${this.nodeUrl}/countries`;
+    const headers = this.getHeader();
+    return this.http.get(url, {headers}).pipe(map((data: any) => data.countries));
+  }
+
   createNewUser(data: UserInterface) {
     const url = `${this.nodeUrl}/signup`;
     return this.http.post(url, data);
@@ -34,13 +46,13 @@ export class ProcescoService {
   getLogedUser() {
     const url = `${this.nodeUrl}/user`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers});
+    return this.http.get(url, {headers}).pipe(map((data: any) => data.user));
   }
 
   getAllUsers() {
     const url = `${this.nodeUrl}/users`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((response: any) => response.data));
+    return this.http.get(url, {headers}).pipe(map((response: any) => response.users));
   }
 
   adminApproval(id: any, params: any) {
@@ -52,7 +64,7 @@ export class ProcescoService {
   getUserById(id: any) {
     const url = `${this.nodeUrl}/users/${id}}`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers});
+    return this.http.get(url, {headers}).pipe(map((data: any) => data.user));
   }
 
   getStepById(id: string, query: string) {

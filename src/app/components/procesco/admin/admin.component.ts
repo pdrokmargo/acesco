@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ProcescoService} from '../../../services/procesco.service';
 import {UserInterface} from '../../../Interfaces/user.interface';
 import {Router} from '@angular/router';
@@ -8,9 +8,8 @@ import {Router} from '@angular/router';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
   userList: any [] = [];
-  token: string;
   tableTitles: any [] = [];
   states: any [] = [];
   loading: boolean;
@@ -40,13 +39,11 @@ export class AdminComponent implements OnInit {
       {label: ''},
     ];
     this.procescoService.getAllUsers().subscribe((response: any) => {
+      console.log(response);
       this.userList = response;
       this.loading = false;
       console.log(this.userList);
     });
-  }
-
-  ngOnInit() {
   }
 
   onButtonClick(user: UserInterface) {

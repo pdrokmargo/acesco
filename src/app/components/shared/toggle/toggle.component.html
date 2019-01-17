@@ -1,4 +1,4 @@
 <label class="switch mt-2">
-  <input type="checkbox" [checked]="model" [(ngModel)]="model" [disabled]="loading" (change)="updateValue()">
+  <input type="checkbox" [checked]="model" [(ngModel)]="model" [disabled]="loading || disabled" (change)="updateValue()">
   <span class="slider round"></span>
 </label>

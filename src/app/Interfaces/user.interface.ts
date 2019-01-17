@@ -3,9 +3,10 @@ export interface UserInterface {
   email: string;
   password: string;
   password_confirmation: string;
-  userType: string;
+  userType: number;
   currentStep: string;
-  preregistro_id: string;
+  preregistro_id: number;
+  national: number;
   id: number;
   nationalOptions: Array<object>;
   internationalOptions: Array<object>;
@@ -14,7 +15,7 @@ export interface UserInterface {
     habeas: boolean;
     createdAt: Date;
     whoRefers: string;
-    classification: string;
+    classification_id: string;
     serviceDescription: string;
     documentType: string;
     documentNumber: string;
@@ -26,7 +27,7 @@ export interface UserInterface {
     contactName: string;
     position: string;
     address: string;
-    country: string;
+    country_id: string;
     dpto: string;
     city: string;
     zipcode: string;
