@@ -42,6 +42,9 @@
         class="text-danger">{{loginInfo.message}}</span>
       </div>
     </div>
+    <div *ngIf="errorMessage" class="alert alert-danger text-center" role="alert">
+      {{errorMessage}}
+    </div>
     <button type="submit" class="acesco-button" [disabled]="registerForm.invalid || loading">Ingresar
       <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
       <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>

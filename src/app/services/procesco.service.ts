@@ -24,7 +24,7 @@ export class ProcescoService {
   getClassificationsList() {
     const url = `${this.nodeUrl}/classifications`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((data: any) => data));
+    return this.http.get(url, {headers}).pipe(map((data: any) => data.classifications));
   }
 
   getCountriesList() {
@@ -36,7 +36,7 @@ export class ProcescoService {
   getDocumentTypeList() {
     const url = `${this.nodeUrl}/documents`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((data: any) => data));
+    return this.http.get(url, {headers}).pipe(map((data: any) => data.documents));
   }
 
   createNewUser(data: UserInterface) {
@@ -86,7 +86,6 @@ export class ProcescoService {
   updateUser(params: object, query: string) {
     const url = `${this.nodeUrl}/${query}`;
     const headers = this.getHeader();
-    console.log(params);
     return this.http.post(url, params, {headers});
   }
 }

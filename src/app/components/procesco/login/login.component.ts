@@ -12,7 +12,6 @@ import {ProcescoService} from '../../../services/procesco.service';
 })
 export class LoginComponent {
   @Output() back: EventEmitter<any> = new EventEmitter();
-  @Output() isLoading: EventEmitter<any> = new EventEmitter();
   faGoogleDrive = faGoogleDrive;
   faUser = faUser;
   faUnlock = faUnlock;
@@ -21,7 +20,7 @@ export class LoginComponent {
   user: any;
   loading: boolean;
   loginInfo: object;
-
+  errorMessage: string;
   constructor(private router: Router, public procescoService: ProcescoService) {
     this.loading = false;
     this.loginInfo = {
@@ -38,10 +37,8 @@ export class LoginComponent {
 
   onSubmit(form: NgForm) {
     this.loading = true;
-    this.isLoading.emit(this.loading);
     this.procescoService.validateUser(form.value).subscribe((response: any) => {
       localStorage.setItem('acctkn', JSON.stringify(response.access_token));
-      console.log(response);
       switch (response.user.userType) {
         case 0: {
           this.router.navigate(['procesco/admin']);
@@ -69,11 +66,10 @@ export class LoginComponent {
         }
       }
       this.loading = false;
-      this.isLoading.emit(this.loading);
     }, error1 => {
       console.log(error1);
       this.loading = false;
-      this.isLoading.emit(this.loading);
+      this.errorMessage = error1.error.message;
     });
   }
 

@@ -24,7 +24,7 @@
               <div class="col-6 pr-4 box">
                 <div class="row mt-3">
                   <div class="col-2 dataProtection">
-                    <app-toggle [disabled]="toggleDisabled" [model]="preRegister.personalDataProtection"
+                    <app-toggle [disabled]="isAdminUser" [model]="preRegister.personalDataProtection"
                                 [prop]="'personalDataProtection'"
                                 [loading]="loading"
                                 (updatedValue)="updateValue($event)">
@@ -52,7 +52,7 @@
               <div class="col-6 pl-4 box">
                 <div class="row mt-3">
                   <div class="col-2 habeas">
-                    <app-toggle [disabled]="toggleDisabled" [model]="preRegister.habeas"
+                    <app-toggle [disabled]="isAdminUser" [model]="preRegister.habeas"
                                 [prop]="'habeas'"
                                 [loading]="loading"
                                 (updatedValue)="updateValue($event)"></app-toggle>
@@ -118,7 +118,7 @@
                           #classification_id="ngModel"
                           [disabled]="isAdminUser || loading">
                     <option [ngValue]="null">Clasificación*</option>
-                    <option *ngFor="let classification of classifications" [ngValue]="classification.id">{{classification.classification}}</option>
+                    <option *ngFor="let classification of classifications" [ngValue]="classification">{{classification.classification}}</option>
                   </select>
                   <div *ngIf="classification_id.errors?.required && classification_id.touched"><span class="text-danger">Este campo es obligatorio</span>
                   </div>
@@ -160,7 +160,7 @@
                             required
                             [disabled]="isAdminUser || loading">
                       <option [ngValue]="null">Elije uno*</option>
-                      <option *ngFor="let documentRef of documentTypes" [ngValue]="documentRef.id">{{documentRef.description}}</option>
+                      <option *ngFor="let documentRef of documentTypes" [ngValue]="documentRef">{{documentRef.description}}</option>
                     </select>
                     <div *ngIf="documentType.errors?.required && documentType.touched"><span class="text-danger">Este campo es obligatorio</span>
                     </div>
@@ -504,7 +504,7 @@
             <div class="row text-block mt-3 managementSystemInformation">
               <div class="col-2 rule">
                 <span>ISO 9001: SI
-                  <app-toggle [disabled]="toggleDisabled" [model]="preRegister.iso9001"
+                  <app-toggle [disabled]="isAdminUser" [model]="preRegister.iso9001"
                               [prop]="'iso9001'"
                               [loading]="loading"
                               (updatedValue)="updateValue($event)"></app-toggle> NO
@@ -512,7 +512,7 @@
               </div>
               <div class="col-2 rule">
                 <span>ISO 14001: SI
-                  <app-toggle [disabled]="toggleDisabled" [model]="preRegister.iso14001"
+                  <app-toggle [disabled]="isAdminUser" [model]="preRegister.iso14001"
                               [prop]="'iso14001'"
                               [loading]="loading"
                               (updatedValue)="updateValue($event)"></app-toggle> NO
@@ -520,7 +520,7 @@
               </div>
               <div class="col-2 rule">
                 <span>OSHAS 18001: SI
-                  <app-toggle [disabled]="toggleDisabled" [model]="preRegister.oshas18001"
+                  <app-toggle [disabled]="isAdminUser" [model]="preRegister.oshas18001"
                               [prop]="'oshas18001'"
                               [loading]="loading"
                               (updatedValue)="updateValue($event)"></app-toggle> NO
@@ -528,28 +528,28 @@
               </div>
               <div class="col-6 antiCorruptionPolicy">
                 <span>Tiene politica de anti corrupción y soborno: NO
-                  <app-toggle [disabled]="toggleDisabled" [prop]="'antiCorruptionPolicy'"
+                  <app-toggle [disabled]="isAdminUser" [prop]="'antiCorruptionPolicy'"
                               [loading]="loading"
                               [model]="preRegister.antiCorruptionPolicy"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
               <div class="col-6 sustainability">
                 <span>Posee Reporte de Sostenibilidad NO
-                  <app-toggle [disabled]="toggleDisabled" [prop]="'sustainability'"
+                  <app-toggle [disabled]="isAdminUser" [prop]="'sustainability'"
                               [loading]="loading"
                               [model]="preRegister.sustainability"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
               <div class="col-6 dueDiligence">
                 <span>Tiene implementado el proceso de la debida diligencia NO
-                  <app-toggle [disabled]="toggleDisabled" [prop]="'dueDiligence'"
+                  <app-toggle [disabled]="isAdminUser" [prop]="'dueDiligence'"
                               [loading]="loading"
                               [model]="preRegister.dueDiligence"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
               <div class="col-6 socialResponsability">
                 <span>Posee fundación o responsabilidad social NO
-                  <app-toggle [disabled]="toggleDisabled" [prop]="'socialResponsability'"
+                  <app-toggle [disabled]="isAdminUser" [prop]="'socialResponsability'"
                               [loading]="loading"
                               [model]="preRegister.socialResponsability"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
@@ -565,7 +565,7 @@
               </div>
               <div class="col-6 productSeal">
                   <span>Posee sello de producto NO
-                  <app-toggle [disabled]="toggleDisabled" [prop]="'managementSystemInformation'"
+                  <app-toggle [disabled]="isAdminUser" [prop]="'managementSystemInformation'"
                               [prop2]="'productSeal'"
                               [loading]="loading"
                               [model]="preRegister.productSeal"
@@ -580,6 +580,9 @@
                          #productSealName="ngModel">
                 </div>
               </div>
+            </div>
+            <div *ngIf="successMessage" class="alert alert-success text-center mt-3" role="alert">
+              {{successMessage}}
             </div>
             <button class="acesco-button"
                     type="submit"
