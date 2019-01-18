@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Output} from '@angular/core';
 import {faGoogleDrive} from '@fortawesome/free-brands-svg-icons';
 import {faCaretRight, faEnvelope, faSpinner, faUnlock, faUser} from '@fortawesome/free-solid-svg-icons';
 import {NgForm} from '@angular/forms';
@@ -12,7 +12,6 @@ import {ProcescoService} from '../../../services/procesco.service';
 })
 export class RegisterComponent {
   @Output() back: EventEmitter<any> = new EventEmitter();
-  @Output() isLoading: EventEmitter<any> = new EventEmitter();
   faGoogleDrive = faGoogleDrive;
   faUser = faUser;
   faEnvelope = faEnvelope;
@@ -24,6 +23,8 @@ export class RegisterComponent {
   loading: boolean;
   height: number;
   errorMessage: string;
+  successMessage: string;
+  redirectMessage: string;
 
   constructor(private router: Router, private cdRef: ChangeDetectorRef, public procescoService: ProcescoService) {
     this.user = {
@@ -39,14 +40,20 @@ export class RegisterComponent {
   onSubmit(form: NgForm) {
     form.value['user_profile_id'] = 2;
     this.loading = true;
-    this.isLoading.emit(this.loading);
     this.procescoService.createNewUser(form.value).subscribe((response: any) => {
-      this.loading = false;
-      this.isLoading.emit(this.loading);
-      this.back.emit('login');
+      this.successMessage = response.message;
+      setTimeout(() => {
+        this.successMessage = null;
+        this.redirectMessage = 'Regresando al login!';
+        setTimeout(() => {
+          this.loading = false;
+          this.back.emit('login');
+        }, 2000);
+      }, 3000);
     }, error1 => {
       this.loading = false;
       this.errorMessage = error1.error.message;
+      form.reset();
     });
   }
 

@@ -160,7 +160,7 @@
                             required
                             [disabled]="isAdminUser || loading">
                       <option [ngValue]="null">Elije uno*</option>
-                      <option *ngFor="let type of documentTypes">{{type.label}}</option>
+                      <option *ngFor="let documentRef of documentTypes" [ngValue]="documentRef.id">{{documentRef.description}}</option>
                     </select>
                     <div *ngIf="documentType.errors?.required && documentType.touched"><span class="text-danger">Este campo es obligatorio</span>
                     </div>
@@ -377,7 +377,7 @@
                             required
                             name="country_id"
                             #country_id="ngModel">
-                      <option *ngFor="let country of countries" [ngValue]="country.id">{{country.name}}</option>
+                      <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                     </select>
                     <div *ngIf="country_id.errors?.required && country_id.touched"><span class="text-danger">Este campo es obligatorio</span>
                     </div>

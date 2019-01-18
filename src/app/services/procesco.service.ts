@@ -24,13 +24,19 @@ export class ProcescoService {
   getClassificationsList() {
     const url = `${this.nodeUrl}/classifications`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((data: any) => data.classifications));
+    return this.http.get(url, {headers}).pipe(map((data: any) => data));
   }
 
-  getCointriesList() {
+  getCountriesList() {
     const url = `${this.nodeUrl}/countries`;
     const headers = this.getHeader();
     return this.http.get(url, {headers}).pipe(map((data: any) => data.countries));
+  }
+
+  getDocumentTypeList() {
+    const url = `${this.nodeUrl}/documents`;
+    const headers = this.getHeader();
+    return this.http.get(url, {headers}).pipe(map((data: any) => data));
   }
 
   createNewUser(data: UserInterface) {

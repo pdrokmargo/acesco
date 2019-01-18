@@ -1,5 +1,4 @@
 <div class="row procesco-container">
-  <app-loader [loading]="loading" [height]="height"></app-loader>
   <div class="col-6 left">
     <div class="row left-one">
       <div class="col">
@@ -91,7 +90,7 @@
     </div>
     <div class="row right-two justify-content-center">
       <app-login class="mt-5" *ngIf="showLogin" (back)="back($event)" (isLoading)="isLoading($event)"></app-login>
-      <app-register *ngIf="showRegister" (back)="back($event);" (isLoading)="isLoading($event)"></app-register>
+      <app-register *ngIf="showRegister" (back)="back($event);"></app-register>
     </div>
     <div class="row right-three">
       <div class="col align-self-end">

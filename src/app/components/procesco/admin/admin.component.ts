@@ -48,18 +48,18 @@ export class AdminComponent {
   onButtonClick(user: UserInterface) {
     console.log(user);
     switch (user.currentStep) {
-      case '0': {
+      case 0: {
         this.router.navigate(['procesco/nuevoProveedor/', user.id]);
         break;
       }
-      case '1': {
+      case 1: {
         this.router.navigate(['procesco/preseleccionEtapaA/', user.id]);
         break;
       }
-      case '2': {
+      case 2: {
         break;
       }
-      case '3': {
+      case 3: {
         break;
       }
     }

@@ -10,7 +10,7 @@
           </thead>
           <tbody>
           <ng-container *ngFor="let user of userList" class="animated fadeIn">
-            <tr *ngIf="user.userType === '1' && user['pre_registro']">
+            <tr *ngIf="user.userType === 1 && user['pre_registro']">
               <td>
                 {{ user['id'] || 'Sin diligenciar'}}
               </td>
