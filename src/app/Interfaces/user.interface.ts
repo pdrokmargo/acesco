@@ -47,7 +47,47 @@ export interface UserInterface {
     productSeal: boolean;
     productSealName: string;
   };
-  stageB?: {
+  stageA?: {
+  pep: boolean;
+  commonRegime: boolean;
+  simplifiedRegimen: boolean;
+  greatContributor: boolean;
+  greatContributorRes: string;
+  greatContributorFrom: string;
+  selfWithholdingByRent: boolean;
+  selfWithholdingByRentRes: string;
+  selfWithholdingByRentFrom: string;
+  industryAndCommerceTaxBogota: boolean;
+  industryAndCommerceTaxCodBogota: number;
+  industryAndCommerceTaxRateBogota: number;
+  industryAndCommerceTaxMalambo: boolean;
+  industryAndCommerceTaxCodMalambo: number;
+  industryAndCommerceTaxRateMalambo: number;
+  industryAndCommerceTaxOther: string;
+  industryAndCommerceTaxCodOther: number;
+  industryAndCommerceTaxRateOther: number;
+  tributaryYear: Date;
+  tributaryOperationalIncome: number;
+  tributaryOperationalExpenses: number;
+  totalIncome: number;
+  totalActive: number;
+  totalPassive: number;
+  commercialReferenceName1: string;
+  commercialReferencePhone1: number;
+  commercialReferenceContact1: string;
+  commercialReferenceName2: string;
+  commercialReferencePhone2: number;
+  commercialReferenceContact2: string;
+  commercialReferenceName3: string;
+  commercialReferencePhone3: number;
+  commercialReferenceContact3: string;
+  personalReferenceName: string;
+  personalReferenceEmail: string;
+  personalReferencePosition: string;
+  personalReferencePhone: number;
+  personalReferenceMobile: number;
+};
+stageB?: {
     acescoElementsProtection: boolean;
     activitiesAsSocialReason: boolean;
     additionalSafetyMeasures: boolean;
