@@ -57,6 +57,7 @@ export class AdminComponent {
         break;
       }
       case 2: {
+        this.router.navigate(['procesco/preseleccionEtapaB/', user.id]);
         break;
       }
       case 3: {

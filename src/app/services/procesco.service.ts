@@ -73,7 +73,7 @@ export class ProcescoService {
     return this.http.get(url, {headers}).pipe(map((data: any) => data.user));
   }
 
-  getStepById(id: string, query: string) {
+  getStepById(id: number, query: string) {
     const url = `${this.nodeUrl}/${query}/${id}`;
     const headers = this.getHeader();
     return this.http.get(url, {headers});

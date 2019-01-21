@@ -66,13 +66,11 @@ export class NewProviderComponent {
         });
       } else {
         this.procescoService.getClassificationsList().subscribe(classifications => {
-          console.log('classifications', classifications);
           this.classifications = classifications;
         }, error1 => {
           console.error(error1);
         });
         this.procescoService.getDocumentTypeList().subscribe(documentTypes => {
-          console.log('documentTypes', documentTypes);
           this.documentTypes = documentTypes;
         }, error1 => {
           console.error(error1);
@@ -96,48 +94,6 @@ export class NewProviderComponent {
     }, error1 => {
       console.error(error1);
     });
-    /*this.procescoService.getLogedUser().subscribe((response: any) => {
-      this.currentUser = response;
-      this.step = this.currentUser.currentStep;
-      this.isAdminUser = this.currentUser.userType === 0;
-      this.procescoService.getCountriesList().subscribe((countries: Array<object>) => {
-        this.countries = countries;
-        if (this.currentUser.national === 0) {
-          this.preRegister.country_id = this.countries.find(el => el.id === 48);
-        }
-        this.procescoService.getClassificationsList().subscribe((classifications: Array<object>) => {
-          this.classifications = classifications;
-          this.procescoService.getDocumentTypeList().subscribe((documents: any) => {
-            this.documentTypes = documents;
-            this.activatedRoute.params.subscribe((activeRoute => {
-              if (!activeRoute['id']) {
-                return;
-              }
-              this.id = +activeRoute.id;
-              this.toggleDisabled = true;
-              this.procescoService.getUserById(activeRoute.id).subscribe((user: any) => {
-                this.procescoService.getStepById(user.preregistro_id, 'pre-register').subscribe((data: any) => {
-                  this.preRegister = data.register;
-                  console.log(this.preRegister);
-                  console.log(this.countries.find(el => el.id === data.register.country_id));
-                  console.log(this.classifications.find(el => el.id === data.register.classification_id));
-                  console.log(this.documentTypes.find(el => el.id === data.register.documentType));
-                  this.preRegister.country_id = this.countries.find(el => el.id === data.register.country_id);
-                  this.preRegister.classification_id = this.countries.find(el => el.id === data.register.classification_id);
-                  this.preRegister.documentType = this.documentTypes.find(el => el.id === data.register.documentType);
-                  /!*this.preRegister.classification_id = this.countries.find(el => el.id === data.register.classification_id);
-                  this.preRegister.documentType = this.countries.find(el => el.id === data.register.documentType);*!/
-                });
-              });
-            }));
-          }, error1 => {
-            console.log(error1);
-          });
-        });
-      });
-    }, error1 => {
-      console.log(error1);
-    });*/
     const day = ('0' + this.now.getDate()).slice(-2);
     const month = ('0' + (this.now.getMonth() + 1)).slice(-2);
     this.preRegister = {
@@ -148,7 +104,7 @@ export class NewProviderComponent {
       created_at: this.now.getFullYear() + '-' + (month) + '-' + (day),
       classification_id: null,
       serviceDescription: null,
-      documentType: null,
+      documentType_id: null,
       documentNumber: null,
       documentIssued: null,
       businessName: null,
@@ -194,6 +150,7 @@ export class NewProviderComponent {
   }
 
   approval() {
+    this.loading = true;
     this.preRegister.currentStep = 1;
     console.log(this.id);
     console.log(this.preRegister);
@@ -212,7 +169,6 @@ export class NewProviderComponent {
     this.preRegister.personalDataProtection = true;
     this.preRegister.habeas = true;
     this.preRegister.serviceDescription = 'serviceDescription';
-    this.preRegister.documentType = 'documentType';
     this.preRegister.documentNumber = 'documentNumber';
     this.preRegister.documentIssued = 'documentIssued';
     this.preRegister.businessName = 'businessName';
@@ -249,7 +205,7 @@ export class NewProviderComponent {
     this.loading = true;
     this.preRegister.country_id = this.preRegister.country_id.id;
     this.preRegister.classification_id = this.preRegister.classification_id.id;
-    this.preRegister.documentType = this.preRegister.documentType.id;
+    this.preRegister.documentType_id = this.preRegister.documentType_id.id;
     console.log(this.preRegister);
     this.procescoService.updateUser(this.preRegister, 'pre-register').subscribe((response: any) => {
       this.router.navigate(['procesco/confirmacion']);

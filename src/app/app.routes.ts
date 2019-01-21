@@ -23,6 +23,7 @@ export const ROUTES: Routes = [
   {path: 'procesco/preseleccionEtapaA', component: StageAComponent},
   {path: 'procesco/preseleccionEtapaA/:id', component: StageAComponent},
   {path: 'procesco/preseleccionEtapaB', component: StageBComponent},
+  {path: 'procesco/preseleccionEtapaB/:id', component: StageBComponent},
   {path: 'sistemaDeGarantias', component: SistemaDeGarantiasComponent},
   {path: 'faq', component: FaqComponent},
   {path: 'evaluacion', component: EvaluacionComponent},

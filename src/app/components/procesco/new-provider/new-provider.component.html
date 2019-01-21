@@ -153,16 +153,16 @@
                   </div>
                   <div class="form-group col-1">
                     <select class="form-control"
-                            [(ngModel)]="preRegister.documentType"
-                            [ngClass]="{'is-invalid': documentType.errors?.required && documentType.touched }"
-                            name="documentType"
-                            #documentType="ngModel"
+                            [(ngModel)]="preRegister.documentType_id"
+                            [ngClass]="{'is-invalid': documentType_id.errors?.required && documentType_id.touched }"
+                            name="documentType_id"
+                            #documentType_id="ngModel"
                             required
                             [disabled]="isAdminUser || loading">
                       <option [ngValue]="null">Elije uno*</option>
                       <option *ngFor="let documentRef of documentTypes" [ngValue]="documentRef">{{documentRef.description}}</option>
                     </select>
-                    <div *ngIf="documentType.errors?.required && documentType.touched"><span class="text-danger">Este campo es obligatorio</span>
+                    <div *ngIf="documentType_id.errors?.required && documentType_id.touched"><span class="text-danger">Este campo es obligatorio</span>
                     </div>
                   </div>
 

@@ -4,7 +4,7 @@ export interface UserInterface {
   password: string;
   password_confirmation: string;
   userType: number;
-  currentStep: string;
+  currentStep: number;
   preregistro_id: number;
   national: number;
   id: number;
@@ -17,7 +17,7 @@ export interface UserInterface {
     whoRefers: string;
     classification_id: string;
     serviceDescription: string;
-    documentType: string;
+    documentType_id: string;
     documentNumber: string;
     documentIssued: string;
     businessName: string;
@@ -47,18 +47,22 @@ export interface UserInterface {
     productSeal: boolean;
     productSealName: string;
   };
-  stageB: {
+  stageB?: {
     acescoElementsProtection: boolean;
     activitiesAsSocialReason: boolean;
     additionalSafetyMeasures: boolean;
+    annex6: boolean;
     authoritiesReporting: boolean;
     confidentiality: boolean;
     containersIntegity: boolean;
+    contingencyPlan: boolean;
     continuousCommunication: boolean;
     dissuasionElements: boolean;
     documentationAndSystemsConfidentiality: boolean;
     economicActivityEvidence: boolean;
     illicitActivitiesAbsence: boolean;
+    inadequateProposals: boolean;
+    inadequateProposalsWhat: string;
     legalRequirementsAndRegulations: boolean;
     manifest: boolean;
     minimumSafetyRequirements: boolean;
@@ -66,9 +70,12 @@ export interface UserInterface {
     physicalAccessControls: boolean;
     physicalSecurityAgreements: boolean;
     physicalSecurityGuarantee: boolean;
+    productSpecifications: boolean;
     protectionProgram: boolean;
     qualityCertifications: boolean;
     recommendations: boolean;
+    relationshipRequirements: boolean;
+    safetyData: boolean;
     sanitaryRegulations: boolean;
     secureFacilities: boolean;
     securityAgreements: boolean;
@@ -77,7 +84,17 @@ export interface UserInterface {
     selectionProgram: boolean;
     shippingDocumentation: boolean;
     storageAndTransportIntegrity: boolean;
+    sustainabilityReport: boolean;
+    technicalStandards: boolean;
     trainingPrograms: boolean;
     warningDevices: boolean;
+    // archivos
+    chamberCommerce?: any;
+    identificationCard?: any;
+    rut?: any;
+    shareholdingStructure?: any;
+    bankCertificate?: any;
+    rucAndBasc?: any;
+    declarationOfRiskPrevention?: any;
   };
 }

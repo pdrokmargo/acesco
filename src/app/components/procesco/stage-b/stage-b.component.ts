@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {faCaretDown, faCaretRight, faCaretUp, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {UserInterface} from '../../../Interfaces/user.interface';
 import {ProcescoService} from '../../../services/procesco.service';
 import {ToggleInterface} from '../../../Interfaces/toggle.interface';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-stage-b',
@@ -18,15 +19,38 @@ export class StageBComponent {
   loading: boolean;
   step: number;
   user: UserInterface;
+  id: number;
   stageB: object;
+  stageB2: object;
   lists: object;
   selfEvaluation: boolean;
   selfEvaluationToggles: any [] = [];
   physicalSecurityAgreementsToggles: any [] = [];
   annex1Toggles: any [] = [];
   annex2Toggles: any [] = [];
+  isAdminUser: boolean;
 
-  constructor(public procescoService: ProcescoService, private cdRef: ChangeDetectorRef) {
+  constructor(public procescoService: ProcescoService,
+              private cdRef: ChangeDetectorRef,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe(activeRoute => {
+      console.log(activeRoute);
+      if (activeRoute['id']) {
+        this.isAdminUser = true;
+      } else {
+        this.procescoService.getLogedUser().subscribe(user => {
+          console.log(user);
+          this.step = user.currentStep;
+          this.id = user.id;
+        }, error1 => {
+          console.error(error1);
+        });
+      }
+    }, error1 => {
+      console.log(error1);
+    });
+
     this.lists = {
       selfEvaluation: false,
       manifest: false,
@@ -106,11 +130,6 @@ export class StageBComponent {
         text: 'Cuenta con instrumentos para reportar a las autoridades nacionale so extranjeras los casos en que detecten irregularidades o actividades ilegales o sospechosas en sus cadenas de suministro.'
       },
       {
-        model: 'secureFacilities',
-        value: false,
-        text: 'Se han recibido propuestas inadecuadas por parte de algun asociado de negocio (Negocios no seguros, metodologias de pagos en efectivo, cambios, presiones para el embarque sin documentación u omisiones de aranceles). Si la respuesta es afirmativa relacionar en las observaciones cuáles fueron las propuestas.'
-      },
-      {
         model: 'economicActivityEvidence',
         value: false,
         text: 'En los ingresos de empresa hay evidencia que corresponden a la actividad económica a la cual se dedica.'
@@ -120,6 +139,11 @@ export class StageBComponent {
         value: false,
         text: 'Se asegura que sus asociados de negocio cumplan con toda la normatividad sanitaria y fitosanitaria vigente.'
       },
+      {
+        model: 'inadequateProposals',
+        value: false,
+        text: 'Se han recibido propuestas inadecuadas por parte de algun asociado de negocio (Negocios no seguros, metodologias de pagos en efectivo, cambios, presiones para el embarque sin documentación u omisiones de aranceles). Si la respuesta es afirmativa relacionar en las observaciones cuáles fueron las propuestas.'
+      }
     ];
     this.physicalSecurityAgreementsToggles = [
       {
@@ -189,18 +213,53 @@ export class StageBComponent {
       {model: 'annex6', value: false, text: 'Declaración de compromiso de seguridad (anexo pagina 6)'},
       {model: 'safetyData', value: false, text: 'Ficha de seguridad de los productos'},
       {model: 'contingencyPlan', value: false, text: 'Plan de contingencia - preparación y respuesta ante emergencias.'},
-      {model: 'productSpecifications.', value: false, text: 'Ficha técnica del producto cone specificaciones.'},
+      {model: 'productSpecifications', value: false, text: 'Ficha técnica del producto cone specificaciones.'},
       {model: 'sustainabilityReport', value: false, text: 'Reporte de sostenibilidad.'},
-      {model: 'technicalStandards ', value: false, text: 'Certificados de normas técnicas que le apliquen.'},
+      {model: 'technicalStandards', value: false, text: 'Certificados de normas técnicas que le apliquen.'},
       {model: 'relationshipRequirements', value: false, text: 'Requisitos varios especificos del relaciónamiento con Acesco'},
     ];
     this.selfEvaluation = false;
-    // this.user = this.procescoService.getLogedUser();
-    // this.step = this.user.currentStep;
     this.stageB = {
-      minimumSafetyRequirements: true,
+      acescoElementsProtection: false,
+      activitiesAsSocialReason: false,
+      additionalSafetyMeasures: false,
+      annex6: false,
+      authoritiesReporting: false,
+      confidentiality: false,
+      containersIntegity: false,
+      contingencyPlan: false,
+      continuousCommunication: false,
+      dissuasionElements: false,
+      documentationAndSystemsConfidentiality: false,
+      economicActivityEvidence: false,
+      illicitActivitiesAbsence: false,
+      inadequateProposals: false,
+      inadequateProposalsWhat: null,
+      legalRequirementsAndRegulations: false,
       manifest: true,
+      minimumSafetyRequirements: true,
+      perimetersControl: false,
+      physicalAccessControls: false,
       physicalSecurityAgreements: true,
+      physicalSecurityGuarantee: false,
+      productSpecifications: false,
+      protectionProgram: false,
+      qualityCertifications: false,
+      recommendations: false,
+      relationshipRequirements: false,
+      safetyData: false,
+      sanitaryRegulations: false,
+      secureFacilities: false,
+      securityAgreements: false,
+      securityDocuments: false,
+      securityService: false,
+      selectionProgram: false,
+      shippingDocumentation: false,
+      storageAndTransportIntegrity: false,
+      sustainabilityReport: false,
+      technicalStandards: false,
+      trainingPrograms: false,
+      warningDevices: false,
     };
   }
 
@@ -220,21 +279,21 @@ export class StageBComponent {
     }
     const file: File = fileList[0];
     console.log(file);
-    /*this.uploadService.uploadFile(this.appCfg.baseUrl + '/api/flash/upload', file)
-      .subscribe(event => {
-          if (event.type === HttpEventType.UploadProgress) {
-            const percentDone = Math.round(100 * event.loaded / event.total);
-            console.log(`File is ${percentDone}% loaded.`);
-          } else if (event instanceof HttpResponse) {
-            console.log('File is completely loaded!');
-          }
-        },
-        (err) => {
-          console.log('Upload Error:', err);
-        }, () => {
-          console.log('Upload done');
-        }
-      );*/
+  }
+
+  autoFill() {
+    this.selfEvaluationToggles.forEach(el => {
+      this.stageB[el.model] = true;
+      el.value = true;
+    });
+    this.physicalSecurityAgreementsToggles.forEach(el => {
+      this.stageB[el.model] = true;
+      el.value = true;
+    });
+    this.annex2Toggles.forEach(el => {
+      this.stageB[el.model] = true;
+      el.value = true;
+    });
   }
 
   onSubmit() {

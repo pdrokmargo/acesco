@@ -28,7 +28,7 @@
               <div class="col-12 border-bottom border-left border-right">
                 <p>
                   <b>Es persona expuesta politicamente (pep): NO </b>
-                  <app-toggle [prop]="'pep'" [model]="stageA.pep" (updatedValue)="updatedValue($event);"></app-toggle>
+                  <app-toggle [disabled]="isAdminUser" [prop]="'pep'" [model]="stageA.pep" (updatedValue)="updatedValue($event);"></app-toggle>
                   <b> SI</b>
                 </p>
               </div>
@@ -39,14 +39,14 @@
                 <ul class="list-inline">
                   <li class="list-inline-item">
                     <b>Responsable del IVA: Régimen común </b>
-                    <app-toggle
+                    <app-toggle [disabled]="isAdminUser"
                       [model]="stageA.commonRegime"
                       [prop]="'commonRegime'"
                       (updatedValue)="updatedValue($event);"></app-toggle>
                   </li>
                   <li class="list-inline-item">
                     <b>Régimen simplificado </b>
-                    <app-toggle
+                    <app-toggle [disabled]="isAdminUser"
                       [model]="stageA.simplifiedRegimen"
                       [prop]="'simplifiedRegimen'"
                       (updatedValue)="updatedValue($event);"></app-toggle>
@@ -55,7 +55,7 @@
               </div>
               <div class="col-6 border-right border-left border-bottom">
                 <p><b>Gran Contribuyente: NO </b>
-                  <app-toggle [model]="stageA.greatContributor"
+                  <app-toggle [disabled]="isAdminUser" [model]="stageA.greatContributor"
                               [prop]="'greatContributor'"
                               (updatedValue)="updatedValue($event)">
                   </app-toggle>
@@ -93,7 +93,7 @@
               </div>
               <div class="col-6 border-right border-left border-bottom">
                 <p><b>Auto retenedor por renta: NO </b>
-                  <app-toggle [model]="stageA.selfWithholdingByRent"
+                  <app-toggle [disabled]="isAdminUser" [model]="stageA.selfWithholdingByRent"
                               [prop]="'selfWithholdingByRent'"
                               (updatedValue)="updatedValue($event)">
                   </app-toggle>
@@ -138,7 +138,7 @@
                         Bogotá
                       </li>
                       <li class="list-inline-item">
-                        <app-toggle
+                        <app-toggle [disabled]="isAdminUser"
                           [prop]="'industryAndCommerceTaxBogota'"
                           [model]="stageA.industryAndCommerceTaxBogota"
                           (updatedValue)="updatedValue($event)">
@@ -190,7 +190,7 @@
                         Malambo
                       </li>
                       <li class="list-inline-item">
-                        <app-toggle
+                        <app-toggle [disabled]="isAdminUser"
                           [prop]="'industryAndCommerceTaxMalambo'"
                           [model]="stageA.industryAndCommerceTaxMalambo"
                           (updatedValue)="updatedValue($event)">
@@ -616,9 +616,19 @@
             </div>
             <div class="row">
               <div class="col text-center">
+                <div *ngIf="successMessage" class="alert alert-success" role="alert">
+                  {{successMessage}}
+                </div>
                 <button *ngIf="!isAdminUser" type="submit" class="acesco-button" [disabled]="isAdminUser || loading || stageAForm.invalid">Enviar
                   <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
                   <fa-icon [icon]="faSpinner" *ngIf="loading" [spin]="true"></fa-icon>
+                </button>
+                <button class="acesco-button"
+                        type="button"
+                        (click)="approval();"
+                        *ngIf="isAdminUser">Aprobar
+                  <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+                  <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
                 </button>
               </div>
             </div>

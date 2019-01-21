@@ -11,30 +11,49 @@ import {ActivatedRoute, Router} from '@angular/router';
   templateUrl: './stage-a.component.html',
   styleUrls: ['./stage-a.component.css']
 })
-export class StageAComponent  {
+export class StageAComponent {
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
   height: number;
   loading: boolean;
-  step: string;
+  step: number;
   user: UserInterface;
   stageA: object;
   now: Date = new Date();
   id: number;
   isAdminUser: boolean;
+  successMessage: string;
 
   constructor(private cdRef: ChangeDetectorRef,
               public procescoService: ProcescoService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
-    this.loading = false;
-    this.procescoService.getLogedUser().subscribe((response: any) => {
-      console.log(response);
-      this.user = response;
-      this.step = this.user.currentStep;
-      this.isAdminUser = this.user.userType === 0;
+    this.activatedRoute.params.subscribe(activeRoute => {
+      if (activeRoute['id']) {
+        this.isAdminUser = true;
+        this.procescoService.getUserById(activeRoute['id']).subscribe((user: any) => {
+          console.log(user);
+          this.id = user.id;
+          this.step = user.currentStep;
+          this.procescoService.getStepById(user.stagea_id, 'stage-a').subscribe((stage: any) => {
+            this.stageA = stage.stage_a;
+          }, error1 => {
+            console.log(error1);
+          });
+        }, error1 => {
+          console.error(error1);
+        });
+      } else {
+        this.procescoService.getLogedUser().subscribe((user: UserInterface) => {
+          console.log(user);
+          this.step = user.currentStep;
+        }, error1 => {
+          console.log(error1);
+        });
+      }
+    }, error1 => {
+      console.error(error1);
     });
-
     this.stageA = {
       pep: false,
       commonRegime: false,
@@ -75,21 +94,6 @@ export class StageAComponent  {
       personalReferencePhone: null,
       personalReferenceMobile: null
     };
-    this.activatedRoute.params.subscribe((response => {
-      if (!response.length) {
-        return;
-      }
-      this.id = response.id;
-      this.procescoService.getUserById(response.id).subscribe((user: any) => {
-        this.step = user.currentStep;
-        this.procescoService.getStepById(user.stagea_id, 'stage-a').subscribe((data: any) => {
-          this.stageA = data;
-        });
-      }, error1 => {
-        console.log(error1);
-      });
-
-    }));
   }
 
   updatedValue(event: ToggleInterface) {
@@ -123,6 +127,19 @@ export class StageAComponent  {
       this.loading = false;
     }, error1 => {
       console.log(error1);
+    });
+  }
+
+  approval() {
+    this.loading = true;
+    this.stageA['currentStep'] = 2;
+    this.procescoService.adminApproval(this.id, this.stageA).subscribe((response: any) => {
+      this.successMessage = response.message;
+      setTimeout(() => {
+        this.router.navigate(['procesco/admin']);
+      }, 2000);
+    }, error1 => {
+      console.error(error1);
     });
   }
 

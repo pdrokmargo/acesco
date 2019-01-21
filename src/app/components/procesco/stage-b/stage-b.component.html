@@ -71,6 +71,17 @@
                       SI
                     </p>
                   </div>
+                  <div class="col-12">
+                    <div class="form-group" *ngIf="toggle.model === 'inadequateProposals'">
+                      <input type="text"
+                             class="form-control"
+                             placeholder="Cual?"
+                             [(ngModel)]="stageB.inadequateProposalsWhat"
+                             #inadequateProposalsWhat="ngModel"
+                             [disabled]="!stageB.inadequateProposals || loading || isAdminUser"
+                             name="inadequateProposalsWhat">
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -233,6 +244,7 @@
             </div>
           </div>
           <button type="button" class="acesco-button" (click)="onSubmit()">Enviar</button>
+          <button (click)="autoFill();">Rellenar</button>
         </div>
       </div>
     </div>
