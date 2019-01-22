@@ -11,3 +11,9 @@
 .social-list li a {
   color: #29C2AD;
 }
+
+.logo {
+  width: 150px;
+  margin-left: 30px;
+  height: auto;
+}

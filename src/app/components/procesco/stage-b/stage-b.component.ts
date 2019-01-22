@@ -21,7 +21,6 @@ export class StageBComponent {
   user: UserInterface;
   id: number;
   stageB: object;
-  stageB2: object;
   lists: object;
   selfEvaluation: boolean;
   selfEvaluationToggles: any [] = [];
@@ -35,12 +34,10 @@ export class StageBComponent {
               private router: Router,
               private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(activeRoute => {
-      console.log(activeRoute);
       if (activeRoute['id']) {
         this.isAdminUser = true;
       } else {
         this.procescoService.getLogedUser().subscribe(user => {
-          console.log(user);
           this.step = user.currentStep;
           this.id = user.id;
         }, error1 => {
@@ -272,13 +269,24 @@ export class StageBComponent {
     this.lists[list] = !this.lists[list];
   }
 
-  fileChange(event) {
+  fileChange(event: any, model: string) {
+    console.log(model);
     const fileList: FileList = event.target.files;
     if (!fileList.length) {
       return;
     }
     const file: File = fileList[0];
     console.log(file);
+    const formData: FormData = new FormData();
+    formData.set(model, file);
+    formData.forEach((value, key) => {
+      console.log('key %s: value %s', key, value);
+    });
+    this.procescoService.putFile(formData).subscribe((response: any) => {
+      console.log(response);
+    }, error1 => {
+      console.error(error1);
+    });
   }
 
   autoFill() {
@@ -297,7 +305,7 @@ export class StageBComponent {
   }
 
   onSubmit() {
-    console.log(this.stageB);
+    console.log('submit');
   }
 
 }

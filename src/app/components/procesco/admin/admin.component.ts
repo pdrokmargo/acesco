@@ -13,6 +13,8 @@ export class AdminComponent {
   tableTitles: any [] = [];
   states: any [] = [];
   loading: boolean;
+  pagination: object = {};
+  classifications: any[] = [];
 
   constructor(public procescoService: ProcescoService, private router: Router) {
     this.loading = true;
@@ -40,8 +42,30 @@ export class AdminComponent {
     ];
     this.procescoService.getAllUsers().subscribe((response: any) => {
       console.log(response);
-      this.userList = response;
+      this.userList = response.data;
+      this.pagination = {
+        last_page_url: response.last_page_url,
+        next_page_url: response.next_page_url,
+        prev_page_url: response.prev_page_url,
+        per_page: response.per_page,
+        last_page: response.last_page,
+        current_page: response.current_page,
+        total: response.total,
+        to: response.to,
+      };
       this.loading = false;
+      this.procescoService.getClassificationsList().subscribe((classifications: any) => {
+        this.userList.forEach(user => {
+          const selectedClass = classifications.find(classification => classification.id === user.pre_registro.classification_id);
+          user.pre_registro.classification_id = selectedClass.classification;
+        });
+      });
+      this.procescoService.getDocumentTypeList().subscribe((documentTypeList: any) => {
+        this.userList.forEach(user => {
+          const selectedDocument = documentTypeList.find(documentType => documentType.id === user.pre_registro.documentType_id);
+          user.pre_registro.documentType_id = selectedDocument.description;
+        });
+      });
     });
   }
 

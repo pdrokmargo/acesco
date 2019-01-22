@@ -55,10 +55,14 @@ export class ProcescoService {
     return this.http.get(url, {headers}).pipe(map((data: any) => data.user));
   }
 
-  getAllUsers() {
-    const url = `${this.nodeUrl}/users`;
+  getAllUsers(page?: any) {
+    let url = `${this.nodeUrl}/users`;
+    if (page) {
+      url = `${this.nodeUrl}/users?page=${page}`;
+    }
+
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((response: any) => response.users));
+    return this.http.get(url, {headers}).pipe(map((response: any) => response));
   }
 
   adminApproval(id: any, params: any) {
@@ -77,6 +81,16 @@ export class ProcescoService {
     const url = `${this.nodeUrl}/${query}/${id}`;
     const headers = this.getHeader();
     return this.http.get(url, {headers});
+  }
+
+  putFile(formData: any) {
+    const url = `${this.nodeUrl}/upload-stage-b`;
+    const token = this.getCurrentToken();
+    const headers = new HttpHeaders({
+      'Content-Type': 'multipart/form-data',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post(url, formData, {headers});
   }
 
   getCurrentToken() {

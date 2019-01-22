@@ -69,7 +69,7 @@ export class LoginComponent {
     }, error1 => {
       console.log(error1);
       this.loading = false;
-      this.errorMessage = error1.error.message;
+      this.errorMessage = 'Usuario y/o contraseña ingresados no son correctos';
     });
   }
 

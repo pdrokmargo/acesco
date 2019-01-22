@@ -1,8 +1,8 @@
 <section id="app-userList">
   <div class="row mt-5">
     <div class="col">
-      <div class="container">
-        <table class="table table-striped table-responsive">
+      <div>
+        <table class="table table-striped table-responsive px-4">
           <thead >
           <tr>
             <th *ngFor="let title of tableTitles; let odd = odd; let even = even;" class="text-white" [ngClass]="{'bg-info': odd, 'bg-dark': even}">{{title.label}}</th>
@@ -19,23 +19,24 @@
               </td>
               <td>{{ user['pre_registro']['commercialName'] || 'Sin diligenciar'}}</td>
               <td>{{ user['pre_registro']['ciiu'] || 'Sin diligenciar'}}</td>
-              <td>{{ user['pre_registro']['documentType'] || 'Sin diligenciar'}}</td>
+              <td>{{ user['pre_registro']['documentType_id'] || 'Sin diligenciar'}}</td>
               <td>{{ user['pre_registro']['documentNumber'] || 'Sin diligenciar'}}</td>
               <td>{{ user['pre_registro']['issuedBy'] || 'Sin diligenciar'}}</td>
               <td>{{ user['pre_registro']['classification_id'] || 'Sin diligenciar'}}</td>
               <td>{{states[user.currentStep]}}</td>
               <td>{{ user['pre_registro']['created_at'] || 'Sin diligenciar'}}</td>
               <td>{{ user['pre_registro']['whoRefers'] || 'Sin diligenciar'}}</td>
-              <td>{{(user.national === '0') ? 'Nacional' : 'Internacional'}}</td>
-              <td>Sin diligenciar</td>
+              <td>{{(user.national === 1) ? 'Nacional' : 'Internacional'}}</td>
+              <td>{{user.status === 1 ? 'U' : 'A'}}</td>
               <td>
-                <button class="acesco-button" (click)="onButtonClick(user);">Seleccionar</button>
+                <button class="acesco-button" (click)="onButtonClick(user);" [disabled]="user.status === 1">Seleccionar</button>
               </td>
             </tr>
           </ng-container>
           </tbody>
         </table>
         <app-spinner [loading]="loading"></app-spinner>
+        <app-pagination *ngIf="pagination.hasOwnProperty('total')" [options]="pagination"></app-pagination>
       </div>
     </div>
   </div>

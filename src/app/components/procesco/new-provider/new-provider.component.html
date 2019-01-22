@@ -594,7 +594,8 @@
             <button class="acesco-button"
                     type="button"
                     (click)="approval();"
-                    *ngIf="isAdminUser">Aprobar
+                    *ngIf="isAdminUser"
+                    [disabled]="loading">Aprobar
               <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
               <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
             </button>

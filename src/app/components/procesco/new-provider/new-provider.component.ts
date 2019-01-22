@@ -47,7 +47,7 @@ export class NewProviderComponent {
                 this.procescoService.getClassificationsList().subscribe(classifications => {
                   this.classifications = classifications;
                   this.preRegister.country_id = this.countries.find(el => el.id === this.preRegister.country_id);
-                  this.preRegister.documentType = this.documentTypes.find(el => el.id === this.preRegister.documentType);
+                  this.preRegister.documentType_id = this.documentTypes.find(el => el.id === this.preRegister.documentType_id);
                   this.preRegister.classification_id = this.classifications.find(el => el.id === this.preRegister.classification_id);
                 }, error1 => {
                   console.error(error1);
@@ -81,7 +81,7 @@ export class NewProviderComponent {
           this.step = user.currentStep;
           this.procescoService.getCountriesList().subscribe(countries => {
             this.countries = countries;
-            if (user.national === 0) {
+            if (user.national === 1) {
               this.preRegister.country_id = this.countries.find(el => el.name === 'Colombia');
             }
           }, error1 => {
@@ -137,8 +137,6 @@ export class NewProviderComponent {
       productSeal: false,
       productSealName: null,
     };
-
-
   }
 
   updateValue(newValue: ToggleInterface) {
@@ -155,7 +153,7 @@ export class NewProviderComponent {
     console.log(this.id);
     console.log(this.preRegister);
     this.procescoService.adminApproval(this.id, this.preRegister).subscribe((response: any) => {
-      this.successMessage = response.message;
+      this.successMessage = 'Usuario aprobado con éxito';
       setTimeout(() => {
         this.router.navigate(['procesco/admin']);
       }, 2000);
@@ -165,7 +163,7 @@ export class NewProviderComponent {
   }
 
   autoFill() {
-    this.preRegister.whoRefers = 'Tu madre';
+    this.preRegister.whoRefers = 'Alguien';
     this.preRegister.personalDataProtection = true;
     this.preRegister.habeas = true;
     this.preRegister.serviceDescription = 'serviceDescription';

@@ -44,6 +44,7 @@ export class RegisterComponent {
       this.successMessage = response.message;
       setTimeout(() => {
         this.successMessage = null;
+        this.errorMessage = null;
         this.redirectMessage = 'Regresando al login!';
         setTimeout(() => {
           this.loading = false;
@@ -52,7 +53,7 @@ export class RegisterComponent {
       }, 3000);
     }, error1 => {
       this.loading = false;
-      this.errorMessage = error1.error.message;
+      this.errorMessage = 'No es posible registrar este usuario';
       form.reset();
     });
   }

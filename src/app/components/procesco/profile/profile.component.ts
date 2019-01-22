@@ -34,10 +34,23 @@ export class ProfileComponent implements AfterViewInit {
       {label: 'New', value: 'new', active: false},
       {label: 'Update', value: 'update', active: false}
     ];
-    /*this.procescoService.getLogedUser().subscribe((response: any) => {
-      console.log(response);
-      this.user = response;
-    });*/
+    this.procescoService.getLogedUser().subscribe((user: any) => {
+      console.log(user);
+      if (user.preregistro_id) {
+        switch (user.national) {
+          case 0: {
+            console.log('nacional');
+            this.nationalOptions[0].active = user.supplier === 1;
+            this.nationalOptions[1].active = user.inHouse === 1;
+            break;
+          }
+          case 1: {
+            console.log('international');
+            break;
+          }
+        }
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -50,14 +63,11 @@ export class ProfileComponent implements AfterViewInit {
       return;
     }
     this.loading = true;
-    /*this.user['national'] = this.providerType === 'national';*/
     if (this.providerType === 'national') {
-      /*this.user['supplier'] = this.nationalOptions[0].active;
-      this.user['inHouse'] = this.nationalOptions[1].active;*/
-      const supplier = this.nationalOptions[0].active ? 0 : 1;
-      const inHouse = this.nationalOptions[1].active ? 0 : 1;
-      const national = this.providerType === 'national' ? 0 : 1;
-      this.procescoService.updateUser({supplier: supplier, inHouse: inHouse, national: national}, 'profile').subscribe((response:any) => {
+      const supplier = this.nationalOptions[0].active ? 1 : 0;
+      const inHouse = this.nationalOptions[1].active ? 1 : 0;
+      const national = this.providerType === 'national' ? 1 : 0;
+      this.procescoService.updateUser({supplier: supplier, inHouse: inHouse, national: national}, 'profile').subscribe((response: any) => {
         console.log(response);
         this.loading = false;
         this.router.navigate(['procesco/nuevoProveedor']);

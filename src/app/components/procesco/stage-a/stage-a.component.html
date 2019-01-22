@@ -634,6 +634,9 @@
             </div>
           </form>
           <button *ngIf="!isAdminUser" (click)="autoFill();">autorellenar</button>
+          <div class="text-center" *ngIf="isAdminUser">
+            <small>En caso de devolución al usuario click en <a href="">Devolución</a></small>
+          </div>
         </div>
       </div>
     </div>
