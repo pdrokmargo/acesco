@@ -305,7 +305,12 @@ export class StageBComponent {
   }
 
   onSubmit() {
-    console.log('submit');
+    this.loading = true;
+    this.procescoService.updateUser(this.stageB, 'stage-b').subscribe((response: any) => {
+      console.log(response);
+    }, error1 => {
+      console.error(error1);
+    });
   }
 
 }
