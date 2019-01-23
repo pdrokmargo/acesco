@@ -36,6 +36,43 @@ export class StageBComponent {
     this.activatedRoute.params.subscribe(activeRoute => {
       if (activeRoute['id']) {
         this.isAdminUser = true;
+        this.procescoService.getUserById(activeRoute.id).subscribe((user: any) => {
+          console.log(user);
+          this.procescoService.getStepById(user.stageb_id, 'stage-b').subscribe((stage: any) => {
+            this.stageB = stage.stage_b;
+            for (const key in this.stageB) {
+              if (this.stageB.hasOwnProperty(key)) {
+                if (this.stageB[key] === 1) {
+                  if (key === 'minimumSafetyRequirements' || key === 'manifest' || key === 'physicalSecurityAgreements') {
+                    this.stageB[key] = true;
+                  }
+                  const selfEvaluationToggle = this.selfEvaluationToggles.find(toggle => toggle.model === key);
+                  const physicalSecurityAgreementsToggle = this.physicalSecurityAgreementsToggles.find(toggle => toggle.model === key);
+                  const annex2Toggle = this.annex2Toggles.find(toggle => toggle.model === key);
+                  if (selfEvaluationToggle) {
+                    selfEvaluationToggle.value = true;
+                  }
+
+                  if (physicalSecurityAgreementsToggle) {
+                    physicalSecurityAgreementsToggle.value = true;
+                  }
+
+                  if (annex2Toggle) {
+                    annex2Toggle.value = true;
+                  }
+
+                } else if (this.stageB[key] === 0) {
+                  this.stageB[key] = false;
+                }
+              }
+            }
+            console.log(this.stageB);
+          }, error1 => {
+            console.log(error1);
+          });
+        }, error1 => {
+          console.log(error1);
+        });
       } else {
         this.procescoService.getLogedUser().subscribe(user => {
           this.step = user.currentStep;
@@ -308,6 +345,8 @@ export class StageBComponent {
     this.loading = true;
     this.procescoService.updateUser(this.stageB, 'stage-b').subscribe((response: any) => {
       console.log(response);
+      this.router.navigate(['procesco/confirmacion']);
+      this.loading = false;
     }, error1 => {
       console.error(error1);
     });

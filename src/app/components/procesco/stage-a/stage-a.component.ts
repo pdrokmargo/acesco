@@ -37,6 +37,7 @@ export class StageAComponent {
           this.step = user.currentStep;
           this.procescoService.getStepById(user.stagea_id, 'stage-a').subscribe((stage: any) => {
             this.stageA = stage.stage_a;
+            console.log(stage);
           }, error1 => {
             console.log(error1);
           });

@@ -41,7 +41,7 @@ export class RegisterComponent {
     form.value['user_profile_id'] = 2;
     this.loading = true;
     this.procescoService.createNewUser(form.value).subscribe((response: any) => {
-      this.successMessage = response.message;
+      this.successMessage = 'Usuario creado satisfactoriamente';
       setTimeout(() => {
         this.successMessage = null;
         this.errorMessage = null;

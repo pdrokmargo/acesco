@@ -1,0 +1,14 @@
+<div class="row animated fadeIn fast">
+  <div class="col">
+    <div class="btn-toolbar justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group " role="group" aria-label="First group">
+        <button type="button" class="btn btn-outline-dark" [disabled]="options.current_page === 1" (click)="onButtonClick('first');"><fa-icon [icon]="faAngleDoubleLeft"></fa-icon></button>
+        <button type="button" class="btn btn-outline-dark" [disabled]="!options.last_page_url || options.current_page < 2" (click)="onButtonClick('prev');">Anterior</button>
+        <button type="button" class="btn btn-outline-dark active" *ngIf="!pageItems.length">1</button>
+        <button type="button" class="btn btn-outline-dark" [ngClass]="{'active': item.label === options.current_page}" *ngFor="let item of pageItems;" (click)="onButtonClick('selected', item.label);">{{item.label}}</button>
+        <button type="button" class="btn btn-outline-dark" [disabled]="!options.next_page_url || options.current_page === options.last_page" (click)="onButtonClick('next');">Siguiente</button>
+        <button type="button" class="btn btn-outline-dark" [disabled]="options.current_page === options.last_page" (click)="onButtonClick('last');"><fa-icon [icon]="faAngleDoubleRight" ></fa-icon></button>
+      </div>
+    </div>
+  </div>
+</div>

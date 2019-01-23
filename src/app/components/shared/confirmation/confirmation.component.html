@@ -16,7 +16,7 @@
           </p>
           <hr class="line">
           <p class="card-text">
-            <small *ngIf="currentStep" class="animated fadeIn fast">
+            <small *ngIf="currentStep > 0" class="animated fadeIn fast">
               Usted ha culminado exitosamente la {{steps[currentStep].position}} etapa ( {{steps[currentStep].stepText}}
               ) del proceso de
               inscripción como proveedor en Acesco. Procederemos a validar nuestros requerimientos de suministro para

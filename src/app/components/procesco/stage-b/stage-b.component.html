@@ -37,7 +37,7 @@
                 <div class="col-8">
                   <ul class="list-inline">
                     <li class="list-inline-item">
-                      <app-toggle
+                      <app-toggle [disabled]="isAdminUser"
                         [model]="stageB.minimumSafetyRequirements"
                         [prop]="'minimumSafetyRequirements'"
                         (updatedValue)="updatedValue($event);">
@@ -63,7 +63,7 @@
                   <div class="col-4 text-right">
                     <p>
                       NO
-                      <app-toggle
+                      <app-toggle [disabled]="isAdminUser"
                         [prop]="toggle.model"
                         [model]="toggle.value"
                         (updatedValue)="updatedValue($event);">
@@ -92,7 +92,7 @@
                 <div class="col-8">
                   <ul class="list-inline">
                     <li class="list-inline-item">
-                      <app-toggle
+                      <app-toggle [disabled]="isAdminUser"
                         [model]="stageB.manifest"
                         [prop]="'manifest'"
                         (updatedValue)="updatedValue($event);">
@@ -174,7 +174,7 @@
                 <div class="col-8">
                   <ul class="list-inline">
                     <li class="list-inline-item">
-                      <app-toggle
+                      <app-toggle [disabled]="isAdminUser"
                         [model]="stageB.physicalSecurityAgreements"
                         [prop]="'manifest'"
                         (updatedValue)="updatedValue($event);">
@@ -207,7 +207,7 @@
                   <div class="col-4 text-right">
                     <p>
                       NO
-                      <app-toggle
+                      <app-toggle [disabled]="isAdminUser"
                         [prop]="toggle.model"
                         [model]="toggle.value"
                         (updatedValue)="updatedValue($event);">
@@ -239,11 +239,11 @@
               <p>{{toggle.text}}</p>
             </div>
             <div class="col-4 text-right">
-              <app-toggle [model]="toggle.value" [prop]="toggle.model"
+              <app-toggle [disabled]="isAdminUser" [model]="toggle.value" [prop]="toggle.model"
                           (updatedValue)="updatedValue($event)"></app-toggle>
             </div>
           </div>
-          <button type="button" class="acesco-button" (click)="onSubmit()">Enviar</button>
+          <button type="button" class="acesco-button" (click)="onSubmit()" aria-disabled="loading" *ngIf="!isAdminUser">Enviar</button>
           <button (click)="autoFill();">Rellenar</button>
         </div>
       </div>
