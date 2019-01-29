@@ -30,7 +30,6 @@ export class ToggleComponent {
         value: this.model
       };
     }
-
     this.updatedValue.emit(obj);
   }
 }

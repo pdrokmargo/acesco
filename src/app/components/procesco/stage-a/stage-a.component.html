@@ -28,9 +28,112 @@
               <div class="col-12 border-bottom border-left border-right">
                 <p>
                   <b>Es persona expuesta politicamente (pep): NO </b>
-                  <app-toggle [disabled]="isAdminUser" [prop]="'pep'" [model]="stageA.pep" (updatedValue)="updatedValue($event);"></app-toggle>
+                  <app-toggle [disabled]="isAdminUser" [prop]="'pep'" [model]="stageA.pep"
+                              (updatedValue)="updatedValue($event);"></app-toggle>
                   <b> SI</b>
                 </p>
+              </div>
+              <div *ngIf="stageA.pep" class="mt-3 col-6">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Nombres y Apellidos*"
+                         [(ngModel)]="stageA.pep_name"
+                         [ngClass]="{'is-invalid': pep_name.errors?.required && pep_name.touched }"
+                         name="pep_name"
+                         minlength="2"
+                         #pep_name="ngModel"
+                         required
+                         [disabled]="isAdminUser || loading">
+                  <div *ngIf="pep_name.errors?.required && pep_name.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="stageA.pep" class="mt-3 col-6">
+                <div class="form-group">
+                  <input type="number"
+                         class="form-control"
+                         placeholder="Identificación*"
+                         [(ngModel)]="stageA.pep_identification"
+                         [ngClass]="{'is-invalid': pep_identification.errors?.required && pep_identification.touched }"
+                         name="pep_identification"
+                         minlength="2"
+                         #pep_identification="ngModel"
+                         required
+                         [disabled]="isAdminUser || loading">
+                  <div *ngIf="pep_identification.errors?.required && pep_identification.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="stageA.pep" class="col-6">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Cargo en la sociedad*"
+                         [(ngModel)]="stageA.society_position"
+                         [ngClass]="{'is-invalid': society_position.errors?.required && society_position.touched }"
+                         name="society_position"
+                         minlength="2"
+                         #society_position="ngModel"
+                         required
+                         [disabled]="isAdminUser || loading">
+                  <div *ngIf="society_position.errors?.required && society_position.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="stageA.pep" class="col-6">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Cargo publico*"
+                         [(ngModel)]="stageA.public_position"
+                         [ngClass]="{'is-invalid': public_position.errors?.required && public_position.touched }"
+                         name="public_position"
+                         minlength="2"
+                         #public_position="ngModel"
+                         required
+                         [disabled]="isAdminUser || loading">
+                  <div *ngIf="public_position.errors?.required && public_position.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="stageA.pep" class="col-6">
+                <div class="form-group">
+                  <input type="date"
+                         class="form-control"
+                         placeholder="Fecha de Vinculación*"
+                         [(ngModel)]="stageA.linkup_date"
+                         [ngClass]="{'is-invalid': linkup_date.errors?.required && linkup_date.touched }"
+                         name="linkup_date"
+                         minlength="2"
+                         #linkup_date="ngModel"
+                         required
+                         [disabled]="isAdminUser || loading">
+                  <div *ngIf="linkup_date.errors?.required && linkup_date.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="stageA.pep" class="col-6">
+                <div class="form-group">
+                  <input type="date"
+                         class="form-control"
+                         placeholder="Fecha de desvinculación*"
+                         [(ngModel)]="stageA.unlink_date"
+                         [ngClass]="{'is-invalid': unlink_date.errors?.required && unlink_date.touched }"
+                         name="unlink_date"
+                         minlength="2"
+                         #unlink_date="ngModel"
+                         required
+                         [disabled]="isAdminUser || loading">
+                  <div *ngIf="unlink_date.errors?.required && unlink_date.touched"><span
+                    class="text-danger">Este campo es obligatorio</span>
+                  </div>
+                </div>
               </div>
             </div>
             <app-form-title [text]="'información tributaria'"></app-form-title>
@@ -40,16 +143,16 @@
                   <li class="list-inline-item">
                     <b>Responsable del IVA: Régimen común </b>
                     <app-toggle [disabled]="isAdminUser"
-                      [model]="stageA.commonRegime"
-                      [prop]="'commonRegime'"
-                      (updatedValue)="updatedValue($event);"></app-toggle>
+                                [model]="stageA.commonRegime"
+                                [prop]="'commonRegime'"
+                                (updatedValue)="updatedValue($event);"></app-toggle>
                   </li>
                   <li class="list-inline-item">
                     <b>Régimen simplificado </b>
                     <app-toggle [disabled]="isAdminUser"
-                      [model]="stageA.simplifiedRegimen"
-                      [prop]="'simplifiedRegimen'"
-                      (updatedValue)="updatedValue($event);"></app-toggle>
+                                [model]="stageA.simplifiedRegimen"
+                                [prop]="'simplifiedRegimen'"
+                                (updatedValue)="updatedValue($event);"></app-toggle>
                   </li>
                 </ul>
               </div>
@@ -139,9 +242,9 @@
                       </li>
                       <li class="list-inline-item">
                         <app-toggle [disabled]="isAdminUser"
-                          [prop]="'industryAndCommerceTaxBogota'"
-                          [model]="stageA.industryAndCommerceTaxBogota"
-                          (updatedValue)="updatedValue($event)">
+                                    [prop]="'industryAndCommerceTaxBogota'"
+                                    [model]="stageA.industryAndCommerceTaxBogota"
+                                    (updatedValue)="updatedValue($event)">
                         </app-toggle>
                       </li>
                     </ul>
@@ -191,9 +294,9 @@
                       </li>
                       <li class="list-inline-item">
                         <app-toggle [disabled]="isAdminUser"
-                          [prop]="'industryAndCommerceTaxMalambo'"
-                          [model]="stageA.industryAndCommerceTaxMalambo"
-                          (updatedValue)="updatedValue($event)">
+                                    [prop]="'industryAndCommerceTaxMalambo'"
+                                    [model]="stageA.industryAndCommerceTaxMalambo"
+                                    (updatedValue)="updatedValue($event)">
                         </app-toggle>
                       </li>
                     </ul>
@@ -614,12 +717,80 @@
                 </div>
               </div>
             </div>
+            <app-form-title [text]="'espacio reservado para la compañia acesco'" *ngIf="isAdminUser"></app-form-title>
+            <div class="row" *ngIf="isAdminUser">
+              <div class="col-4">
+                <div class="form-group mt-2">
+                  <select class="form-control"
+                          [(ngModel)]="reserved_space.language_id"
+                          name="language_id"
+                          [disabled]="loading">
+                    <option [ngValue]="null">Lenguaje</option>
+                    <option *ngFor="let language of languages" [ngValue]="language">{{language.description}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group mt-2">
+                  <select class="form-control"
+                          [(ngModel)]="reserved_space.currency_id"
+                          name="currency_id"
+                          required
+                          [disabled]="loading">
+                    <option [ngValue]="null">Moneda</option>
+                    <option *ngFor="let currency of currencies" [ngValue]="currency">{{currency.description}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-4">
+                <!--SPACER-->
+              </div>
+            </div>
+            <div class="row" *ngIf="isAdminUser">
+              <div class="col-12 border">
+                <p class="mt-2">Nivel de impacto o bien que suministra dentro del proceso de Acesco? Segun los criterios del sistema de gestión</p>
+                <div class="container">
+                  <div class="row">
+                    <div *ngFor="let toggle of impactLevelToggles">
+                      <span>{{toggle.label}}</span>
+                      <app-toggle
+                        class="pr-3"
+                        [loading]="loading"
+                        [model]="toggle.value"
+                        [prop]="toggle.model"
+                        [prop2]="toggle.key"
+                        (updatedValue)="updatedValue($event);">
+                      </app-toggle>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 border">
+                <p class="mt-2">Plazo de pago (Días)</p>
+                <div class="container">
+                  <div class="row">
+                    <div *ngFor="let toggle of paymentConditionToggles">
+                      <span>{{toggle.key}}</span>
+                      <app-toggle
+                        class="pr-3"
+                        [loading]="loading"
+                        [model]="toggle.value"
+                        [prop]="toggle.model"
+                        [prop2]="toggle.key"
+                        (updatedValue)="updatedValue($event);">
+                      </app-toggle>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col text-center">
                 <div *ngIf="successMessage" class="alert alert-success" role="alert">
                   {{successMessage}}
                 </div>
-                <button *ngIf="!isAdminUser" type="submit" class="acesco-button" [disabled]="isAdminUser || loading || stageAForm.invalid">Enviar
+                <button *ngIf="!isAdminUser" type="submit" class="acesco-button"
+                        [disabled]="isAdminUser || loading || stageAForm.invalid">Enviar
                   <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
                   <fa-icon [icon]="faSpinner" *ngIf="loading" [spin]="true"></fa-icon>
                 </button>

@@ -23,6 +23,11 @@ export class StageAComponent {
   id: number;
   isAdminUser: boolean;
   successMessage: string;
+  reserved_space: any;
+  impactLevelToggles: any [] = [];
+  paymentConditionToggles: any[] = [];
+  currencies: any [] = [];
+  languages: any [] = [];
 
   constructor(private cdRef: ChangeDetectorRef,
               public procescoService: ProcescoService,
@@ -46,7 +51,6 @@ export class StageAComponent {
         });
       } else {
         this.procescoService.getLogedUser().subscribe((user: UserInterface) => {
-          console.log(user);
           this.step = user.currentStep;
         }, error1 => {
           console.log(error1);
@@ -55,8 +59,20 @@ export class StageAComponent {
     }, error1 => {
       console.error(error1);
     });
+    this.procescoService.getLanguages().subscribe((languages: any) => {
+      this.languages = languages;
+    });
+    this.procescoService.getCurrencies().subscribe((currencies: any) => {
+      this.currencies = currencies;
+    });
     this.stageA = {
       pep: false,
+      pep_name: null,
+      pep_identification: null,
+      society_position: null,
+      public_position: null,
+      linkup_date: null,
+      unlink_date: null,
       commonRegime: false,
       simplifiedRegimen: false,
       greatContributor: false,
@@ -95,9 +111,29 @@ export class StageAComponent {
       personalReferencePhone: null,
       personalReferenceMobile: null
     };
+    this.reserved_space = {
+      language_id: null,
+      currency_id: null,
+      level_of_impact: 2,
+      payment_condition: 60
+    };
+    this.impactLevelToggles = [
+      {label: 'Bajo', value: false, model: 'level_of_impact', key: 1},
+      {label: 'Medio', value: true, model: 'level_of_impact', key: 2},
+      {label: 'Alto', value: false, model: 'level_of_impact', key: 3}
+    ];
+    this.paymentConditionToggles = [
+      {model: 'payment_condition', value: false, key: 15},
+      {model: 'payment_condition', value: false, key: 30},
+      {model: 'payment_condition', value: false, key: 45},
+      {model: 'payment_condition', value: true, key: 60},
+      {model: 'payment_condition', value: false, key: 90},
+      {model: 'payment_condition', value: false, key: 120}
+    ];
   }
 
   updatedValue(event: ToggleInterface) {
+    console.log(event);
     switch (event.key) {
       case 'commonRegime': {
         this.stageA['simplifiedRegimen'] = false;
@@ -122,13 +158,32 @@ export class StageAComponent {
         }
         break;
       }
+      case 'level_of_impact': {
+        if (event.value) {
+          this.impactLevelToggles.forEach(el => el.value = false);
+        }
+        this.reserved_space['level_of_impact'] = event.key2;
+        const index = this.impactLevelToggles.findIndex(el => el.key === event.key2);
+        this.impactLevelToggles[index].value = true;
+        break;
+      }
+      case 'payment_condition': {
+        if (event.value) {
+          this.paymentConditionToggles.forEach(el => el.value = false);
+        }
+        const index = this.paymentConditionToggles.findIndex(el => el.key === event.key2);
+        console.log(index);
+        this.paymentConditionToggles[index].value = true;
+        this.reserved_space['payment_condition'] = event.key2;
+        console.log(this.paymentConditionToggles);
+        break;
+      }
     }
     this.stageA[event.key] = event.value;
   }
 
   onSubmit(form: NgForm) {
     this.loading = true;
-    console.log(this.stageA);
     this.procescoService.updateUser(this.stageA, 'stage-a').subscribe((response: any) => {
       console.log(response);
       this.router.navigate(['procesco/confirmacion']);
@@ -140,8 +195,14 @@ export class StageAComponent {
 
   approval() {
     this.loading = true;
-    this.stageA['currentStep'] = 2;
-    this.procescoService.adminApproval(this.id, this.stageA).subscribe((response: any) => {
+    this.reserved_space.language_id = this.reserved_space.language_id.id;
+    this.reserved_space.currency_id = this.reserved_space.currency_id.id;
+    const {language_id, currency_id, level_of_impact, payment_condition} = this.reserved_space;
+    const finalObject = {
+      currentStep: 2,
+      reserved_space: {language_id, currency_id, level_of_impact, payment_condition}
+    };
+    this.procescoService.adminApproval(this.id, finalObject).subscribe((response: any) => {
       this.successMessage = response.message;
       setTimeout(() => {
         this.router.navigate(['procesco/admin']);
@@ -156,6 +217,12 @@ export class StageAComponent {
     const month = ('0' + (this.now.getMonth() + 1)).slice(-2);
     this.stageA = {
       pep: true,
+      pep_name: 'pep_name',
+      pep_identification: 324515,
+      society_position: 'society_position',
+      public_position: 'public_position',
+      linkup_date: this.now.getFullYear() + '-' + (month) + '-' + (day),
+      unlink_date: this.now.getFullYear() + '-' + (month) + '-' + (day),
       commonRegime: true,
       simplifiedRegimen: true,
       greatContributor: true,

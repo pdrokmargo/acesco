@@ -39,6 +39,18 @@ export class ProcescoService {
     return this.http.get(url, {headers}).pipe(map((data: any) => data.documents));
   }
 
+  getCurrencies() {
+    const url = `${this.nodeUrl}/currencies`;
+    const headers = this.getHeader();
+    return this.http.get(url, {headers}).pipe(map((data: any) => data.currencies));
+  }
+
+  getLanguages() {
+    const url = `${this.nodeUrl}/languages`;
+    const headers = this.getHeader();
+    return this.http.get(url, {headers}).pipe(map((data: any) => data.languages));
+  }
+
   createNewUser(data: UserInterface) {
     const url = `${this.nodeUrl}/signup`;
     return this.http.post(url, data);

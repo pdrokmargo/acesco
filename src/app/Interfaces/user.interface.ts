@@ -49,6 +49,12 @@ export interface UserInterface {
   };
   stageA?: {
     pep: boolean;
+    pep_name: string;
+    pep_identification: number;
+    society_position: string;
+    public_position: string;
+    linkup_date: Date;
+    unlink_date: Date;
     commonRegime: boolean;
     simplifiedRegimen: boolean;
     greatContributor: boolean;
