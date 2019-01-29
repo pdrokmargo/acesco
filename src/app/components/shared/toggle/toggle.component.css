@@ -50,10 +50,10 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-input:disabled + .slider {
+/*input:disabled + .slider {
   background-color: var(--secondary);
   cursor: not-allowed;
-}
+}*/
 
 .slider.round {
   border-radius: 34px;

@@ -55,10 +55,14 @@ export class ProcescoService {
     return this.http.get(url, {headers}).pipe(map((data: any) => data.user));
   }
 
-  getAllUsers(page?: any) {
+  getAllUsers(search?: any) {
     let url = `${this.nodeUrl}/users`;
-    if (page) {
-      url = `${this.nodeUrl}/users?page=${page}`;
+    if (typeof search === 'number') {
+      url = `${this.nodeUrl}/users?page=${search}`;
+    }
+
+    if (typeof search === 'string') {
+      url = `${this.nodeUrl}/users?search=${search}`;
     }
 
     const headers = this.getHeader();

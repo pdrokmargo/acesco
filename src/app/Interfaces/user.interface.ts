@@ -63,7 +63,7 @@ export interface UserInterface {
     industryAndCommerceTaxMalambo: boolean;
     industryAndCommerceTaxCodMalambo: number;
     industryAndCommerceTaxRateMalambo: number;
-    industryAndCommerceTaxOther: string;
+    industryAndCommerceTaxOther: number;
     industryAndCommerceTaxCodOther: number;
     industryAndCommerceTaxRateOther: number;
     tributaryYear: Date;

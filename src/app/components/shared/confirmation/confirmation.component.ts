@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input} from '@angular/core';
+import {AfterViewInit, Component, Input} from '@angular/core';
 import {faCaretRight, faCheck, faEnvelope, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 import {ProcescoService} from '../../../services/procesco.service';
@@ -9,7 +9,7 @@ import {UserInterface} from '../../../Interfaces/user.interface';
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.css']
 })
-export class ConfirmationComponent implements AfterViewInit{
+export class ConfirmationComponent {
   @Input() step: number;
   faCheck = faCheck;
   faEnvelope = faEnvelope;
@@ -21,26 +21,20 @@ export class ConfirmationComponent implements AfterViewInit{
   currentUser: UserInterface;
   currentStep: any;
 
-  constructor(private cdRef: ChangeDetectorRef, public procescoService: ProcescoService) {
-    this.currentStep = null;
+  constructor( public procescoService: ProcescoService) {
     this.procescoService.getLogedUser().subscribe((response: any) => {
       console.log(response);
       this.currentUser = response;
-      this.currentStep = +this.currentUser.currentStep + 1;
+      this.currentStep = this.currentUser.currentStep + 1;
     });
 
     this.steps = [
-      {},
-      { position: 'Primera', stepText: 'Pre - registro' },
-      { position: 'Segunda', stepText: 'Pre - selección-etapa A' },
-      { position: 'Tercera', stepText: 'Pre - selección-etapa B' },
+      {position: 'fake'},
+      {position: 'Primera', stepText: 'Pre - registro'},
+      {position: 'Segunda', stepText: 'Pre - selección-etapa A'},
+      {position: 'Tercera', stepText: 'Pre - selección-etapa B'},
     ];
     this.loading = false;
-  }
-
-  ngAfterViewInit() {
-    this.height = document.body.offsetHeight;
-    this.cdRef.detectChanges();
   }
 
   submit() {

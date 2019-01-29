@@ -98,8 +98,15 @@ export class StageAComponent {
   }
 
   updatedValue(event: ToggleInterface) {
-    console.log(event);
     switch (event.key) {
+      case 'commonRegime': {
+        this.stageA['simplifiedRegimen'] = false;
+        break;
+      }
+      case 'simplifiedRegimen': {
+        this.stageA['commonRegime'] = false;
+        break;
+      }
       case 'industryAndCommerceTaxBogota': {
         if (event.value) {
           this.stageA['industryAndCommerceTaxMalambo'] = false;
@@ -164,7 +171,7 @@ export class StageAComponent {
       industryAndCommerceTaxMalambo: true,
       industryAndCommerceTaxCodMalambo: 79823759825,
       industryAndCommerceTaxRateMalambo: parseFloat('346632626'),
-      industryAndCommerceTaxOther: 'industryAndCommerceTaxOther',
+      industryAndCommerceTaxOther: 857298357295,
       industryAndCommerceTaxCodOther: 59863578623587,
       industryAndCommerceTaxRateOther: parseFloat('762336623'),
       tributaryOperationalIncome: parseFloat('762336623'),

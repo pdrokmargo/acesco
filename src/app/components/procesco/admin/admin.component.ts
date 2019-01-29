@@ -90,4 +90,22 @@ export class AdminComponent {
     }
   }
 
+  search(searchText: any) {
+    this.procescoService.getAllUsers(searchText).subscribe((response: any) => {
+      console.log(response);
+      this.userList = response.data;
+      this.pagination = {
+        last_page_url: response.last_page_url,
+        next_page_url: response.next_page_url,
+        prev_page_url: response.prev_page_url,
+        per_page: response.per_page,
+        last_page: response.last_page,
+        current_page: response.current_page,
+        total: response.total,
+        to: response.to,
+      };
+    }, error1 => {
+      console.log(error1);
+    });
+  }
 }

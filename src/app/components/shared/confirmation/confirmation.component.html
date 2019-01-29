@@ -16,13 +16,13 @@
           </p>
           <hr class="line">
           <p class="card-text">
-            <small *ngIf="currentStep > 0" class="animated fadeIn fast">
+            <small *ngIf="currentStep" class="animated fadeIn fast">
               Usted ha culminado exitosamente la {{steps[currentStep].position}} etapa ( {{steps[currentStep].stepText}}
               ) del proceso de
-              inscripción como proveedor en Acesco. Procederemos a validar nuestros requerimientos de suministro para
+              inscripción como proveedor en Acesco. <span *ngIf="currentStep !== 3"> Procederemos a validar nuestros requerimientos de suministro para
               habilitar su paso a la {{steps[currentStep + 1].position}} etapa ( {{ steps[currentStep + 1].stepText }}
               ). Lo estaremos
-              contactando al E-mail registrado por usted.
+              contactando al E-mail registrado por usted.</span>
             </small>
           </p>
           <button type="button"

@@ -88,7 +88,7 @@
       {{successMessage}}
     </div>
     <div *ngIf="redirectMessage" class="alert alert-info text-center" role="alert">
-      {{redirectMessage}} <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
+      {{redirectMessage}}
     </div>
     <button class="acesco-button" [disabled]="registerForm.invalid || !passwordsMatch || loading">Registrar
       <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>

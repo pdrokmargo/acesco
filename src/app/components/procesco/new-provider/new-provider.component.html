@@ -137,6 +137,7 @@
                             #serviceDescription="ngModel"
                             [disabled]="isAdminUser || loading"
                             placeholder="Descripcion de bien o servicio a ofrecer*"
+                            maxlength="200"
                             required></textarea>
                   <div *ngIf="serviceDescription?.errors?.required && serviceDescription.touched"><span
                     class="text-danger">Este campo es obligatorio</span>
