@@ -26,11 +26,9 @@
             </small>
           </p>
           <button type="button"
-                  [disabled]="loading"
-                  (click)="submit();"
+                  routerLink="/procesco"
                   class="acesco-button">
-            <fa-icon [icon]="faEnvelope"></fa-icon>
-            Ver email
+            Volver
             <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
             <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
           </button>

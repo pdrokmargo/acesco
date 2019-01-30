@@ -37,12 +37,4 @@ export class ConfirmationComponent {
     this.loading = false;
   }
 
-  submit() {
-    this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-      console.log('Go to email');
-    }, 3000);
-  }
-
 }
