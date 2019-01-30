@@ -37,7 +37,7 @@ export class StageBComponent {
       if (activeRoute['id']) {
         this.isAdminUser = true;
         this.procescoService.getUserById(activeRoute.id).subscribe((user: any) => {
-          console.log(user);
+          this.user = user;
           this.step = user.currentStep;
           this.procescoService.getStepById(user.stageb_id, 'stage-b').subscribe((stage: any) => {
             this.stageB = stage.stage_b;

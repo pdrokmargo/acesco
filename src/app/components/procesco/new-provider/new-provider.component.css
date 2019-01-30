@@ -73,3 +73,8 @@ select:focus {
   border-color: unset;
   box-shadow: unset;
 }
+
+.link {
+  font-size: 16px;
+  cursor: pointer;
+}

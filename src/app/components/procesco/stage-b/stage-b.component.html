@@ -245,6 +245,7 @@
           </div>
           <button type="button" class="acesco-button" (click)="onSubmit()" aria-disabled="loading" *ngIf="!isAdminUser">Enviar</button>
           <button (click)="autoFill();">Rellenar</button>
+          <app-return [user]="this.user" *ngIf="this.user"></app-return>
         </div>
       </div>
     </div>

@@ -120,12 +120,12 @@
                     <option [ngValue]="null">Clasificación*</option>
                     <option *ngFor="let classification of classifications" [ngValue]="classification">{{classification.classification}}</option>
                   </select>
-                  <div *ngIf="classification_id.errors?.required && classification_id.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  <div *ngIf="classification_id.errors?.required && classification_id.touched"><label class="text-danger">Este campo es obligatorio</label>
                   </div>
                 </div>
               </div>
               <div class="col-6">
-                <p>Escoja de acuerdo con objeto social <a href="">Descripciones</a></p>
+                <p>Escoja de acuerdo con objeto social <small class="text-primary link" routerLink="descripciones">Descripciones</small></p>
               </div>
               <div class="col-12">
                 <div class="form-group">
@@ -600,9 +600,7 @@
               <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
               <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
             </button>
-            <div class="text-center" *ngIf="isAdminUser">
-              <small>En caso de devolución al usuario click en <a href="">Devolución</a></small>
-            </div>
+            <app-return [user]="this.user" *ngIf="this.user"></app-return>
           </form>
           <button class="btn-outline-dark" (click)="autoFill();" type="button" *ngIf="!isAdminUser">Autorellenar</button>
         </div>

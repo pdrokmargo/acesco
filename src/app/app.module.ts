@@ -34,6 +34,8 @@ import { StageBComponent } from './components/procesco/stage-b/stage-b.component
 import { AdminComponent } from './components/procesco/admin/admin.component';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 import { PaginationComponent } from './components/shared/pagination/pagination.component';
+import { ReturnComponent } from './components/shared/return/return.component';
+import { DescriptionsComponent } from './components/procesco/descriptions/descriptions.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { PaginationComponent } from './components/shared/pagination/pagination.c
     StageBComponent,
     AdminComponent,
     SpinnerComponent,
-    PaginationComponent
+    PaginationComponent,
+    ReturnComponent,
+    DescriptionsComponent
   ],
   imports: [
     BrowserModule,

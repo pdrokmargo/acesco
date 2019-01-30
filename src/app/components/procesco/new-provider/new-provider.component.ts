@@ -26,6 +26,7 @@ export class NewProviderComponent {
   id: number;
   isAdminUser: boolean;
   successMessage: string;
+  user: any;
 
   constructor(private router: Router,
               private cdRef: ChangeDetectorRef,
@@ -37,6 +38,7 @@ export class NewProviderComponent {
         this.procescoService.getUserById(activeRoute['id']).subscribe(user => {
           this.step = user.currentStep;
           this.id = user.id;
+          this.user = user;
           this.procescoService.getStepById(user.preregistro_id, 'pre-register').subscribe((preRegister: any) => {
             console.log(preRegister.register);
             this.preRegister = preRegister.register;
