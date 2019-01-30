@@ -23,7 +23,6 @@ export class ConfirmationComponent {
 
   constructor( public procescoService: ProcescoService) {
     this.procescoService.getLogedUser().subscribe((response: any) => {
-      console.log(response);
       this.currentUser = response;
       this.currentStep = this.currentUser.currentStep + 1;
     });

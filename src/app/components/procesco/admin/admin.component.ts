@@ -41,7 +41,6 @@ export class AdminComponent {
       {label: ''},
     ];
     this.procescoService.getAllUsers().subscribe((response: any) => {
-      console.log(response);
       this.userList = response.data;
       this.pagination = {
         last_page_url: response.last_page_url,
@@ -70,7 +69,6 @@ export class AdminComponent {
   }
 
   onButtonClick(user: UserInterface) {
-    console.log(user);
     switch (user.currentStep) {
       case 0: {
         this.router.navigate(['procesco/nuevoProveedor/', user.id]);
@@ -92,7 +90,6 @@ export class AdminComponent {
 
   search(searchText: any) {
     this.procescoService.getAllUsers(searchText).subscribe((response: any) => {
-      console.log(response);
       this.userList = response.data;
       this.pagination = {
         last_page_url: response.last_page_url,
@@ -105,7 +102,7 @@ export class AdminComponent {
         to: response.to,
       };
     }, error1 => {
-      console.log(error1);
+      console.error(error1);
     });
   }
 }

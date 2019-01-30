@@ -13,7 +13,6 @@ export class DescriptionsComponent {
   constructor(public procescoService: ProcescoService) {
     this.procescoService.getClassificationsList().subscribe((classifications: any) => {
       this.classifications = classifications;
-      console.log(this.classifications);
     }, error1 => {
       console.error(error1);
     });

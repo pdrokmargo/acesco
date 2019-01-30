@@ -20,7 +20,6 @@ export class PaginationComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     // Action for change
     if (changes['options']) {
-      console.log(this.options);
       if (this.options.total > 15) {
         for (let i = 0; i < this.options.total / 15; i++) {
           this.pageItems.push({label: i + 1});

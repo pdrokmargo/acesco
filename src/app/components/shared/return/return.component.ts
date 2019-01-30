@@ -15,9 +15,7 @@ export class ReturnComponent {
   }
 
   onlinkClick() {
-    console.log(this.user);
     this.procescoService.adminApproval(this.user.id, this.user).subscribe((response: any) => {
-      console.log(response);
       this.router.navigate(['procesco/admin']);
     }, error1 => {
       console.error(error1);

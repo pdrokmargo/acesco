@@ -35,11 +35,9 @@ export class ProfileComponent implements AfterViewInit {
       {label: 'Update', value: 'update', active: false}
     ];
     this.procescoService.getLogedUser().subscribe((user: any) => {
-      console.log(user);
       if (user.preregistro_id) {
         switch (user.national) {
           case 0: {
-            console.log('nacional');
             this.nationalOptions[0].active = user.supplier === 1;
             this.nationalOptions[1].active = user.inHouse === 1;
             break;
@@ -68,11 +66,10 @@ export class ProfileComponent implements AfterViewInit {
       const inHouse = this.nationalOptions[1].active ? 1 : 0;
       const national = this.providerType === 'national' ? 1 : 0;
       this.procescoService.updateUser({supplier: supplier, inHouse: inHouse, national: national}, 'profile').subscribe((response: any) => {
-        console.log(response);
         this.loading = false;
         this.router.navigate(['procesco/nuevoProveedor']);
       }, error1 => {
-        console.log(error1);
+        console.error(error1);
         this.loading = false;
       });
 

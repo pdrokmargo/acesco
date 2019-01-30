@@ -42,9 +42,8 @@ export class StageAComponent {
           this.user = user;
           this.procescoService.getStepById(user.stagea_id, 'stage-a').subscribe((stage: any) => {
             this.stageA = stage.stage_a;
-            console.log(stage);
           }, error1 => {
-            console.log(error1);
+            console.error(error1);
           });
         }, error1 => {
           console.error(error1);
@@ -53,7 +52,7 @@ export class StageAComponent {
         this.procescoService.getLogedUser().subscribe((user: UserInterface) => {
           this.step = user.currentStep;
         }, error1 => {
-          console.log(error1);
+          console.error(error1);
         });
       }
     }, error1 => {
@@ -133,7 +132,6 @@ export class StageAComponent {
   }
 
   updatedValue(event: ToggleInterface) {
-    console.log(event);
     switch (event.key) {
       case 'commonRegime': {
         this.stageA['simplifiedRegimen'] = false;
@@ -146,15 +144,12 @@ export class StageAComponent {
       case 'industryAndCommerceTaxBogota': {
         if (event.value) {
           this.stageA['industryAndCommerceTaxMalambo'] = false;
-          console.log(this.stageA['industryAndCommerceTaxMalambo']);
         }
         break;
       }
       case 'industryAndCommerceTaxMalambo': {
-        console.log('industryAndCommerceTaxMalambo');
         if (event.value) {
           this.stageA['industryAndCommerceTaxBogota'] = false;
-          console.log(this.stageA['industryAndCommerceTaxBogota']);
         }
         break;
       }
@@ -172,10 +167,8 @@ export class StageAComponent {
           this.paymentConditionToggles.forEach(el => el.value = false);
         }
         const index = this.paymentConditionToggles.findIndex(el => el.key === event.key2);
-        console.log(index);
         this.paymentConditionToggles[index].value = true;
         this.reserved_space['payment_condition'] = event.key2;
-        console.log(this.paymentConditionToggles);
         break;
       }
     }
@@ -185,11 +178,10 @@ export class StageAComponent {
   onSubmit(form: NgForm) {
     this.loading = true;
     this.procescoService.updateUser(this.stageA, 'stage-a').subscribe((response: any) => {
-      console.log(response);
       this.router.navigate(['procesco/confirmacion']);
       this.loading = false;
     }, error1 => {
-      console.log(error1);
+      console.error(error1);
     });
   }
 

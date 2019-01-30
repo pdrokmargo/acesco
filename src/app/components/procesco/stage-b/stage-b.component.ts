@@ -41,12 +41,11 @@ export class StageBComponent {
           this.step = user.currentStep;
           this.procescoService.getStepById(user.stageb_id, 'stage-b').subscribe((stage: any) => {
             this.stageB = stage.stage_b;
-            console.log(this.stageB);
           }, error1 => {
-            console.log(error1);
+            console.error(error1);
           });
         }, error1 => {
-          console.log(error1);
+          console.error(error1);
         });
       } else {
         this.procescoService.getLogedUser().subscribe(user => {
@@ -57,7 +56,7 @@ export class StageBComponent {
         });
       }
     }, error1 => {
-      console.log(error1);
+      console.error(error1);
     });
 
     this.lists = {
@@ -273,7 +272,6 @@ export class StageBComponent {
   }
 
   updatedValue(event: ToggleInterface) {
-    console.log(event);
     this.stageB[event.key] = event.value;
   }
 
@@ -282,20 +280,16 @@ export class StageBComponent {
   }
 
   fileChange(event: any, model: string) {
-    console.log(model);
     const fileList: FileList = event.target.files;
     if (!fileList.length) {
       return;
     }
     const file: File = fileList[0];
-    console.log(file);
     const formData: FormData = new FormData();
     formData.set(`${model}File`, file, file.name);
     formData.forEach((value, key) => {
-      console.log('key %s: value %s', key, value);
     });
     this.procescoService.putFile(formData).subscribe((response: any) => {
-      console.log(response);
     }, error1 => {
       console.error(error1);
     });
@@ -319,7 +313,6 @@ export class StageBComponent {
   onSubmit() {
     this.loading = true;
     this.procescoService.updateUser(this.stageB, 'stage-b').subscribe((response: any) => {
-      console.log(response);
       this.router.navigate(['procesco/confirmacion']);
       this.loading = false;
     }, error1 => {
