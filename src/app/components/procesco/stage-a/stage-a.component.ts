@@ -1,3 +1,9 @@
+/**
+ * @author  Sergio Zapata
+ * @contact sergio8016@gmail.com
+ * @version 1.0, 09/01/08
+ */
+
 import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter} from '@angular/core';
 import {UserInterface} from '../../../Interfaces/user.interface';
 import {ProcescoService} from '../../../services/procesco.service';

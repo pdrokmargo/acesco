@@ -1,3 +1,9 @@
+/**
+ * @author  Sergio Zapata
+ * @contact sergio8016@gmail.com
+ * @version 1.0, 21/01/09
+ */
+
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {faAngleDoubleLeft, faAngleDoubleRight} from '@fortawesome/free-solid-svg-icons';
 import {ProcescoService} from '../../../services/procesco.service';

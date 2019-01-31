@@ -1,3 +1,9 @@
+/**
+ * @author  Sergio Zapata
+ * @contact sergio8016@gmail.com
+ * @version 1.0, 10/01/08
+ */
+
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {faCaretDown, faCaretRight, faCaretUp, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {UserInterface} from '../../../Interfaces/user.interface';

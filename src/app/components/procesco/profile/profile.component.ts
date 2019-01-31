@@ -1,3 +1,9 @@
+/**
+ * @author  Sergio Zapata
+ * @contact sergio8016@gmail.com
+ * @version 1.0, 29/12/08
+ */
+
 import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter} from '@angular/core';
 import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';

@@ -1,3 +1,9 @@
+/**
+ * @author  Sergio Zapata
+ * @contact sergio8016@gmail.com
+ * @version 1.0, 28/12/08
+ */
+
 import {Component, EventEmitter, Output} from '@angular/core';
 import {faGoogleDrive} from '@fortawesome/free-brands-svg-icons';
 import {faCaretRight, faSpinner, faUnlock, faUser} from '@fortawesome/free-solid-svg-icons';

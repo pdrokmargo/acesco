@@ -1,3 +1,9 @@
+/**
+ * @author  Sergio Zapata
+ * @contact sergio8016@gmail.com
+ * @version 1.0, 29/01/09
+ */
+
 import {Component, Input} from '@angular/core';
 import {ProcescoService} from '../../../services/procesco.service';
 import {Router} from '@angular/router';

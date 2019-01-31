@@ -1,3 +1,9 @@
+/**
+ * @author  Sergio Zapata
+ * @contact sergio8016@gmail.com
+ * @version 1.0, 31/12/08
+ */
+
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({

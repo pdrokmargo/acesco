@@ -1,3 +1,8 @@
+/**
+ * @author  Sergio Enrique Zapata Donado
+ * @version 1.0, 12/01/09
+ */
+
 import {Component} from '@angular/core';
 import {ProcescoService} from '../../../services/procesco.service';
 import {UserInterface} from '../../../Interfaces/user.interface';

@@ -1,4 +1,10 @@
-import {AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
+/**
+ * @author  Sergio Zapata
+ * @contact sergio8016@gmail.com
+ * @version 1.0, 29/12/08
+ */
+
+import { ChangeDetectorRef, Component} from '@angular/core';
 import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {ToggleInterface} from '../../../Interfaces/toggle.interface';
 import {ActivatedRoute, Router} from '@angular/router';

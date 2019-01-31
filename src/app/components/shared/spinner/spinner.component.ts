@@ -1,3 +1,9 @@
+/**
+ * @author  Sergio Zapata
+ * @contact sergio8016@gmail.com
+ * @version 1.0, 13/01/09
+ */
+
 import {Component, Input} from '@angular/core';
 import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 

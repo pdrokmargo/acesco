@@ -1,3 +1,9 @@
+/**
+ * @author  Sergio Zapata
+ * @contact sergio8016@gmail.com
+ * @version 1.0, 02/01/09
+ */
+
 import {AfterViewInit, Component, Input} from '@angular/core';
 import {faCaretRight, faCheck, faEnvelope, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
