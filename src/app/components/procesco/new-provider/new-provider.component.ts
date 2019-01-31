@@ -149,8 +149,7 @@ export class NewProviderComponent {
 
   approval() {
     this.loading = true;
-    this.preRegister.currentStep = 1;
-    this.procescoService.adminApproval(this.id, this.preRegister).subscribe((response: any) => {
+    this.procescoService.adminApproval(this.id, {currentStep: 1}).subscribe((response: any) => {
       this.successMessage = 'Usuario aprobado con éxito';
       setTimeout(() => {
         this.router.navigate(['procesco/admin']);
@@ -202,6 +201,7 @@ export class NewProviderComponent {
     this.preRegister.country_id = this.preRegister.country_id.id;
     this.preRegister.classification_id = this.preRegister.classification_id.id;
     this.preRegister.documentType_id = this.preRegister.documentType_id.id;
+    console.log(this.preRegister);
     this.procescoService.updateUser(this.preRegister, 'pre-register').subscribe((response: any) => {
       this.router.navigate(['procesco/confirmacion']);
     }, error1 => {

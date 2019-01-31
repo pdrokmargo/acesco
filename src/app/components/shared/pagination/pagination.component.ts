@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {faAngleDoubleLeft, faAngleDoubleRight} from '@fortawesome/free-solid-svg-icons';
 import {ProcescoService} from '../../../services/procesco.service';
 
@@ -9,6 +9,7 @@ import {ProcescoService} from '../../../services/procesco.service';
 })
 export class PaginationComponent implements OnChanges {
   @Input() options: any;
+  @Output() newData: EventEmitter<any> = new EventEmitter();
   pageItems: any [] = [];
   faAngleDoubleLeft = faAngleDoubleLeft;
   faAngleDoubleRight = faAngleDoubleRight;
@@ -34,6 +35,7 @@ export class PaginationComponent implements OnChanges {
         this.procescoService.getAllUsers(1).subscribe((response: any) => {
           const {current_page, last_page, last_page_url, next_page_url, per_page, prev_page_url, to, total} = response;
           this.options = {current_page, last_page, last_page_url, next_page_url, per_page, prev_page_url, to, total};
+          this.newData.emit(response);
         });
         break;
       }
@@ -41,6 +43,7 @@ export class PaginationComponent implements OnChanges {
         this.procescoService.getAllUsers(this.options.last_page).subscribe((response: any) => {
           const {current_page, last_page, last_page_url, next_page_url, per_page, prev_page_url, to, total} = response;
           this.options = {current_page, last_page, last_page_url, next_page_url, per_page, prev_page_url, to, total};
+          this.newData.emit(response);
         });
         break;
       }
@@ -48,6 +51,7 @@ export class PaginationComponent implements OnChanges {
         this.procescoService.getAllUsers(this.options.current_page - 1).subscribe((response: any) => {
           const {current_page, last_page, last_page_url, next_page_url, per_page, prev_page_url, to, total} = response;
           this.options = {current_page, last_page, last_page_url, next_page_url, per_page, prev_page_url, to, total};
+          this.newData.emit(response);
         });
         break;
       }
@@ -55,6 +59,7 @@ export class PaginationComponent implements OnChanges {
         this.procescoService.getAllUsers(this.options.current_page + 1).subscribe((response: any) => {
           const {current_page, last_page, last_page_url, next_page_url, per_page, prev_page_url, to, total} = response;
           this.options = {current_page, last_page, last_page_url, next_page_url, per_page, prev_page_url, to, total};
+          this.newData.emit(response);
         });
         break;
       }
@@ -62,6 +67,7 @@ export class PaginationComponent implements OnChanges {
         this.procescoService.getAllUsers(page).subscribe((response: any) => {
           const {current_page, last_page, last_page_url, next_page_url, per_page, prev_page_url, to, total} = response;
           this.options = {current_page, last_page, last_page_url, next_page_url, per_page, prev_page_url, to, total};
+          this.newData.emit(response);
         });
       }
     }

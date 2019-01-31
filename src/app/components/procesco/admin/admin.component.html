@@ -45,7 +45,7 @@
           </tbody>
         </table>
         <app-spinner [loading]="loading"></app-spinner>
-        <app-pagination *ngIf="pagination.hasOwnProperty('total')" [options]="pagination"></app-pagination>
+        <app-pagination *ngIf="pagination.hasOwnProperty('total')" [options]="pagination" (newData)="setNewList($event);"></app-pagination>
       </div>
     </div>
   </div>

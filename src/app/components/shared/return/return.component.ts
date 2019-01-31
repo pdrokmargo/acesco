@@ -21,8 +21,7 @@ export class ReturnComponent {
   }
 
   onButtonClick(input) {
-    console.log(input.value);
-    this.procescoService.adminApproval(this.user.id, this.user).subscribe((response: any) => {
+    this.procescoService.adminApproval(this.user.id, {message: input.value}).subscribe((response: any) => {
       this.router.navigate(['procesco/admin']);
     }, error1 => {
       console.error(error1);

@@ -68,6 +68,12 @@ export class AdminComponent {
     });
   }
 
+  setNewList(newData: any) {
+    console.clear();
+    console.log(newData);
+    this.userList = newData.data;
+  }
+
   onButtonClick(user: UserInterface) {
     switch (user.currentStep) {
       case 0: {
