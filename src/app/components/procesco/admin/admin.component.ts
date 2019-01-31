@@ -42,16 +42,8 @@ export class AdminComponent {
     ];
     this.procescoService.getAllUsers().subscribe((response: any) => {
       this.userList = response.data;
-      this.pagination = {
-        last_page_url: response.last_page_url,
-        next_page_url: response.next_page_url,
-        prev_page_url: response.prev_page_url,
-        per_page: response.per_page,
-        last_page: response.last_page,
-        current_page: response.current_page,
-        total: response.total,
-        to: response.to,
-      };
+      const { last_page_url,  next_page_url,  prev_page_url,  per_page,  last_page,  current_page,  total,  to } = response;
+      this.pagination = {last_page_url, next_page_url, prev_page_url, per_page, last_page, current_page, total, to};
       this.loading = false;
       this.procescoService.getClassificationsList().subscribe((classifications: any) => {
         this.userList.forEach(user => {
@@ -69,8 +61,6 @@ export class AdminComponent {
   }
 
   setNewList(newData: any) {
-    console.clear();
-    console.log(newData);
     this.userList = newData.data;
   }
 
@@ -97,16 +87,8 @@ export class AdminComponent {
   search(searchText: any) {
     this.procescoService.getAllUsers(searchText).subscribe((response: any) => {
       this.userList = response.data;
-      this.pagination = {
-        last_page_url: response.last_page_url,
-        next_page_url: response.next_page_url,
-        prev_page_url: response.prev_page_url,
-        per_page: response.per_page,
-        last_page: response.last_page,
-        current_page: response.current_page,
-        total: response.total,
-        to: response.to,
-      };
+      const { last_page_url,  next_page_url,  prev_page_url,  per_page,  last_page,  current_page,  total,  to } = response;
+      this.pagination = { last_page_url,  next_page_url,  prev_page_url,  per_page,  last_page,  current_page,  total,  to };
     }, error1 => {
       console.error(error1);
     });
