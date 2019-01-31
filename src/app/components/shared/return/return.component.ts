@@ -9,12 +9,19 @@ import {Router} from '@angular/router';
 })
 export class ReturnComponent {
   @Input() user;
+  returned: boolean;
+  returnReason: string;
 
   constructor(public procescoService: ProcescoService, private router: Router) {
-
+    this.returnReason = null;
   }
 
   onlinkClick() {
+    this.returned = !this.returned;
+  }
+
+  onButtonClick(input) {
+    console.log(input.value);
     this.procescoService.adminApproval(this.user.id, this.user).subscribe((response: any) => {
       this.router.navigate(['procesco/admin']);
     }, error1 => {
