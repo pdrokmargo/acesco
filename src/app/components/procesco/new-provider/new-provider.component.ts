@@ -4,7 +4,7 @@
  * @version 1.0, 29/12/08
  */
 
-import { ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {ToggleInterface} from '../../../Interfaces/toggle.interface';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -41,18 +41,17 @@ export class NewProviderComponent {
     this.activatedRoute.params.subscribe(activeRoute => {
       if (activeRoute['id']) {
         this.isAdminUser = true;
-        this.procescoService.getUserById(activeRoute['id']).subscribe(user => {
-          this.step = user.currentStep;
-          this.id = user.id;
-          this.user = user;
-          this.procescoService.getStepById(user.preregistro_id, 'pre-register').subscribe((preRegister: any) => {
-            this.preRegister = preRegister.register;
+        this.procescoService.getUserById(activeRoute['id']).subscribe(({currentStep, id, preregistro_id}: any) => {
+          this.step = currentStep;
+          this.id = id;
+          this.procescoService.getStepById(preregistro_id, 'pre-register').subscribe(({register}: any) => {
+            this.preRegister = {...register};
             this.procescoService.getCountriesList().subscribe(countries => {
-              this.countries = countries;
+              this.countries = [...countries];
               this.procescoService.getDocumentTypeList().subscribe(documents => {
-                this.documentTypes = documents;
+                this.documentTypes = [...documents];
                 this.procescoService.getClassificationsList().subscribe(classifications => {
-                  this.classifications = classifications;
+                  this.classifications = [...classifications];
                   this.preRegister.country_id = this.countries.find(el => el.id === this.preRegister.country_id);
                   this.preRegister.documentType_id = this.documentTypes.find(el => el.id === this.preRegister.documentType_id);
                   this.preRegister.classification_id = this.classifications.find(el => el.id === this.preRegister.classification_id);
@@ -73,23 +72,21 @@ export class NewProviderComponent {
         });
       } else {
         this.procescoService.getClassificationsList().subscribe(classifications => {
-          this.classifications = classifications;
+          this.classifications = [...classifications];
         }, error1 => {
           console.error(error1);
         });
         this.procescoService.getDocumentTypeList().subscribe(documentTypes => {
-          this.documentTypes = documentTypes;
+          this.documentTypes = [...documentTypes];
         }, error1 => {
           console.error(error1);
         });
-        this.procescoService.getLogedUser().subscribe((user: any) => {
-          this.currentUser = user;
-          console.log(user);
-          this.preRegister.documentNumber = user.id;
-          this.step = user.currentStep;
+        this.procescoService.getLogedUser().subscribe(({id, currentStep, national}) => {
+          this.preRegister.documentNumber = id;
+          this.step = currentStep;
           this.procescoService.getCountriesList().subscribe(countries => {
-            this.countries = countries;
-            if (user.national === 1) {
+            this.countries = [...countries];
+            if (national === 1) {
               this.preRegister.country_id = this.countries.find(el => el.name === 'Colombia');
             }
           }, error1 => {
@@ -206,11 +203,12 @@ export class NewProviderComponent {
 
   onSubmit(form: NgForm) {
     this.loading = true;
-    this.preRegister.country_id = this.preRegister.country_id.id;
-    this.preRegister.classification_id = this.preRegister.classification_id.id;
-    this.preRegister.documentType_id = this.preRegister.documentType_id.id;
-    console.log(this.preRegister);
+    const {country_id, classification_id, documentType_id} = this.preRegister;
+    this.preRegister.country_id = country_id.id;
+    this.preRegister.classification_id = classification_id.id;
+    this.preRegister.documentType_id = documentType_id.id;
     this.procescoService.updateUser(this.preRegister, 'pre-register').subscribe((response: any) => {
+      console.log(response);
       this.router.navigate(['procesco/confirmacion']);
     }, error1 => {
       console.error(error1);
