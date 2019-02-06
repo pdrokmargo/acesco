@@ -84,6 +84,8 @@ export class NewProviderComponent {
         });
         this.procescoService.getLogedUser().subscribe((user: any) => {
           this.currentUser = user;
+          console.log(user);
+          this.preRegister.documentNumber = user.id;
           this.step = user.currentStep;
           this.procescoService.getCountriesList().subscribe(countries => {
             this.countries = countries;
