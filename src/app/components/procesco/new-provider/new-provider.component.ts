@@ -169,7 +169,6 @@ export class NewProviderComponent {
     this.preRegister.personalDataProtection = true;
     this.preRegister.habeas = true;
     this.preRegister.serviceDescription = 'serviceDescription';
-    this.preRegister.documentNumber = 'documentNumber';
     this.preRegister.documentIssued = 'documentIssued';
     this.preRegister.businessName = 'businessName';
     this.preRegister.commercialName = 'commercialName';

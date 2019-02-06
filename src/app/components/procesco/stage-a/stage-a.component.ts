@@ -42,12 +42,11 @@ export class StageAComponent {
     this.activatedRoute.params.subscribe(activeRoute => {
       if (activeRoute['id']) {
         this.isAdminUser = true;
-        this.procescoService.getUserById(activeRoute['id']).subscribe((user: any) => {
-          this.id = user.id;
-          this.step = user.currentStep;
-          this.user = user;
-          this.procescoService.getStepById(user.stagea_id, 'stage-a').subscribe((stage: any) => {
-            this.stageA = stage.stage_a;
+        this.procescoService.getUserById(activeRoute['id']).subscribe(({id, currentStep, stagea_id}: any) => {
+          this.id = id;
+          this.step = currentStep;
+          this.procescoService.getStepById(stagea_id, 'stage-a').subscribe(({stage_a}: any) => {
+            this.stageA = {...stage_a};
           }, error1 => {
             console.error(error1);
           });
@@ -55,8 +54,8 @@ export class StageAComponent {
           console.error(error1);
         });
       } else {
-        this.procescoService.getLogedUser().subscribe((user: UserInterface) => {
-          this.step = user.currentStep;
+        this.procescoService.getLogedUser().subscribe(({currentStep}: any) => {
+          this.step = currentStep;
         }, error1 => {
           console.error(error1);
         });
@@ -65,10 +64,10 @@ export class StageAComponent {
       console.error(error1);
     });
     this.procescoService.getLanguages().subscribe((languages: any) => {
-      this.languages = languages;
+      this.languages = [...languages];
     });
     this.procescoService.getCurrencies().subscribe((currencies: any) => {
-      this.currencies = currencies;
+      this.currencies = [...currencies];
     });
     this.stageA = {
       pep: false,
