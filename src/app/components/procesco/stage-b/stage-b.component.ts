@@ -66,7 +66,7 @@ export class StageBComponent {
     });
 
     this.lists = {
-      selfEvaluation: false,
+      selfEvaluation: true,
       manifest: false,
       physicalSecurityAgreements: false
     };
