@@ -221,10 +221,10 @@ export class StageBComponent {
         value: false,
         text: 'Copias de la calificación en ruc y de las certificaciones/acreditaciones en sistemas de gestión, BASC y sello de producto que pose vigentes.'
       },
-      {model: 'declarationOfRiskPrevention', value: false, text: 'Declaración de prevención del riesgo - la/fa (anexo página 5)'},
+      // {model: 'declarationOfRiskPrevention', value: false, text: 'Declaración de prevención del riesgo - la/fa (anexo página 5)'},
     ];
     this.annex2Toggles = [
-      {model: 'annex6', value: false, text: 'Declaración de compromiso de seguridad (anexo pagina 6)'},
+      // {model: 'annex6', value: false, text: 'Declaración de compromiso de seguridad (anexo pagina 6)'},
       {model: 'safetyData', value: false, text: 'Ficha de seguridad de los productos'},
       {model: 'contingencyPlan', value: false, text: 'Plan de contingencia - preparación y respuesta ante emergencias.'},
       {model: 'productSpecifications', value: false, text: 'Ficha técnica del producto cone specificaciones.'},
