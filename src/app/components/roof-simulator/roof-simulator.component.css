@@ -1,0 +1,214 @@
+.roof-simulator-container {
+  height: calc(100vh - 56px);
+  display: flex;
+}
+
+.nav-roof-simulator {
+  flex:1;
+}
+
+.content-roof-simulator {
+  flex: 3;
+  
+  background-image: url('/assets/images/fondo-app-acesco.jpg');
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-1 {
+  position: relative;
+  max-width: 450px;
+  color: #fff;
+  padding: 0px 50px;
+  background: rgba(5, 74, 78, 0.5);
+  margin: 50px 0;
+}
+
+.tab-1:before {
+  content:'';
+  position: absolute;
+  width: 100%;
+  top: -50px;
+  left: 0;
+  border-bottom: 50px solid rgba(5, 74, 78, 0.5);
+  border-right: 30px solid transparent;
+}
+
+.tab-1:after {
+  content:'';
+  position: absolute;
+  width: 100%;
+  bottom: -50px;
+  left: 0;
+  border-top: 50px solid rgba(5, 74, 78, 0.5);
+  border-left: 30px solid transparent;
+}
+
+.tab-1 h1,
+.tab-1 p {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+.tab-1 h1 {
+  font-size: 22px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.tab-1 h1:before {
+  content: '';
+  position: absolute;
+  height: 3px;
+  width: 20%;
+  bottom: -15px;
+  left: calc(40%);
+  background: #fff;
+}
+
+.tab-1 p {
+  font-size: 13px;
+}
+
+.nav-roof-simulator {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.nav-roof-top h1,
+.nav-roof-top h2 {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.nav-roof-top h1 {
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.nav-roof-top h2 {
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.btn-area {
+  background: transparent;
+  color: #9e9d9d;
+  border: 1px solid;
+  cursor: pointer;
+  width: calc(50% - 5px);
+  font-size: 12px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-area .text {
+  display: block;
+  padding: 5px 10px;
+  border-top: 1px solid #9e9d9d;
+}
+
+.btn-area.active .text {
+  background: #251a63;
+  color: #fff;
+}
+
+.btn-area-1 {
+  margin-right: 10px;
+}
+
+.btn-area img {
+  height: 90px;
+  width: 100%;
+  display: block;
+}
+
+.nav-roof-bottom {
+  border-top: 1px solid #9e9d9d;
+  padding-top: 10px;
+}
+
+.nav-roof-bottom button {
+  width: calc(50% - 5px);
+  background: transparent;
+  color: #9e9d9d;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.nav-roof-bottom button:nth-child(1) {
+  margin-right: 10px;
+}
+
+.nav-roof-bottom .cotizar {
+  width: 100%;
+  border-radius: 40px;
+  margin-top: 10px;
+  background: #251a63;
+  color: #fff;
+}
+
+.nav-roof-medium {
+  margin-top: 15px;
+}
+
+.nav-roof-medium .btn-area {
+  width: calc(33.333% - 7px);
+}
+
+.nav-roof-medium .btn-area:nth-child(2) {
+  margin: 0 10px;
+}
+
+.nav-roof-medium .btn-area .text {
+  font-size: 11px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-area {
+  position: relative;
+}
+
+.check {
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: calc(100% - 48px);
+  opacity: 0;
+  z-index: -1;
+}
+
+.btn-area.active .check {
+  opacity: 1;
+  z-index: 1;
+}
+
+.check img {
+  max-width: 25px;
+}
+
+.tab-2,
+.tab-3 {
+  text-align: center;
+}
+
+.tab-2 img,
+.tab-3 img {
+  width: 90%;
+}

@@ -1,0 +1,69 @@
+<div class="roof-simulator-container">
+  <nav class="nav-roof-simulator">
+    <div class="nav-roof-top">
+      <h1 class="nav-roof-title">Simulador de cubiertas</h1>
+      <h2 class="nav-roof-subtitle">Escoge tu proyecto</h2>
+      <button type="button" class="btn-area btn-area-1" [ngClass]="{'active':currentTab == VIVIENDA}"
+        (click)="tab(VIVIENDA)">
+        <img src="asd" alt="">
+        <span class="text">Viviendas</span>
+      </button>
+      <button type="button" class="btn-area btn-area-2" [ngClass]="{'active':currentTab == BODEGA}"
+        (click)="tab(BODEGA)">
+        <img src="asd" alt="">
+        <span class="text">Bodegas</span>
+      </button>
+      <div class="nav-roof-medium" *ngIf="currentTab == VIVIENDA">
+        <div class="config-tab-1">
+          <button class="btn-area" (click)="type(TYPE1)" [ngClass]="{'active': currenttype == TYPE1}">
+            <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
+            <img src="" alt="">
+            <span class="text">
+              <span class="icon"></span>
+              Master 1000
+            </span>
+          </button>
+          <button class="btn-area" (click)="type(TYPE2)" [ngClass]="{'active': currenttype == TYPE2}">
+            <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
+            <img src="" alt="">
+            <span class="text">
+              <span class="icon"></span>
+              Cubierta arquitectonica
+            </span>
+          </button>
+          <button class="btn-area" (click)="type(TYPE3)" [ngClass]="{'active': currenttype == TYPE3}">
+            <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
+            <img src="" alt="">
+            <span class="text">
+              <span class="icon"></span>
+              Teja sin trasiapo
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="nav-roof-bottom">
+      <button>Distribuidores</button>
+      <button>Garantía</button>
+      <button class="cotizar">Cotizar</button>
+    </div>
+  </nav>
+  <div class="content-roof-simulator">
+    <div class="tab-1" *ngIf="currentTab == DEFAULT">
+      <h1>Lorem ipsum dolor sit amet,</h1>
+      <p> consectetur adipisicing elit. Ratione veritatis, illum, fugit totam atque quam ex
+        laboriosam quis perspiciatis consequatur harum molestias? Maxime doloremque facere, quaerat voluptates omnis
+        cupiditate. Asperiores?</p>
+    </div>
+    <div class="tab-2" *ngIf="currentTab == VIVIENDA">
+      <img src="/assets/images/00-CASA/{{images.type.casa[currenttype-1]['url']}}" alt="">
+    </div>
+
+    <div class="tab-3" *ngIf="currentTab == BODEGA">
+      <img src="/assets/images/01-BODEGA/{{images.type.casa[currenttype-1]['url']}}" alt="">
+    </div>
+  </div>
+</div>
