@@ -5,6 +5,7 @@
 
 .nav-roof-simulator {
   flex:1;
+  overflow-y: auto;
 }
 
 .content-roof-simulator {
@@ -206,9 +207,29 @@
 .tab-2,
 .tab-3 {
   text-align: center;
+  position: relative;
 }
 
 .tab-2 img,
 .tab-3 img {
   width: 90%;
 }
+
+.roof-color {
+  position: absolute;
+  left: 5%;
+}
+
+.config-tab-2 {
+  margin: 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.config-tab-2 button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+

@@ -1,19 +1,25 @@
 <div class="roof-simulator-container">
   <nav class="nav-roof-simulator">
     <div class="nav-roof-top">
+
       <h1 class="nav-roof-title">Simulador de cubiertas</h1>
+
       <h2 class="nav-roof-subtitle">Escoge tu proyecto</h2>
+
       <button type="button" class="btn-area btn-area-1" [ngClass]="{'active':currentTab == VIVIENDA}"
         (click)="tab(VIVIENDA)">
         <img src="asd" alt="">
         <span class="text">Viviendas</span>
       </button>
+
       <button type="button" class="btn-area btn-area-2" [ngClass]="{'active':currentTab == BODEGA}"
         (click)="tab(BODEGA)">
         <img src="asd" alt="">
         <span class="text">Bodegas</span>
       </button>
+
       <div class="nav-roof-medium" *ngIf="currentTab == VIVIENDA">
+
         <div class="config-tab-1">
           <button class="btn-area" (click)="type(TYPE1)" [ngClass]="{'active': currenttype == TYPE1}">
             <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
@@ -40,7 +46,15 @@
             </span>
           </button>
         </div>
+
+        <div class="config-tab-2">
+          <button *ngFor="let item of images.color_icon; let index = index" (click)="selecRoof(index)">
+            <img src="/assets/images/iconos-colores/{{item}}" alt="">
+          </button>
+        </div>
+
       </div>
+
     </div>
 
 
@@ -59,11 +73,12 @@
         cupiditate. Asperiores?</p>
     </div>
     <div class="tab-2" *ngIf="currentTab == VIVIENDA">
-      <img src="/assets/images/00-CASA/{{images.type.casa[currenttype-1]['url']}}" alt="">
+      <img src="/assets/images/00-CASA/{{images.type.casa[currenttype-1]}}" alt="">
+      <img class="roof-color" *ngIf="currentroofcolor" src="/assets/images/00-CASA/{{currentroofcolor}}" alt="">
     </div>
 
     <div class="tab-3" *ngIf="currentTab == BODEGA">
-      <img src="/assets/images/01-BODEGA/{{images.type.casa[currenttype-1]['url']}}" alt="">
+      <img src="/assets/images/01-BODEGA/{{images.type.casa[currenttype-1]}}" alt="">
     </div>
   </div>
 </div>
