@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +10,9 @@ export class NavbarComponent implements OnInit {
 
   constructor() {
     this.links = [
-      {label: 'Procesco', href: 'procesco' },
-      {label: 'Sistema de garantias', href: 'sistemaDeGarantias' },
+      { label: 'Procesco', href: 'procesco' },
+      { label: 'Sistema de garantias', href: 'sistema-de-garantias' },
+      { label: 'Simulador de cubiertas', href: 'simulador-de-cubiertas' },
     ];
   }
 
