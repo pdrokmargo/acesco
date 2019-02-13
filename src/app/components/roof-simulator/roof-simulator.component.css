@@ -212,12 +212,12 @@
 
 .tab-2 img,
 .tab-3 img {
-  width: 90%;
+  width: 100%;
 }
 
 .roof-color {
   position: absolute;
-  left: 5%;
+  left: 0%;
 }
 
 .config-tab-2 {
@@ -231,5 +231,28 @@
   border: 0;
   background: transparent;
   cursor: pointer;
+  position: relative;
 }
 
+.config-tab-2 button .check {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+  opacity: 0;
+  background: transparent;
+}
+
+.config-tab-2 button.color-active .check {
+  z-index: 10;
+  opacity: 1;
+}
+
+.config-tab-2 button.color-active .check img {
+  max-width: 20px;
+}

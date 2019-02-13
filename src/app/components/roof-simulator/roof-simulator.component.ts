@@ -60,6 +60,8 @@ export class RoofSimulatorComponent implements OnInit {
 
   private currentroofcolor: string = null;
 
+  private indexroof = 0;
+
   constructor() { }
 
   ngOnInit() {
@@ -79,6 +81,7 @@ export class RoofSimulatorComponent implements OnInit {
   }
 
   private selecRoof(index) {
+    this.indexroof = index;
     let type = '';
     switch (this.currenttype) {
       case 1:

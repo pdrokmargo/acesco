@@ -48,8 +48,9 @@
         </div>
 
         <div class="config-tab-2">
-          <button *ngFor="let item of images.color_icon; let index = index" (click)="selecRoof(index)">
+          <button *ngFor="let item of images.color_icon; let index = index" (click)="selecRoof(index)" [ngClass]="{'color-active': indexroof === index}">
             <img src="/assets/images/iconos-colores/{{item}}" alt="">
+            <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
           </button>
         </div>
 
