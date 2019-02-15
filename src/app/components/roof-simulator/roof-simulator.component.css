@@ -3,13 +3,8 @@
   display: flex;
 }
 
-.nav-roof-simulator {
-  flex:1;
-  overflow-y: auto;
-}
-
 .content-roof-simulator {
-  flex: 3;
+  flex: 7;
   
   background-image: url('/assets/images/fondo-app-acesco.jpg');
   background-position: center; /* Center the image */
@@ -76,10 +71,26 @@
 }
 
 .nav-roof-simulator {
+  padding: 20px;
+  overflow-y: scroll;
+  flex:3;
+}
+
+.nav-roof-simulator-wrapper {
+  margin: 0 auto;
+  width: 380px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding: 20px;
+  min-height: 100%;
+}
+.nav-roof-top {
+  text-align: center;
+}
+
+.nav-roof-top>img {
+  max-width: 80px;
+  margin-bottom: 20px;
 }
 
 .nav-roof-top h1,
@@ -92,11 +103,23 @@
 .nav-roof-top h1 {
   font-size: 15px;
   margin-bottom: 20px;
+  color: #39a8db;
 }
 
 .nav-roof-top h2 {
   font-size: 12px;
   margin-bottom: 20px;
+}
+
+.type-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.type-container button {
+  margin: 0;
+  max-width: 150px;
 }
 
 .btn-area {
@@ -109,6 +132,7 @@
   text-align: center;
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 .btn-area .text {
@@ -122,27 +146,58 @@
   color: #fff;
 }
 
-.btn-area-1 {
-  margin-right: 10px;
+.btn-area img {
+    height: 80px;
+    padding: 20px;
+    width: 100%;
+    max-width: 100px;
 }
 
-.btn-area img {
-  height: 90px;
+.config-tab-1 {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.config-tab-1 > div {
+  width: 90%;
+  max-width: 120px;
+  margin-bottom: 10px;
+}
+.config-tab-1 .btn-area {
   width: 100%;
-  display: block;
+}
+.config-tab-1 .btn-area img {
+  width: 100%;
+  max-width: 100px;
 }
 
 .nav-roof-bottom {
+  padding-top: 10px;
   border-top: 1px solid #9e9d9d;
   padding-top: 10px;
+  margin-top: 30px;
 }
 
 .nav-roof-bottom button {
   width: calc(50% - 5px);
   background: transparent;
   color: #9e9d9d;
-  border: 1px solid;
   cursor: pointer;
+  position: relative;
+  border: 0;
+  font-size: 10px;
+  margin-bottom: 15px;
+}
+
+.nav-roof-bottom button:hover {
+  color: #000;
+}
+
+.nav-roof-bottom button img {
+  position: absolute;
+  width: 35px;
+  left: 0;
+  top: -9px;
 }
 
 .nav-roof-bottom button:nth-child(1) {
@@ -152,20 +207,25 @@
 .nav-roof-bottom .cotizar {
   width: 100%;
   border-radius: 40px;
-  margin-top: 10px;
   background: #251a63;
   color: #fff;
+  font-size: 12px;
+  margin: 10px 0;
+  padding: 7px;
 }
-
+.nav-roof-bottom .cotizar:hover {
+  color: #fff;
+  background: #251a63;
+}
 .nav-roof-medium {
   margin-top: 15px;
 }
 
-.nav-roof-medium .btn-area {
+.nav-roof-medium .config-tab-2 .btn-area {
   width: calc(33.333% - 7px);
 }
 
-.nav-roof-medium .btn-area:nth-child(2) {
+.nav-roof-medium .config-tab-2 .btn-area:nth-child(2) {
   margin: 0 10px;
 }
 
@@ -200,9 +260,7 @@
   z-index: 1;
 }
 
-.check img {
-  max-width: 25px;
-}
+
 
 .tab-2,
 .tab-3 {
@@ -224,7 +282,7 @@
   margin: 15px 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .config-tab-2 button {
@@ -232,6 +290,10 @@
   background: transparent;
   cursor: pointer;
   position: relative;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .config-tab-2 button .check {
@@ -255,4 +317,71 @@
 
 .config-tab-2 button.color-active .check img {
   max-width: 20px;
+}
+
+.nav-roof-medium .check img {
+  width: 59px;
+}
+.palette{
+  width: 33.33333%;
+}
+.palette button {
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.palette h1 {
+  color: #000;
+  margin-bottom: 8px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 11px;
+}
+.palette ul {
+  text-align: left;
+  font-size: 11px;
+  padding-left: 14px;
+}
+
+.palette h1,
+.palette ul {
+  margin-left:  15px;
+}
+
+.palette ul li {
+  padding: 0;
+}
+
+.palette .check img {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.more-type {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #9e9d9d;
+  padding-top: 15px;
+}
+
+.more-type button {
+  margin: 0;
+  max-width: 150px;
+}
+
+@media only screen and (max-width: 600px) {
+  .roof-simulator-container {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+
+  .nav-roof-simulator,
+  .content-roof-simulator {
+    flex: auto;
+  }
+
+  .nav-roof-simulator {
+    padding: 20px 5px;
+    width: 100%;
+  }
 }
