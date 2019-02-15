@@ -368,20 +368,3 @@
   margin: 0;
   max-width: 150px;
 }
-
-@media only screen and (max-width: 600px) {
-  .roof-simulator-container {
-    flex-direction: column-reverse;
-    height: auto;
-  }
-
-  .nav-roof-simulator,
-  .content-roof-simulator {
-    flex: auto;
-  }
-
-  .nav-roof-simulator {
-    padding: 20px 5px;
-    width: 100%;
-  }
-}
