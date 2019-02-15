@@ -1,22 +1,21 @@
 <div class="roof-simulator-container">
   <nav class="nav-roof-simulator">
-    <div class="nav-roof-simulator-wrapper">
-      <div class="nav-roof-top">
+    <div class="nav-roof-top">
 
-      <img src="./assets/images/icono-cubierta.png" alt="">
+      <img src="/assets/images/icono-cubierta.png" alt="">
       <h1 class="nav-roof-title">Simulador de cubiertas</h1>
 
-        <h2 class="nav-roof-subtitle">Escoge tu proyecto</h2>
+      <h2 class="nav-roof-subtitle">Escoge tu proyecto</h2>
 
       <button type="button" class="btn-area btn-area-1" [ngClass]="{'active':currentTab == VIVIENDA}"
         (click)="tab(VIVIENDA)">
-        <img src="./assets/images/icono-residencia.png" alt="">
+        <img src="/assets/images/icono-residencia.png" alt="">
         <span class="text">Viviendas</span>
       </button>
 
       <button type="button" class="btn-area btn-area-2" [ngClass]="{'active':currentTab == BODEGA}"
         (click)="tab(BODEGA)">
-        <img src="./assets/images/icono-bodega.png" alt="">
+        <img src="/assets/images/icono-bodega.png" alt="">
         <span class="text">Bodegas</span>
       </button>
 
@@ -24,24 +23,24 @@
 
         <div class="config-tab-1">
           <button class="btn-area" (click)="type(TYPE1)" [ngClass]="{'active': currenttype == TYPE1}">
-            <span class="check"><img src="./assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
-            <img src="./assets/images/cubiertas-01.png" alt="">
+            <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
+            <img src="/assets/images/cubiertas-01.png" alt="">
             <span class="text">
               <span class="icon"></span>
               Master 1000
             </span>
           </button>
           <button class="btn-area" (click)="type(TYPE2)" [ngClass]="{'active': currenttype == TYPE2}">
-            <span class="check"><img src="./assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
-            <img src="./assets/images/cubiertas-02.png" alt="">
+            <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
+            <img src="/assets/images/cubiertas-02.png" alt="">
             <span class="text">
               <span class="icon"></span>
               Cubierta arquitectonica
             </span>
           </button>
           <button class="btn-area" (click)="type(TYPE3)" [ngClass]="{'active': currenttype == TYPE3}">
-            <span class="check"><img src="./assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
-            <img src="./assets/images/cubiertas-03.png" alt="">
+            <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
+            <img src="/assets/images/cubiertas-03.png" alt="">
             <span class="text">
               <span class="icon"></span>
               Teja sin trasiapo
@@ -52,98 +51,43 @@
         <div class="config-tab-2">
           <button *ngFor="let item of images.color_icon; let index = index" (click)="selecRoof(index)"
             [ngClass]="{'color-active': indexroof === index}">
-            <img src="./assets/images/iconos-colores/{{item}}" alt="">
-            <span class="check"><img src="./assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
+            <img src="/assets/images/iconos-colores/{{item}}" alt="">
+            <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
           </button>
         </div>
 
       </div>
 
-      <div class="nav-roof-medium" *ngIf="currentTab == VIVIENDA || currentTab == BODEGA">
-
-        <div class="config-tab-1">
-          <ng-container *ngFor="let item of types; let index = index">
-            <div *ngIf="item.show">
-              <button class="btn-area" (click)="type(index)" [ngClass]="{'active': currenttype == index}">
-                <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg"></span>
-                <img src="/assets/images/{{item.url}}">
-                <span class="text">
-                  <span class="icon"></span>
-                  {{item.name}}
-                </span>
-              </button>
-            </div>
-          </ng-container>
-        </div>
-
-        <div class="config-tab-2">
-          <div class="palette" *ngFor="let item of images.img; let index = index">
-            <button (click)="selecRoof(index)" [ngClass]="{'color-active': indexroof === index}">
-              <img src="/assets/images/iconos-colores/{{item.url}}">
-              <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg"></span>
-            </button>
-            <h1>{{item.title}}</h1>
-            <ul>
-              <li>RAL: {{item.ral}}</li>
-              <li>SRI: {{item.sri}}</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
+    </div>
 
 
-<<<<<<< HEAD
+
     <div class="nav-roof-bottom">
       <button>
-        <img src="./assets/images/icono-distribuidores.png" alt="">
+        <img src="/assets/images/icono-distribuidores.png" alt="">
         Distribuidores
       </button>
       <button>
-        <img src="./assets/images/icono-garantias.png" alt="">
+        <img src="/assets/images/icono-garantias.png" alt="">
         Garantía
       </button>
       <button class="cotizar">Cotizar</button>
-=======
-      <div class="nav-roof-bottom">
-        <button>
-          <img src="/assets/images/icono-distribuidores.png">
-          Distribuidores
-        </button>
-        <button>
-          <img src="/assets/images/icono-garantias.png">
-          Garantía
-        </button>
-        <button class="cotizar">Cotizar</button>
-      </div>
->>>>>>> 4f761af376c3478dc99dc3219a37f23ef463874e
     </div>
   </nav>
   <div class="content-roof-simulator">
-    <div class="tab-1" *ngIf="currentTab == 0">
+    <div class="tab-1" *ngIf="currentTab == DEFAULT">
       <h1>Lorem ipsum dolor sit amet,</h1>
       <p> consectetur adipisicing elit. Ratione veritatis, illum, fugit totam atque quam ex
         laboriosam quis perspiciatis consequatur harum molestias? Maxime doloremque facere, quaerat voluptates omnis
         cupiditate. Asperiores?</p>
     </div>
     <div class="tab-2" *ngIf="currentTab == VIVIENDA">
-<<<<<<< HEAD
-      <img src="./assets/images/00-CASA/{{images.type.casa[currenttype-1]}}" alt="">
-      <img class="roof-color" *ngIf="currentroofcolor" src="./assets/images/00-CASA/{{currentroofcolor}}" alt="">
+      <img src="/assets/images/00-CASA/{{images.type.casa[currenttype-1]}}" alt="">
+      <img class="roof-color" *ngIf="currentroofcolor" src="/assets/images/00-CASA/{{currentroofcolor}}" alt="">
     </div>
 
     <div class="tab-3" *ngIf="currentTab == BODEGA">
-      <img src="./assets/images/01-BODEGA/{{images.type.casa[currenttype-1]}}" alt="">
-=======
-      <img src="/assets/images/00-CASA/{{images.type[currenttype]}}">
-      <img class="roof-color" *ngIf="currentroofcolor" src="/assets/images/00-CASA/{{currentroofcolor}}">
-    </div>
-
-    <div class="tab-3" *ngIf="currentTab == BODEGA">
-      <img src="/assets/images/01-BODEGA/{{images.type[currenttype]}}">
-      <img class="roof-color" *ngIf="currentroofcolor" src="/assets/images/01-BODEGA/{{currentroofcolor}}">
-      <img class="roof-color" *ngIf="currentfacadecolor" src="/assets/images/01-BODEGA/{{currentfacadecolor}}">
->>>>>>> 4f761af376c3478dc99dc3219a37f23ef463874e
+      <img src="/assets/images/01-BODEGA/{{images.type.casa[currenttype-1]}}" alt="">
     </div>
   </div>
 </div>
