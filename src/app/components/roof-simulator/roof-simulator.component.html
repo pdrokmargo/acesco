@@ -3,17 +3,11 @@
     <div class="nav-roof-simulator-wrapper">
       <div class="nav-roof-top">
 
-<<<<<<< HEAD
       <img src="./assets/images/icono-cubierta.png" alt="">
       <h1 class="nav-roof-title">Simulador de cubiertas</h1>
-=======
-        <img src="/assets/images/icono-cubierta.png">
-        <h1 class="nav-roof-title">Simulador de cubiertas</h1>
->>>>>>> 4f761af376c3478dc99dc3219a37f23ef463874e
 
         <h2 class="nav-roof-subtitle">Escoge tu proyecto</h2>
 
-<<<<<<< HEAD
       <button type="button" class="btn-area btn-area-1" [ngClass]="{'active':currentTab == VIVIENDA}"
         (click)="tab(VIVIENDA)">
         <img src="./assets/images/icono-residencia.png" alt="">
@@ -60,29 +54,6 @@
             [ngClass]="{'color-active': indexroof === index}">
             <img src="./assets/images/iconos-colores/{{item}}" alt="">
             <span class="check"><img src="./assets/images/check-mark-button-svgrepo-com.svg" alt=""></span>
-=======
-        <div class="type-container">
-          <button type="button" class="btn-area" [ngClass]="{'active':currentTab == VIVIENDA}" (click)="tab(VIVIENDA)">
-            <img src="/assets/images/icono-residencia.png">
-            <span class="text">Viviendas</span>
-          </button>
-          <button type="button" class="btn-area" [ngClass]="{'active':currentTab == BODEGA}" (click)="tab(BODEGA)">
-            <img src="/assets/images/icono-bodega.png">
-            <span class="text">Bodegas</span>
-          </button>
-        </div>
-
-        <div class="more-type" *ngIf="currentTab == BODEGA">
-          <button type="button" class="btn-area" [ngClass]="{'active':currentTab_bodega == BODEGA_FACHADA}"
-            (click)="tab_bodega(BODEGA_FACHADA)">
-            <img src="/assets/images/icono-bodega-fachada.png">
-            <span class="text">Fachada</span>
-          </button>
-          <button type="button" class="btn-area" [ngClass]="{'active':currentTab_bodega == BODEGA_CUBIERTA}"
-            (click)="tab_bodega(BODEGA_CUBIERTA)">
-            <img src="/assets/images/icono-bodega-cubierta.png">
-            <span class="text">Cubierta</span>
->>>>>>> 4f761af376c3478dc99dc3219a37f23ef463874e
           </button>
         </div>
 
