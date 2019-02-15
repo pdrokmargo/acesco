@@ -126,7 +126,7 @@
                 </div>
               </div>
               <div class="col-6">
-                <p>Escoja de acuerdo con objeto social <small class="text-primary link" routerLink="descripciones">Descripciones</small></p>
+                <p>Escoja de acuerdo con objeto social <a class="text-primary link" target="_blank" routerLink="descripciones">Descripciones</a></p>
               </div>
               <div class="col-12">
                 <div class="form-group">
@@ -423,21 +423,20 @@
                 <div class="form-group">
                   <input type="number"
                          class="form-control"
-                         placeholder="Codigo postal:*"
+                         placeholder="Código postal:"
                          [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.zipcode"
-                         [ngClass]="{'is-invalid': zipcode.errors?.required && zipcode.touched }"
                          name="zipcode"
                          #zipcode="ngModel">
-                  <div *ngIf="zipcode.errors?.required && zipcode.touched"><span class="text-danger">Este campo es obligatorio</span>
-                  </div>
+                  <!-- <div *ngIf="zipcode.errors?.required && zipcode.touched"><span class="text-danger">Este campo es obligatorio</span> -->
+                  <!-- </div> -->
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
                   <input type="number"
                          class="form-control"
-                         placeholder="Telefono:*"
+                         placeholder="Teléfono:*"
                          required
                          [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.phone"
@@ -493,7 +492,7 @@
                 <div class="form-group">
                   <input type="text"
                          class="form-control"
-                         placeholder="Pagina Web:"
+                         placeholder="Página Web:"
                          [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.website"
                          name="website"
