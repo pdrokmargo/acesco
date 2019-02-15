@@ -127,11 +127,10 @@ export class StageAComponent {
       {label: 'Alto', value: false, model: 'level_of_impact', key: 3}
     ];
     this.paymentConditionToggles = [
-      {model: 'payment_condition', value: true, key: 0},
       {model: 'payment_condition', value: false, key: 15},
       {model: 'payment_condition', value: false, key: 30},
       {model: 'payment_condition', value: false, key: 45},
-      {model: 'payment_condition', value: false, key: 60},
+      {model: 'payment_condition', value: true, key: 60},
       {model: 'payment_condition', value: false, key: 90},
       {model: 'payment_condition', value: false, key: 120}
     ];

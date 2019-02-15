@@ -96,7 +96,6 @@
                 <div class="form-group">
                   <input type="text"
                          class="form-control"
-                         title="Persona de contacto en ACESCO*"
                          placeholder="Persona de contacto en ACESCO*"
                          [(ngModel)]="preRegister.whoRefers"
                          [ngClass]="{'is-invalid': whoRefers.errors?.required && whoRefers.touched }"
@@ -126,7 +125,7 @@
                 </div>
               </div>
               <div class="col-6">
-                <p>Escoja de acuerdo con objeto social <a class="text-primary link" target="_blank" routerLink="descripciones">Descripciones</a></p>
+                <p>Escoja de acuerdo con objeto social <small class="text-primary link" routerLink="descripciones">Descripciones</small></p>
               </div>
               <div class="col-12">
                 <div class="form-group">
@@ -423,20 +422,21 @@
                 <div class="form-group">
                   <input type="number"
                          class="form-control"
-                         placeholder="Código postal:"
+                         placeholder="Codigo postal:*"
                          [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.zipcode"
+                         [ngClass]="{'is-invalid': zipcode.errors?.required && zipcode.touched }"
                          name="zipcode"
                          #zipcode="ngModel">
-                  <!-- <div *ngIf="zipcode.errors?.required && zipcode.touched"><span class="text-danger">Este campo es obligatorio</span> -->
-                  <!-- </div> -->
+                  <div *ngIf="zipcode.errors?.required && zipcode.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  </div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
                   <input type="number"
                          class="form-control"
-                         placeholder="Teléfono:*"
+                         placeholder="Telefono:*"
                          required
                          [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.phone"
@@ -492,7 +492,7 @@
                 <div class="form-group">
                   <input type="text"
                          class="form-control"
-                         placeholder="Página Web:"
+                         placeholder="Pagina Web:"
                          [disabled]="isAdminUser || loading"
                          [(ngModel)]="preRegister.website"
                          name="website"
@@ -518,7 +518,7 @@
                               (updatedValue)="updateValue($event)"></app-toggle> NO
                 </span>
               </div>
-              <div class="col-2 rule" style="display:none;">
+              <div class="col-2 rule">
                 <span>OSHAS 18001: SI
                   <app-toggle [disabled]="isAdminUser" [model]="preRegister.oshas18001"
                               [prop]="'oshas18001'"
@@ -541,7 +541,7 @@
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
               <div class="col-6 dueDiligence">
-                <span>Tiene implementado el proceso de la debida diligencia (SARLAFT)
+                <span>Tiene implementado el proceso de la debida diligencia NO
                   <app-toggle [disabled]="isAdminUser" [prop]="'dueDiligence'"
                               [loading]="loading"
                               [model]="preRegister.dueDiligence"
