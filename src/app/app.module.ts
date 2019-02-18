@@ -37,6 +37,8 @@ import { PaginationComponent } from './components/shared/pagination/pagination.c
 import { ReturnComponent } from './components/shared/return/return.component';
 import { DescriptionsComponent } from './components/procesco/descriptions/descriptions.component';
 import { RoofSimulatorComponent } from './components/roof-simulator/roof-simulator.component';
+import { MyCurrencyDirective } from './directive/my-currency.directive';
+import { MyCurrencyPipe } from './pipe/my-currency.pipe';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { RoofSimulatorComponent } from './components/roof-simulator/roof-simulat
     PaginationComponent,
     ReturnComponent,
     DescriptionsComponent,
-    RoofSimulatorComponent
+    RoofSimulatorComponent,
+    MyCurrencyDirective,
+    MyCurrencyPipe
   ],
   imports: [
     BrowserModule,
@@ -76,7 +80,7 @@ import { RoofSimulatorComponent } from './components/roof-simulator/roof-simulat
     FormsModule,
     RouterModule.forRoot(ROUTES, { useHash: true })
   ],
-  providers: [],
+  providers: [MyCurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
