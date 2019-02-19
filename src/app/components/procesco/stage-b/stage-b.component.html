@@ -44,7 +44,9 @@
                       </app-toggle>
                     </li> -->
                     <li class="list-inline-item">
-                      <b><p>Autoevaluación de los requisitos mínimos de seguridad</p></b>
+                      <b>
+                        <p>Autoevaluación de los requisitos mínimos de seguridad</p>
+                      </b>
                     </li>
                   </ul>
                 </div>
@@ -63,9 +65,7 @@
                   <div class="col-4 text-right">
                     <p>
                       NO
-                      <app-toggle [disabled]="isAdminUser"
-                        [prop]="toggle.model"
-                        [model]="toggle.value"
+                      <app-toggle [disabled]="isAdminUser" [prop]="toggle.model" [model]="toggle.value"
                         (updatedValue)="updatedValue($event);">
                       </app-toggle>
                       SI
@@ -73,13 +73,10 @@
                   </div>
                   <div class="col-12">
                     <div class="form-group" *ngIf="toggle.model === 'inadequateProposals'">
-                      <input type="text"
-                             class="form-control"
-                             placeholder="Cual?"
-                             [(ngModel)]="stageB.inadequateProposalsWhat"
-                             #inadequateProposalsWhat="ngModel"
-                             [disabled]="!stageB.inadequateProposals || loading || isAdminUser"
-                             name="inadequateProposalsWhat">
+                      <input type="text" class="form-control" placeholder="Cual?"
+                        [(ngModel)]="stageB.inadequateProposalsWhat" #inadequateProposalsWhat="ngModel"
+                        [disabled]="!stageB.inadequateProposals || loading || isAdminUser"
+                        name="inadequateProposalsWhat">
                     </div>
                   </div>
                 </div>
@@ -99,7 +96,9 @@
                       </app-toggle>
                     </li> -->
                     <li class="list-inline-item">
-                      <b><p>Manifiesto de cumplimiento de los requisitos mínimos de seguridad</p></b>
+                      <b>
+                        <p>Manifiesto de cumplimiento de los requisitos mínimos de seguridad</p>
+                      </b>
                     </li>
                   </ul>
                 </div>
@@ -181,7 +180,9 @@
                       </app-toggle>
                     </li> -->
                     <li class="list-inline-item">
-                      <b><p>Acuerdos de seguridad fisica</p></b>
+                      <b>
+                        <p>Acuerdos de seguridad fisica</p>
+                      </b>
                     </li>
                   </ul>
                 </div>
@@ -207,9 +208,7 @@
                   <div class="col-4 text-right">
                     <p>
                       NO
-                      <app-toggle [disabled]="isAdminUser"
-                        [prop]="toggle.model"
-                        [model]="toggle.value"
+                      <app-toggle [disabled]="isAdminUser" [prop]="toggle.model" [model]="toggle.value"
                         (updatedValue)="updatedValue($event);">
                       </app-toggle>
                       SI
@@ -227,10 +226,7 @@
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
-                <input
-                  type="file"
-                  class="form-control-file"
-                  (change)="fileChange($event, toggle.model)"
+                <input type="file" class="form-control-file" (change)="fileChange($event, toggle.model)"
                   accept=".pdf,.doc,.docx">
               </div>
             </div>
@@ -242,14 +238,32 @@
             </div>
             <div class="col-4 text-right">
               <app-toggle [disabled]="isAdminUser" [model]="toggle.value" [prop]="toggle.model"
-                          (updatedValue)="updatedValue($event)"></app-toggle>
+                (updatedValue)="updatedValue($event)"></app-toggle>
             </div>
           </div>
 
-          <button type="button" class="acesco-button" (click)="onSubmit()" aria-disabled="loading" *ngIf="!isAdminUser">Enviar</button>
+          <!-- 
+            <button type="button" class="acesco-button" (click)="onSubmit()" aria-disabled="loading" *ngIf="!isAdminUser">Enviar</button>
+          -->
+
+          <div class="row">
+            <div class="col text-center">
+              <div *ngIf="successMessage" class="alert alert-success" role="alert">
+                {{successMessage}}
+              </div>
+              <button *ngIf="!isAdminUser" type="button" (click)="onSubmit()" class="acesco-button" [disabled]="isAdminUser || loading || stageAForm.invalid">Enviar
+                <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+                <fa-icon [icon]="faSpinner" *ngIf="loading" [spin]="true"></fa-icon>
+              </button>
+              <button class="acesco-button" type="button" (click)="approval();" *ngIf="isAdminUser"
+                [disabled]="loading">Aprobar
+                <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+                <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
+              </button>
+            </div>
+          </div>
 
           <button (click)="autoFill();">Rellenar</button>
-
           <app-return [user]="this.user" *ngIf="this.user"></app-return>
 
         </div>
