@@ -262,7 +262,7 @@
                 <div class="row">
                   <div class="col-3">
                     <div class="form-group">
-                      <input type="number" class="form-control" placeholder="Otro*"
+                      <input type="text"  appMycurrency class="form-control" placeholder="Otro*"
                         [(ngModel)]="stageA.industryAndCommerceTaxOther" name="industryAndCommerceTaxOther"
                         minlength="2" #industryAndCommerceTaxOther="ngModel" required
                         [disabled]="isAdminUser || loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo">
