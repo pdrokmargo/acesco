@@ -315,7 +315,7 @@ export class StageBComponent {
     if (!fileList.length) { return; }
 
     const file: File = fileList[0];
-    this.formData.append(`${model}File`, file, file.name);
+    this.formData.set(`${model}File`, file, file.name);
 
     // this.formData.forEach((element: any) => {
     //   console.log(model);
