@@ -328,7 +328,7 @@
                     name="tributaryOperationalExpenses" 
                     minlength="2" 
                     #tributaryOperationalExpenses="ngModel" 
-                    required
+                    requiredx|
                     [disabled]="isAdminUser || loading">
                   <div *ngIf="tributaryOperationalExpenses.errors?.required && tributaryOperationalExpenses.touched">
                     <span class="text-danger">Este campo es obligatorio</span>
