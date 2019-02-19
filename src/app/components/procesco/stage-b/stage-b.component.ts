@@ -364,7 +364,7 @@ export class StageBComponent {
     //this.reserved_space.currency_id = this.reserved_space.currency_id.id;
     //const { language_id, currency_id, level_of_impact, payment_condition } = this.reserved_space;
     const finalObject = {
-      currentStep: 2,
+      currentStep: 3,
       //reserved_space: { language_id, currency_id, level_of_impact, payment_condition }
     };
     this.procescoService.adminApproval(this.id, finalObject).subscribe((response: any) => {
