@@ -4,12 +4,12 @@
  * @version 1.0, 10/01/08
  */
 
-import {ChangeDetectorRef, Component} from '@angular/core';
-import {faCaretDown, faCaretRight, faCaretUp, faSpinner} from '@fortawesome/free-solid-svg-icons';
-import {UserInterface} from '../../../Interfaces/user.interface';
-import {ProcescoService} from '../../../services/procesco.service';
-import {ToggleInterface} from '../../../Interfaces/toggle.interface';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { faCaretDown, faCaretRight, faCaretUp, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { UserInterface } from '../../../Interfaces/user.interface';
+import { ProcescoService } from '../../../services/procesco.service';
+import { ToggleInterface } from '../../../Interfaces/toggle.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-stage-b',
@@ -29,16 +29,16 @@ export class StageBComponent {
   stageB: object;
   lists: object;
   selfEvaluation: boolean;
-  selfEvaluationToggles: any [] = [];
-  physicalSecurityAgreementsToggles: any [] = [];
-  annex1Toggles: any [] = [];
-  annex2Toggles: any [] = [];
+  selfEvaluationToggles: any[] = [];
+  physicalSecurityAgreementsToggles: any[] = [];
+  annex1Toggles: any[] = [];
+  annex2Toggles: any[] = [];
   isAdminUser: boolean;
 
   constructor(public procescoService: ProcescoService,
-              private cdRef: ChangeDetectorRef,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) {
+    private cdRef: ChangeDetectorRef,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(activeRoute => {
       if (activeRoute['id']) {
         this.isAdminUser = true;
@@ -71,7 +71,10 @@ export class StageBComponent {
       physicalSecurityAgreements: false
     };
     this.selfEvaluationToggles = [
-      {model: 'activitiesAsSocialReason', value: false, text: 'Las actividades realizadas coinciden con la Razón Social.'},
+      {
+        model: 'activitiesAsSocialReason',
+        value: false, text: 'Las actividades realizadas coinciden con la Razón Social.'
+      },
       {
         model: 'secureFacilities',
         value: false,
@@ -132,7 +135,7 @@ export class StageBComponent {
         value: false,
         text: 'Sus instalaciones de manejo y almacenamiento cuentan con barreras fisicas y elementos de disuación para protegerlas contra el acceso no autorizado.'
       },
-      {model: 'securityService', value: false, text: 'La empresa cuenta con un servicio de seguridad propio o contratado.'},
+      { model: 'securityService', value: false, text: 'La empresa cuenta con un servicio de seguridad propio o contratado.' },
       {
         model: 'warningDevices',
         value: false,
@@ -212,25 +215,45 @@ export class StageBComponent {
       },
     ];
     this.annex1Toggles = [
-      {model: 'chamberCommerce', value: false, text: 'Certificado de cámara de comercio (Vigencia no mayor a un (1) mes).'},
-      {model: 'identificationCard', value: false, text: 'Fotocopia de la cédula del representante legal.'},
-      {model: 'rut', value: false, text: 'Copia del RUT (Fecha de impresión no mayor a un (1) mes).'},
-      {model: 'shareholdingStructure', value: false, text: 'Composición accionaria.'},
+      {
+        model: 'chamberCommerce',
+        value: false,
+        text: 'Certificado de cámara de comercio (Vigencia no mayor a un (1) mes).'
+      },
+      {
+        model: 'identificationCard',
+        value: false,
+        text: 'Fotocopia de la cédula del representante legal.'
+      },
+      {
+        model: 'rut',
+        value: false,
+        text: 'Copia del RUT (Fecha de impresión no mayor a un (1) mes).'
+      },
+      {
+        model: 'shareholdingStructure',
+        value: false,
+        text: 'Composición accionaria.'
+      },
       {
         model: 'rucAndBasc',
         value: false,
         text: 'Copias de la calificación en ruc y de las certificaciones/acreditaciones en sistemas de gestión, BASC y sello de producto que pose vigentes.'
       },
-      {model: 'declarationOfRiskPrevention', value: false, text: 'Declaración de prevención del riesgo - la/fa (anexo página 5)'},
+      {
+        model: 'declarationOfRiskPrevention',
+        value: false,
+        text: 'Declaración de prevención del riesgo - la/fa (anexo página 5)'
+      },
     ];
     this.annex2Toggles = [
-      {model: 'annex6', value: false, text: 'Declaración de compromiso de seguridad (anexo pagina 6)'},
-      {model: 'safetyData', value: false, text: 'Ficha de seguridad de los productos'},
-      {model: 'contingencyPlan', value: false, text: 'Plan de contingencia - preparación y respuesta ante emergencias.'},
-      {model: 'productSpecifications', value: false, text: 'Ficha técnica del producto cone specificaciones.'},
-      {model: 'sustainabilityReport', value: false, text: 'Reporte de sostenibilidad.'},
-      {model: 'technicalStandards', value: false, text: 'Certificados de normas técnicas que le apliquen.'},
-      {model: 'relationshipRequirements', value: false, text: 'Requisitos varios especificos del relaciónamiento con Acesco'},
+      { model: 'annex6', value: false, text: 'Declaración de compromiso de seguridad (anexo pagina 6)' },
+      { model: 'safetyData', value: false, text: 'Ficha de seguridad de los productos' },
+      { model: 'contingencyPlan', value: false, text: 'Plan de contingencia - preparación y respuesta ante emergencias.' },
+      { model: 'productSpecifications', value: false, text: 'Ficha técnica del producto cone specificaciones.' },
+      { model: 'sustainabilityReport', value: false, text: 'Reporte de sostenibilidad.' },
+      { model: 'technicalStandards', value: false, text: 'Certificados de normas técnicas que le apliquen.' },
+      { model: 'relationshipRequirements', value: false, text: 'Requisitos varios especificos del relaciónamiento con Acesco' },
     ];
     this.selfEvaluation = false;
     this.stageB = {
@@ -285,20 +308,23 @@ export class StageBComponent {
     this.lists[list] = !this.lists[list];
   }
 
+  formData: FormData = new FormData();
+
   fileChange(event: any, model: string) {
     const fileList: FileList = event.target.files;
-    if (!fileList.length) {
-      return;
-    }
+    if (!fileList.length) { return; }
+
     const file: File = fileList[0];
-    const formData: FormData = new FormData();
-    formData.set(`${model}File`, file, file.name);
-    formData.forEach((value, key) => {
-    });
-    this.procescoService.putFile(formData).subscribe((response: any) => {
-    }, error1 => {
-      console.error(error1);
-    });
+    this.formData.append(`${model}File`, file, file.name);
+
+    // this.formData.forEach((element: any) => {
+    //   console.log(model);
+    // });
+    // this.procescoService.putFile(formData).subscribe(res => {
+    //   console.log(res);
+    // }, err => {
+    //   console.error(err);
+    // });
   }
 
   autoFill() {
@@ -318,11 +344,16 @@ export class StageBComponent {
 
   onSubmit() {
     this.loading = true;
-    this.procescoService.updateUser(this.stageB, 'stage-b').subscribe((response: any) => {
-      this.router.navigate(['procesco/confirmacion']);
-      this.loading = false;
-    }, error1 => {
-      console.error(error1);
+    this.procescoService.updateUser(this.stageB, 'stage-b').subscribe((res: any) => {
+      this.procescoService.putFile(this.formData).subscribe(r => {
+        this.router.navigate(['procesco/confirmacion']);
+        this.loading = false;
+        console.log(r);
+      }, e => {
+        console.error(e);
+      });
+    }, err => {
+      console.error(err);
     });
   }
 

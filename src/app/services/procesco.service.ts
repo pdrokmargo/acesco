@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {UserInterface} from '../Interfaces/user.interface';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { UserInterface } from '../Interfaces/user.interface';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,31 +24,31 @@ export class ProcescoService {
   getClassificationsList() {
     const url = `${this.nodeUrl}/classifications`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((data: any) => data.classifications));
+    return this.http.get(url, { headers }).pipe(map((data: any) => data.classifications));
   }
 
   getCountriesList() {
     const url = `${this.nodeUrl}/countries`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((data: any) => data.countries));
+    return this.http.get(url, { headers }).pipe(map((data: any) => data.countries));
   }
 
   getDocumentTypeList() {
     const url = `${this.nodeUrl}/documents`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((data: any) => data.documents));
+    return this.http.get(url, { headers }).pipe(map((data: any) => data.documents));
   }
 
   getCurrencies() {
     const url = `${this.nodeUrl}/currencies`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((data: any) => data.currencies));
+    return this.http.get(url, { headers }).pipe(map((data: any) => data.currencies));
   }
 
   getLanguages() {
     const url = `${this.nodeUrl}/languages`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((data: any) => data.languages));
+    return this.http.get(url, { headers }).pipe(map((data: any) => data.languages));
   }
 
   createNewUser(data: UserInterface) {
@@ -64,7 +64,7 @@ export class ProcescoService {
   getLogedUser() {
     const url = `${this.nodeUrl}/user`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((data: any) => data.user));
+    return this.http.get(url, { headers }).pipe(map((data: any) => data.user));
   }
 
   getAllUsers(search?: any) {
@@ -78,35 +78,36 @@ export class ProcescoService {
     }
 
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((response: any) => response));
+    return this.http.get(url, { headers }).pipe(map((response: any) => response));
   }
 
   adminApproval(id: any, params: any) {
     const url = `${this.nodeUrl}/users/${id}}`;
     const headers = this.getHeader();
-    return this.http.put(url, params, {headers});
+    return this.http.put(url, params, { headers });
   }
 
   getUserById(id: any) {
     const url = `${this.nodeUrl}/users/${id}}`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers}).pipe(map((data: any) => data.user));
+    return this.http.get(url, { headers }).pipe(map((data: any) => data.user));
   }
 
   getStepById(id: number, query: string) {
     const url = `${this.nodeUrl}/${query}/${id}`;
     const headers = this.getHeader();
-    return this.http.get(url, {headers});
+    return this.http.get(url, { headers });
   }
 
   putFile(formData: any) {
     const url = `${this.nodeUrl}/upload-stage-b`;
     const token = this.getCurrentToken();
     const headers = new HttpHeaders({
-      'Content-Type': 'multipart/form-data',
+      //'Content-Type': 'multipart/form-data',
+      'Accept': ' application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post(url, formData, {headers});
+    return this.http.post(url, formData, { headers });
   }
 
   getCurrentToken() {
@@ -116,6 +117,6 @@ export class ProcescoService {
   updateUser(params: object, query: string) {
     const url = `${this.nodeUrl}/${query}`;
     const headers = this.getHeader();
-    return this.http.post(url, params, {headers});
+    return this.http.post(url, params, { headers });
   }
 }

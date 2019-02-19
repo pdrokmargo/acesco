@@ -16,6 +16,17 @@ export class MyCurrencyDirective {
   ) {
     this.el = this.elementRef.nativeElement;
   }
+
+
+  ngAfterContentInit() {
+
+    this.model.valueChanges.subscribe(value => {
+      if (value) {
+        this.el.value = this.formatcurrencypipe.transform(value);
+      }
+    })
+  }
+
   ngOnInit() {
     this.el.value = this.formatcurrencypipe.transform(this.el.value);
   }
