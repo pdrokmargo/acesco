@@ -204,7 +204,7 @@
                   </div>
                   <div class="col-5">
                     <div class="form-group">
-                      <input type="number" class="form-control" placeholder="Tarifa:*"
+                      <input type="text" appMycurrency class="form-control" placeholder="Tarifa:*"
                         [(ngModel)]="stageA.industryAndCommerceTaxRateBogota"
                         [ngClass]="{'is-invalid': industryAndCommerceTaxRateBogota.errors?.required && industryAndCommerceTaxRateBogota.touched }"
                         name="industryAndCommerceTaxRateBogota" minlength="2"
@@ -246,7 +246,7 @@
                   </div>
                   <div class="col-5">
                     <div class="form-group">
-                      <input type="number" class="form-control" placeholder="Tarifa:*"
+                      <input type="text" class="form-control" appMycurrency placeholder="Tarifa:*"
                         [(ngModel)]="stageA.industryAndCommerceTaxRateMalambo"
                         [ngClass]="{'is-invalid': industryAndCommerceTaxRateMalambo.errors?.required && industryAndCommerceTaxRateMalambo.touched }"
                         name="industryAndCommerceTaxRateMalambo" minlength="2"
@@ -278,7 +278,7 @@
                   </div>
                   <div class="col-5">
                     <div class="form-group">
-                      <input type="number" class="form-control" placeholder="Tarifa:*"
+                      <input type="text" appMycurrency class="form-control" placeholder="Tarifa:*"
                         [(ngModel)]="stageA.industryAndCommerceTaxRateOther" name="industryAndCommerceTaxRateOther"
                         minlength="2" #industryAndCommerceTaxRateOther="ngModel" required
                         [disabled]="isAdminUser || loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo">
@@ -302,11 +302,7 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input 
-                    type="text" 
-                    class="form-control" 
-                    appMycurrency
-                    placeholder="Ingresos operacionales*"
+                  <input type="text" class="form-control" appMycurrency placeholder="Ingresos operacionales*"
                     [(ngModel)]="stageA.tributaryOperationalIncome"
                     [ngClass]="{'is-invalid': tributaryOperationalIncome.errors?.required && tributaryOperationalIncome.touched }"
                     name="tributaryOperationalIncome" minlength="2" #tributaryOperationalIncome="ngModel" required
@@ -318,17 +314,10 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input 
-                    type="text" 
-                    class="form-control"
-                    appMycurrency
-                    placeholder="Gastos operacionales*"
+                  <input type="text" class="form-control" appMycurrency placeholder="Gastos operacionales*"
                     [(ngModel)]="stageA.tributaryOperationalExpenses"
                     [ngClass]="{'is-invalid': tributaryOperationalExpenses.errors?.required && tributaryOperationalExpenses.touched }"
-                    name="tributaryOperationalExpenses" 
-                    minlength="2" 
-                    #tributaryOperationalExpenses="ngModel" 
-                    required
+                    name="tributaryOperationalExpenses" minlength="2" #tributaryOperationalExpenses="ngModel" required
                     [disabled]="isAdminUser || loading">
                   <div *ngIf="tributaryOperationalExpenses.errors?.required && tributaryOperationalExpenses.touched">
                     <span class="text-danger">Este campo es obligatorio</span>
@@ -339,11 +328,7 @@
             <div class="row mt-3">
               <div class="col-4">
                 <div class="form-group">
-                  <input 
-                    type="text" 
-                    class="form-control" 
-                    appMycurrency 
-                    placeholder="Total Ingresos*"
+                  <input type="text" class="form-control" appMycurrency placeholder="Total Ingresos*"
                     [(ngModel)]="stageA.totalIncome"
                     [ngClass]="{'is-invalid': totalIncome.errors?.required && totalIncome.touched }" name="totalIncome"
                     minlength="2" #totalIncome="ngModel" required [disabled]="isAdminUser || loading">
@@ -354,11 +339,7 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input 
-                    type="text" 
-                    class="form-control" 
-                    appMycurrency 
-                    placeholder="Total Activos*"
+                  <input type="text" class="form-control" appMycurrency placeholder="Total Activos*"
                     [(ngModel)]="stageA.totalActive"
                     [ngClass]="{'is-invalid': totalActive.errors?.required && totalActive.touched }" name="totalActive"
                     minlength="2" #totalActive="ngModel" required [disabled]="isAdminUser || loading">
@@ -369,11 +350,7 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input 
-                    type="text" 
-                    class="form-control" 
-                    appMycurrency 
-                    placeholder="Total Pasivos*"
+                  <input type="text" class="form-control" appMycurrency placeholder="Total Pasivos*"
                     [(ngModel)]="stageA.totalPassive"
                     [ngClass]="{'is-invalid': totalPassive.errors?.required && totalPassive.touched }"
                     name="totalPassive" minlength="2" #totalPassive="ngModel" required
