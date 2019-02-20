@@ -19,12 +19,11 @@ export class MyCurrencyDirective {
 
 
   ngAfterContentInit() {
-
-    this.model.valueChanges.subscribe(value => {
-      if (value) {
-        this.el.value = this.formatcurrencypipe.transform(value);
-      }
-    })
+    // this.model.valueChanges.subscribe(value => {
+    //   if (value) {
+    //     this.el.value = this.formatcurrencypipe.transform(value);
+    //   }
+    // })
   }
 
   ngOnInit() {

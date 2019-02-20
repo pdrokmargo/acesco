@@ -315,7 +315,7 @@ export class StageBComponent {
     if (!fileList.length) { return; }
 
     const file: File = fileList[0];
-    this.formData.append(`${model}File`, file, file.name);
+    this.formData.set(`${model}File`, file, file.name);
 
     // this.formData.forEach((element: any) => {
     //   console.log(model);
@@ -354,6 +354,27 @@ export class StageBComponent {
       });
     }, err => {
       console.error(err);
+    });
+  }
+
+  successMessage: string;
+  approval() {
+    this.loading = true;
+    //this.reserved_space.language_id = this.reserved_space.language_id.id;
+    //this.reserved_space.currency_id = this.reserved_space.currency_id.id;
+    //const { language_id, currency_id, level_of_impact, payment_condition } = this.reserved_space;
+    const finalObject = {
+      currentStep: 3,
+      //reserved_space: { language_id, currency_id, level_of_impact, payment_condition }
+    };
+    this.procescoService.adminApproval(this.id, finalObject).subscribe((response: any) => {
+      this.loading = false;
+      this.successMessage = response.message;
+      setTimeout(() => {
+        this.router.navigate(['procesco/admin']);
+      }, 2000);
+    }, error1 => {
+      console.error(error1);
     });
   }
 

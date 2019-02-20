@@ -576,13 +576,11 @@
                 <div *ngIf="successMessage" class="alert alert-success" role="alert">
                   {{successMessage}}
                 </div>
-                <button *ngIf="!isAdminUser" type="submit" class="acesco-button"
-                  [disabled]="isAdminUser || loading || stageAForm.invalid">Enviar
+                <button *ngIf="!isAdminUser" type="submit" class="acesco-button" [disabled]="isAdminUser || loading || stageAForm.invalid">Enviar
                   <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
                   <fa-icon [icon]="faSpinner" *ngIf="loading" [spin]="true"></fa-icon>
                 </button>
-                <button class="acesco-button" type="button" (click)="approval();" *ngIf="isAdminUser"
-                  [disabled]="loading">Aprobar
+                <button class="acesco-button" type="button" (click)="approval();" *ngIf="isAdminUser" [disabled]="loading">Aprobar
                   <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
                   <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
                 </button>
