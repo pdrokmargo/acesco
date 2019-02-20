@@ -317,14 +317,7 @@
                   <input type="text" class="form-control" appMycurrency placeholder="Gastos operacionales*"
                     [(ngModel)]="stageA.tributaryOperationalExpenses"
                     [ngClass]="{'is-invalid': tributaryOperationalExpenses.errors?.required && tributaryOperationalExpenses.touched }"
-<<<<<<< HEAD
-                    name="tributaryOperationalExpenses" 
-                    minlength="2" 
-                    #tributaryOperationalExpenses="ngModel" 
-                    requiredx|
-=======
                     name="tributaryOperationalExpenses" minlength="2" #tributaryOperationalExpenses="ngModel" required
->>>>>>> f8bd5c6b40993a0970b980829665ef9974377564
                     [disabled]="isAdminUser || loading">
                   <div *ngIf="tributaryOperationalExpenses.errors?.required && tributaryOperationalExpenses.touched">
                     <span class="text-danger">Este campo es obligatorio</span>
