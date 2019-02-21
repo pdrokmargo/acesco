@@ -446,7 +446,7 @@
                 </div>
               </div>
             </div>
-            <app-form-title [text]="'referencia personal'"></app-form-title>
+            <app-form-title [text]="'referencia bancaria'"></app-form-title>
             <div class="row mt-3">
               <div class="col-8">
                 <div class="form-group">
@@ -581,7 +581,7 @@
             </div>
           </form>
           <button *ngIf="!isAdminUser" (click)="autoFill();">autorellenar</button>
-          <app-return *ngIf="this.user" [user]="this.user"></app-return>
+          <app-return *ngIf="this.id" [user]="this.id"></app-return>
         </div>
       </div>
     </div>

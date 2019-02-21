@@ -61,6 +61,7 @@ export class StageBComponent {
           console.error(error1);
         });
       }
+      this.id = activeRoute.id;
     }, error1 => {
       console.error(error1);
     });
@@ -240,15 +241,15 @@ export class StageBComponent {
         value: false,
         text: 'Copias de la calificación en ruc y de las certificaciones/acreditaciones en sistemas de gestión, BASC y sello de producto que pose vigentes.'
       },
-      {
-        model: 'declarationOfRiskPrevention',
-        value: false,
-        text: 'Declaración de prevención del riesgo - la/fa (anexo página 5)'
-      },
+      // {
+      //   model: 'declarationOfRiskPrevention',
+      //   value: false,
+      //   text: 'Declaración de prevención del riesgo - la/fa (anexo página 5)'
+      // },
     ];
     this.annex2Toggles = [
-      { model: 'annex6', value: false, text: 'Declaración de compromiso de seguridad (anexo pagina 6)' },
-      { model: 'safetyData', value: false, text: 'Ficha de seguridad de los productos' },
+      // { model: 'annex6', value: false, text: 'Declaración de compromiso de seguridad (anexo pagina 6)' },
+      { model: 'safetyData', value: false, text: 'Ficha de seguridad de los productos' }, /* Sólo pstrarla cuando la clasificación sea químicos o proveedor haya marcada alto */
       { model: 'contingencyPlan', value: false, text: 'Plan de contingencia - preparación y respuesta ante emergencias.' },
       { model: 'productSpecifications', value: false, text: 'Ficha técnica del producto cone specificaciones.' },
       { model: 'sustainabilityReport', value: false, text: 'Reporte de sostenibilidad.' },
@@ -359,25 +360,29 @@ export class StageBComponent {
 
   successMessage: string;
   approval() {
-    console.log(this.stageB);
+    // console.log(this.stageB);
     
-    this.loading = true;
-    // this.reserved_space.language_id = this.reserved_space.language_id.id;
-    // this.reserved_space.currency_id = this.reserved_space.currency_id.id;
-    // const { language_id, currency_id, level_of_impact, payment_condition } = this.reserved_space;
-    const finalObject = {
-      currentStep: 3,
-      // reserved_space: { language_id, currency_id, level_of_impact, payment_condition }
-    };
-    this.procescoService.adminApproval(this.id, finalObject).subscribe((response: any) => {
-      this.loading = false;
-      this.successMessage = response.message;
-      setTimeout(() => {
-        this.router.navigate(['procesco/confirmacion']);
-      }, 2000);
-    }, error1 => {
-      console.error(error1);
-    });
+    // this.loading = true;
+    // // this.reserved_space.language_id = this.reserved_space.language_id.id;
+    // // this.reserved_space.currency_id = this.reserved_space.currency_id.id;
+    // // const { language_id, currency_id, level_of_impact, payment_condition } = this.reserved_space;
+    // const finalObject = {
+    //   stagea_id: null,
+    //   currentStep: 3,
+    //   // reserved_space: { language_id, currency_id, level_of_impact, payment_condition }
+    // };
+    // this.procescoService.adminApproval(this.id, finalObject).subscribe((response: any) => {
+    //   this.loading = false;
+    //   this.successMessage = response.message;
+    //   setTimeout(() => {
+    //     this.router.navigate(['procesco/admin']);
+    //   }, 2000);
+    // }, error1 => {
+    //   console.error(error1);
+    // });
+    this.router.navigate(['/externalRedirect', { externalUrl: 'http://es.presidencia.gov.co/normativa/normativa/DECRETO%202452%20DEL%2027%20DE%20DICIEMBRE%20DE%202018.pdf' }], {
+      skipLocationChange: true,
+  });
   }
 
 }

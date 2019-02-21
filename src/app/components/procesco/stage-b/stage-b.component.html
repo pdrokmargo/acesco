@@ -235,7 +235,7 @@
           <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
           <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
         </button>
-        <app-return [user]="this.user" *ngIf="this.user"></app-return>
+        <app-return [user]="this.id" *ngIf="this.id"></app-return>
       </div>
     </div>
   </div>

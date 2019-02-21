@@ -18,6 +18,7 @@ import {UserInterface} from '../../../Interfaces/user.interface';
 export class ProfileComponent implements AfterViewInit {
   nationalOptions: any [] = [];
   internationalOptions: any [] = [];
+  languageOptions: any [] = [];
   loading: boolean;
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
@@ -39,6 +40,12 @@ export class ProfileComponent implements AfterViewInit {
       {label: 'In house', value: 'inHouse', active: false},
       {label: 'New', value: 'new', active: false},
       {label: 'Update', value: 'update', active: false}
+    ];
+
+    this.languageOptions = [
+      {label: 'English', value: 'ingles', active: false},
+      // {label: 'In house', value: 'inHouse', active: false},
+      {label: 'Español', value: 'español', active: true}
     ];
     this.procescoService.getLogedUser().subscribe((user: any) => {
       if (user.preregistro_id) {

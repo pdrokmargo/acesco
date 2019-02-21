@@ -64,7 +64,7 @@
                     <ul class="text-justify">
                       <li>Consultar en cualquier tiempo en Centrales de Riesgo a toda la información que se refiere a mi
                         comportamiento crediticio, financiero y comercial, solicitudes de credito e información
-                        socioeconomica.
+                        socioeconómica.
                       </li>
                       <li>Suministrar, reportar y divulgar a centrales de Riesgo, de manera directa o indirecta a través
                         den entidades publicas que ejerzan control y vigilancia sobre los datos financieros toda la
@@ -200,7 +200,7 @@
                   <ul class="list-unstyled">
                     <li>
                       <p>IMPORTANTE: Señor proveedor, tenga en cuenta que toda persona natural que contrate ACESCO por
-                        un monto superior a un salario minimo legal mensual vigente (SMMLV). debe:</p>
+                        un monto superior a un salario mínimo legal mensual vigente (SMMLV). debe:</p>
                     </li>
                     <li>
                       <p>1) Estar afiliado al sistema de seguridad social como trabajador independiente, sin importar
@@ -238,7 +238,7 @@
                 <div class="form-group">
                   <input type="text"
                          class="form-control"
-                         placeholder="Razon comercial*"
+                         placeholder="Razón comercial*"
                          [disabled]="isAdminUser || loading"
                          required
                          [(ngModel)]="preRegister.commercialName"
@@ -285,7 +285,7 @@
                 <div class="form-group">
                   <input type="text"
                          class="form-control"
-                         placeholder="Profesion y oficio:*"
+                         placeholder="Profesión u oficio:*"
                          [disabled]="isAdminUser || loading"
                          required
                          [(ngModel)]="preRegister.profession"
@@ -519,7 +519,7 @@
                 </span>
               </div>
               <div class="col-2 rule">
-                <span>OSHAS 18001: SI
+                <span>ISO 45001: SI
                   <app-toggle [disabled]="isAdminUser" [model]="preRegister.oshas18001"
                               [prop]="'oshas18001'"
                               [loading]="loading"
@@ -527,28 +527,28 @@
                 </span>
               </div>
               <div class="col-6 antiCorruptionPolicy">
-                <span>Tiene politica de anti corrupción y soborno: NO
+                <span>Tiene política de anti corrupción y soborno: NO
                   <app-toggle [disabled]="isAdminUser" [prop]="'antiCorruptionPolicy'"
                               [loading]="loading"
                               [model]="preRegister.antiCorruptionPolicy"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
               <div class="col-6 sustainability">
-                <span>Posee Reporte de Sostenibilidad NO
+                <span>Ha publicado en el último año un reporte de sostenibilidad? NO
                   <app-toggle [disabled]="isAdminUser" [prop]="'sustainability'"
                               [loading]="loading"
                               [model]="preRegister.sustainability"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
               <div class="col-6 dueDiligence">
-                <span>Tiene implementado el proceso de la debida diligencia NO
+                <span>Tiene implementado un sistema o programa para la prevención y control de riesgos de LA/FT? NO
                   <app-toggle [disabled]="isAdminUser" [prop]="'dueDiligence'"
                               [loading]="loading"
                               [model]="preRegister.dueDiligence"
                               (updatedValue)="updateValue($event)"></app-toggle> SI</span>
               </div>
               <div class="col-6 socialResponsability">
-                <span>Posee fundación o responsabilidad social NO
+                <span>Tiene implementado un programa de responsabilidad social o posee una Fundación? NO
                   <app-toggle [disabled]="isAdminUser" [prop]="'socialResponsability'"
                               [loading]="loading"
                               [model]="preRegister.socialResponsability"
@@ -599,7 +599,7 @@
               <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
               <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
             </button>
-            <app-return [user]="this.user" *ngIf="this.user"></app-return>
+            <app-return [user]="this.id" *ngIf="this.id"></app-return>
           </form>
           <button class="btn-outline-dark" (click)="autoFill();" type="button" *ngIf="!isAdminUser">Autorellenar</button>
         </div>
