@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { UserInterface } from '../Interfaces/user.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProcescoService {
-  nodeUrl: string;
+  public nodeUrl: string;
 
   constructor(private http: HttpClient) {
     this.nodeUrl = 'http://acescocambiatutecho.com/acescoservice/public/api/auth';
@@ -38,6 +39,8 @@ export class ProcescoService {
     const headers = this.getHeader();
     return this.http.get(url, { headers }).pipe(map((data: any) => data.documents));
   }
+
+  
 
   getCurrencies() {
     const url = `${this.nodeUrl}/currencies`;
