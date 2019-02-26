@@ -35,14 +35,18 @@ export class StageBComponent {
   annex2Toggles: any[] = [];
   isAdminUser: boolean;
 
-  constructor(public procescoService: ProcescoService,
+  constructor(
+    public procescoService: ProcescoService,
     private cdRef: ChangeDetectorRef,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(activeRoute => {
+
       if (activeRoute['id']) {
         this.isAdminUser = true;
         this.procescoService.getUserById(activeRoute.id).subscribe((user: any) => {
+          console.log(user);
+          
           this.user = user;
           this.step = user.currentStep;
           this.procescoService.getStepById(user.stageb_id, 'stage-b').subscribe((stage: any) => {
@@ -361,7 +365,7 @@ export class StageBComponent {
   successMessage: string;
   approval() {
     // console.log(this.stageB);
-    
+
     // this.loading = true;
     // // this.reserved_space.language_id = this.reserved_space.language_id.id;
     // // this.reserved_space.currency_id = this.reserved_space.currency_id.id;
@@ -382,7 +386,12 @@ export class StageBComponent {
     // });
     this.router.navigate(['/externalRedirect', { externalUrl: 'http://es.presidencia.gov.co/normativa/normativa/DECRETO%202452%20DEL%2027%20DE%20DICIEMBRE%20DE%202018.pdf' }], {
       skipLocationChange: true,
-  });
+    });
+  }
+
+  download() {
+    
+    //this.procescoService.GET(`download-documents/${this.user.name}`).subscribe(res => console.log(res), err => console.log(err));
   }
 
 }
