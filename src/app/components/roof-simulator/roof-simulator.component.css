@@ -270,12 +270,13 @@
 
 .tab-2 img,
 .tab-3 img {
-  width: 100%;
+  width: 120%;
 }
 
 .roof-color {
   position: absolute;
   left: 0%;
+  top: 0%;
 }
 
 .config-tab-2 {

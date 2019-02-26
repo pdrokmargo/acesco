@@ -190,12 +190,12 @@ export class RoofSimulatorComponent implements OnInit {
       this.currentroofcolor = type + '/CUBIERTA/' + this.images.img[index].url;
     } else {
       if (this.currentTab_bodega == this.BODEGA_FACHADA) {
-        this.currentfacadecolor = type + '/CUBIERTA/' + this.images.img[index].url;
+        this.currentfacadecolor = type + '/FACHADA/' + this.images.img[index].url;
       } else {
-        this.currentroofcolor = type + '/FACHADA/' + this.images.img[index].url;
+        this.currentroofcolor = type + '/CUBIERTA/' + this.images.img[index].url;
       }
     }
-
+    
 
   }
 
