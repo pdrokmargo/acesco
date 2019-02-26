@@ -21,6 +21,7 @@
   font-size: 1rem;
   margin-top: 20px;
   cursor: pointer;
+  -webkit-appearance: caret!important;
 }
 
 .acesco-button:hover {

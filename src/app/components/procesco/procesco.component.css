@@ -17,6 +17,7 @@
 
 .acesco-button {
   width: 60%;
+  -webkit-appearance: caret;
 }
 
 .left {

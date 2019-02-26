@@ -260,11 +260,9 @@
   z-index: 1;
 }
 
-
-
 .tab-2,
 .tab-3 {
-  text-align: center;
+  text-align: center; 
   position: relative;
 }
 

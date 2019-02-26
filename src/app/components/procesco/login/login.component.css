@@ -20,5 +20,6 @@ form .ng-fa-icon:last-child {
 }
 
 .extra-buttons button {
-  font-size: 7px;
+  font-size: 11px;
+  -webkit-appearance: caret;
 }
