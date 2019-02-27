@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-roof-simulator',
   templateUrl: './roof-simulator.component.html',
   styleUrls: ['./roof-simulator.component.css']
 })
-export class RoofSimulatorComponent implements OnInit {
+export class RoofSimulatorComponent implements OnInit, AfterViewInit {
 
+  
+  loading: boolean;
+  height: number;
+  faSpinner = faSpinner;
   private images = {
     type: [
       "02-MASTER_1000/00-IMAGEN_BASE.jpg",
@@ -137,10 +142,15 @@ export class RoofSimulatorComponent implements OnInit {
 
   private indexroof = 0;
 
-  constructor() { }
+  constructor(private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.currentTab = 0;
+  }
+
+  ngAfterViewInit() {
+    this.height = document.body.offsetHeight;
+    this.cdRef.detectChanges();
   }
 
   private tab(_tab) {
@@ -166,6 +176,7 @@ export class RoofSimulatorComponent implements OnInit {
   }
 
   private selecRoof(index) {
+    this.loading = true;
     this.indexroof = index;
     let type = '';
 
@@ -198,6 +209,10 @@ export class RoofSimulatorComponent implements OnInit {
     
 
   }
+  
+ private loadingImageState(){
+   this.loading = false;
+ }
 
   private updateTypes() {
     this.types = [

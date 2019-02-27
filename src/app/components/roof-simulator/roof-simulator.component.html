@@ -1,4 +1,5 @@
 <div class="roof-simulator-container">
+    <!-- <app-loader [loading]="loading" [height]="height"></app-loader>     -->
   <nav class="nav-roof-simulator">
     <div class="nav-roof-simulator-wrapper">
       <div class="nav-roof-top">
@@ -82,6 +83,7 @@
     </div>
   </nav>
   <div class="content-roof-simulator">
+      
     <div class="tab-1" *ngIf="currentTab == 0">
       <h1>Lorem ipsum dolor sit amet,</h1>
       <p> consectetur adipisicing elit. Ratione veritatis, illum, fugit totam atque quam ex
@@ -90,13 +92,13 @@
     </div>
     <div class="tab-2" *ngIf="currentTab == VIVIENDA">
       <img src="/assets/images/00-CASA/{{images.type[currenttype]}}">
-      <img class="roof-color" *ngIf="currentroofcolor" src="/assets/images/00-CASA/{{currentroofcolor}}">
+      <img class="roof-color" (load)="loadingImageState()" *ngIf="currentroofcolor" src="/assets/images/00-CASA/{{currentroofcolor}}">
     </div>
 
     <div class="tab-3" *ngIf="currentTab == BODEGA">
       <img src="/assets/images/01-BODEGA/{{images.type[currenttype]}}">
-      <img class="roof-color" *ngIf="currentroofcolor" src="/assets/images/01-BODEGA/{{currentroofcolor}}">
-      <img class="roof-color" *ngIf="currentfacadecolor" src="/assets/images/01-BODEGA/{{currentfacadecolor}}">
+      <img class="roof-color" (load)="loadingImageState()" *ngIf="currentroofcolor" src="/assets/images/01-BODEGA/{{currentroofcolor}}">
+      <img class="roof-color" (load)="loadingImageState()" *ngIf="currentfacadecolor" src="/assets/images/01-BODEGA/{{currentfacadecolor}}">
     </div>
   </div>
 </div>
