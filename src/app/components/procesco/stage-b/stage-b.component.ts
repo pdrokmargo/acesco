@@ -24,7 +24,7 @@ export class StageBComponent {
   height: number;
   loading: boolean;
   step: number;
-  user: UserInterface;
+  user: any = {};
   id: number;
   stageB: object;
   lists: object;
@@ -41,12 +41,9 @@ export class StageBComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(activeRoute => {
-
       if (activeRoute['id']) {
         this.isAdminUser = true;
         this.procescoService.getUserById(activeRoute.id).subscribe((user: any) => {
-          console.log(user);
-          
           this.user = user;
           this.step = user.currentStep;
           this.procescoService.getStepById(user.stageb_id, 'stage-b').subscribe((stage: any) => {
@@ -61,9 +58,15 @@ export class StageBComponent {
         this.procescoService.getLogedUser().subscribe(user => {
           this.step = user.currentStep;
           this.id = user.id;
-        }, error1 => {
-          console.error(error1);
-        });
+          this.user = user;
+          this.step = user.currentStep;
+          if (user.stageb_id > 0) {
+            this.procescoService.getStepById(user.stageb_id, 'stage-b').subscribe(({ stage_b }: any) => {
+              this.stageB = stage_b;
+              this.successMessage = `La etapa esta siendo revisada`;
+            }, error1 => console.error(error1));
+          }
+        }, error1 => console.error(error1));
       }
       this.id = activeRoute.id;
     }, error1 => {
@@ -390,7 +393,7 @@ export class StageBComponent {
   }
 
   download() {
-    
+
     //this.procescoService.GET(`download-documents/${this.user.name}`).subscribe(res => console.log(res), err => console.log(err));
   }
 

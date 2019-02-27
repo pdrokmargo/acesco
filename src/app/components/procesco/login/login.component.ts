@@ -4,12 +4,12 @@
  * @version 1.0, 28/12/08
  */
 
-import {Component, EventEmitter, Output} from '@angular/core';
-import {faGoogleDrive} from '@fortawesome/free-brands-svg-icons';
-import {faCaretRight, faSpinner, faUnlock, faUser} from '@fortawesome/free-solid-svg-icons';
-import {NgForm} from '@angular/forms';
-import {Router} from '@angular/router';
-import {ProcescoService} from '../../../services/procesco.service';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
+import { faCaretRight, faSpinner, faUnlock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ProcescoService } from '../../../services/procesco.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,11 @@ import {ProcescoService} from '../../../services/procesco.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
   @Output() back: EventEmitter<any> = new EventEmitter();
+
+  private IS_ADMIN: number = 0;
+
   faGoogleDrive = faGoogleDrive;
   faUser = faUser;
   faUnlock = faUnlock;
@@ -27,6 +31,7 @@ export class LoginComponent {
   loading: boolean;
   loginInfo: object;
   errorMessage: string;
+
   constructor(private router: Router, public procescoService: ProcescoService) {
     this.loading = false;
     this.loginInfo = {
@@ -44,36 +49,29 @@ export class LoginComponent {
   onSubmit(form: NgForm) {
     this.loading = true;
     this.procescoService.validateUser(form.value).subscribe((response: any) => {
+
       localStorage.setItem('acctkn', JSON.stringify(response.access_token));
-      switch (response.user.userType) {
-        case 0: {
-          this.router.navigate(['procesco/admin']);
-          break;
-        }
-        case 1: {
-          switch (response.user.currentStep) {
-            case 0: {
-              this.router.navigate(['procesco/perfil']);
-              break;
-            }
-            case 1: {
-              this.router.navigate(['procesco/preseleccionEtapaA']);
-              break;
-            }
-            case 2: {
-              this.router.navigate(['procesco/preseleccionEtapaB']);
-              break;
-            }
-            case 3: {
-              break;
-            }
-          }
-          break;
+      this.user = response.user;
+
+      if (this.user.userType === this.IS_ADMIN) {
+        this.router.navigate(['procesco/admin']);
+      } else {
+        switch (this.user.currentStep) {
+          case 0:
+            this.router.navigate(['procesco/perfil']);
+            break;
+          case 1:
+            this.router.navigate(['procesco/preseleccionEtapaA']);
+            break;
+          case 2:
+            this.router.navigate(['procesco/preseleccionEtapaB']);
+            break;
+          case 3:
+            break;
         }
       }
       this.loading = false;
     }, error1 => {
-      console.error(error1);
       this.loading = false;
       this.errorMessage = 'Usuario y/o contraseña ingresados no son correctos';
     });

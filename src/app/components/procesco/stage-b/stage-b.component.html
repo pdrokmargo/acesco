@@ -204,17 +204,16 @@
           <!--  -->
           <div class="row">
             <div class="col text-center">
-              <div *ngIf="successMessage" class="alert alert-success" role="alert">
+              <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
                 {{successMessage}}
               </div>
-              <button *ngIf="!isAdminUser" type="button" (click)="onSubmit()" class="acesco-button"
-                [disabled]="isAdminUser || loading || stageAForm.invalid">Enviar
+              <button *ngIf="!isAdminUser && user.stageb_id == 0" type="button" (click)="onSubmit()" class="acesco-button" [disabled]="isAdminUser || loading">Enviar
                 <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
                 <fa-icon [icon]="faSpinner" *ngIf="loading" [spin]="true"></fa-icon>
               </button>
             </div>
           </div>
-          <button (click)="autoFill();">Rellenar</button>
+          <button (click)="autoFill();" *ngIf="!isAdminUser && user.stageb_id == 0">Rellenar</button>
         </div>
 
         <div class="card" *ngIf="isAdminUser">
