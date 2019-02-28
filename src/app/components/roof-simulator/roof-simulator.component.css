@@ -260,19 +260,7 @@
   z-index: 1;
 }
 
-.tab-2,
-.tab-3 {
-  text-align: center; 
-  position: relative;
-}
 
-.tab-2 img,
-.tab-3 img,
- {
-  width: 100%;
-  height: 705px;
-  object-fit: cover;
-}
 
 .roof-color {
   position: absolute;
@@ -285,6 +273,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.tab-2,
+.tab-3 {
+  text-align: center; 
+  position: relative;
+}
+
+.tab-2 > img,
+.tab-3 > img,
+ {
+  width: 100%!important;
+  height: 705px!important;
+  object-fit: cover!important;
 }
 
 .config-tab-2 button {

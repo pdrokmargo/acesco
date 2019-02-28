@@ -91,14 +91,14 @@
         cupiditate. Asperiores?</p>
     </div>
     <div class="tab-2" *ngIf="currentTab == VIVIENDA">
-      <img src="/assets/images/00-CASA/{{images.type[currenttype]}}">
-      <img class="roof-color" (load)="loadingImageState()" *ngIf="currentroofcolor" src="/assets/images/00-CASA/{{currentroofcolor}}">
+      <img style="width: 100%!important;height: 705px!important; object-fit: cover!important;" src="/assets/images/00-CASA/{{images.type[currenttype]}}">
+      <img style="width: 100%!important;height: 705px!important; object-fit: cover!important;" class="roof-color" (load)="loadingImageState()" *ngIf="currentroofcolor" src="/assets/images/00-CASA/{{currentroofcolor}}">
     </div>
 
     <div class="tab-3" *ngIf="currentTab == BODEGA">
-      <img src="/assets/images/01-BODEGA/{{images.type[currenttype]}}">
-      <img class="roof-color" (load)="loadingImageState()" *ngIf="currentroofcolor" src="/assets/images/01-BODEGA/{{currentroofcolor}}">
-      <img class="roof-color" (load)="loadingImageState()" *ngIf="currentfacadecolor" src="/assets/images/01-BODEGA/{{currentfacadecolor}}">
+      <img style="width: 100%!important;height: 705px!important; object-fit: cover!important;" src="/assets/images/01-BODEGA/{{images.type[currenttype]}}">
+      <img style="width: 100%!important;height: 705px!important; object-fit: cover!important;" class="roof-color" (load)="loadingImageState()" *ngIf="currentroofcolor" src="/assets/images/01-BODEGA/{{currentroofcolor}}">
+      <img style="width: 100%!important;height: 705px!important; object-fit: cover!important;" class="roof-color" (load)="loadingImageState()" *ngIf="currentfacadecolor" src="/assets/images/01-BODEGA/{{currentfacadecolor}}">
     </div>
   </div>
 </div>
