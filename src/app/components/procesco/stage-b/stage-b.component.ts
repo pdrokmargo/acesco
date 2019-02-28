@@ -382,7 +382,6 @@ export class StageBComponent {
       console.error(error1);
     });
   }
-
   download() {
 
     //this.procescoService.GET(`download-documents/${this.user.name}`).subscribe(res => console.log(res), err => console.log(err));
