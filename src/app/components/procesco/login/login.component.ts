@@ -67,6 +67,7 @@ export class LoginComponent {
             this.router.navigate(['procesco/preseleccionEtapaB']);
             break;
           case 3:
+            this.router.navigate(['procesco/perfilAprobado']);
             break;
         }
       }

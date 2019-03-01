@@ -4,11 +4,11 @@
  * @version 1.0, 29/12/08
  */
 
-import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter} from '@angular/core';
-import {faCaretRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
-import {Router} from '@angular/router';
-import {ProcescoService} from '../../../services/procesco.service';
-import {UserInterface} from '../../../Interfaces/user.interface';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input } from '@angular/core';
+import { faCaretRight, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+import { ProcescoService } from '../../../services/procesco.service';
+import { UserInterface } from '../../../Interfaces/user.interface';
 
 @Component({
   selector: 'app-profile',
@@ -16,9 +16,12 @@ import {UserInterface} from '../../../Interfaces/user.interface';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements AfterViewInit {
-  nationalOptions: any [] = [];
-  internationalOptions: any [] = [];
-  languageOptions: any [] = [];
+
+  @Input() approved: boolean;
+
+  nationalOptions: any[] = [];
+  internationalOptions: any[] = [];
+  languageOptions: any[] = [];
   loading: boolean;
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
@@ -29,23 +32,23 @@ export class ProfileComponent implements AfterViewInit {
 
   constructor(private router: Router, private cdRef: ChangeDetectorRef, public procescoService: ProcescoService) {
     this.nationalOptions = [
-      {label: 'Proveedor', value: 'proveedor', active: false},
-      {label: 'Tercero', value: 'tercero', active: false},
-      {label: 'Nuevo', value: 'nuevo', active: false},
-      {label: 'Actualización', value: 'actualizacion', active: false}
+      { label: 'Proveedor', value: 'proveedor', active: false },
+      { label: 'Tercero', value: 'tercero', active: false },
+      { label: 'Nuevo', value: 'nuevo', active: false },
+      { label: 'Actualización', value: 'actualizacion', active: false }
     ];
 
     this.internationalOptions = [
-      {label: 'Supplier', value: 'supplier', active: false},
-      {label: 'In house', value: 'inHouse', active: false},
-      {label: 'New', value: 'new', active: false},
-      {label: 'Update', value: 'update', active: false}
+      { label: 'Supplier', value: 'supplier', active: false },
+      { label: 'In house', value: 'inHouse', active: false },
+      { label: 'New', value: 'new', active: false },
+      { label: 'Update', value: 'update', active: false }
     ];
 
     this.languageOptions = [
-      {label: 'English', value: 'ingles', active: false},
+      { label: 'English', value: 'ingles', active: false },
       // {label: 'In house', value: 'inHouse', active: false},
-      {label: 'Español', value: 'español', active: true}
+      { label: 'Español', value: 'español', active: true }
     ];
     this.procescoService.getLogedUser().subscribe((user: any) => {
       if (user.preregistro_id) {
@@ -62,6 +65,7 @@ export class ProfileComponent implements AfterViewInit {
         }
       }
     });
+
   }
 
   ngAfterViewInit() {
@@ -78,7 +82,7 @@ export class ProfileComponent implements AfterViewInit {
       const supplier = this.nationalOptions[0].active ? 1 : 0;
       const inHouse = this.nationalOptions[1].active ? 1 : 0;
       const national = this.providerType === 'national' ? 1 : 0;
-      this.procescoService.updateUser({supplier: supplier, inHouse: inHouse, national: national}, 'profile').subscribe((response: any) => {
+      this.procescoService.updateUser({ supplier: supplier, inHouse: inHouse, national: national }, 'profile').subscribe((response: any) => {
         this.loading = false;
         this.router.navigate(['procesco/nuevoProveedor']);
       }, error1 => {
@@ -89,7 +93,7 @@ export class ProfileComponent implements AfterViewInit {
     } else {
       const supplier = this.internationalOptions[0].active;
       const inHouse = this.internationalOptions[1].active;
-      this.procescoService.updateUser({supplier: supplier, inHouse: inHouse}, 'profile');
+      this.procescoService.updateUser({ supplier: supplier, inHouse: inHouse }, 'profile');
     }
 
 

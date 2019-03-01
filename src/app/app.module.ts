@@ -39,6 +39,7 @@ import { DescriptionsComponent } from './components/procesco/descriptions/descri
 import { RoofSimulatorComponent } from './components/roof-simulator/roof-simulator.component';
 import { MyCurrencyDirective } from './directive/my-currency.directive';
 import { MyCurrencyPipe } from './pipe/my-currency.pipe';
+import { ApprovedProfileComponent } from './components/procesco/approved-profile/approved-profile.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { MyCurrencyPipe } from './pipe/my-currency.pipe';
     DescriptionsComponent,
     RoofSimulatorComponent,
     MyCurrencyDirective,
-    MyCurrencyPipe
+    MyCurrencyPipe,
+    ApprovedProfileComponent
   ],
   imports: [
     BrowserModule,
