@@ -17,20 +17,14 @@
           <div class="row">
             <!--  -->
             <div class="col-12">
-              <app-form-title [text]="'soportes para operadores ecónomicos autorizados (oea)'"></app-form-title>
+              <app-form-title [text]="'aspectos de seguridad'"></app-form-title>
             </div>
             <div class="col-12 text-justify mt-3">
-              <p>En consideración a la resolución 000015 del 2016 impartida por la DIRECCIÓN GENERAL DE IMPUESTOS Y
-                ADUANAS NACIONALES, por la cual se reglamentan los requisitos mínimos obligatorios para calificarse como
-                Operador Económico Autorizado en Colombia. Así mismo en cumplimiento a la Normativa BASC - Ext
-                (Exportador) Se solicita a ustedes, asociados de negocios de la cadena de suministo de Acerias de
-                Colombia - ACESCO SAS, asegurar y demostrar alineación con los requisitos mínimos de seguridad de la
-                circular 006 del 16 de Septiembre del 2016. A través de los compromisos adquiridos en la manifestación
-                anexa.</p>
-              <p>Dichos requisitos pueden ser auditados por parte de la compañía Acerias de Colombia - ACECO SAS, con el
-                fin de preservar la seguridad en la cadena de suministro; manifiesto que la organización tiene buenas
-                practicas de seguridad a lo largo de la cadena de suministro acorde a nuestros riesgos. Por lo cual
-                garantizamos que:</p>
+              <p>ACESCO está comprometida con la prevención de actividades ilícitas y la materilización de riesgos que atenten contra la integridad de su
+                cadena de suministro y/o la continuidad de sus operaciones, alineadas a las normativas de seguridad aduaneras vigentes.
+                Por lo anterior se solicita a nuestros asociados de negocio asegurar y demostrar alineación con nuestros requisitos de seguridad,
+                los cuales podrán ser auditados por ACESCO. 
+              </p>
             </div>
             <div class="col-12 mt-3">
               <div class="row border">
@@ -61,10 +55,21 @@
                   </div>
                 </div>
               </div>
-              <div class="row border">
+              <div class="row border-left border-bottom border-right">
                 <div class="col-12">
                   <div class="row __title" (click)="toggleList('manifest')">
-                    <div class="col-8 title-checks">Manifiesto de cumplimiento de los requisitos mínimos de seguridad
+                    <div class="col-8 title-checks"><ul class="list-inline">
+                        <li class="list-inline-item">
+                          <app-toggle [disabled]="isAdminUser"
+                            [model]="stageB.manifest"
+                            [prop]="'manifest'"
+                            (updatedValue)="updatedValue($event);">
+                          </app-toggle>
+                        </li>
+                        <li class="list-inline-item">
+                          <p>Manifiesto de cumplimiento de los requisitos minimos de seguridad</p>
+                        </li>
+                      </ul>
                     </div>
                     <div class="col-4 text-right">
                       <span class="icon">
@@ -78,6 +83,11 @@
                 <div class="col-12 animated fadeIn faster" *ngIf="lists.manifest">
                   <div class="row">
                     <div class="col-6 text-justify">
+                        <p>
+                            • <b>Administración del riesgo</b>: Nos comprometemos a gestionar de nuestra organización, 
+                            con el fin de evitar su materialización y agregar valor a nuestras operaciones y a las relaciones comerciales
+                            y contractuales existentes.
+                          </p>
                       <p>
                         • <b>Seguridad de nuestros asociados de negocios:</b> contamos con un proceso exigente de
                         selección y verigicación de proveedores, clientes de nuestra cadena logística evitando
@@ -85,23 +95,23 @@
                         ilicitas que nos puedan afectar.
                       </p>
                       <p>
-                        • <b>Seguridad de la mercanciía y/o servicio:</b> la mercancía o los servicios ofrecidos cuentan
+                        • <b>Seguridad de la mercancía y/o servicio:</b> la mercancía o los servicios ofrecidos cuentan
                         con las medidas de seguridad requeridas para mantener la integridad de los mismos, con el fin de
                         prevenir la ocurrencia de incidentes de seguridad.
                       </p>
                       <p>
-                        • <b>Controles de acceso fisico:</b> las instalaciones de nuestra compañia son seguras y tienen
+                        • <b>Controles de acceso físico:</b> las instalaciones de nuestra compañía son seguras y tienen
                         medidas de seguridad requeridas para prevenir el acceso no autorizado a las mismas, mantener el
                         control de empleados y visitantes, y proteger los bienes.
                       </p>
                       <p>
-                        • <b>Seguridad de neustro personal:</b> nuestra organización posee mecanismos de selección,
+                        • <b>Seguridad de nuestro personal:</b> nuestra organización posee mecanismos de selección,
                         contratación y verificación que garantiza que el persona vinculado y subcontratado es
                         competente,
                         y se encuentra libre vínculos con actividades ilicítas.
                       </p>
                       <p>
-                        • <b>Seguridad de neustros procesos:</b> los procesos de nuestra organización, incluidos
+                        • <b>Seguridad de nuestros procesos:</b> los procesos de nuestra organización, incluidos
                         almacenamiento, distribución y transporte de la mercancía, son transparentes y cuentan con los
                         controles necesarios para garantizar integridad y seguridad.
                       </p>
@@ -132,11 +142,16 @@
                         Todo lo manifestado anteriormente es verificacble y dicha información estrá disponible para
                         nuestros clientes en las circustancias que lo ameriten.
                       </p>
+                      <p>
+                          • <b>Seguridad de la información:</b> La información de nuestros proveedores y clientes, de la mercancía es la y/o 
+                          servicio prestado se encuentra protegida y disponible para verificación en cumplimiento de la normativas de seguridad
+                          que le apliquen.
+                        </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="row border">
+              <!-- <div class="row border">
                 <div class="col-12">
                   <div class="row __title" (click)="toggleList('physicalSecurityAgreements')">
                     <div class="col-8 title-checks">Acuerdos de seguridad fisica</div>
@@ -172,7 +187,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
             <!--  -->
             <div class="col-12 mt-3">
@@ -207,7 +222,7 @@
               <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
                 {{successMessage}}
               </div>
-              <button *ngIf="!isAdminUser && user.stageb_id == 0" type="button" (click)="onSubmit()" class="acesco-button" [disabled]="isAdminUser || loading">Enviar
+              <button *ngIf="!isAdminUser && user.stageb_id == null" type="button" (click)="onSubmit()" class="acesco-button" [disabled]="isAdminUser || loading">Enviar
                 <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
                 <fa-icon [icon]="faSpinner" *ngIf="loading" [spin]="true"></fa-icon>
               </button>

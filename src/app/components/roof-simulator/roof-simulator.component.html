@@ -6,9 +6,14 @@
 
         <img src="/assets/images/icono-cubierta.png">
         <h1 class="nav-roof-title">Simulador de cubiertas</h1>
-
+        <div style="border-top:2px solid #30ddaa; margin:0 145px; padding:10px;"></div>
         <h2 class="nav-roof-subtitle">Escoge tu proyecto</h2>
-
+        <img class="cubiertas" src="/assets/images/faCarretDownEllipsis.png">
+        <!-- <div style="display: inline-grid;">  
+          <span style="position:unset;font-size:30px;" class="input-icon">.  . .</span>
+          <fa-icon style="position:unset;font-size:30px;" [icon]="faCaretDown" class="input-icon"></fa-icon>
+        </div>
+         -->
         <div class="type-container">
           <button type="button" class="btn-area" [ngClass]="{'active':currentTab == VIVIENDA}" (click)="tab(VIVIENDA)">
             <img src="/assets/images/icono-residencia.png">
@@ -18,7 +23,11 @@
             <img src="/assets/images/icono-bodega.png">
             <span class="text">Bodegas</span>
           </button>
+          <div style="border-top:1px solid #9e9d9d; margin:20px 33px;"></div>
         </div>
+
+        <h2 class="nav-roof-subtitle">Selecciona tu Cubierta</h2>
+        <img class="cubiertas" src="/assets/images/faCarretDownEllipsis.png">
 
         <div class="more-type" *ngIf="currentTab == BODEGA">
           <button type="button" class="btn-area" [ngClass]="{'active':currentTab_bodega == BODEGA_FACHADA}"
@@ -42,8 +51,9 @@
             <div *ngIf="item.show">
               <button class="btn-area" (click)="type(index)" [ngClass]="{'active': currenttype == index}">
                 <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg"></span>
-                <img src="/assets/images/{{item.url}}">
+                <img class="cubiertas" src="/assets/images/{{item.url}}">
                 <span class="text">
+                  <img src="/assets/images/{{item.geometria}}">
                   <span class="icon"></span>
                   {{item.name}}
                 </span>
@@ -70,15 +80,15 @@
 
 
       <div class="nav-roof-bottom">
-        <button>
+        <a href="https://acesco.com.co/distribuidores/" target="_blank"><button>
           <img src="/assets/images/icono-distribuidores.png">
           Distribuidores
-        </button>
+        </button></a>
         <button>
           <img src="/assets/images/icono-garantias.png">
           Garantía
         </button>
-        <button class="cotizar">Cotizar</button>
+        <button class="cotizar">Cotiza</button>
       </div>
     </div>
   </nav>

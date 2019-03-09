@@ -159,7 +159,7 @@
                             name="documentType_id"
                             #documentType_id="ngModel"
                             required
-                            [disabled]="isAdminUser || loading">
+                            [disabled]="isAdminUser || loading" (change)="test()">
                       <option [ngValue]="null">Elije uno*</option>
                       <option *ngFor="let documentRef of documentTypes" [ngValue]="documentRef">{{documentRef.description}}</option>
                     </select>
@@ -195,7 +195,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-12">
+              <div class="col-12" *ngIf="showNaturalPersonaBody()">
                 <div class="text-block">
                   <ul class="list-unstyled">
                     <li>
@@ -223,7 +223,7 @@
                 <div class="form-group">
                   <input type="text"
                          class="form-control"
-                         placeholder="Razon social/Nombre completo*"
+                         placeholder="Razón social/Nombre completo*"
                          [disabled]="isAdminUser || loading"
                          required
                          [(ngModel)]="preRegister.businessName"

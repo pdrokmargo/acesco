@@ -19,6 +19,7 @@ import {NgForm} from '@angular/forms';
 })
 export class NewProviderComponent {
   preRegister: any;
+  hideStuff = false;
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
   height: number;
@@ -199,7 +200,14 @@ export class NewProviderComponent {
     this.preRegister.productSeal = true;
     this.preRegister.productSealName = 'productSealName';
   }
-
+  showNaturalPersonaBody(){
+    if(this.preRegister.documentType_id){
+      if(this.preRegister.documentType_id.id == 1){
+        return true;
+      }
+    }
+    return false;
+  }
   onSubmit(form: NgForm) {
     this.loading = true;
     const {country_id, classification_id, documentType_id} = this.preRegister;
