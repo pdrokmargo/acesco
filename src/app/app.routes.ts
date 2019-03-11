@@ -28,7 +28,7 @@ export const ROUTES: Routes = [
   { path: 'procesco/preseleccionEtapaA/:id', component: StageAComponent },
   { path: 'procesco/preseleccionEtapaB', component: StageBComponent },
   { path: 'procesco/preseleccionEtapaB/:id', component: StageBComponent },
-  { path: 'procesco/perfilAprobado', component: ApprovedProfileComponent },
+  { path: 'procesco/perfilAprobado/:id', component: ApprovedProfileComponent },
   { path: 'sistema-de-garantias', component: SistemaDeGarantiasComponent },
   { path: 'simulador-de-cubiertas', component: RoofSimulatorComponent },
   { path: 'faq', component: FaqComponent },

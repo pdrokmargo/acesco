@@ -1,9 +1,22 @@
 #app-profile {
   background: #2daddc; /* Old browsers */
-  background: -moz-linear-gradient(left, #2daddc 0%, #29c2ad 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, #2daddc 0%,#29c2ad 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, #2daddc 0%,#29c2ad 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -moz-linear-gradient(
+    left,
+    #2daddc 0%,
+    #29c2ad 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    left,
+    #2daddc 0%,
+    #29c2ad 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    #2daddc 0%,
+    #29c2ad 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2daddc', endColorstr='#29c2ad',GradientType=1 ); /* IE6-9 */
+  position: relative;
 }
 
 #app-profile:after {
@@ -16,6 +29,13 @@
   bottom: 0;
   right: 0;
   position: absolute;
+  z-index: -1;
+}
+#app-profile.no-bg {
+  background: transparent;
+}
+#app-profile.no-bg:after {
+  background: transparent;
 }
 
 header {
@@ -55,7 +75,10 @@ header {
 }
 
 .card {
-  width: 65%;
   padding: 50px;
   z-index: 2;
+}
+
+.no-border {
+  border-bottom: 0;
 }

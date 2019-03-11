@@ -6,6 +6,10 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2daddc', endColorstr='#29c2ad', GradientType=1); /* IE6-9 */
 }
 
+#app-stage-b.no-bg {
+  background: transparent;
+}
+
 .icon {
   font-size: 35px;
 }
@@ -41,4 +45,8 @@
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+
+.no-border {
+  border-top: 0;
 }
