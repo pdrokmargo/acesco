@@ -1,11 +1,11 @@
 <section
   id="app-stage-a"
-  [ngClass]="{ 'animated fadeIn fast': !approved, 'no-bg': approved }"
+  [ngClass]="{ 'animated fadeIn fast': !__approved, 'no-bg': __approved }"
 >
-  <app-logo-and-social *ngIf="!approved"></app-logo-and-social>
+  <app-logo-and-social *ngIf="!__approved"></app-logo-and-social>
 
   <div class="container">
-    <div class="row" *ngIf="!approved">
+    <div class="row" *ngIf="!__approved">
       <div class="col-12 text-white text-center mt-5">
         <h4 class="mt-5">Pre Selección Estapa A</h4>
         <hr class="whiteLine" />
@@ -13,12 +13,12 @@
     </div>
     <div class="row">
       <div class="col text-center">
-        <app-timeline [currentStep]="step" *ngIf="!approved"></app-timeline>
+        <app-timeline [currentStep]="step" *ngIf="!__approved"></app-timeline>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <div class="card" [ngClass]="{ 'no-border': approved }">
+        <div class="card" [ngClass]="{ 'no-border': __approved }">
           <form
             #stageAForm="ngForm"
             (ngSubmit)="onSubmit(stageAForm)"
@@ -1190,7 +1190,7 @@
                   {{ successMessage }}
                 </div>
                 <button
-                  *ngIf="!isAdminUser && !approved"
+                  *ngIf="!isAdminUser && !__approved"
                   type="submit"
                   class="acesco-button"
                   [disabled]="isAdminUser || loading || stageAForm.invalid"
@@ -1221,16 +1221,16 @@
               </div>
             </div>
           </form>
-          <button *ngIf="!isAdminUser && !approved" (click)="autoFill()">
+          <button *ngIf="!isAdminUser && !__approved" (click)="autoFill()">
             autorellenar
           </button>
           <app-return
-            *ngIf="this.id && !approved"
-            [user]="id && !approved"
+            *ngIf="this.id && !__approved"
+            [user]="id && !__approved"
           ></app-return>
         </div>
       </div>
     </div>
   </div>
-  <app-footer *ngIf="!approved"></app-footer>
+  <app-footer *ngIf="!__approved"></app-footer>
 </section>

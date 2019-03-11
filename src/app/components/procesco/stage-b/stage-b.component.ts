@@ -22,7 +22,11 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./stage-b.component.css"]
 })
 export class StageBComponent {
-  @Input() approved: boolean;
+  private __approved = false;
+  @Input() set approved(approved: boolean) {
+    this.__approved = approved;
+    this.isAdminUser = false;
+  }
 
   faCaretRight = faCaretRight;
   faCaretDown = faCaretDown;
@@ -52,7 +56,7 @@ export class StageBComponent {
       activeRoute => {
         if (activeRoute["id"]) {
           this.isAdminUser = true;
-          
+
           this.procescoService.getUserById(activeRoute.id).subscribe(
             (user: any) => {
               this.user = user;
@@ -62,6 +66,18 @@ export class StageBComponent {
                 .subscribe(
                   (stage: any) => {
                     this.stageB = stage.stage_b;
+                    this.selfEvaluationToggles.forEach(element => {
+                      element.value = this.stageB[element.model];
+                    });
+                    this.physicalSecurityAgreementsToggles.forEach(element => {
+                      element.value = this.stageB[element.model];
+                    });
+                    this.annex1Toggles.forEach(element => {
+                      element.value = this.stageB[element.model];
+                    });
+                    this.annex2Toggles.forEach(element => {
+                      element.value = this.stageB[element.model];
+                    });
                   },
                   error1 => {
                     console.error(error1);
@@ -311,11 +327,6 @@ export class StageBComponent {
         text:
           "Copias de la calificación en ruc y de las certificaciones/acreditaciones en sistemas de gestión, BASC y sello de producto que pose vigentes."
       }
-      // {
-      //   model: 'declarationOfRiskPrevention',
-      //   value: false,
-      //   text: 'Declaración de prevención del riesgo - la/fa (anexo página 5)'
-      // },
     ];
     this.annex2Toggles = [
       // { model: 'annex6', value: false, text: 'Declaración de compromiso de seguridad (anexo pagina 6)' },
@@ -472,6 +483,8 @@ export class StageBComponent {
     );
   }
   updated() {
-    console.log("puedo acceder");
+    this.procescoService
+      .updateUser(this.stageB, "stage-b")
+      .subscribe(res => console.log(res), err => console.error(err));
   }
 }

@@ -2,7 +2,7 @@
   <app-loader [loading]="loading" [height]="height"></app-loader>
   <app-logo-and-social></app-logo-and-social>
   <div class="container-fluid">
-    <app-profile [approved]="true" #profile></app-profile>
+    <!-- <app-profile [approved]="true" #profile></app-profile> -->
     <br /><br />
     <app-stage-a [approved]="true" #stagea></app-stage-a>
     <br /><br />
@@ -11,7 +11,7 @@
       <div class="col text-center">
         <button
           class="acesco-button max-500 mt-5"
-          (click)="profile.updated();stagea.updated();stageb.updated();"
+          (click)="stagea.updated();stageb.updated();"
         >
           Actualizar
         </button>

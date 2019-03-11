@@ -56,21 +56,26 @@ export class ProfileComponent implements AfterViewInit {
 
     this.languageOptions = [
       { label: "English", value: "ingles", active: false },
-      // {label: 'In house', value: 'inHouse', active: false},
       { label: "Español", value: "español", active: true }
     ];
     this.procescoService.getLogedUser().subscribe((user: any) => {
+      console.log(user);
+
       if (user.preregistro_id) {
         switch (user.national) {
-          case 0: {
+          case 0:
             this.nationalOptions[0].active = user.supplier === 1;
             this.nationalOptions[1].active = user.inHouse === 1;
             break;
-          }
-          case 1: {
-            console.log("international");
+          case 1:
+            console.log(user.supplier === 1);
+            console.log(user.inHouse === 1);
+
+            this.internationalOptions[0].active = user.supplier === 1;
+            this.internationalOptions[1].active = user.inHouse === 1;
+            console.log(this.internationalOptions);
+
             break;
-          }
         }
       }
     });
@@ -79,13 +84,10 @@ export class ProfileComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.height = document.body.offsetHeight;
     this.cdRef.detectChanges();
-    console.log(this.approved);
   }
 
   submitProfile() {
-    if (!this.action) {
-      return;
-    }
+    if (!this.action) return;
     this.loading = true;
     if (this.providerType === "national") {
       const supplier = this.nationalOptions[0].active ? 1 : 0;
@@ -126,12 +128,12 @@ export class ProfileComponent implements AfterViewInit {
       switch (event.key) {
         case "nuevo": {
           this.nationalOptions[3].active = false;
-          event.value ? (this.action = event.key) : (this.action = null);
+          this.action = event.event.value ? event.key : null;
           break;
         }
         case "actualizacion": {
           this.nationalOptions[2].active = false;
-          event.value ? (this.action = event.key) : (this.action = null);
+          this.action = event.event.value ? event.key : null;
         }
       }
       this.nationalOptions[index].active = event.value;
@@ -143,12 +145,12 @@ export class ProfileComponent implements AfterViewInit {
       switch (event.key) {
         case "new": {
           this.internationalOptions[3].active = false;
-          event.value ? (this.action = event.key) : (this.action = null);
+          this.action = event.value ? event.key : null;
           break;
         }
         case "update": {
           this.internationalOptions[2].active = false;
-          event.value ? (this.action = event.key) : (this.action = null);
+          this.action = event.event.value ? event.key : null;
         }
       }
       this.internationalOptions[index].active = event.value;
@@ -166,6 +168,28 @@ export class ProfileComponent implements AfterViewInit {
   }
 
   updated() {
-    console.log("puedo acceder");
+    if (!this.action) return;
+    this.loading = true;
+    if (this.providerType === "national") {
+      const supplier = this.nationalOptions[0].active ? 1 : 0;
+      const inHouse = this.nationalOptions[1].active ? 1 : 0;
+      const national = this.providerType === "national" ? 1 : 0;
+      this.procescoService
+        .updateUser(
+          { supplier: supplier, inHouse: inHouse, national: national },
+          "profile"
+        )
+        .subscribe(
+          response => (this.loading = false), //this.router.navigate(["procesco/nuevoProveedor"]);
+          error1 => console.error(error1) //this.loading = false;
+        );
+    } else {
+      const supplier = this.internationalOptions[0].active;
+      const inHouse = this.internationalOptions[1].active;
+      this.procescoService.updateUser(
+        { supplier: supplier, inHouse: inHouse },
+        "profile"
+      );
+    }
   }
 }

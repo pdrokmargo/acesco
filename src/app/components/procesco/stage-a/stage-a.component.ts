@@ -17,6 +17,7 @@ import { ToggleInterface } from "../../../Interfaces/toggle.interface";
 import { faCaretRight, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-stage-a",
@@ -24,7 +25,11 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./stage-a.component.css"]
 })
 export class StageAComponent {
-  @Input() approved: boolean;
+  private __approved: boolean = false;
+  @Input() set approved(approved: boolean) {
+    this.__approved = approved;
+    this.isAdminUser = false;
+  }
 
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
@@ -47,7 +52,8 @@ export class StageAComponent {
     private cdRef: ChangeDetectorRef,
     public procescoService: ProcescoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService
   ) {
     this.activatedRoute.params.subscribe(
       activeRoute => {
@@ -60,6 +66,8 @@ export class StageAComponent {
               this.step = currentStep;
               this.procescoService.getStepById(stagea_id, "stage-a").subscribe(
                 ({ stage_a }: any) => {
+                  console.log(stage_a);
+                  
                   this.stageA = { ...stage_a };
                 },
                 error1 => {
@@ -211,13 +219,11 @@ export class StageAComponent {
   onSubmit(form: NgForm) {
     this.loading = true;
     this.procescoService.updateUser(this.stageA, "stage-a").subscribe(
-      (response: any) => {
+      response => {
         this.router.navigate(["procesco/confirmacion"]);
         this.loading = false;
       },
-      error1 => {
-        console.error(error1);
-      }
+      error1 => console.error(error1)
     );
   }
 
@@ -225,12 +231,14 @@ export class StageAComponent {
     this.loading = true;
     this.reserved_space.language_id = this.reserved_space.language_id.id;
     this.reserved_space.currency_id = this.reserved_space.currency_id.id;
+
     const {
       language_id,
       currency_id,
       level_of_impact,
       payment_condition
     } = this.reserved_space;
+
     const finalObject = {
       currentStep: 2,
       reserved_space: {
@@ -247,9 +255,7 @@ export class StageAComponent {
           this.router.navigate(["procesco/admin"]);
         }, 2000);
       },
-      error1 => {
-        console.error(error1);
-      }
+      error1 => console.error(error1)
     );
   }
 
@@ -306,6 +312,8 @@ export class StageAComponent {
   }
 
   updated() {
-    console.log("puedo acceder");
+    this.procescoService
+      .updateUser(this.stageA, "stage-a")
+      .subscribe(rs => console.log(rs), err => console.error(err));
   }
 }
