@@ -232,7 +232,7 @@ export class RoofSimulatorComponent implements OnInit, AfterViewInit {
       {
         url: "cubiertas-02.png",
         geometria: "geometria-cubierta-arquitectonica.png",
-        name: "Cubierta arquitectonica",
+        name: "Cubierta arquitectónica",
         show: (this.currentTab == this.VIVIENDA) || (this.currentTab == this.BODEGA)
       },
       {
