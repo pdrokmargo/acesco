@@ -487,4 +487,16 @@ export class StageBComponent {
       .updateUser(this.stageB, "stage-b")
       .subscribe(res => console.log(res), err => console.error(err));
   }
+
+  downloadFile() {
+    this.procescoService
+      .GET_FILE(`download-documents/${this.user.name}`)
+      .subscribe((res: any) => {
+        const blob = new Blob([res], {
+          type: "application/zip"
+        });
+        const url = window.URL.createObjectURL(blob);
+        window.open(url);
+      });
+  }
 }
