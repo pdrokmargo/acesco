@@ -67,7 +67,7 @@ export class StageAComponent {
               this.procescoService.getStepById(stagea_id, "stage-a").subscribe(
                 ({ stage_a }: any) => {
                   console.log(stage_a);
-                  
+
                   this.stageA = { ...stage_a };
                 },
                 error1 => {
@@ -89,6 +89,8 @@ export class StageAComponent {
             }
           );
         }
+
+        this.toastr.success("Hello world!", "Toastr fun!");
       },
       error1 => {
         console.error(error1);
