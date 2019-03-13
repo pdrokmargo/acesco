@@ -4,7 +4,13 @@
  * @version 1.0, 10/01/08
  */
 
-import { ChangeDetectorRef, Component, Input } from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  Output,
+  EventEmitter
+} from "@angular/core";
 import {
   faCaretDown,
   faCaretRight,
@@ -27,6 +33,8 @@ export class StageBComponent {
     this.__approved = approved;
     this.isAdminUser = false;
   }
+
+  @Output() emitEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   faCaretRight = faCaretRight;
   faCaretDown = faCaretDown;
@@ -482,10 +490,10 @@ export class StageBComponent {
       }
     );
   }
-  updated() {
+  updated(callback) {
     this.procescoService
       .updateUser(this.stageB, "stage-b")
-      .subscribe(res => console.log(res), err => console.error(err));
+      .subscribe(res => this.emitEvent.emit(true), err => console.error(err));
   }
 
   downloadFile() {

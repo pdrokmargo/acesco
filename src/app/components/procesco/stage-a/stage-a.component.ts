@@ -9,7 +9,8 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  Input
+  Input,
+  Output
 } from "@angular/core";
 import { UserInterface } from "../../../Interfaces/user.interface";
 import { ProcescoService } from "../../../services/procesco.service";
@@ -30,6 +31,8 @@ export class StageAComponent {
     this.__approved = approved;
     this.isAdminUser = false;
   }
+
+  @Output() emitEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
@@ -313,9 +316,9 @@ export class StageAComponent {
     };
   }
 
-  updated() {
+  updated(callback) {
     this.procescoService
       .updateUser(this.stageA, "stage-a")
-      .subscribe(rs => console.log(rs), err => console.error(err));
+      .subscribe(rs => this.emitEvent.emit(true), err => console.error(err));
   }
 }

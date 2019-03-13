@@ -4,7 +4,13 @@
  * @version 1.0, 29/12/08
  */
 
-import { ChangeDetectorRef, Component, Input } from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  Output,
+  EventEmitter
+} from "@angular/core";
 import { faCaretRight, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { ToggleInterface } from "../../../Interfaces/toggle.interface";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -23,6 +29,7 @@ export class NewProviderComponent {
     this.__approved = approved;
     this.isAdminUser = false;
   }
+  @Output() emitEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   preRegister: any;
   hideStuff = false;
@@ -40,6 +47,7 @@ export class NewProviderComponent {
   isAdminUser: boolean;
   successMessage: string;
   user: any;
+  preregistro_id:number;
 
   constructor(
     private router: Router,
@@ -51,10 +59,12 @@ export class NewProviderComponent {
       activeRoute => {
         if (activeRoute["id"]) {
           this.isAdminUser = true;
+          
           this.procescoService.getUserById(activeRoute["id"]).subscribe(
             ({ currentStep, id, preregistro_id }: any) => {
               this.step = currentStep;
               this.id = id;
+              this.preregistro_id = preregistro_id;
               this.procescoService
                 .getStepById(preregistro_id, "pre-register")
                 .subscribe(
@@ -285,8 +295,56 @@ export class NewProviderComponent {
     this.preRegister.country_id = country_id.id;
     this.preRegister.classification_id = classification_id.id;
     this.preRegister.documentType_id = documentType_id.id;
-    this.procescoService
-      .updateUser(this.preRegister, "pre-register")
-      .subscribe(rs => console.log(rs), error1 => console.error(error1));
+
+    this.procescoService.updateUser(this.preRegister, "pre-register").subscribe(
+      rs => {
+        this.procescoService
+          .getStepById(this.preregistro_id, "pre-register")
+          .subscribe(
+            ({ register }: any) => {
+              this.preRegister = { ...register };
+              this.procescoService.getCountriesList().subscribe(
+                countries => {
+                  this.countries = [...countries];
+                  this.procescoService.getDocumentTypeList().subscribe(
+                    documents => {
+                      this.documentTypes = [...documents];
+                      this.procescoService.getClassificationsList().subscribe(
+                        classifications => {
+                          this.classifications = [...classifications];
+                          this.preRegister.country_id = this.countries.find(
+                            el => el.id === this.preRegister.country_id
+                          );
+                          this.preRegister.documentType_id = this.documentTypes.find(
+                            el => el.id === this.preRegister.documentType_id
+                          );
+                          this.preRegister.classification_id = this.classifications.find(
+                            el => el.id === this.preRegister.classification_id
+                          );
+                        },
+                        error1 => {
+                          console.error(error1);
+                        }
+                      );
+                    },
+                    error1 => {
+                      console.error(error1);
+                    }
+                  );
+                },
+                error1 => {
+                  console.error(error1);
+                }
+              );
+            },
+            error1 => {
+              console.error(error1);
+            }
+          );
+
+        this.emitEvent.emit(true);
+      },
+      err => console.error(err)
+    );
   }
 }
