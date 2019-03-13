@@ -17,6 +17,7 @@
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2daddc', endColorstr='#29c2ad',GradientType=1 ); /* IE6-9 */
   min-height: 100vh;
+  position: relative;
 }
 
 #app-approved-profile:after {

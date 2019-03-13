@@ -1,4 +1,6 @@
 import { Component, ChangeDetectorRef, AfterViewInit } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
+declare var $: any;
 
 @Component({
   selector: "app-approved-profile",
@@ -10,7 +12,7 @@ export class ApprovedProfileComponent implements AfterViewInit {
   height: number;
   update: number = 0;
 
-  constructor(private cdRef: ChangeDetectorRef) {
+  constructor(private cdRef: ChangeDetectorRef, private toastr: ToastrService) {
     this.update = 0;
     console.log(this.update);
   }
@@ -23,8 +25,11 @@ export class ApprovedProfileComponent implements AfterViewInit {
   callback(e) {
     this.update++;
     if (this.update == 3) {
-      console.log("entra");
-      
+      $(".toast").toast({ autohide: false });
+      $(".toast").toast("show");
+      setTimeout(() => {
+        $(".toast").toast("hide");
+      }, 3000);
       this.update = 0;
     }
   }

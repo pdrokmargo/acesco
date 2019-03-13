@@ -3,17 +3,29 @@
   <app-logo-and-social></app-logo-and-social>
   <div class="container-fluid">
     <!-- <app-profile [approved]="true" #profile></app-profile> -->
-    <app-new-provider [approved]="true" #provider (emitEvent)="callback($event)"></app-new-provider>
+    <app-new-provider
+      [approved]="true"
+      #provider
+      (emitEvent)="callback($event)"
+    ></app-new-provider>
     <br /><br />
-    <app-stage-a [approved]="true" #stagea (emitEvent)="callback($event)"></app-stage-a>
+    <app-stage-a
+      [approved]="true"
+      #stagea
+      (emitEvent)="callback($event)"
+    ></app-stage-a>
     <br /><br />
-    <app-stage-b [approved]="true" #stageb (emitEvent)="callback($event)"></app-stage-b>
+    <app-stage-b
+      [approved]="true"
+      #stageb
+      (emitEvent)="callback($event)"
+    ></app-stage-b>
     <div class="row">
       <div class="col text-center">
         <button
           class="acesco-button max-500 mt-5"
           (click)="provider.updated(); stagea.updated(); stageb.updated()"
-          [disabled] = "update > 0"
+          [disabled]="update > 0"
         >
           Actualizar
         </button>
@@ -21,4 +33,20 @@
     </div>
   </div>
   <app-footer></app-footer>
+  <div class="toast" style="position: fixed; top: 10px; right: 10px;">
+    <div class="toast-header">
+      <strong class="mr-auto">Actualizado</strong>
+      <button
+        type="button"
+        class="ml-2 mb-1 close"
+        data-dismiss="toast"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      Registro actualizado correctamente
+    </div>
+  </div>
 </section>

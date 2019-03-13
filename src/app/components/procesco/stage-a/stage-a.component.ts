@@ -55,8 +55,7 @@ export class StageAComponent {
     private cdRef: ChangeDetectorRef,
     public procescoService: ProcescoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService
+    private activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.params.subscribe(
       activeRoute => {
@@ -93,7 +92,6 @@ export class StageAComponent {
           );
         }
 
-        this.toastr.success("Hello world!", "Toastr fun!");
       },
       error1 => {
         console.error(error1);
