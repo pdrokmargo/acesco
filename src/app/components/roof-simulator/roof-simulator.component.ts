@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
-import {faSpinner, faCaretDown, faEllipsisH} from '@fortawesome/free-solid-svg-icons';
+import {faSpinner, faCaretRight, faEllipsisH} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-roof-simulator',
@@ -12,7 +12,7 @@ export class RoofSimulatorComponent implements OnInit, AfterViewInit {
   loading: boolean;
   height: number;
   faSpinner = faSpinner;
-  faCaretDown = faCaretDown;
+  faCaretRight = faCaretRight;
   faEllipsisH = faEllipsisH;
   private images = {
     type: [
@@ -67,7 +67,7 @@ export class RoofSimulatorComponent implements OnInit, AfterViewInit {
       },
       {
         url: "rojo-granate.png",
-        title: "ROJO GRANETE",
+        title: "ROJO GRANATE",
         ral: "3011",
         sri: "34"
       },
@@ -112,7 +112,7 @@ export class RoofSimulatorComponent implements OnInit, AfterViewInit {
     {
       url: "cubiertas-01.png",
       geometria:"geometria-master-1000.png",
-      name: "Master 1000",
+      name: "Master\n1000",
       show: (this.currentTab == this.VIVIENDA) || (this.currentTab == this.BODEGA)
     },
     {
@@ -125,19 +125,19 @@ export class RoofSimulatorComponent implements OnInit, AfterViewInit {
       url: "cubiertas-03.png",
       geometria:"geometria-teja-sin-traslapo.png",
       name: "Teja sin traslapo",
-      show: (this.currentTab == this.VIVIENDA) || (this.currentTab == this.BODEGA)
+      show: /*(this.currentTab == this.VIVIENDA) || */(this.currentTab == this.BODEGA)
     },
     {
       url: "cubiertas-04.png",
       geometria:"geometria-canaleta.png",
-      name: "Canaletas",
-      show: (this.currentTab == this.BODEGA)
+      name: "Canaleta"+'\n\n',
+      show: (this.currentTab == this.BODEGA) && (this.currentTab_bodega == this.BODEGA_CUBIERTA)
     },
     {
       url: "cubiertas-05.png",
       geometria:"geometria-teja-sin-traslapo-curva.png",
       name: "Teja sin traslapo curva",
-      show: (this.currentTab == this.BODEGA)
+      show: (this.currentTab == this.BODEGA) && (this.currentTab_bodega == this.BODEGA_CUBIERTA)
     },
 
   ];
@@ -226,7 +226,7 @@ export class RoofSimulatorComponent implements OnInit, AfterViewInit {
       {
         url: "cubiertas-01.png",
         geometria: "geometria-master-1000.png",
-        name: "Master 1000",
+        name: "Master"+'\n'+"1000",
         show: (this.currentTab == this.VIVIENDA) || (this.currentTab == this.BODEGA)
       },
       {
@@ -239,19 +239,19 @@ export class RoofSimulatorComponent implements OnInit, AfterViewInit {
         url: "cubiertas-03.png",
         geometria: "geometria-teja-sin-traslapo.png",
         name: "Teja sin traslapo",
-        show: (this.currentTab == this.VIVIENDA) || (this.currentTab == this.BODEGA)
+        show:/* (this.currentTab == this.VIVIENDA) ||*/ (this.currentTab == this.BODEGA)
       },
       {
         url: "cubiertas-04.png",
         geometria: "geometria-canaleta.png",
-        name: "Canaletas",
-        show: (this.currentTab == this.BODEGA)
+        name: "Canaleta"+'\n\n',
+        show: (this.currentTab == this.BODEGA) && (this.currentTab_bodega == this.BODEGA_CUBIERTA)
       },
       {
         url: "cubiertas-05.png",
         geometria: "geometria-teja-sin-traslapo-curva.png",
         name: "Teja sin traslapo curva",
-        show: (this.currentTab == this.BODEGA)
+        show: (this.currentTab == this.BODEGA) && (this.currentTab_bodega == this.BODEGA_CUBIERTA)
       },
 
     ];

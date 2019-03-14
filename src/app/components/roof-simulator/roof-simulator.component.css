@@ -4,7 +4,7 @@
   height: 30px;
 }
 .roof-simulator-container {
-  height: calc(100vh - 56px);
+  height: calc(100vh);
   display: flex;
 }
 
@@ -56,7 +56,7 @@
   padding: 0;
 }
 .tab-1 h1 {
-  font-size: 22px;
+  font-size: 28px;
   position: relative;
   margin-bottom: 30px;
 }
@@ -72,7 +72,7 @@
 }
 
 .tab-1 p {
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .nav-roof-simulator {
@@ -83,7 +83,7 @@
 
 .nav-roof-simulator-wrapper {
   margin: 0 auto;
-  width: 380px;
+  width: 320px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -130,8 +130,8 @@
 }
 
 .type-container button {
-  margin: 0 6px;
-  max-width: 150px;
+  margin: 0 5px;
+  max-width: 143px;
 }
 
 .btn-area {
@@ -177,7 +177,7 @@
 }
 .config-tab-1 > div {
   width: 90%;
-  max-width: 120px;
+  max-width: 98px;
   margin-bottom: 10px;
 }
 .config-tab-1 .btn-area {
@@ -192,7 +192,11 @@
   padding-top: 10px;
   border-top: 1px solid #9e9d9d;
   padding-top: 20px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
+  margin: 30px 0 0px 0;
+}
+.nav-roof-bottom.mobile{
+  display: none;
 }
 
 .nav-roof-bottom button {
@@ -230,6 +234,7 @@
   font-size: 14px;
   margin: 10px 0;
   padding: 7px;
+  line-height: 1.1;
 }
 .nav-roof-bottom .cotizar:hover {
   color: #fff;
@@ -237,6 +242,7 @@
 }
 .nav-roof-medium {
   margin-top: 15px;
+  text-align: center;
 }
 
 .nav-roof-medium .config-tab-2 .btn-area {
@@ -260,7 +266,7 @@
 }
 
 .check {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -268,7 +274,7 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: calc(100% - 48px);
+  height: calc(100% - 60px);
   opacity: 0;
   z-index: -1;
 }
@@ -382,22 +388,30 @@
 }
 
 .more-type {
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-around;
-  border-top: 1px solid #9e9d9d;
-  padding-top: 15px;
+  /* margin-top: 15px; */
+  display: block;
+  /* justify-content: space-around; */
+  /* border-top: 1px solid #9e9d9d; */
+  /* padding-top: 15px; */
 }
 
 .more-type button {
-  margin: 0;
-  max-width: 150px;
+  margin: 0 5px;
+  max-width: 143px;
 }
 
 @media only screen and (max-width: 600px) {
   .roof-simulator-container {
-    flex-direction: column-reverse;
+    flex-direction: column;
     height: auto;
+  }
+
+  .nav-roof-bottom .mobile{
+    display: block;
+  }
+
+  .nav-roof-bottom {
+    display: none;
   }
 
   .nav-roof-simulator,
