@@ -9,7 +9,8 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  Input
+  Input,
+  Output
 } from "@angular/core";
 import { UserInterface } from "../../../Interfaces/user.interface";
 import { ProcescoService } from "../../../services/procesco.service";
@@ -30,6 +31,8 @@ export class StageAComponent {
     this.__approved = approved;
     this.isAdminUser = false;
   }
+
+  @Output() emitEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
@@ -52,8 +55,7 @@ export class StageAComponent {
     private cdRef: ChangeDetectorRef,
     public procescoService: ProcescoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService
+    private activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.params.subscribe(
       activeRoute => {
@@ -67,7 +69,7 @@ export class StageAComponent {
               this.procescoService.getStepById(stagea_id, "stage-a").subscribe(
                 ({ stage_a }: any) => {
                   console.log(stage_a);
-                  
+
                   this.stageA = { ...stage_a };
                 },
                 error1 => {
@@ -89,6 +91,7 @@ export class StageAComponent {
             }
           );
         }
+
       },
       error1 => {
         console.error(error1);
@@ -311,9 +314,9 @@ export class StageAComponent {
     };
   }
 
-  updated() {
+  updated(callback) {
     this.procescoService
       .updateUser(this.stageA, "stage-a")
-      .subscribe(rs => console.log(rs), err => console.error(err));
+      .subscribe(rs => this.emitEvent.emit(true), err => console.error(err));
   }
 }

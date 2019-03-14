@@ -1,5 +1,6 @@
 import { Component, ChangeDetectorRef, AfterViewInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+declare var $: any;
 
 @Component({
   selector: "app-approved-profile",
@@ -9,26 +10,27 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class ApprovedProfileComponent implements AfterViewInit {
   loading: boolean;
   height: number;
+  update: number = 0;
 
-  constructor(
-    private cdRef: ChangeDetectorRef,
-    private activatedRoute: ActivatedRoute
-  ) {
-    // this.loading = false;
-    // this.activatedRoute.params.subscribe(
-    //   activeRoute => {
-    //     if (activeRoute.id) {
-    //       console.log(activeRoute.id);
-    //     }
-    //   },
-    //   error1 => {
-    //     console.error(error1);
-    //   }
-    // );
+  constructor(private cdRef: ChangeDetectorRef, private toastr: ToastrService) {
+    this.update = 0;
+    console.log(this.update);
   }
 
   ngAfterViewInit() {
     this.height = document.body.offsetHeight;
     this.cdRef.detectChanges();
+  }
+
+  callback(e) {
+    this.update++;
+    if (this.update == 3) {
+      $(".toast").toast({ autohide: false });
+      $(".toast").toast("show");
+      setTimeout(() => {
+        $(".toast").toast("hide");
+      }, 3000);
+      this.update = 0;
+    }
   }
 }

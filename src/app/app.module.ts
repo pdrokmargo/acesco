@@ -44,6 +44,7 @@ import { CommonModule } from '@angular/common';
 import { ApprovedProfileComponent } from "./components/procesco/approved-profile/approved-profile.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
+import { SistemaPinturasComponent } from './components/sistema-pinturas/sistema-pinturas.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { ToastrModule } from "ngx-toastr";
     RoofSimulatorComponent,
     MyCurrencyDirective,
     MyCurrencyPipe,
-    ApprovedProfileComponent
+    ApprovedProfileComponent,
+    SistemaPinturasComponent
   ],
   imports: [
     CommonModule,

@@ -273,19 +273,20 @@
               ></app-form-title>
             </div>
           </div>
-
-          <div class="row border" *ngFor="let toggle of annex1Toggles">
-            <div class="col-md-6 col-sm-12 padding">
-              {{ toggle.text }}
-            </div>
-            <div class="col-md-6 col-sm-12 padding">
-              <div class="form-group">
-                <input
-                  type="file"
-                  class="form-control-file"
-                  (change)="fileChange($event, toggle.model)"
-                  accept=".pdf,.doc,.docx"
-                />
+          <div *ngIf="!__approved">
+            <div class="row border" *ngFor="let toggle of annex1Toggles">
+              <div class="col-md-6 col-sm-12 padding">
+                {{ toggle.text }}
+              </div>
+              <div class="col-md-6 col-sm-12 padding">
+                <div class="form-group">
+                  <input
+                    type="file"
+                    class="form-control-file"
+                    (change)="fileChange($event, toggle.model)"
+                    accept=".pdf,.doc,.docx"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -348,16 +349,12 @@
               <div class="text-center">
                 Para ver los documentos haga click en <b>Descargar</b>
               </div>
-              <a
+              <button
                 class="acesco-button mt-4 max-300"
-                style="text-align: center;text-decoration: none;line-height: 50px;"
-                href="http://acescocambiatutecho.com/acescoservice/public/api/download-documents/{{
-                  user.name
-                }}"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Descargar</a
+                (click)="downloadFile()"
               >
+                Descargar
+              </button>
             </div>
           </div>
         </div>

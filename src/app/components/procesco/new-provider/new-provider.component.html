@@ -1,49 +1,81 @@
-<section id="app-new-provider" class="animated fadeIn">
-  <app-logo-and-social></app-logo-and-social>
+<section
+  id="app-new-provider"
+  [ngClass]="{ 'animated fadeIn fast': !__approved, 'no-bg': __approved }"
+>
+  <app-logo-and-social *ngIf="!__approved"></app-logo-and-social>
   <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="!__approved">
       <div class="col-12 text-white text-center mt-5">
         <h4 class="mt-5">Pre Registro</h4>
-        <hr class="whiteLine">
-        <p><b>Estimado proveedor: </b>para un debido proceso de inscripción como proveedor de ACESCO o de autorización
-          de sus
-          datos, agradecemos diligenciar el siguiente formulario.</p>
+        <hr class="whiteLine" />
+        <p>
+          <b>Estimado proveedor: </b>para un debido proceso de inscripción como
+          proveedor de ACESCO o de autorización de sus datos, agradecemos
+          diligenciar el siguiente formulario.
+        </p>
       </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="!__approved">
       <div class="col">
         <app-timeline [currentStep]="step"></app-timeline>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <div class="card">
-          <form class="register-form" #providerForm="ngForm" (ngSubmit)="onSubmit(providerForm)" novalidate>
+        <div class="card" [ngClass]="{ 'no-border': __approved }">
+          <form
+            class="register-form"
+            #providerForm="ngForm"
+            (ngSubmit)="onSubmit(providerForm)"
+            novalidate
+          >
             <app-form-title [text]="'Autorizaciones'"></app-form-title>
             <div class="row justify-content-between">
               <div class="col-6 pr-4 box">
                 <div class="row mt-3">
                   <div class="col-2 dataProtection">
-                    <app-toggle [disabled]="isAdminUser" [model]="preRegister.personalDataProtection"
-                                [prop]="'personalDataProtection'"
-                                [loading]="loading"
-                                (updatedValue)="updateValue($event)">
+                    <app-toggle
+                      [disabled]="isAdminUser"
+                      [model]="preRegister.personalDataProtection"
+                      [prop]="'personalDataProtection'"
+                      [loading]="loading"
+                      (updatedValue)="updateValue($event)"
+                    >
                     </app-toggle>
                   </div>
                   <div class="col-10 text-justify dataProtection right">
-                    <p>PROTECCION DE DATOS PERSONALES. Autorizo de forma previa, volutaria, expresa y explicita a
-                      ACERIAS DE COLOMBIA ACESCO S.A.S. como responsable del tratamiento de los datos personales en
-                      virtud de las relaciones comerciales, los cuales serán compilados, almacenados, consultados,
-                      usados, compartidos e intercambiados, para las siguientes finalizades legitimas de acuerdo con la
-                      Polotica de Proteccion de Datos Personales que se encuentra en la página web
-                      <a href="www.acesco.com" target="_blank">www.acesco.com:</a></p>
+                    <p>
+                      PROTECCION DE DATOS PERSONALES. Autorizo de forma previa,
+                      volutaria, expresa y explicita a ACERIAS DE COLOMBIA
+                      ACESCO S.A.S. como responsable del tratamiento de los
+                      datos personales en virtud de las relaciones comerciales,
+                      los cuales serán compilados, almacenados, consultados,
+                      usados, compartidos e intercambiados, para las siguientes
+                      finalizades legitimas de acuerdo con la Polotica de
+                      Proteccion de Datos Personales que se encuentra en la
+                      página web
+                      <a href="www.acesco.com" target="_blank"
+                        >www.acesco.com:</a
+                      >
+                    </p>
 
                     <ul class="text-justify">
-                      <li>Contactar con fines comerciales, de servicio al cliente publicitarios.</li>
-                      <li>Cumplir obligaciones contractuales, sin limitarse a facturación, pagos o asuntos lógicos.</li>
-                      <li>Enviar noticias e información relevante sobre productos, politicas y eventos.</li>
-                      <li>Cumplir obligaciones legales y enviar reportes o información a las autoridades, sin limitarse
-                        a asuntos laborales, tributarios, migratorios.
+                      <li>
+                        Contactar con fines comerciales, de servicio al cliente
+                        publicitarios.
+                      </li>
+                      <li>
+                        Cumplir obligaciones contractuales, sin limitarse a
+                        facturación, pagos o asuntos lógicos.
+                      </li>
+                      <li>
+                        Enviar noticias e información relevante sobre productos,
+                        politicas y eventos.
+                      </li>
+                      <li>
+                        Cumplir obligaciones legales y enviar reportes o
+                        información a las autoridades, sin limitarse a asuntos
+                        laborales, tributarios, migratorios.
                       </li>
                     </ul>
                   </div>
@@ -52,28 +84,42 @@
               <div class="col-6 pl-4 box">
                 <div class="row mt-3">
                   <div class="col-2 habeas">
-                    <app-toggle [disabled]="isAdminUser" [model]="preRegister.habeas"
-                                [prop]="'habeas'"
-                                [loading]="loading"
-                                (updatedValue)="updateValue($event)"></app-toggle>
+                    <app-toggle
+                      [disabled]="isAdminUser"
+                      [model]="preRegister.habeas"
+                      [prop]="'habeas'"
+                      [loading]="loading"
+                      (updatedValue)="updateValue($event)"
+                    ></app-toggle>
                   </div>
                   <div class="col-10 habeas">
-                    <p>HABEAS DATA FINANCIERO. Autorizo expresa e irrevocablemente a ACERIAS DE COLOMBIA ACESCO S.A.S. o
-                      a quien represente sus derechos u ostente en el futuro cualquier titulo la calidad de acreedor
-                      a:</p>
+                    <p>
+                      HABEAS DATA FINANCIERO. Autorizo expresa e
+                      irrevocablemente a ACERIAS DE COLOMBIA ACESCO S.A.S. o a
+                      quien represente sus derechos u ostente en el futuro
+                      cualquier titulo la calidad de acreedor a:
+                    </p>
                     <ul class="text-justify">
-                      <li>Consultar en cualquier tiempo en Centrales de Riesgo a toda la información que se refiere a mi
-                        comportamiento crediticio, financiero y comercial, solicitudes de credito e información
-                        socioeconómica.
+                      <li>
+                        Consultar en cualquier tiempo en Centrales de Riesgo a
+                        toda la información que se refiere a mi comportamiento
+                        crediticio, financiero y comercial, solicitudes de
+                        credito e información socioeconómica.
                       </li>
-                      <li>Suministrar, reportar y divulgar a centrales de Riesgo, de manera directa o indirecta a través
-                        den entidades publicas que ejerzan control y vigilancia sobre los datos financieros toda la
-                        información descrita en el literal a/o la que haya entregado o consten en registros o bases de
-                        datos públicas para conocer mi desempeño como deudor, capacidad de pago o valoración en riesgo,
-                        cumplimiento oportuno o incumplimiento de obligaciones crediticias o deberes de contenido
-                        patrimonial. Asi mismo, autorizo a ACERIAS DE COLOMBIA ACESCO S.A.S. como a las Centrales de
-                        Riesgo, a conservar información descrita anteriormente, debidamente actualizada y durante el
-                        periodo de tiempo necesario.
+                      <li>
+                        Suministrar, reportar y divulgar a centrales de Riesgo,
+                        de manera directa o indirecta a través den entidades
+                        publicas que ejerzan control y vigilancia sobre los
+                        datos financieros toda la información descrita en el
+                        literal a/o la que haya entregado o consten en registros
+                        o bases de datos públicas para conocer mi desempeño como
+                        deudor, capacidad de pago o valoración en riesgo,
+                        cumplimiento oportuno o incumplimiento de obligaciones
+                        crediticias o deberes de contenido patrimonial. Asi
+                        mismo, autorizo a ACERIAS DE COLOMBIA ACESCO S.A.S. como
+                        a las Centrales de Riesgo, a conservar información
+                        descrita anteriormente, debidamente actualizada y
+                        durante el periodo de tiempo necesario.
                       </li>
                     </ul>
                   </div>
@@ -83,64 +129,107 @@
             <div class="row mt-5">
               <div class="col-6">
                 <div class="form-group">
-                  <input type="date"
-                         class="form-control"
-                         [(ngModel)]="preRegister.created_at"
-                         name="created_at"
-                         #created_at="ngModel"
-                         required
-                         disabled>
+                  <input
+                    type="date"
+                    class="form-control"
+                    [(ngModel)]="preRegister.created_at"
+                    name="created_at"
+                    #created_at="ngModel"
+                    required
+                    disabled
+                  />
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Persona de contacto en ACESCO*"
-                         [(ngModel)]="preRegister.whoRefers"
-                         [ngClass]="{'is-invalid': whoRefers.errors?.required && whoRefers.touched }"
-                         name="whoRefers"
-                         minlength="2"
-                         #whoRefers="ngModel"
-                         required
-                         [disabled]="isAdminUser || loading">
-                  <div *ngIf="whoRefers.errors?.required && whoRefers.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Persona de contacto en ACESCO*"
+                    [(ngModel)]="preRegister.whoRefers"
+                    [ngClass]="{
+                      'is-invalid':
+                        whoRefers.errors?.required && whoRefers.touched
+                    }"
+                    name="whoRefers"
+                    minlength="2"
+                    #whoRefers="ngModel"
+                    required
+                    [disabled]="isAdminUser || loading"
+                  />
+                  <div *ngIf="whoRefers.errors?.required && whoRefers.touched">
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <select class="form-control"
-                          [(ngModel)]="preRegister.classification_id"
-                          [ngClass]="{'is-invalid': classification_id.errors?.required && classification_id.touched }"
-                          name="classification_id"
-                          required
-                          #classification_id="ngModel"
-                          [disabled]="isAdminUser || loading">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="preRegister.classification_id"
+                    [ngClass]="{
+                      'is-invalid':
+                        classification_id.errors?.required &&
+                        classification_id.touched
+                    }"
+                    name="classification_id"
+                    required
+                    #classification_id="ngModel"
+                    [disabled]="isAdminUser || loading"
+                  >
                     <option [ngValue]="null">Clasificación*</option>
-                    <option *ngFor="let classification of classifications" [ngValue]="classification">{{classification.classification}}</option>
+                    <option
+                      *ngFor="let classification of classifications"
+                      [ngValue]="classification"
+                      >{{ classification.classification }}</option
+                    >
                   </select>
-                  <div *ngIf="classification_id.errors?.required && classification_id.touched"><label class="text-danger">Este campo es obligatorio</label>
+                  <div
+                    *ngIf="
+                      classification_id.errors?.required &&
+                      classification_id.touched
+                    "
+                  >
+                    <label class="text-danger">Este campo es obligatorio</label>
                   </div>
                 </div>
               </div>
               <div class="col-6">
-                <p>Escoja de acuerdo con objeto social <a class="text-primary link" target="_blank" routerLink="descripciones">Descripciones</a></p>
+                <p>
+                  Escoja de acuerdo con objeto social
+                  <a
+                    class="text-primary link"
+                    target="_blank"
+                    routerLink="descripciones"
+                    >Descripciones</a
+                  >
+                </p>
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <textarea class="form-control"
-                            rows="6"
-                            [(ngModel)]="preRegister.serviceDescription"
-                            [ngClass]="{'is-invalid': serviceDescription.errors?.required && serviceDescription.touched }"
-                            name="serviceDescription"
-                            #serviceDescription="ngModel"
-                            [disabled]="isAdminUser || loading"
-                            placeholder="Descripcion de bien o servicio a ofrecer*"
-                            maxlength="200"
-                            required></textarea>
-                  <div *ngIf="serviceDescription?.errors?.required && serviceDescription.touched"><span
-                    class="text-danger">Este campo es obligatorio</span>
+                  <textarea
+                    class="form-control"
+                    rows="6"
+                    [(ngModel)]="preRegister.serviceDescription"
+                    [ngClass]="{
+                      'is-invalid':
+                        serviceDescription.errors?.required &&
+                        serviceDescription.touched
+                    }"
+                    name="serviceDescription"
+                    #serviceDescription="ngModel"
+                    [disabled]="isAdminUser || loading"
+                    placeholder="Descripcion de bien o servicio a ofrecer*"
+                    maxlength="200"
+                    required
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      serviceDescription?.errors?.required &&
+                      serviceDescription.touched
+                    "
+                  >
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
@@ -153,44 +242,85 @@
                     <p class="text-center mt-1">Documento de identidad</p>
                   </div>
                   <div class="form-group col-1">
-                    <select class="form-control"
-                            [(ngModel)]="preRegister.documentType_id"
-                            [ngClass]="{'is-invalid': documentType_id.errors?.required && documentType_id.touched }"
-                            name="documentType_id"
-                            #documentType_id="ngModel"
-                            required
-                            [disabled]="isAdminUser || loading" (change)="test()">
+                    <select
+                      class="form-control"
+                      [(ngModel)]="preRegister.documentType_id"
+                      [ngClass]="{
+                        'is-invalid':
+                          documentType_id.errors?.required &&
+                          documentType_id.touched
+                      }"
+                      name="documentType_id"
+                      #documentType_id="ngModel"
+                      required
+                      [disabled]="isAdminUser || loading"
+                      (change)="test()"
+                    >
                       <option [ngValue]="null">Elije uno*</option>
-                      <option *ngFor="let documentRef of documentTypes" [ngValue]="documentRef">{{documentRef.description}}</option>
+                      <option
+                        *ngFor="let documentRef of documentTypes"
+                        [ngValue]="documentRef"
+                        >{{ documentRef.description }}</option
+                      >
                     </select>
-                    <div *ngIf="documentType_id.errors?.required && documentType_id.touched"><span class="text-danger">Este campo es obligatorio</span>
+                    <div
+                      *ngIf="
+                        documentType_id.errors?.required &&
+                        documentType_id.touched
+                      "
+                    >
+                      <span class="text-danger">Este campo es obligatorio</span>
                     </div>
                   </div>
 
                   <div class="form-group col-md-6">
-                    <input type="text"
-                           class="form-control"
-                           placeholder="No.:*"
-                           [disabled]="true"
-                           required
-                           name="documentNumber"
-                           #documentNumber="ngModel"
-                           [(ngModel)]="preRegister.documentNumber"
-                           [ngClass]="{'is-invalid': documentNumber.errors?.required && documentNumber.touched }">
-                    <div *ngIf="documentNumber.errors?.required && documentNumber.touched"><span class="text-danger">Este campo es obligatorio</span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="No.:*"
+                      [disabled]="true"
+                      required
+                      name="documentNumber"
+                      #documentNumber="ngModel"
+                      [(ngModel)]="preRegister.documentNumber"
+                      [ngClass]="{
+                        'is-invalid':
+                          documentNumber.errors?.required &&
+                          documentNumber.touched
+                      }"
+                    />
+                    <div
+                      *ngIf="
+                        documentNumber.errors?.required &&
+                        documentNumber.touched
+                      "
+                    >
+                      <span class="text-danger">Este campo es obligatorio</span>
                     </div>
                   </div>
                   <div class="form-group col-md-2">
-                    <input type="text"
-                           class="form-control"
-                           placeholder="De:*"
-                           [disabled]="isAdminUser || loading"
-                           required
-                           [(ngModel)]="preRegister.documentIssued"
-                           [ngClass]="{'is-invalid': documentIssued.errors?.required && documentIssued.touched }"
-                           name="documentIssued"
-                           #documentIssued="ngModel">
-                    <div *ngIf="documentIssued.errors?.required && documentIssued.touched"><span class="text-danger">Este campo es obligatorio</span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="De:*"
+                      [disabled]="isAdminUser || loading"
+                      required
+                      [(ngModel)]="preRegister.documentIssued"
+                      [ngClass]="{
+                        'is-invalid':
+                          documentIssued.errors?.required &&
+                          documentIssued.touched
+                      }"
+                      name="documentIssued"
+                      #documentIssued="ngModel"
+                    />
+                    <div
+                      *ngIf="
+                        documentIssued.errors?.required &&
+                        documentIssued.touched
+                      "
+                    >
+                      <span class="text-danger">Este campo es obligatorio</span>
                     </div>
                   </div>
                 </div>
@@ -199,188 +329,291 @@
                 <div class="text-block">
                   <ul class="list-unstyled">
                     <li>
-                      <p>IMPORTANTE: Señor proveedor, tenga en cuenta que toda persona natural que contrate ACESCO por
-                        un monto superior a un salario mínimo legal mensual vigente (SMMLV). debe:</p>
+                      <p>
+                        IMPORTANTE: Señor proveedor, tenga en cuenta que toda
+                        persona natural que contrate ACESCO por un monto
+                        superior a un salario mínimo legal mensual vigente
+                        (SMMLV). debe:
+                      </p>
                     </li>
                     <li>
-                      <p>1) Estar afiliado al sistema de seguridad social como trabajador independiente, sin importar
-                        que este aportando como trabajador independiente de una empresa.</p>
+                      <p>
+                        1) Estar afiliado al sistema de seguridad social como
+                        trabajador independiente, sin importar que este
+                        aportando como trabajador independiente de una empresa.
+                      </p>
                     </li>
                     <li>
-                      <p>2) Al presentar su factura por concepto de servicios, esta debe presentar el numero de
-                        trabjadores que involucró en la actividad y venir acompañada de la planilla de aportes a la
-                        seguridad social del mes correspondiente al de la prestación del servicio. </p>
+                      <p>
+                        2) Al presentar su factura por concepto de servicios,
+                        esta debe presentar el numero de trabjadores que
+                        involucró en la actividad y venir acompañada de la
+                        planilla de aportes a la seguridad social del mes
+                        correspondiente al de la prestación del servicio.
+                      </p>
                     </li>
                     <li>
-                      <p>3) La base para realizar los aportes a la seguridad socual no debe ser inferior al 40% del
-                        valor mensual facturado antes de IVA y si este cálculo resulta inferior a un SMMLV. entonces
-                        debe calcular sobre la base del salario minimo, sin superar los 25 SMMLV.</p>
+                      <p>
+                        3) La base para realizar los aportes a la seguridad
+                        socual no debe ser inferior al 40% del valor mensual
+                        facturado antes de IVA y si este cálculo resulta
+                        inferior a un SMMLV. entonces debe calcular sobre la
+                        base del salario minimo, sin superar los 25 SMMLV.
+                      </p>
                     </li>
                   </ul>
                 </div>
               </div>
               <div class="col-12 mt-3">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Razón social/Nombre completo*"
-                         [disabled]="isAdminUser || loading"
-                         required
-                         [(ngModel)]="preRegister.businessName"
-                         [ngClass]="{'is-invalid': businessName.errors?.required && businessName.touched }"
-                         name="businessName"
-                         #businessName="ngModel">
-                  <div *ngIf="businessName.errors?.required && businessName.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Razón social/Nombre completo*"
+                    [disabled]="isAdminUser || loading"
+                    required
+                    [(ngModel)]="preRegister.businessName"
+                    [ngClass]="{
+                      'is-invalid':
+                        businessName.errors?.required && businessName.touched
+                    }"
+                    name="businessName"
+                    #businessName="ngModel"
+                  />
+                  <div
+                    *ngIf="
+                      businessName.errors?.required && businessName.touched
+                    "
+                  >
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Razón comercial*"
-                         [disabled]="isAdminUser || loading"
-                         required
-                         [(ngModel)]="preRegister.commercialName"
-                         [ngClass]="{'is-invalid': commercialName.errors?.required && commercialName.touched }"
-                         name="commercialName"
-                         #commercialName="ngModel">
-                  <div *ngIf="commercialName.errors?.required && commercialName.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Razón comercial*"
+                    [disabled]="isAdminUser || loading"
+                    required
+                    [(ngModel)]="preRegister.commercialName"
+                    [ngClass]="{
+                      'is-invalid':
+                        commercialName.errors?.required &&
+                        commercialName.touched
+                    }"
+                    name="commercialName"
+                    #commercialName="ngModel"
+                  />
+                  <div
+                    *ngIf="
+                      commercialName.errors?.required && commercialName.touched
+                    "
+                  >
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Cod. CIIU*"
-                         [disabled]="isAdminUser || loading"
-                         required
-                         [(ngModel)]="preRegister.ciiu"
-                         [ngClass]="{'is-invalid': ciiu.errors?.required && ciiu.touched }"
-                         name="ciiu"
-                         #ciiu="ngModel">
-                  <div *ngIf="ciiu.errors?.required && ciiu.touched"><span
-                    class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Cod. CIIU*"
+                    [disabled]="isAdminUser || loading"
+                    required
+                    [(ngModel)]="preRegister.ciiu"
+                    [ngClass]="{
+                      'is-invalid': ciiu.errors?.required && ciiu.touched
+                    }"
+                    name="ciiu"
+                    #ciiu="ngModel"
+                  />
+                  <div *ngIf="ciiu.errors?.required && ciiu.touched">
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Nombres y apellidos del representante legal:*"
-                         [disabled]="isAdminUser || loading"
-                         required
-                         [(ngModel)]="preRegister.legalRepresentative"
-                         [ngClass]="{'is-invalid': serviceDescription.errors?.required && serviceDescription.touched }"
-                         name="legalRepresentative"
-                         #legalRepresentative="ngModel">
-                  <div *ngIf="legalRepresentative.errors?.required && legalRepresentative.touched"><span
-                    class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nombres y apellidos del representante legal:*"
+                    [disabled]="isAdminUser || loading"
+                    required
+                    [(ngModel)]="preRegister.legalRepresentative"
+                    [ngClass]="{
+                      'is-invalid':
+                        serviceDescription.errors?.required &&
+                        serviceDescription.touched
+                    }"
+                    name="legalRepresentative"
+                    #legalRepresentative="ngModel"
+                  />
+                  <div
+                    *ngIf="
+                      legalRepresentative.errors?.required &&
+                      legalRepresentative.touched
+                    "
+                  >
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Profesión u oficio:*"
-                         [disabled]="isAdminUser || loading"
-                         required
-                         [(ngModel)]="preRegister.profession"
-                         [ngClass]="{'is-invalid': profession.errors?.required && profession.touched }"
-                         name="profession"
-                         #profession="ngModel">
-                  <div *ngIf="profession?.errors?.required && profession.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Profesión u oficio:*"
+                    [disabled]="isAdminUser || loading"
+                    required
+                    [(ngModel)]="preRegister.profession"
+                    [ngClass]="{
+                      'is-invalid':
+                        profession.errors?.required && profession.touched
+                    }"
+                    name="profession"
+                    #profession="ngModel"
+                  />
+                  <div
+                    *ngIf="profession?.errors?.required && profession.touched"
+                  >
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Tarjeta o registro profesional No:"
-                         [disabled]="isAdminUser || loading"
-                         [(ngModel)]="preRegister.professionalCard"
-                         [ngClass]="{'is-invalid': professionalCard.errors?.required && professionalCard.touched }"
-                         name="professionalCard"
-                         #professionalCard="ngModel">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Tarjeta o registro profesional No:"
+                    [disabled]="isAdminUser || loading"
+                    [(ngModel)]="preRegister.professionalCard"
+                    [ngClass]="{
+                      'is-invalid':
+                        professionalCard.errors?.required &&
+                        professionalCard.touched
+                    }"
+                    name="professionalCard"
+                    #professionalCard="ngModel"
+                  />
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Expedido por:"
-                         [disabled]="isAdminUser || loading"
-                         [(ngModel)]="preRegister.issuedBy"
-                         [ngClass]="{'is-invalid': issuedBy.errors?.required && issuedBy.touched }"
-                         name="issuedBy"
-                         #issuedBy="ngModel">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Expedido por:"
+                    [disabled]="isAdminUser || loading"
+                    [(ngModel)]="preRegister.issuedBy"
+                    [ngClass]="{
+                      'is-invalid':
+                        issuedBy.errors?.required && issuedBy.touched
+                    }"
+                    name="issuedBy"
+                    #issuedBy="ngModel"
+                  />
                 </div>
               </div>
             </div>
-            <app-form-title [text]="'Datos de contacto del proveedor'"></app-form-title>
+            <app-form-title
+              [text]="'Datos de contacto del proveedor'"
+            ></app-form-title>
             <div class="row mt-3">
               <div class="col 8">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Persona de contacto:*"
-                         [disabled]="isAdminUser || loading"
-                         required
-                         [(ngModel)]="preRegister.contactName"
-                         [ngClass]="{'is-invalid': contactName.errors?.required && contactName.touched }"
-                         name="contactName"
-                         #contactName="ngModel">
-                  <div *ngIf="contactName.errors?.required && contactName.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Persona de contacto:*"
+                    [disabled]="isAdminUser || loading"
+                    required
+                    [(ngModel)]="preRegister.contactName"
+                    [ngClass]="{
+                      'is-invalid':
+                        contactName.errors?.required && contactName.touched
+                    }"
+                    name="contactName"
+                    #contactName="ngModel"
+                  />
+                  <div
+                    *ngIf="contactName.errors?.required && contactName.touched"
+                  >
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Cargo:*"
-                         [disabled]="isAdminUser || loading"
-                         required
-                         [(ngModel)]="preRegister.position"
-                         [ngClass]="{'is-invalid': position.errors?.required && position.touched }"
-                         name="position"
-                         #position="ngModel">
-                  <div *ngIf="position.errors?.required && position.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Cargo:*"
+                    [disabled]="isAdminUser || loading"
+                    required
+                    [(ngModel)]="preRegister.position"
+                    [ngClass]="{
+                      'is-invalid':
+                        position.errors?.required && position.touched
+                    }"
+                    name="position"
+                    #position="ngModel"
+                  />
+                  <div *ngIf="position.errors?.required && position.touched">
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-8">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Dirección:*"
-                         required
-                         [disabled]="isAdminUser || loading"
-                         [(ngModel)]="preRegister.address"
-                         [ngClass]="{'is-invalid': address.errors?.required && address.touched }"
-                         name="address"
-                         #address="ngModel">
-                  <div *ngIf="address.errors?.required && address.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Dirección:*"
+                    required
+                    [disabled]="isAdminUser || loading"
+                    [(ngModel)]="preRegister.address"
+                    [ngClass]="{
+                      'is-invalid': address.errors?.required && address.touched
+                    }"
+                    name="address"
+                    #address="ngModel"
+                  />
+                  <div *ngIf="address.errors?.required && address.touched">
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
                   <div class="form-group">
-                    <select class="form-control"
-                            [(ngModel)]="preRegister.country_id"
-                            [ngClass]="{'is-invalid': country_id.errors?.required && country_id.touched }"
-                            [disabled]="isAdminUser || loading"
-                            required
-                            name="country_id"
-                            #country_id="ngModel">
-                      <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
+                    <select
+                      class="form-control"
+                      [(ngModel)]="preRegister.country_id"
+                      [ngClass]="{
+                        'is-invalid':
+                          country_id.errors?.required && country_id.touched
+                      }"
+                      [disabled]="isAdminUser || loading"
+                      required
+                      name="country_id"
+                      #country_id="ngModel"
+                    >
+                      <option
+                        *ngFor="let country of countries"
+                        [ngValue]="country"
+                        >{{ country.name }}</option
+                      >
                     </select>
-                    <div *ngIf="country_id.errors?.required && country_id.touched"><span class="text-danger">Este campo es obligatorio</span>
+                    <div
+                      *ngIf="country_id.errors?.required && country_id.touched"
+                    >
+                      <span class="text-danger">Este campo es obligatorio</span>
                     </div>
                   </div>
                 </div>
@@ -388,224 +621,343 @@
 
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Dpto:*"
-                         required
-                         [disabled]="isAdminUser || loading"
-                         [(ngModel)]="preRegister.dpto"
-                         [ngClass]="{'is-invalid': dpto.errors?.required && dpto.touched }"
-                         name="dpto"
-                         #dpto="ngModel">
-                  <div *ngIf="dpto.errors?.required && dpto.touched"><span
-                    class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Dpto:*"
+                    required
+                    [disabled]="isAdminUser || loading"
+                    [(ngModel)]="preRegister.dpto"
+                    [ngClass]="{
+                      'is-invalid': dpto.errors?.required && dpto.touched
+                    }"
+                    name="dpto"
+                    #dpto="ngModel"
+                  />
+                  <div *ngIf="dpto.errors?.required && dpto.touched">
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Ciudad:*"
-                         required
-                         [disabled]="isAdminUser || loading"
-                         [(ngModel)]="preRegister.city"
-                         [ngClass]="{'is-invalid': city.errors?.required && city.touched }"
-                         name="city"
-                         #city="ngModel">
-                  <div *ngIf="city.errors?.required && city.touched"><span
-                    class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Ciudad:*"
+                    required
+                    [disabled]="isAdminUser || loading"
+                    [(ngModel)]="preRegister.city"
+                    [ngClass]="{
+                      'is-invalid': city.errors?.required && city.touched
+                    }"
+                    name="city"
+                    #city="ngModel"
+                  />
+                  <div *ngIf="city.errors?.required && city.touched">
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="number"
-                         class="form-control"
-                         placeholder="Codigo postal:*"
-                         [disabled]="isAdminUser || loading"
-                         [(ngModel)]="preRegister.zipcode"
-                         [ngClass]="{'is-invalid': zipcode.errors?.required && zipcode.touched }"
-                         name="zipcode"
-                         #zipcode="ngModel">
-                  <div *ngIf="zipcode.errors?.required && zipcode.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Codigo postal:*"
+                    [disabled]="isAdminUser || loading"
+                    [(ngModel)]="preRegister.zipcode"
+                    [ngClass]="{
+                      'is-invalid': zipcode.errors?.required && zipcode.touched
+                    }"
+                    name="zipcode"
+                    #zipcode="ngModel"
+                  />
+                  <div *ngIf="zipcode.errors?.required && zipcode.touched">
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="number"
-                         class="form-control"
-                         placeholder="Telefono:*"
-                         required
-                         [disabled]="isAdminUser || loading"
-                         [(ngModel)]="preRegister.phone"
-                         [ngClass]="{'is-invalid': phone.errors?.required && phone.touched }"
-                         name="phone"
-                         #phone="ngModel">
-                  <div *ngIf="phone.errors?.required && phone.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Telefono:*"
+                    required
+                    [disabled]="isAdminUser || loading"
+                    [(ngModel)]="preRegister.phone"
+                    [ngClass]="{
+                      'is-invalid': phone.errors?.required && phone.touched
+                    }"
+                    name="phone"
+                    #phone="ngModel"
+                  />
+                  <div *ngIf="phone.errors?.required && phone.touched">
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="number"
-                         class="form-control"
-                         placeholder="Celular:*"
-                         required
-                         [disabled]="isAdminUser || loading"
-                         [(ngModel)]="preRegister.mobile"
-                         [ngClass]="{'is-invalid': mobile.errors?.required && mobile.touched }"
-                         name="mobile"
-                         #mobile="ngModel">
-                  <div *ngIf="mobile.errors?.required && mobile.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Celular:*"
+                    required
+                    [disabled]="isAdminUser || loading"
+                    [(ngModel)]="preRegister.mobile"
+                    [ngClass]="{
+                      'is-invalid': mobile.errors?.required && mobile.touched
+                    }"
+                    name="mobile"
+                    #mobile="ngModel"
+                  />
+                  <div *ngIf="mobile.errors?.required && mobile.touched">
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <input type="number"
-                         class="form-control"
-                         placeholder="Fax:"
-                         [disabled]="isAdminUser || loading"
-                         [(ngModel)]="preRegister.fax"
-                         name="fax"
-                         #fax="ngModel">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Fax:"
+                    [disabled]="isAdminUser || loading"
+                    [(ngModel)]="preRegister.fax"
+                    name="fax"
+                    #fax="ngModel"
+                  />
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <input type="email"
-                         class="form-control"
-                         placeholder="E-mail:*"
-                         required
-                         [disabled]="isAdminUser || loading"
-                         [(ngModel)]="preRegister.email"
-                         [ngClass]="{'is-invalid': email.errors?.required && email.touched }"
-                         name="email"
-                         #email="ngModel">
-                  <div *ngIf="email.errors?.required && email.touched"><span class="text-danger">Este campo es obligatorio</span>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="E-mail:*"
+                    required
+                    [disabled]="isAdminUser || loading"
+                    [(ngModel)]="preRegister.email"
+                    [ngClass]="{
+                      'is-invalid': email.errors?.required && email.touched
+                    }"
+                    name="email"
+                    #email="ngModel"
+                  />
+                  <div *ngIf="email.errors?.required && email.touched">
+                    <span class="text-danger">Este campo es obligatorio</span>
                   </div>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Pagina Web:"
-                         [disabled]="isAdminUser || loading"
-                         [(ngModel)]="preRegister.website"
-                         name="website"
-                         #website="ngModel">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Pagina Web:"
+                    [disabled]="isAdminUser || loading"
+                    [(ngModel)]="preRegister.website"
+                    name="website"
+                    #website="ngModel"
+                  />
                 </div>
               </div>
             </div>
-            <app-form-title [text]="'información de sistema de gestión'"></app-form-title>
+            <app-form-title
+              [text]="'información de sistema de gestión'"
+            ></app-form-title>
             <div class="row text-block mt-3 managementSystemInformation">
               <div class="col-2 rule">
-                <span>ISO 9001: SI
-                  <app-toggle [disabled]="isAdminUser" [model]="preRegister.iso9001"
-                              [prop]="'iso9001'"
-                              [loading]="loading"
-                              (updatedValue)="updateValue($event)"></app-toggle> NO
+                <span
+                  >ISO 9001: SI
+                  <app-toggle
+                    [disabled]="isAdminUser"
+                    [model]="preRegister.iso9001"
+                    [prop]="'iso9001'"
+                    [loading]="loading"
+                    (updatedValue)="updateValue($event)"
+                  ></app-toggle>
+                  NO
                 </span>
               </div>
               <div class="col-2 rule">
-                <span>ISO 14001: SI
-                  <app-toggle [disabled]="isAdminUser" [model]="preRegister.iso14001"
-                              [prop]="'iso14001'"
-                              [loading]="loading"
-                              (updatedValue)="updateValue($event)"></app-toggle> NO
+                <span
+                  >ISO 14001: SI
+                  <app-toggle
+                    [disabled]="isAdminUser"
+                    [model]="preRegister.iso14001"
+                    [prop]="'iso14001'"
+                    [loading]="loading"
+                    (updatedValue)="updateValue($event)"
+                  ></app-toggle>
+                  NO
                 </span>
               </div>
               <div class="col-2 rule">
-                <span>ISO 45001: SI
-                  <app-toggle [disabled]="isAdminUser" [model]="preRegister.oshas18001"
-                              [prop]="'oshas18001'"
-                              [loading]="loading"
-                              (updatedValue)="updateValue($event)"></app-toggle> NO
+                <span
+                  >ISO 45001: SI
+                  <app-toggle
+                    [disabled]="isAdminUser"
+                    [model]="preRegister.oshas18001"
+                    [prop]="'oshas18001'"
+                    [loading]="loading"
+                    (updatedValue)="updateValue($event)"
+                  ></app-toggle>
+                  NO
                 </span>
               </div>
               <div class="col-6 antiCorruptionPolicy">
-                <span>Tiene política de anti corrupción y soborno: NO
-                  <app-toggle [disabled]="isAdminUser" [prop]="'antiCorruptionPolicy'"
-                              [loading]="loading"
-                              [model]="preRegister.antiCorruptionPolicy"
-                              (updatedValue)="updateValue($event)"></app-toggle> SI</span>
+                <span
+                  >Tiene política de anti corrupción y soborno: NO
+                  <app-toggle
+                    [disabled]="isAdminUser"
+                    [prop]="'antiCorruptionPolicy'"
+                    [loading]="loading"
+                    [model]="preRegister.antiCorruptionPolicy"
+                    (updatedValue)="updateValue($event)"
+                  ></app-toggle>
+                  SI</span
+                >
               </div>
               <div class="col-6 sustainability">
-                <span>Ha publicado en el último año un reporte de sostenibilidad? NO
-                  <app-toggle [disabled]="isAdminUser" [prop]="'sustainability'"
-                              [loading]="loading"
-                              [model]="preRegister.sustainability"
-                              (updatedValue)="updateValue($event)"></app-toggle> SI</span>
+                <span
+                  >Ha publicado en el último año un reporte de sostenibilidad?
+                  NO
+                  <app-toggle
+                    [disabled]="isAdminUser"
+                    [prop]="'sustainability'"
+                    [loading]="loading"
+                    [model]="preRegister.sustainability"
+                    (updatedValue)="updateValue($event)"
+                  ></app-toggle>
+                  SI</span
+                >
               </div>
               <div class="col-6 dueDiligence">
-                <span>Tiene implementado un sistema o programa para la prevención y control de riesgos de LA/FT? NO
-                  <app-toggle [disabled]="isAdminUser" [prop]="'dueDiligence'"
-                              [loading]="loading"
-                              [model]="preRegister.dueDiligence"
-                              (updatedValue)="updateValue($event)"></app-toggle> SI</span>
+                <span
+                  >Tiene implementado un sistema o programa para la prevención y
+                  control de riesgos de LA/FT? NO
+                  <app-toggle
+                    [disabled]="isAdminUser"
+                    [prop]="'dueDiligence'"
+                    [loading]="loading"
+                    [model]="preRegister.dueDiligence"
+                    (updatedValue)="updateValue($event)"
+                  ></app-toggle>
+                  SI</span
+                >
               </div>
               <div class="col-6 socialResponsability">
-                <span>Tiene implementado un programa de responsabilidad social o posee una Fundación? NO
-                  <app-toggle [disabled]="isAdminUser" [prop]="'socialResponsability'"
-                              [loading]="loading"
-                              [model]="preRegister.socialResponsability"
-                              (updatedValue)="updateValue($event)"></app-toggle> SI</span>
+                <span
+                  >Tiene implementado un programa de responsabilidad social o
+                  posee una Fundación? NO
+                  <app-toggle
+                    [disabled]="isAdminUser"
+                    [prop]="'socialResponsability'"
+                    [loading]="loading"
+                    [model]="preRegister.socialResponsability"
+                    (updatedValue)="updateValue($event)"
+                  ></app-toggle>
+                  SI</span
+                >
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Cual?"
-                         [disabled]="isAdminUser || !preRegister.socialResponsability || loading"
-                         [(ngModel)]="preRegister.socialResponsabilityName"
-                         name="socialResponsabilityName"
-                         #socialResponsabilityName="ngModel">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Cual?"
+                    [disabled]="
+                      isAdminUser ||
+                      !preRegister.socialResponsability ||
+                      loading
+                    "
+                    [(ngModel)]="preRegister.socialResponsabilityName"
+                    name="socialResponsabilityName"
+                    #socialResponsabilityName="ngModel"
+                  />
                 </div>
               </div>
               <div class="col-6 productSeal">
-                  <span>Posee sello de producto NO
-                  <app-toggle [disabled]="isAdminUser" [prop]="'managementSystemInformation'"
-                              [prop2]="'productSeal'"
-                              [loading]="loading"
-                              [model]="preRegister.productSeal"
-                              (updatedValue)="updateValue($event)"></app-toggle> SI</span>
+                <span
+                  >Posee sello de producto NO
+                  <app-toggle
+                    [disabled]="isAdminUser"
+                    [prop]="'managementSystemInformation'"
+                    [prop2]="'productSeal'"
+                    [loading]="loading"
+                    [model]="preRegister.productSeal"
+                    (updatedValue)="updateValue($event)"
+                  ></app-toggle>
+                  SI</span
+                >
                 <div class="form-group">
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Cual?"
-                         [disabled]="isAdminUser || !preRegister.productSeal || loading"
-                         [(ngModel)]="preRegister.productSealName"
-                         name="productSealName"
-                         #productSealName="ngModel">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Cual?"
+                    [disabled]="
+                      isAdminUser || !preRegister.productSeal || loading
+                    "
+                    [(ngModel)]="preRegister.productSealName"
+                    name="productSealName"
+                    #productSealName="ngModel"
+                  />
                 </div>
               </div>
             </div>
-            <div *ngIf="successMessage" class="alert alert-success text-center mt-3" role="alert">
-              {{successMessage}}
+            <div
+              *ngIf="successMessage"
+              class="alert alert-success text-center mt-3"
+              role="alert"
+            >
+              {{ successMessage }}
             </div>
-            <button class="acesco-button"
-                    type="submit"
-                    *ngIf="!isAdminUser"
-                    [disabled]=" providerForm.invalid || loading">Enviar
+            <button
+              class="acesco-button"
+              type="submit"
+              *ngIf="!isAdminUser && !__approved"
+              [disabled]="providerForm.invalid || loading"
+            >
+              Enviar
               <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
-              <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
+              <fa-icon
+                [icon]="faSpinner"
+                [spin]="true"
+                *ngIf="loading"
+              ></fa-icon>
             </button>
-            <button class="acesco-button"
-                    type="button"
-                    (click)="approval();"
-                    *ngIf="isAdminUser"
-                    [disabled]="loading">Aprobar
+            <button
+              class="acesco-button"
+              type="button"
+              (click)="approval()"
+              *ngIf="isAdminUser"
+              [disabled]="loading"
+            >
+              Aprobar
               <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
-              <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
+              <fa-icon
+                [icon]="faSpinner"
+                [spin]="true"
+                *ngIf="loading"
+              ></fa-icon>
             </button>
-            <app-return [user]="this.id" *ngIf="this.id"></app-return>
+            <app-return
+              [user]="this.id"
+              *ngIf="this.id && !__approved"
+            ></app-return>
           </form>
-          <button class="btn-outline-dark" (click)="autoFill();" type="button" *ngIf="!isAdminUser">Autorellenar</button>
+          <button
+            class="btn-outline-dark"
+            (click)="autoFill()"
+            type="button"
+            *ngIf="!isAdminUser && !__approved"
+          >
+            Autorellenar
+          </button>
         </div>
       </div>
     </div>
   </div>
-  <app-footer></app-footer>
+  <app-footer *ngIf="!__approved"></app-footer>
 </section>
-
