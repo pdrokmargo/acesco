@@ -1,0 +1,65 @@
+<div id="paint-system-wrapper" class="row">
+  <div class="col-12">
+    <p class="paint-system-title">{{ title.text }}</p>
+  </div>
+  <div class="col-12">
+    <ul class="timeline">
+      <li *ngFor="let time of timeline; let index = index">
+        <div *ngIf="time.show">
+          <fa-icon
+            style="margin-right: 5px"
+            [icon]="faArrowRight"
+            *ngIf="index > 0 && index < timeline.length"
+          ></fa-icon>
+          <span class="item-text" (click)="goTo(index)">{{ time.text }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="col-12" *ngFor="let stage of stages; let indexStage = index">
+    <div class="stage" *ngIf="stage.show">
+      <div class="stage-title {{ stage.subtitle ? 'width-subtitle' : '' }}">
+        {{ stage.title }}
+      </div>
+      <div class="stage-subtitle" *ngIf="stage.subtitle">
+        {{ stage.subtitle }}
+      </div>
+      <div class="row">
+        <div
+          class="stage-items {{ stage.col }} {{
+            stage.nopadding ? 'no-padding' : ''
+          }}"
+          *ngFor="let item of stage.items; let indexItem = index"
+        >
+          <div
+            class="stage-card {{
+              stage.active - 1 == indexItem ? 'active' : ''
+            }} "
+            (click)="select(indexStage, indexItem)"
+          >
+            <div class="img-container {{ stage.imgpadding ? 'padding' : '' }}">
+              <img src="/assets/images/sistema_pinturas/{{ item.icon }}" />
+            </div>
+            <div class="stage-item-title">{{ item.title }}</div>
+          </div>
+          <div class="stage-item-text" *ngIf="item.text">{{ item.text }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12" *ngIf="showForm">
+    <div *ngFor="let toggle of options; let index = index">
+      <div class="display-flex">
+        <span>{{ toggle.title }}</span>
+        <div class="flex-space"></div>
+        <app-toggle [model]="toggle.value" (updatedValue)="updatedValue(index)">
+        </app-toggle>
+      </div>
+      <div class="border-body">
+        <ul>
+          <li *ngFor="let item of toggle.item">{{ item }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
