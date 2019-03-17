@@ -144,7 +144,7 @@
 .psc-6 img {
   display: inline-block;
   width: 50%;
-  height: 250px;
+  max-height: 250px;
 }
 .psc6 {
   display: inline-block;
@@ -193,4 +193,18 @@
 .separator {
   height: 1px;
   background: #fff;
+}
+
+.paint-system-content.psc ul {
+  text-align: center;
+}
+
+.paint-system-content.psc ul
+.paint-system-content.psc ul li {
+  list-style: none;
+}
+
+.paint-system-content.psc ul li {
+  display: inline-block;
+  padding: 0 5px;
 }

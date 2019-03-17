@@ -1,11 +1,73 @@
-<div style="position: fixed; color: tomato">
+<!-- <div style="position: fixed; color: tomato">
   <div>SECTOR: {{ currentSector }}</div>
   <div>USO: {{ currentUso }}</div>
   <div>PRODUCTO: {{ currentProducto }}</div>
   <div>CATEGORIA: {{ currentCategoria }}</div>
-</div>
+</div> -->
 
 <div id="paint-system-wrapper">
+  <div class="paint-system-content psc">
+    <ul>
+      <li
+        *ngIf="currentSector != ''"
+        (click)="
+          showSector = true;
+          showUso = true;
+          showProducto = false;
+          showCategoria = false
+        "
+      >
+        Inicio <fa-icon [icon]="faArrowRight"></fa-icon>
+      </li>
+      <li
+        *ngIf="currentSector != ''"
+        (click)="
+          showSector = true;
+          showUso = true;
+          showProducto = false;
+          showCategoria = false
+        "
+      >
+        Sectores
+        <fa-icon [icon]="faArrowRight" *ngIf="currentUso != ''"></fa-icon>
+      </li>
+      <li
+        *ngIf="currentUso != ''"
+        (click)="
+          showSector = true;
+          showUso = true;
+          showProducto = false;
+          showCategoria = false
+        "
+      >
+        Usos
+        <fa-icon [icon]="faArrowRight" *ngIf="currentProducto != ''"></fa-icon>
+      </li>
+      <li
+        *ngIf="currentProducto != ''"
+        (click)="
+          showSector = false;
+          showUso = false;
+          showProducto = true;
+          showCategoria = true
+        "
+      >
+        Productos
+        <fa-icon [icon]="faArrowRight" *ngIf="currentCategoria != ''"></fa-icon>
+      </li>
+      <li
+        *ngIf="currentCategoria != ''"
+        (click)="
+          showSector = false;
+          showUso = false;
+          showProducto = true;
+          showCategoria = true
+        "
+      >
+        Ambiente
+      </li>
+    </ul>
+  </div>
   <div class="paint-system-content psc-1" *ngIf="showSector">
     <div class="paint-system-title">
       <span>Sectores</span>
@@ -114,8 +176,11 @@
       </div>
     </div>
   </div>
+
   <div class="paint-system-content psc-6" *ngIf="showRecomendation">
-    <img src="" alt="" />
+      <img
+      src="/assets/images/sistema_pinturas/{{ SISTEMAS[listSISTEMA[currentSistema].key].img }}"
+    />
     <div class="psc6">
       <h2>Nuestra Recomendación</h2>
       <h1>{{ SISTEMAS[listSISTEMA[currentSistema].key].name }}</h1>

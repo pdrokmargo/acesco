@@ -186,23 +186,28 @@ export class SistemaPinturasComponent implements OnInit {
   SISTEMAS: any = {
     POLYESTER: {
       name: "Polyester",
-      value: 2
+      value: 2,
+      img: "imagen-techo.jpg"
     },
     SUPER_POLYESTER: {
       name: "Super Polyester",
-      value: 5
+      value: 5,
+      img: "imagen-techo.jpg"
     },
     PVDF_57: {
       name: "PVDF 5/7",
-      value: 7
+      value: 7,
+      img: "imagen-techo.jpg"
     },
     PVDF_1820: {
       name: "PVDF 18/20",
-      value: 10
+      value: 10,
+      img: "imagen-techo.jpg"
     },
     PVDF_CLEAR: {
       name: "PVDF + CLEAR Z275",
-      value: 20
+      value: 20,
+      img: "imagen-techo.jpg"
     }
   };
 
@@ -247,6 +252,8 @@ export class SistemaPinturasComponent implements OnInit {
   }
 
   selectUso(uso) {
+    this.showSector = false;
+    this.showUso = false;
     if (this.currentUso != uso) {
       this.currentUso = uso;
       this.showProducto = true;
