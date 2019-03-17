@@ -21,6 +21,7 @@ export class SistemaPinturasComponent implements OnInit {
   currentProducto: string = "";
   currentCategoria: string = "";
   currentTipo: string = "";
+  currentSistema: number = -1;
 
   SECTOR: any = [
     {
@@ -262,6 +263,9 @@ export class SistemaPinturasComponent implements OnInit {
       this.listTIPO = [];
 
       this.showRecomendation = false;
+      this.listSISTEMA = [];
+
+      this.showRecomendation = false;
       switch (this.currentUso) {
         case "TECHO":
         case "FACHADA":
@@ -275,8 +279,7 @@ export class SistemaPinturasComponent implements OnInit {
           this.listPRODUCTO = [];
           this.showProducto = false;
           this.showCategoria = true;
-          this.showRecomendation = false;
-          this.listSISTEMA = [];
+
           this.listCATEGORIA = [
             "AMBIENTES_LIMPIOS",
             "AMBIENTES_PRODUCCION",
@@ -335,6 +338,8 @@ export class SistemaPinturasComponent implements OnInit {
       this.currentCategoria = categoria;
       this.showTipo = true;
       this.listTIPO = [];
+      this.showRecomendation = false;
+      this.listSISTEMA = [];
       this.currentTipo = "";
       switch (this.currentCategoria) {
         case "RECIDENCIAL":
@@ -739,5 +744,7 @@ export class SistemaPinturasComponent implements OnInit {
     ) {
       this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
     }
+
+    this.currentSistema = 0;
   }
 }

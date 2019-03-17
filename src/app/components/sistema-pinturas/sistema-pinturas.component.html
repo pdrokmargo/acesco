@@ -114,9 +114,25 @@
       </div>
     </div>
   </div>
-  <div class="paint-system-content psc-5" *ngIf="showRecomendation">
-    <div class="paint-system-title">
-      {{ listSISTEMA | json }}
+  <div class="paint-system-content psc-6" *ngIf="showRecomendation">
+    <img src="" alt="" />
+    <div class="psc6">
+      <h2>Nuestra Recomendación</h2>
+      <h1>{{ SISTEMAS[listSISTEMA[currentSistema].key].name }}</h1>
+      <h2>Garantia: {{ listSISTEMA[currentSistema].value }} Años</h2>
+    </div>
+    <div class="separator"></div>
+    <h2>Otras recomendaciones</h2>
+    <div class="btn-recomendation">
+      <button
+        *ngFor="let sistema of listSISTEMA; let index = index"
+        type="button"
+        class="btn btn-secondary"
+        (click)="currentSistema = index"
+        [disabled]="currentSistema === index"
+      >
+        {{ SISTEMAS[sistema.key].name }}
+      </button>
     </div>
   </div>
 </div>
