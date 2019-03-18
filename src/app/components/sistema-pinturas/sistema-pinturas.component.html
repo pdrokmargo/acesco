@@ -1,65 +1,203 @@
-<div id="paint-system-wrapper" class="row">
-  <div class="col-12">
-    <p class="paint-system-title">{{ title.text }}</p>
-  </div>
-  <div class="col-12">
-    <ul class="timeline">
-      <li *ngFor="let time of timeline; let index = index">
-        <div *ngIf="time.show">
-          <fa-icon
-            style="margin-right: 5px"
-            [icon]="faArrowRight"
-            *ngIf="index > 0 && index < timeline.length"
-          ></fa-icon>
-          <span class="item-text" (click)="goTo(index)">{{ time.text }}</span>
-        </div>
+<!-- <div style="position: fixed; color: tomato">
+  <div>SECTOR: {{ currentSector }}</div>
+  <div>USO: {{ currentUso }}</div>
+  <div>PRODUCTO: {{ currentProducto }}</div>
+  <div>CATEGORIA: {{ currentCategoria }}</div>
+</div> -->
+
+<div id="paint-system-wrapper">
+  <div class="paint-system-content psc">
+    <ul>
+      <li
+        *ngIf="currentSector != ''"
+        (click)="
+          showSector = true;
+          showUso = true;
+          showProducto = false;
+          showCategoria = false
+        "
+      >
+        Inicio <fa-icon [icon]="faArrowRight"></fa-icon>
+      </li>
+      <li
+        *ngIf="currentSector != ''"
+        (click)="
+          showSector = true;
+          showUso = true;
+          showProducto = false;
+          showCategoria = false
+        "
+      >
+        Sectores
+        <fa-icon [icon]="faArrowRight" *ngIf="currentUso != ''"></fa-icon>
+      </li>
+      <li
+        *ngIf="currentUso != ''"
+        (click)="
+          showSector = true;
+          showUso = true;
+          showProducto = false;
+          showCategoria = false
+        "
+      >
+        Usos
+        <fa-icon [icon]="faArrowRight" *ngIf="currentProducto != ''"></fa-icon>
+      </li>
+      <li
+        *ngIf="currentProducto != ''"
+        (click)="
+          showSector = false;
+          showUso = false;
+          showProducto = true;
+          showCategoria = true
+        "
+      >
+        Productos
+        <fa-icon [icon]="faArrowRight" *ngIf="currentCategoria != ''"></fa-icon>
+      </li>
+      <li
+        *ngIf="currentCategoria != ''"
+        (click)="
+          showSector = false;
+          showUso = false;
+          showProducto = true;
+          showCategoria = true
+        "
+      >
+        Ambiente
       </li>
     </ul>
   </div>
-  <div class="col-12" *ngFor="let stage of stages; let indexStage = index">
-    <div class="stage" *ngIf="stage.show">
-      <div class="stage-title {{ stage.subtitle ? 'width-subtitle' : '' }}">
-        {{ stage.title }}
-      </div>
-      <div class="stage-subtitle" *ngIf="stage.subtitle">
-        {{ stage.subtitle }}
-      </div>
-      <div class="row">
-        <div
-          class="stage-items {{ stage.col }} {{
-            stage.nopadding ? 'no-padding' : ''
-          }}"
-          *ngFor="let item of stage.items; let indexItem = index"
+  <div class="paint-system-content psc-1" *ngIf="showSector">
+    <div class="paint-system-title">
+      <span>Sectores</span>
+    </div>
+    <div class="paint-system-items psi-1">
+      <div
+        class="paint-system-item"
+        *ngFor="let sector of SECTOR; let index = index"
+        (click)="selectSector(sector.name)"
+      >
+        <img
+          src="/assets/images/sistema_pinturas/{{ sector.img }}"
+          alt="sector{{ index }}"
+        />
+        <span
+          class="psi-title {{ currentSector == sector.name ? 'active' : '' }}"
+          >{{ sector.title }}</span
         >
-          <div
-            class="stage-card {{
-              stage.active - 1 == indexItem ? 'active' : ''
-            }} "
-            (click)="select(indexStage, indexItem)"
-          >
-            <div class="img-container {{ stage.imgpadding ? 'padding' : '' }}">
-              <img src="/assets/images/sistema_pinturas/{{ item.icon }}" />
-            </div>
-            <div class="stage-item-title">{{ item.title }}</div>
-          </div>
-          <div class="stage-item-text" *ngIf="item.text">{{ item.text }}</div>
-        </div>
       </div>
     </div>
   </div>
-  <div class="col-12" *ngIf="showForm">
-    <div *ngFor="let toggle of options; let index = index">
+
+  <div class="paint-system-content psc-2" *ngIf="showUso">
+    <div class="paint-system-title">
+      <span>Usos</span>
+    </div>
+    <div class="paint-system-items psi-2">
+      <div
+        class="paint-system-item"
+        *ngFor="let uso of listUSO; let index = index"
+        (click)="selectUso(uso)"
+      >
+        <img
+          src="/assets/images/sistema_pinturas/{{ USO[uso].img }}"
+          alt="uso{{ index }}"
+        />
+        <span class="psi-title{{ currentUso == uso ? ' active' : '' }}">{{
+          USO[uso].title
+        }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="paint-system-content psc-3" *ngIf="showProducto">
+    <div class="paint-system-title subtitel">
+      <span>Productos</span>
+      <br />
+      <p>Selecciona la cubierta que tendrá tu proyecto</p>
+    </div>
+    <div class="paint-system-items psi-2">
+      <div
+        class="paint-system-item"
+        *ngFor="let producto of listPRODUCTO; let index = index"
+        (click)="selectProducto(producto)"
+      >
+        <img
+          src="/assets/images/sistema_pinturas/{{ PRODUCTO[producto].img }}"
+          alt="producto{{ index }}"
+        />
+        <span
+          class="psi-title{{ currentProducto == producto ? ' active' : '' }}"
+          >{{ PRODUCTO[producto].title }}</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="paint-system-content psc-4" *ngIf="showCategoria">
+    <div class="paint-system-title subtitel">
+      <span>Selecciona el ambiente</span>
+      <br />
+      <p>(Categorías de corrosividad atmosféricas)</p>
+    </div>
+    <div class="paint-system-items psi-2">
+      <div
+        class="paint-system-item"
+        *ngFor="let categoria of listCATEGORIA; let index = index"
+        (click)="selectCategoria(categoria)"
+      >
+        <img
+          src="/assets/images/sistema_pinturas/{{ CATEGORIAS[categoria].img }}"
+          alt="uso{{ index }}"
+        />
+        <span
+          class="psi-title{{ currentCategoria == categoria ? ' active' : '' }}"
+          >{{ CATEGORIAS[categoria].title }}</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="paint-system-content psc-5" *ngIf="showTipo">
+    <div *ngFor="let tipo of listTIPO; let index = index">
       <div class="display-flex">
-        <span>{{ toggle.title }}</span>
+        <span>{{ TIPO[tipo].title }}</span>
         <div class="flex-space"></div>
-        <app-toggle [model]="toggle.value" (updatedValue)="updatedValue(index)">
-        </app-toggle>
+        <app-toggle
+          [model]="TIPO[tipo].value"
+          (updatedValue)="selectTipo(tipo)"
+        ></app-toggle>
       </div>
       <div class="border-body">
         <ul>
-          <li *ngFor="let item of toggle.item">{{ item }}</li>
+          <li *ngFor="let t of TIPO[tipo].text">{{ t }}</li>
         </ul>
       </div>
+    </div>
+  </div>
+
+  <div class="paint-system-content psc-6" *ngIf="showRecomendation">
+      <img
+      src="/assets/images/sistema_pinturas/{{ SISTEMAS[listSISTEMA[currentSistema].key].img }}"
+    />
+    <div class="psc6">
+      <h2>Nuestra Recomendación</h2>
+      <h1>{{ SISTEMAS[listSISTEMA[currentSistema].key].name }}</h1>
+      <h2>Garantia: {{ listSISTEMA[currentSistema].value }} Años</h2>
+    </div>
+    <div class="separator"></div>
+    <h2>Otras recomendaciones</h2>
+    <div class="btn-recomendation">
+      <button
+        *ngFor="let sistema of listSISTEMA; let index = index"
+        type="button"
+        class="btn btn-secondary"
+        (click)="currentSistema = index"
+        [disabled]="currentSistema === index"
+      >
+        {{ SISTEMAS[sistema.key].name }}
+      </button>
     </div>
   </div>
 </div>
