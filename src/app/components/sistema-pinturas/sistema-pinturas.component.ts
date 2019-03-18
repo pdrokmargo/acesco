@@ -351,13 +351,15 @@ export class SistemaPinturasComponent implements OnInit {
       switch (this.currentCategoria) {
         case "RECIDENCIAL":
           this.listTIPO = ["C1", "C2", "C3"];
-
           break;
         case "INDUSTRIAL":
           this.listTIPO = ["C4", "C5_I"];
           break;
         case "MARINO":
           this.listTIPO = ["C5_M"];
+          break;
+        default:
+          this.selectTipo("");
           break;
       }
       this.listTIPO.forEach(element => {
@@ -367,11 +369,7 @@ export class SistemaPinturasComponent implements OnInit {
   }
 
   selectTipo(tipo) {
-    console.log(this.currentTipo);
-
-    console.log(tipo);
-
-    if (this.currentTipo != tipo) {
+    if (tipo == "" || this.currentTipo != tipo) {
       this.currentTipo = tipo;
       this.showRecomendation = false;
       this.listTIPO.forEach(element => {
@@ -763,9 +761,9 @@ export class SistemaPinturasComponent implements OnInit {
       ) {
         this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
       }
-
-      console.log(this.listSISTEMA);
-
+      if (tipo == "") {
+        this.showRecomendation = true;
+      }
       this.currentSistema = 0;
     }
   }
