@@ -472,7 +472,8 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "TECHO" &&
         this.currentProducto == "CANALETA" &&
-        this.currentCategoria == "INDUSTRIAL" &&
+        (this.currentCategoria == "INDUSTRIAL" ||
+          this.currentCategoria == "MARINO") &&
         (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
       ) {
         this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
@@ -518,7 +519,8 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "TECHO" &&
         this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-        this.currentCategoria == "INDUSTRIAL" &&
+        (this.currentCategoria == "INDUSTRIAL" ||
+          this.currentCategoria == "MARINO") &&
         (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
       ) {
         this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
@@ -564,7 +566,8 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "FACHADA" &&
         this.currentProducto == "MASTER_1000" &&
-        this.currentCategoria == "INDUSTRIAL" &&
+        (this.currentCategoria == "INDUSTRIAL" ||
+          this.currentCategoria == "MARINO") &&
         (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
       ) {
         this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
@@ -613,7 +616,8 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "FACHADA" &&
         this.currentProducto == "CANALETA" &&
-        this.currentCategoria == "INDUSTRIAL" &&
+        (this.currentCategoria == "INDUSTRIAL" ||
+          this.currentCategoria == "MARINO") &&
         (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
       ) {
         this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
@@ -659,7 +663,8 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "FACHADA" &&
         this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-        this.currentCategoria == "INDUSTRIAL" &&
+        (this.currentCategoria == "INDUSTRIAL" ||
+          this.currentCategoria == "MARINO") &&
         (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
       ) {
         this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
@@ -705,7 +710,8 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "FACHADA" &&
         this.currentProducto == "TEJA_SIN_TRASLAPO" &&
-        this.currentCategoria == "INDUSTRIAL" &&
+        (this.currentCategoria == "INDUSTRIAL" ||
+          this.currentCategoria == "MARINO") &&
         (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
       ) {
         this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
