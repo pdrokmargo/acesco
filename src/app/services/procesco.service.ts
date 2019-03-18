@@ -11,7 +11,7 @@ export class ProcescoService {
   public nodeUrl: string;
 
   constructor(private http: HttpClient) {
-    this.nodeUrl = "http://acesco.com.co/acescoservice/public/api/auth";
+    this.nodeUrl = "https://www.acesco.com.co/acescoservice/public/api/auth";
   }
 
   getHeader() {

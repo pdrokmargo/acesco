@@ -64,7 +64,7 @@
 
         <div class="config-tab-2">
           <div class="palette" *ngFor="let item of images.img; let index = index">
-            <button (click)="selecRoof(index)" [ngClass]="{'color-active': indexroof === index}">
+            <button (click)="selecRoof(index, item)" [ngClass]="{'color-active': indexroof === index}">
               <img src="/assets/images/iconos-colores/{{item.url}}">
               <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg"></span>
             </button>
