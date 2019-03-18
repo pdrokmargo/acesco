@@ -41,14 +41,17 @@
         "
       >
         Usos
-        <fa-icon [icon]="faArrowRight" *ngIf="currentProducto != ''"></fa-icon>
+        <fa-icon
+          [icon]="faArrowRight"
+          *ngIf="currentProducto != '' || currentCategoria != ''"
+        ></fa-icon>
       </li>
       <li
         *ngIf="currentProducto != ''"
         (click)="
           showSector = false;
           showUso = false;
-          showProducto = true;
+          showProducto = currentProducto != '' ? true : false;
           showCategoria = true
         "
       >
@@ -176,10 +179,11 @@
       </div>
     </div>
   </div>
-
   <div class="paint-system-content psc-6" *ngIf="showRecomendation">
-      <img
-      src="/assets/images/sistema_pinturas/{{ SISTEMAS[listSISTEMA[currentSistema].key].img }}"
+    <img
+      src="/assets/images/sistema_pinturas/{{
+        SISTEMAS[listSISTEMA[currentSistema].key].img
+      }}"
     />
     <div class="psc6">
       <h2>Nuestra Recomendación</h2>
