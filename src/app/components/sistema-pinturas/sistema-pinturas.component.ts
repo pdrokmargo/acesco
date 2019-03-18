@@ -131,12 +131,7 @@ export class SistemaPinturasComponent implements OnInit {
     GALVANIZADO_400: {
       img: "imagen-interior.jpg",
       title: "Galvanizado > 400 gr/mt2"
-    },
-    SUPER_POLYESTER: {
-      img: "imagen-interior.jpg",
-      title: "Super Polyester"
     }
-    //Super Polyester
   };
   TIPO: any = {
     C1: {
@@ -206,6 +201,11 @@ export class SistemaPinturasComponent implements OnInit {
     },
     PVDF_CLEAR: {
       name: "PVDF + CLEAR Z275",
+      value: 20,
+      img: "imagen-techo.jpg"
+    },
+    GALVANIZADO: {
+      name: "Galvanizado",
       value: 20,
       img: "imagen-techo.jpg"
     }
@@ -334,7 +334,7 @@ export class SistemaPinturasComponent implements OnInit {
           break;
         case "LINEA_BLANCA":
         case "REFRIGERACION_COMERCIAL":
-          this.listCATEGORIA = ["SUPER_POLYESTER"];
+          this.selectTipo("");
           break;
       }
     }
@@ -576,9 +576,6 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentCategoria == "RECIDENCIAL" &&
         this.currentTipo == "C1"
       ) {
-        console.log("entra");
-
-        // jesus
         this.listSISTEMA = [
           { key: "POLYESTER", value: 2 },
           { key: "SUPER_POLYESTER", value: 5 },
@@ -760,7 +757,27 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentTipo == ""
       ) {
         this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
+      } else if (
+        this.currentSector == "INDUSTRIAL" &&
+        this.currentUso == "MAQUINA_EQUIPO" &&
+        (this.currentProducto == "SILOS" ||
+          this.currentProducto == "AGROINDUSTRIA" ||
+          this.currentProducto == "MAQUINA_INDUSTRIALES") &&
+        this.currentCategoria == "GALVANIZADO_400" &&
+        this.currentTipo == ""
+      ) {
+        this.listSISTEMA = [{ key: "GALVANIZADO", value: 5 }];
+      } else if (
+        this.currentSector == "INDUSTRIAL" &&
+        this.currentUso == "REFRIGERACION" &&
+        (this.currentProducto == "LINEA_BLANCA" ||
+          this.currentProducto == "REFRIGERACION_COMERCIAL") &&
+        this.currentCategoria == "" &&
+        this.currentTipo == ""
+      ) {
+        this.listSISTEMA = [{ key: "SUPER_POLYESTER", value: 5 }];
       }
+
       if (tipo == "") {
         this.showRecomendation = true;
       }
