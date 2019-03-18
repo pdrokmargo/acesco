@@ -210,3 +210,7 @@
   padding: 0 5px;
   cursor: pointer;
 }
+
+.paint-system-content.psc ul li:hover {
+  background: #c3c3c3;
+}

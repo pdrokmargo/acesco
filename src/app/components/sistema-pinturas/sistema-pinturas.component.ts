@@ -367,6 +367,10 @@ export class SistemaPinturasComponent implements OnInit {
   }
 
   selectTipo(tipo) {
+    console.log(this.currentTipo);
+
+    console.log(tipo);
+
     if (this.currentTipo != tipo) {
       this.currentTipo = tipo;
       this.showRecomendation = false;
@@ -486,272 +490,277 @@ export class SistemaPinturasComponent implements OnInit {
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
-      }
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "TECHO" &&
-      this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-      this.currentCategoria == "RECIDENCIAL" &&
-      (this.currentTipo == "C2" || this.currentTipo == "C3")
-    ) {
-      this.listSISTEMA = [
-        { key: "SUPER_POLYESTER", value: 5 },
-        { key: "PVDF_57", value: 7 },
-        { key: "PVDF_1820", value: 10 },
-        { key: "PVDF_CLEAR", value: 20 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "TECHO" &&
-      this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-      this.currentCategoria == "INDUSTRIAL" &&
-      this.currentTipo == "C4"
-    ) {
-      this.listSISTEMA = [
-        { key: "PVDF_1820", value: 8 },
-        { key: "PVDF_CLEAR", value: 10 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "TECHO" &&
-      this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-      this.currentCategoria == "INDUSTRIAL" &&
-      (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
-    ) {
-      this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "MASTER_1000" &&
-      this.currentCategoria == "RECIDENCIAL" &&
-      this.currentTipo == "C1"
-    ) {
-      this.listSISTEMA = [
-        { key: "POLYESTER", value: 2 },
-        { key: "SUPER_POLYESTER", value: 5 },
-        { key: "PVDF_57", value: 7 },
-        { key: "PVDF_1820", value: 10 },
-        { key: "PVDF_CLEAR", value: 20 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "MASTER_1000" &&
-      this.currentCategoria == "RECIDENCIAL" &&
-      (this.currentTipo == "C2" || this.currentTipo == "C3")
-    ) {
-      this.listSISTEMA = [
-        { key: "SUPER_POLYESTER", value: 5 },
-        { key: "PVDF_57", value: 7 },
-        { key: "PVDF_1820", value: 10 },
-        { key: "PVDF_CLEAR", value: 20 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "MASTER_1000" &&
-      this.currentCategoria == "INDUSTRIAL" &&
-      this.currentTipo == "C4"
-    ) {
-      this.listSISTEMA = [
-        { key: "PVDF_1820", value: 8 },
-        { key: "PVDF_CLEAR", value: 10 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "MASTER_1000" &&
-      this.currentCategoria == "INDUSTRIAL" &&
-      (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
-    ) {
-      this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "CANALETA" &&
-      this.currentCategoria == "RECIDENCIAL" &&
-      this.currentTipo == "C1"
-    ) {
-      this.listSISTEMA = [
-        { key: "POLYESTER", value: 2 },
-        { key: "SUPER_POLYESTER", value: 5 },
-        { key: "PVDF_57", value: 7 },
-        { key: "PVDF_1820", value: 10 },
-        { key: "PVDF_CLEAR", value: 20 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "CANALETA" &&
-      this.currentCategoria == "RECIDENCIAL" &&
-      (this.currentTipo == "C2" || this.currentTipo == "C3")
-    ) {
-      this.listSISTEMA = [
-        { key: "SUPER_POLYESTER", value: 5 },
-        { key: "PVDF_57", value: 7 },
-        { key: "PVDF_1820", value: 10 },
-        { key: "PVDF_CLEAR", value: 20 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "CANALETA" &&
-      this.currentCategoria == "INDUSTRIAL" &&
-      this.currentTipo == "C4"
-    ) {
-      this.listSISTEMA = [
-        { key: "PVDF_1820", value: 8 },
-        { key: "PVDF_CLEAR", value: 10 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "CANALETA" &&
-      this.currentCategoria == "INDUSTRIAL" &&
-      (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
-    ) {
-      this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-      this.currentCategoria == "RECIDENCIAL" &&
-      this.currentTipo == "C1"
-    ) {
-      this.listSISTEMA = [
-        { key: "POLYESTER", value: 2 },
-        { key: "SUPER_POLYESTER", value: 5 },
-        { key: "PVDF_57", value: 7 },
-        { key: "PVDF_1820", value: 10 },
-        { key: "PVDF_CLEAR", value: 20 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-      this.currentCategoria == "RECIDENCIAL" &&
-      (this.currentTipo == "C2" || this.currentTipo == "C3")
-    ) {
-      this.listSISTEMA = [
-        { key: "SUPER_POLYESTER", value: 5 },
-        { key: "PVDF_57", value: 7 },
-        { key: "PVDF_1820", value: 10 },
-        { key: "PVDF_CLEAR", value: 20 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-      this.currentCategoria == "INDUSTRIAL" &&
-      this.currentTipo == "C4"
-    ) {
-      this.listSISTEMA = [
-        { key: "PVDF_1820", value: 8 },
-        { key: "PVDF_CLEAR", value: 10 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-      this.currentCategoria == "INDUSTRIAL" &&
-      (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
-    ) {
-      this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "TEJA_SIN_TRASLAPO" &&
-      this.currentCategoria == "RECIDENCIAL" &&
-      this.currentTipo == "C1"
-    ) {
-      this.listSISTEMA = [
-        { key: "POLYESTER", value: 2 },
-        { key: "SUPER_POLYESTER", value: 5 },
-        { key: "PVDF_57", value: 7 },
-        { key: "PVDF_1820", value: 10 },
-        { key: "PVDF_CLEAR", value: 20 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "TEJA_SIN_TRASLAPO" &&
-      this.currentCategoria == "RECIDENCIAL" &&
-      (this.currentTipo == "C2" || this.currentTipo == "C3")
-    ) {
-      this.listSISTEMA = [
-        { key: "SUPER_POLYESTER", value: 5 },
-        { key: "PVDF_57", value: 7 },
-        { key: "PVDF_1820", value: 10 },
-        { key: "PVDF_CLEAR", value: 20 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "TEJA_SIN_TRASLAPO" &&
-      this.currentCategoria == "INDUSTRIAL" &&
-      this.currentTipo == "C4"
-    ) {
-      this.listSISTEMA = [
-        { key: "PVDF_1820", value: 8 },
-        { key: "PVDF_CLEAR", value: 10 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "FACHADA" &&
-      this.currentProducto == "TEJA_SIN_TRASLAPO" &&
-      this.currentCategoria == "INDUSTRIAL" &&
-      (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
-    ) {
-      this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "INTERIOR" &&
-      this.currentProducto == "" &&
-      this.currentCategoria == "AMBIENTES_LIMPIOS" &&
-      this.currentTipo == ""
-    ) {
-      this.listSISTEMA = [
-        { key: "POLYESTER", value: 2 },
-        { key: "SUPER_POLYESTER", value: 5 },
-        { key: "PVDF_57", value: 7 },
-        { key: "PVDF_1820", value: 10 },
-        { key: "PVDF_CLEAR", value: 20 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "INTERIOR" &&
-      this.currentProducto == "" &&
-      this.currentCategoria == "AMBIENTES_PRODUCCION" &&
-      this.currentTipo == ""
-    ) {
-      this.listSISTEMA = [
-        { key: "SUPER_POLYESTER", value: 5 },
-        { key: "PVDF_57", value: 7 },
-        { key: "PVDF_1820", value: 10 },
-        { key: "PVDF_CLEAR", value: 20 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "INTERIOR" &&
-      this.currentProducto == "" &&
-      this.currentCategoria == "PLANTA_QUIMICA" &&
-      this.currentTipo == ""
-    ) {
-      this.listSISTEMA = [
-        { key: "PVDF_1820", value: 8 },
-        { key: "PVDF_CLEAR", value: 10 }
-      ];
-    } else if (
-      this.currentSector == "CONSTRUCCION" &&
-      this.currentUso == "INTERIOR" &&
-      this.currentProducto == "" &&
-      (this.currentCategoria == "PERMANENTE_CONDENSACION" ||
-        this.currentCategoria == "GRANJAS_GALPONES") &&
-      this.currentTipo == ""
-    ) {
-      this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
-    }
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "TECHO" &&
+        this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
+        this.currentCategoria == "RECIDENCIAL" &&
+        (this.currentTipo == "C2" || this.currentTipo == "C3")
+      ) {
+        this.listSISTEMA = [
+          { key: "SUPER_POLYESTER", value: 5 },
+          { key: "PVDF_57", value: 7 },
+          { key: "PVDF_1820", value: 10 },
+          { key: "PVDF_CLEAR", value: 20 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "TECHO" &&
+        this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
+        this.currentCategoria == "INDUSTRIAL" &&
+        this.currentTipo == "C4"
+      ) {
+        this.listSISTEMA = [
+          { key: "PVDF_1820", value: 8 },
+          { key: "PVDF_CLEAR", value: 10 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "TECHO" &&
+        this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
+        this.currentCategoria == "INDUSTRIAL" &&
+        (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
+      ) {
+        this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "MASTER_1000" &&
+        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentTipo == "C1"
+      ) {
+        this.listSISTEMA = [
+          { key: "POLYESTER", value: 2 },
+          { key: "SUPER_POLYESTER", value: 5 },
+          { key: "PVDF_57", value: 7 },
+          { key: "PVDF_1820", value: 10 },
+          { key: "PVDF_CLEAR", value: 20 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "MASTER_1000" &&
+        this.currentCategoria == "RECIDENCIAL" &&
+        (this.currentTipo == "C2" || this.currentTipo == "C3")
+      ) {
+        this.listSISTEMA = [
+          { key: "SUPER_POLYESTER", value: 5 },
+          { key: "PVDF_57", value: 7 },
+          { key: "PVDF_1820", value: 10 },
+          { key: "PVDF_CLEAR", value: 20 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "MASTER_1000" &&
+        this.currentCategoria == "INDUSTRIAL" &&
+        this.currentTipo == "C4"
+      ) {
+        this.listSISTEMA = [
+          { key: "PVDF_1820", value: 8 },
+          { key: "PVDF_CLEAR", value: 10 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "MASTER_1000" &&
+        this.currentCategoria == "INDUSTRIAL" &&
+        (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
+      ) {
+        this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "CANALETA" &&
+        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentTipo == "C1"
+      ) {
+        console.log("entra");
 
-    this.currentSistema = 0;
+        // jesus
+        this.listSISTEMA = [
+          { key: "POLYESTER", value: 2 },
+          { key: "SUPER_POLYESTER", value: 5 },
+          { key: "PVDF_57", value: 7 },
+          { key: "PVDF_1820", value: 10 },
+          { key: "PVDF_CLEAR", value: 20 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "CANALETA" &&
+        this.currentCategoria == "RECIDENCIAL" &&
+        (this.currentTipo == "C2" || this.currentTipo == "C3")
+      ) {
+        this.listSISTEMA = [
+          { key: "SUPER_POLYESTER", value: 5 },
+          { key: "PVDF_57", value: 7 },
+          { key: "PVDF_1820", value: 10 },
+          { key: "PVDF_CLEAR", value: 20 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "CANALETA" &&
+        this.currentCategoria == "INDUSTRIAL" &&
+        this.currentTipo == "C4"
+      ) {
+        this.listSISTEMA = [
+          { key: "PVDF_1820", value: 8 },
+          { key: "PVDF_CLEAR", value: 10 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "CANALETA" &&
+        this.currentCategoria == "INDUSTRIAL" &&
+        (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
+      ) {
+        this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
+        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentTipo == "C1"
+      ) {
+        this.listSISTEMA = [
+          { key: "POLYESTER", value: 2 },
+          { key: "SUPER_POLYESTER", value: 5 },
+          { key: "PVDF_57", value: 7 },
+          { key: "PVDF_1820", value: 10 },
+          { key: "PVDF_CLEAR", value: 20 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
+        this.currentCategoria == "RECIDENCIAL" &&
+        (this.currentTipo == "C2" || this.currentTipo == "C3")
+      ) {
+        this.listSISTEMA = [
+          { key: "SUPER_POLYESTER", value: 5 },
+          { key: "PVDF_57", value: 7 },
+          { key: "PVDF_1820", value: 10 },
+          { key: "PVDF_CLEAR", value: 20 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
+        this.currentCategoria == "INDUSTRIAL" &&
+        this.currentTipo == "C4"
+      ) {
+        this.listSISTEMA = [
+          { key: "PVDF_1820", value: 8 },
+          { key: "PVDF_CLEAR", value: 10 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
+        this.currentCategoria == "INDUSTRIAL" &&
+        (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
+      ) {
+        this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "TEJA_SIN_TRASLAPO" &&
+        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentTipo == "C1"
+      ) {
+        this.listSISTEMA = [
+          { key: "POLYESTER", value: 2 },
+          { key: "SUPER_POLYESTER", value: 5 },
+          { key: "PVDF_57", value: 7 },
+          { key: "PVDF_1820", value: 10 },
+          { key: "PVDF_CLEAR", value: 20 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "TEJA_SIN_TRASLAPO" &&
+        this.currentCategoria == "RECIDENCIAL" &&
+        (this.currentTipo == "C2" || this.currentTipo == "C3")
+      ) {
+        this.listSISTEMA = [
+          { key: "SUPER_POLYESTER", value: 5 },
+          { key: "PVDF_57", value: 7 },
+          { key: "PVDF_1820", value: 10 },
+          { key: "PVDF_CLEAR", value: 20 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "TEJA_SIN_TRASLAPO" &&
+        this.currentCategoria == "INDUSTRIAL" &&
+        this.currentTipo == "C4"
+      ) {
+        this.listSISTEMA = [
+          { key: "PVDF_1820", value: 8 },
+          { key: "PVDF_CLEAR", value: 10 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "FACHADA" &&
+        this.currentProducto == "TEJA_SIN_TRASLAPO" &&
+        this.currentCategoria == "INDUSTRIAL" &&
+        (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
+      ) {
+        this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "INTERIOR" &&
+        this.currentProducto == "" &&
+        this.currentCategoria == "AMBIENTES_LIMPIOS" &&
+        this.currentTipo == ""
+      ) {
+        this.listSISTEMA = [
+          { key: "POLYESTER", value: 2 },
+          { key: "SUPER_POLYESTER", value: 5 },
+          { key: "PVDF_57", value: 7 },
+          { key: "PVDF_1820", value: 10 },
+          { key: "PVDF_CLEAR", value: 20 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "INTERIOR" &&
+        this.currentProducto == "" &&
+        this.currentCategoria == "AMBIENTES_PRODUCCION" &&
+        this.currentTipo == ""
+      ) {
+        this.listSISTEMA = [
+          { key: "SUPER_POLYESTER", value: 5 },
+          { key: "PVDF_57", value: 7 },
+          { key: "PVDF_1820", value: 10 },
+          { key: "PVDF_CLEAR", value: 20 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "INTERIOR" &&
+        this.currentProducto == "" &&
+        this.currentCategoria == "PLANTA_QUIMICA" &&
+        this.currentTipo == ""
+      ) {
+        this.listSISTEMA = [
+          { key: "PVDF_1820", value: 8 },
+          { key: "PVDF_CLEAR", value: 10 }
+        ];
+      } else if (
+        this.currentSector == "CONSTRUCCION" &&
+        this.currentUso == "INTERIOR" &&
+        this.currentProducto == "" &&
+        (this.currentCategoria == "PERMANENTE_CONDENSACION" ||
+          this.currentCategoria == "GRANJAS_GALPONES") &&
+        this.currentTipo == ""
+      ) {
+        this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
+      }
+
+      console.log(this.listSISTEMA);
+
+      this.currentSistema = 0;
+    }
   }
 }
