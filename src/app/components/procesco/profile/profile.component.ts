@@ -128,12 +128,16 @@ export class ProfileComponent implements AfterViewInit {
       switch (event.key) {
         case "nuevo": {
           this.nationalOptions[3].active = false;
-          this.action = event.event.value ? event.key : null;
+          // this.action = event.event.value ? event.key : null;
+          event.value ? (this.action = event.key) : (this.action = null);
+
           break;
         }
         case "actualizacion": {
           this.nationalOptions[2].active = false;
-          this.action = event.event.value ? event.key : null;
+          // this.action = event.event.value ? event.key : null;
+          event.value ? (this.action = event.key) : (this.action = null);
+
         }
       }
       this.nationalOptions[index].active = event.value;
@@ -145,12 +149,16 @@ export class ProfileComponent implements AfterViewInit {
       switch (event.key) {
         case "new": {
           this.internationalOptions[3].active = false;
-          this.action = event.value ? event.key : null;
+          // this.action = event.value ? event.key : null;
+          event.value ? (this.action = event.key) : (this.action = null);
+
           break;
         }
         case "update": {
           this.internationalOptions[2].active = false;
-          this.action = event.event.value ? event.key : null;
+          // this.action = event.event.value ? event.key : null;
+          event.value ? (this.action = event.key) : (this.action = null);
+
         }
       }
       this.internationalOptions[index].active = event.value;
