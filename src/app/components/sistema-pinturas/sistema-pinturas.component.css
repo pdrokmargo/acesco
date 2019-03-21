@@ -199,6 +199,7 @@
 
 .paint-system-content.psc ul {
   text-align: center;
+  padding: 0;
 }
 
 .paint-system-content.psc ul .paint-system-content.psc ul li {
