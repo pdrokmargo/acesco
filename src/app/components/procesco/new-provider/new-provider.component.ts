@@ -232,39 +232,40 @@ export class NewProviderComponent {
   }
 
   autoFill() {
-    this.preRegister.whoRefers = "Alguien";
-    this.preRegister.personalDataProtection = true;
-    this.preRegister.habeas = true;
-    this.preRegister.serviceDescription = "serviceDescription";
-    this.preRegister.documentIssued = "documentIssued";
-    this.preRegister.businessName = "businessName";
-    this.preRegister.commercialName = "commercialName";
-    this.preRegister.ciiu = "ciiu";
-    this.preRegister.legalRepresentative = "legalRepresentative";
-    this.preRegister.profession = "profession";
-    this.preRegister.professionalCard = "professionalCard";
-    this.preRegister.issuedBy = "issuedBy";
-    this.preRegister.contactName = "contactName";
-    this.preRegister.position = "position";
-    this.preRegister.address = "address";
-    this.preRegister.city = "City";
-    this.preRegister.dpto = "dpto";
-    this.preRegister.zipcode = 11111;
-    this.preRegister.phone = 5235325235;
-    this.preRegister.mobile = 253525235;
-    this.preRegister.fax = 52352;
-    this.preRegister.email = "email";
-    this.preRegister.website = "website";
-    this.preRegister.iso9001 = true;
-    this.preRegister.iso14001 = true;
-    this.preRegister.oshas18001 = true;
-    this.preRegister.antiCorruptionPolicy = true;
-    this.preRegister.sustainability = true;
-    this.preRegister.dueDiligence = true;
-    this.preRegister.socialResponsability = true;
-    this.preRegister.socialResponsabilityName = "socialResponsabilityName";
-    this.preRegister.productSeal = true;
-    this.preRegister.productSealName = "productSealName";
+    console.log(this.preRegister.productSeal);
+    // this.preRegister.whoRefers = "Alguien";
+    // this.preRegister.personalDataProtection = true;
+    // this.preRegister.habeas = true;
+    // this.preRegister.serviceDescription = "serviceDescription";
+    // this.preRegister.documentIssued = "documentIssued";
+    // this.preRegister.businessName = "businessName";
+    // this.preRegister.commercialName = "commercialName";
+    // this.preRegister.ciiu = "ciiu";
+    // this.preRegister.legalRepresentative = "legalRepresentative";
+    // this.preRegister.profession = "profession";
+    // this.preRegister.professionalCard = "professionalCard";
+    // this.preRegister.issuedBy = "issuedBy";
+    // this.preRegister.contactName = "contactName";
+    // this.preRegister.position = "position";
+    // this.preRegister.address = "address";
+    // this.preRegister.city = "City";
+    // this.preRegister.dpto = "dpto";
+    // this.preRegister.zipcode = 11111;
+    // this.preRegister.phone = 5235325235;
+    // this.preRegister.mobile = 253525235;
+    // this.preRegister.fax = 52352;
+    // this.preRegister.email = "email";
+    // this.preRegister.website = "website";
+    // this.preRegister.iso9001 = true;
+    // this.preRegister.iso14001 = true;
+    // this.preRegister.oshas18001 = true;
+    // this.preRegister.antiCorruptionPolicy = true;
+    // this.preRegister.sustainability = true;
+    // this.preRegister.dueDiligence = true;
+    // this.preRegister.socialResponsability = true;
+    // this.preRegister.socialResponsabilityName = "socialResponsabilityName";
+    // this.preRegister.productSeal = true;
+    // this.preRegister.productSealName = "productSealName";
   }
   showNaturalPersonaBody() {
     if (this.preRegister.documentType_id) {

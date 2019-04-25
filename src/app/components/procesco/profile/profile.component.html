@@ -24,8 +24,23 @@
             <div class="col-6 left">
               <h3 class="title">Nacional</h3>
               <hr class="lightBlueLine" />
+              <button
+                  class="acesco-button"
+                  (click)="submitProfile(1)"
+                  [disabled]="loading"
+                  *ngIf="!approved"
+                >
+                  Seleccionar
+                  <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+                  <fa-icon
+                    [icon]="faSpinner"
+                    *ngIf="loading"
+                    [spin]="true"
+                  ></fa-icon>
+                </button>
               <div class="container">
-                <div
+                  
+                <!-- <div
                   class="row border-bottom"
                   *ngFor="let option of nationalOptions"
                 >
@@ -41,14 +56,28 @@
                     >
                     </app-toggle>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="col-6 right">
               <h3 class="title">International</h3>
               <hr class="lightBlueLine" />
               <div class="container">
-                <div
+                  <button
+                  class="acesco-button"
+                  (click)="submitProfile()"
+                  [disabled]="loading"
+                  *ngIf="!approved"
+                >
+                  Seleccionar
+                  <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+                  <fa-icon
+                    [icon]="faSpinner"
+                    *ngIf="loading"
+                    [spin]="true"
+                  ></fa-icon>
+                </button>
+                <!-- <div
                   class="row border-bottom"
                   *ngFor="let option of internationalOptions"
                 >
@@ -64,10 +93,10 @@
                     >
                     </app-toggle>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
-            <button
+            <!-- <button
               class="acesco-button"
               (click)="submitProfile()"
               [disabled]="loading"
@@ -80,7 +109,7 @@
                 *ngIf="loading"
                 [spin]="true"
               ></fa-icon>
-            </button>
+            </button> -->
           </div>
         </div>
       </div>

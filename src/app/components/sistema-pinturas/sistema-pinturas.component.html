@@ -1,9 +1,9 @@
-<div style="position: fixed; color: tomato">
+<!-- <div style="position: fixed; color: tomato">
   <div>SECTOR: {{ currentSector }}</div>
   <div>USO: {{ currentUso }}</div>
   <div>PRODUCTO: {{ currentProducto }}</div>
   <div>CATEGORIA: {{ currentCategoria }}</div>
-</div>
+</div> -->
 
 <div id="paint-system-wrapper">
   <div class="paint-system-content psc">
@@ -28,7 +28,7 @@
           showCategoria = false
         "
       >
-        Sectores
+        Usos
         <fa-icon [icon]="faArrowRight" *ngIf="currentUso != ''"></fa-icon>
       </li>
       <li
@@ -40,7 +40,7 @@
           showCategoria = false
         "
       >
-        Usos
+        Aplicaciones
         <fa-icon
           [icon]="faArrowRight"
           *ngIf="currentProducto != '' || currentCategoria != ''"
@@ -73,7 +73,7 @@
   </div>
   <div class="paint-system-content psc-1" *ngIf="showSector">
     <div class="paint-system-title">
-      <span>Sectores</span>
+      <span>Usos</span>
     </div>
     <div class="paint-system-items psi-1">
       <div
@@ -95,11 +95,11 @@
 
   <div class="paint-system-content psc-2" *ngIf="showUso">
     <div class="paint-system-title">
-      <span>Usos</span>
+      <span>Aplicaciones</span>
     </div>
     <div class="paint-system-items psi-2">
       <div
-        class="paint-system-item"
+        class="paint-system-item" style="border:1px solid #fff;"
         *ngFor="let uso of listUSO; let index = index"
         (click)="selectUso(uso)"
       >
@@ -107,7 +107,7 @@
           src="/assets/images/sistema_pinturas/{{ USO[uso].img }}"
           alt="uso{{ index }}"
         />
-        <span class="psi-title{{ currentUso == uso ? ' active' : '' }}">{{
+        <span style="border-top:1px solid #fff;border-bottom:1px solid #fff;color:#003167;" class="psi-title{{ currentUso == uso ? ' active' : '' }}">{{
           USO[uso].title
         }}</span>
       </div>
@@ -121,7 +121,7 @@
       <p>Selecciona la cubierta que tendrá tu proyecto</p>
     </div>
     <div class="paint-system-items psi-2">
-      <div
+      <div style="border-top:1px solid #fff;border-bottom:1px solid #fff;color:#003167;"
         class="paint-system-item"
         *ngFor="let producto of listPRODUCTO; let index = index"
         (click)="selectProducto(producto)"
@@ -146,11 +146,11 @@
     </div>
     <div class="paint-system-items psi-2">
       <div
-        class="paint-system-item"
+        class="paint-system-item" 
         *ngFor="let categoria of listCATEGORIA; let index = index"
         (click)="selectCategoria(categoria)"
       >
-        <img
+        <img style="padding:27px 65px!important; min-height: 139px; min-width: 220px;"
           src="/assets/images/sistema_pinturas/{{ CATEGORIAS[categoria].img }}"
           alt="uso{{ index }}"
         />
@@ -188,7 +188,7 @@
     <div class="psc6">
       <h2>Nuestra Recomendación</h2>
       <h1>{{ SISTEMAS[listSISTEMA[currentSistema].key].name }}</h1>
-      <h2>Garantia: {{ listSISTEMA[currentSistema].value }} Años</h2>
+      <h2 *ngIf="listSISTEMA[currentSistema].value != 0">Garantía: {{ listSISTEMA[currentSistema].value }} Años</h2>
     </div>
     <div class="separator"></div>
     <h2>Otras recomendaciones</h2>

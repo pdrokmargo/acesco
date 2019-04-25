@@ -27,6 +27,7 @@ import { ToastrService } from "ngx-toastr";
 })
 export class StageAComponent {
   private __approved: boolean = false;
+  isSimplified = false;
   @Input() set approved(approved: boolean) {
     this.__approved = approved;
     this.isAdminUser = false;
@@ -60,8 +61,8 @@ export class StageAComponent {
     this.activatedRoute.params.subscribe(
       activeRoute => {
         if (activeRoute["id"]) {
-          this.isAdminUser = !this.approved ? false : true;
-
+          // this.isAdminUser = !this.approved ? false : true;
+          this.isAdminUser = true;
           this.procescoService.getUserById(activeRoute["id"]).subscribe(
             ({ id, currentStep, stagea_id }: any) => {
               this.id = id;
@@ -71,6 +72,7 @@ export class StageAComponent {
                   console.log(stage_a);
 
                   this.stageA = { ...stage_a };
+                  this.stageA["pep_info"] = JSON.parse(this.stageA["pep_info"]);
                 },
                 error1 => {
                   console.error(error1);
@@ -105,6 +107,7 @@ export class StageAComponent {
     });
     this.stageA = {
       pep: false,
+      pep_info: null,
       pep_name: null,
       pep_identification: null,
       society_position: null,
@@ -170,14 +173,45 @@ export class StageAComponent {
       { model: "payment_condition", value: false, key: 120 }
     ];
   }
+  addPEP(){
+    var pep_info = {pep_name: "", pep_identification: 0, society_position: "", public_position: "", linkup_date:"", unlink_date: ""};
+    pep_info.pep_name = this.stageA["pep_name"];
+    pep_info.pep_identification = this.stageA["pep_identification"];
+    pep_info.society_position = this.stageA["society_position"];
+    pep_info.public_position = this.stageA["public_position"];
+    pep_info.linkup_date = this.stageA["linkup_date"];
+    pep_info.unlink_date = this.stageA["unlink_date"];
+    
+    if(this.stageA["pep_info"] == null){
+      this.stageA["pep_info"] = [];
+      this.stageA["pep_info"].push(pep_info);
+    }else{
+      
+      this.stageA["pep_info"].push(pep_info);
+    }
 
+    
+  }
+  removePEP(i){
+    this.stageA["pep_info"].slice(i, 1);
+  }
+  seePEP(pep_info){
+    this.stageA["pep_name"] = pep_info.pep_name;
+    this.stageA["pep_identification"] = pep_info.pep_identification;
+    this.stageA["society_position"] = pep_info.society_position;
+    this.stageA["public_position"] = pep_info.public_position;
+    this.stageA["linkup_date"] = pep_info.linkup_date
+    this.stageA["unlink_date"] = pep_info.unlink_date;
+  }
   updatedValue(event: ToggleInterface) {
     switch (event.key) {
       case "commonRegime": {
+        this.isSimplified = false;
         this.stageA["simplifiedRegimen"] = false;
         break;
       }
       case "simplifiedRegimen": {
+        this.isSimplified = true;
         this.stageA["commonRegime"] = false;
         break;
       }
@@ -215,12 +249,13 @@ export class StageAComponent {
         this.reserved_space["payment_condition"] = event.key2;
         break;
       }
-    }
+      }
     this.stageA[event.key] = event.value;
   }
 
   onSubmit(form: NgForm) {
     this.loading = true;
+    this.stageA["pep_info"] = JSON.stringify(this.stageA["pep_info"]);
     this.procescoService.updateUser(this.stageA, "stage-a").subscribe(
       response => {
         this.router.navigate(["procesco/confirmacion"]);

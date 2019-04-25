@@ -1,7 +1,12 @@
 <section id="app-userList">
-  <div class="container">
+  <div class="container" style="max-width: 1500px;">
     <div class="row mt-3">
-      <div class="col">
+        <div class="col-1">
+            <div class="form-group">
+                <a target="_blank" href="/acescoservice/public/#/procesco" style="text-align: center;" class="acesco-button">Inicio</a>
+            </div>
+          </div>
+      <div class="col-11">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Buscar usuario..." (keyup.enter)="search(searchText.value)" #searchText>
         </div>

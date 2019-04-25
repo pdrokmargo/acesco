@@ -69,9 +69,12 @@
               <span class="check"><img src="/assets/images/check-mark-button-svgrepo-com.svg"></span>
             </button>
             <h1>{{item.title}}</h1>
-            <ul>
+            <ul *ngIf="item.title != 'ALUMINIO'">
               <li>RAL: {{item.ral}}</li>
               <li>SRI: {{item.sri}}</li>
+            </ul>
+            <ul *ngIf="item.title == 'ALUMINIO'">
+              <li>Próximamente</li>
             </ul>
           </div>
         </div>

@@ -9,9 +9,10 @@
         <h4 class="mt-5">Pre Registro</h4>
         <hr class="whiteLine" />
         <p>
-          <b>Estimado proveedor: </b>para un debido proceso de inscripción como
-          proveedor de ACESCO o de autorización de sus datos, agradecemos
-          diligenciar el siguiente formulario.
+          <b>Estimado proveedor: </b>Para un debido proceso de inscripción como
+          proveedor de ACESCO le pedimos ingresar a la opción FAQ para que pueda conocer los diferentes
+          requisitos de seguridad, acuerdos de confidencialidad y acuerdos de ética, etc
+          que rigen nuestro relacionamiento con proveedores.
         </p>
       </div>
     </div>
@@ -132,11 +133,13 @@
                   <input
                     type="date"
                     class="form-control"
+                    placeholder="Fecha de desvinculación*"
                     [(ngModel)]="preRegister.created_at"
                     name="created_at"
+                    minlength="2"
                     #created_at="ngModel"
                     required
-                    disabled
+                    [disabled]="true"
                   />
                 </div>
               </div>
@@ -254,7 +257,6 @@
                       #documentType_id="ngModel"
                       required
                       [disabled]="isAdminUser || loading"
-                      (change)="test()"
                     >
                       <option [ngValue]="null">Elije uno*</option>
                       <option
@@ -838,7 +840,7 @@
               <div class="col-6 dueDiligence">
                 <span
                   >Tiene implementado un sistema o programa para la prevención y
-                  control de riesgos de LA/FT? NO
+                  control del riesgo (LA/FT, OEA, BASC) NO
                   <app-toggle
                     [disabled]="isAdminUser"
                     [prop]="'dueDiligence'"
@@ -883,8 +885,7 @@
                   >Posee sello de producto NO
                   <app-toggle
                     [disabled]="isAdminUser"
-                    [prop]="'managementSystemInformation'"
-                    [prop2]="'productSeal'"
+                    [prop]="'productSeal'"
                     [loading]="loading"
                     [model]="preRegister.productSeal"
                     (updatedValue)="updateValue($event)"
@@ -896,9 +897,7 @@
                     type="text"
                     class="form-control"
                     placeholder="Cual?"
-                    [disabled]="
-                      isAdminUser || !preRegister.productSeal || loading
-                    "
+                    [disabled]="isAdminUser || !preRegister.productSeal || loading"
                     [(ngModel)]="preRegister.productSealName"
                     name="productSealName"
                     #productSealName="ngModel"

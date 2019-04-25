@@ -86,13 +86,13 @@ export class ProfileComponent implements AfterViewInit {
     this.cdRef.detectChanges();
   }
 
-  submitProfile() {
-    if (!this.action) return;
+  submitProfile(providerType) {
+    // if (!this.action) return;
     this.loading = true;
-    if (this.providerType === "national") {
+    if (providerType === 1) {
       const supplier = this.nationalOptions[0].active ? 1 : 0;
       const inHouse = this.nationalOptions[1].active ? 1 : 0;
-      const national = this.providerType === "national" ? 1 : 0;
+      const national = 1;//providerType === "national" ? 1 : 0;
       this.procescoService
         .updateUser(
           { supplier: supplier, inHouse: inHouse, national: national },
@@ -176,7 +176,7 @@ export class ProfileComponent implements AfterViewInit {
   }
 
   updated() {
-    if (!this.action) return;
+    // if (!this.action) return;
     this.loading = true;
     if (this.providerType === "national") {
       const supplier = this.nationalOptions[0].active ? 1 : 0;

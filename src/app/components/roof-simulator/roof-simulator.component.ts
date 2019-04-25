@@ -21,12 +21,13 @@ export class RoofSimulatorComponent implements OnInit, AfterViewInit {
       "03-CANALETA/00-IMAGEN_BASE.jpg",
       "04-TEJA_SIN_TRASLAPO/00-IMAGEN_BASE.jpg",
       "05-TEJA_SIN_TRASLAPO_CURVA/00-IMAGEN_BASE.jpg",
+      "06-MASTER_PANEL/00-IMAGEN_BASE.jpg",
     ],
     img: [
       {
         url: "blanco.png",
         title: "BLANCO",
-        ral: "9010",
+        ral: "9016",
         sri: "85"
       },
       {
@@ -119,7 +120,7 @@ export class RoofSimulatorComponent implements OnInit, AfterViewInit {
     {
       url: "cubiertas-02.png",
       geometria:"geometria-cubierta-arquitectonica.png",
-      name: "Cubierta arquitectonica",
+      name: "Cubierta arquitectónica",
       code: 2,
       show: (this.currentTab == this.VIVIENDA) || (this.currentTab == this.BODEGA)
     },
@@ -128,7 +129,7 @@ export class RoofSimulatorComponent implements OnInit, AfterViewInit {
       geometria:"geometria-canaleta.png",
       name: "Canaleta"+'\n\n',
       code: 4,
-      show: (this.currentTab == this.VIVIENDA) || (this.currentTab == this.BODEGA)//(this.currentTab == this.BODEGA) && (this.currentTab_bodega == this.BODEGA_CUBIERTA)
+      show:/*(this.currentTab == this.VIVIENDA) || */(this.currentTab == this.BODEGA && this.currentTab_bodega == this.BODEGA_CUBIERTA)//(this.currentTab == this.BODEGA) && (this.currentTab_bodega == this.BODEGA_CUBIERTA)
     },
     {
       url: "cubiertas-03.png",
@@ -184,9 +185,12 @@ export class RoofSimulatorComponent implements OnInit, AfterViewInit {
   }
 
   private tab_bodega(_tab) {
+    console.log(this.currentTab_bodega);
     if (this.currentTab_bodega != _tab) {
       this.currentTab_bodega = _tab;
     }
+    this.updateTypes();
+    console.log(this.currentTab_bodega);
   }
 
   private type(_type) {
@@ -254,17 +258,17 @@ export class RoofSimulatorComponent implements OnInit, AfterViewInit {
       },
       {
         url: "cubiertas-04.png",
-        geometria: "geometria-canaleta.png",
+        geometria:"geometria-canaleta.png",
         name: "Canaleta"+'\n\n',
         code: 4,
-        show: (this.currentTab == this.VIVIENDA) || (this.currentTab == this.BODEGA)//(this.currentTab == this.BODEGA) && (this.currentTab_bodega == this.BODEGA_CUBIERTA)
+        show:/*(this.currentTab == this.VIVIENDA) || */(this.currentTab == this.BODEGA && this.currentTab_bodega == this.BODEGA_CUBIERTA)//(this.currentTab == this.BODEGA) && (this.currentTab_bodega == this.BODEGA_CUBIERTA)
       },
       {
         url: "cubiertas-03.png",
         geometria: "geometria-teja-sin-traslapo.png",
         name: "Teja sin traslapo",
         code: 3,
-        show:/* (this.currentTab == this.VIVIENDA) || */(this.currentTab == this.BODEGA)
+        show: (this.currentTab == this.VIVIENDA) || (this.currentTab == this.BODEGA)
       },
       
       {

@@ -50,25 +50,25 @@ export class SistemaPinturasComponent implements OnInit {
     },
     MAQUINA_EQUIPO: {
       img: "imagen-interior.jpg",
-      title: "Maquina y Equipo"
+      title: "Máquina y Equipo"
     },
     REFRIGERACION: {
       img: "imagen-interior.jpg",
-      title: "Refrigeracion"
+      title: "Refrigeración"
     }
   };
   PRODUCTO: any = {
     MASTER_1000: {
-      img: "imagen-techo.jpg",
+      img: "imagen-master-1000.jpg",
       title: "Master 1000"
     },
     CANALETA: {
-      img: "imagen-techo.jpg",
+      img: "imagen-canaleta.jpg",
       title: "Canaletas"
     },
     CUBIERTA_ARQUITECTONICA: {
-      img: "imagen-techo.jpg",
-      title: "Cubierta Arquitectonica"
+      img: "imagen-cubierta-arquitectonica.jpg",
+      title: "Cubierta Arquitectónica"
     },
     TEJA_SIN_TRASLAPO: {
       img: "imagen-techo.jpg",
@@ -84,28 +84,28 @@ export class SistemaPinturasComponent implements OnInit {
     },
     MAQUINA_INDUSTRIALES: {
       img: "imagen-techo.jpg",
-      title: "Maquinas industriales"
+      title: "Máquinas industriales"
     },
     LINEA_BLANCA: {
       img: "imagen-techo.jpg",
-      title: "Linea blanca"
+      title: "Línea blanca"
     },
     REFRIGERACION_COMERCIAL: {
       img: "imagen-techo.jpg",
-      title: "Refrigeracion comercial"
+      title: "Refrigeración comercial"
     }
   };
   CATEGORIAS: any = {
-    RECIDENCIAL: {
-      img: "imagen-interior.jpg",
-      title: "Recidencial"
+    RESIDENCIAL: {
+      img: "icono-residencial.png",
+      title: "Residencial"
     },
     INDUSTRIAL: {
-      img: "imagen-interior.jpg",
+      img: "icono-industrial.png",
       title: "Industrial"
     },
     MARINO: {
-      img: "imagen-interior.jpg",
+      img: "icono-marino.png",
       title: "Marino"
     },
     AMBIENTES_LIMPIOS: {
@@ -114,15 +114,15 @@ export class SistemaPinturasComponent implements OnInit {
     },
     AMBIENTES_PRODUCCION: {
       img: "imagen-interior.jpg",
-      title: "Ambientes de produccion (alta humedad)"
+      title: "Ambientes de producción (alta humedad)"
     },
     PLANTA_QUIMICA: {
       img: "imagen-interior.jpg",
-      title: "Plantas quimicas con suaves polusiones"
+      title: "Plantas químicas con suaves poluciones"
     },
     PERMANENTE_CONDENSACION: {
       img: "imagen-interior.jpg",
-      title: "Permanente condensacion y alta polusion"
+      title: "Permanente condensación y alta polución"
     },
     GRANJAS_GALPONES: {
       img: "imagen-interior.jpg",
@@ -150,26 +150,27 @@ export class SistemaPinturasComponent implements OnInit {
       ]
     },
     C3: {
-      title: `C3 MEDI`,
+      title: `C3 MEDIA`,
       value: false,
       text: [
-        `INTERIORES:  Ambientes con alta humedad y cierta polución en el aire, ej.: plantas de elaboración de alimentos, lavanderías`,
-        `EXTERIORES: Atmósferas Urbanas e Industriales, polución moderada. Áreas costeras de baja salinidad..`
+        `INTERIORES: Ambientes con alta humedad y cierta polución en el aire, ej.: plantas de elaboración de alimentos, lavanderías`,
+        `EXTERIORES: Atmósferas Urbanas e Industriales, polución moderada. Áreas costeras de baja salinidad.`
       ]
     },
     C4: {
-      title: `C1 MUY BAJA`,
+      title: `C4 ALTA`,
       value: false,
       text: [
-        `Construcciones con calefacción con atmósferas limpias y secas, ej.: oficinas, tiendas, colegios, hoteles.`
+        `INTERIORES: Plantas químicas, piscinas de natación, galpones, astilleros.`,
+        `EXTERIORES: Áreas industriales y costeras con moderada salinidad.`
       ]
     },
     C5_I: {
       title: `C5-I MUY ALTA INDUSTRIAL`,
       value: false,
       text: [
-        `INTERIORES:Edificios con condensaciones casi permanentes y alta polución. Estos edificios tienen atmósferas con un riesgo altos de corrosión.`,
-        `EXTERIORES:Áreas industriales con alta humedad y atmósfera agresiva.`
+        `INTERIORES: Edificios con condensaciones casi permanentes y alta polución. Estos edificios tienen atmósferas con un riesgo altos de corrosión.`,
+        `EXTERIORES: Áreas industriales con alta humedad y atmósfera agresiva.`
       ]
     },
     C5_M: {
@@ -180,12 +181,12 @@ export class SistemaPinturasComponent implements OnInit {
   };
   SISTEMAS: any = {
     POLYESTER: {
-      name: "Polyester",
+      name: "Protec Estándar",
       value: 2,
       img: "imagen-techo.jpg"
     },
     SUPER_POLYESTER: {
-      name: "Super Polyester",
+      name: "Protec Super",
       value: 5,
       img: "imagen-techo.jpg"
     },
@@ -195,17 +196,17 @@ export class SistemaPinturasComponent implements OnInit {
       img: "imagen-techo.jpg"
     },
     PVDF_1820: {
-      name: "PVDF 18/20",
+      name: "Protec Ultra",
       value: 10,
       img: "imagen-techo.jpg"
     },
     PVDF_CLEAR: {
-      name: "PVDF + CLEAR Z275",
+      name: "Protec Master",
       value: 20,
       img: "imagen-techo.jpg"
     },
     GALVANIZADO: {
-      name: "Galvanizado",
+      name: "Galvanizado > 400 gr/mt2",
       value: 20,
       img: "imagen-techo.jpg"
     }
@@ -325,12 +326,13 @@ export class SistemaPinturasComponent implements OnInit {
         case "CANALETA":
         case "CUBIERTA_ARQUITECTONICA":
         case "TEJA_SIN_TRASLAPO":
-          this.listCATEGORIA = ["RECIDENCIAL", "INDUSTRIAL", "MARINO"];
+          this.listCATEGORIA = ["RESIDENCIAL", "INDUSTRIAL", "MARINO"];
           break;
         case "SILOS":
         case "AGROINDUSTRIA":
         case "MAQUINA_INDUSTRIALES":
-          this.listCATEGORIA = ["GALVANIZADO_400"];
+          // this.listCATEGORIA = ["GALVANIZADO_400"];
+          this.selectTipo("");
           break;
         case "LINEA_BLANCA":
         case "REFRIGERACION_COMERCIAL":
@@ -349,7 +351,7 @@ export class SistemaPinturasComponent implements OnInit {
       this.listSISTEMA = [];
       this.currentTipo = "";
       switch (this.currentCategoria) {
-        case "RECIDENCIAL":
+        case "RESIDENCIAL":
           this.listTIPO = ["C1", "C2", "C3"];
           break;
         case "INDUSTRIAL":
@@ -385,13 +387,13 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "TECHO" &&
         this.currentProducto == "MASTER_1000" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         this.currentTipo == "C1"
       ) {
         this.listSISTEMA = [
           { key: "POLYESTER", value: 2 },
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -399,12 +401,12 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "TECHO" &&
         this.currentProducto == "MASTER_1000" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         (this.currentTipo == "C2" || this.currentTipo == "C3")
       ) {
         this.listSISTEMA = [
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -427,18 +429,18 @@ export class SistemaPinturasComponent implements OnInit {
           this.currentCategoria == "MARINO") &&
         (this.currentTipo == "C5_I" || this.currentTipo == "C5_M")
       ) {
-        this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 70 }];
+        this.listSISTEMA = [{ key: "PVDF_CLEAR", value: 7 }];
       } else if (
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "TECHO" &&
         this.currentProducto == "CANALETA" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         this.currentTipo == "C1"
       ) {
         this.listSISTEMA = [
           { key: "POLYESTER", value: 2 },
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -446,12 +448,12 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "TECHO" &&
         this.currentProducto == "CANALETA" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         (this.currentTipo == "C2" || this.currentTipo == "C3")
       ) {
         this.listSISTEMA = [
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -479,13 +481,13 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "TECHO" &&
         this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         this.currentTipo == "C1"
       ) {
         this.listSISTEMA = [
           { key: "POLYESTER", value: 2 },
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -493,12 +495,12 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "TECHO" &&
         this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         (this.currentTipo == "C2" || this.currentTipo == "C3")
       ) {
         this.listSISTEMA = [
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -526,13 +528,13 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "FACHADA" &&
         this.currentProducto == "MASTER_1000" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         this.currentTipo == "C1"
       ) {
         this.listSISTEMA = [
           { key: "POLYESTER", value: 2 },
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -540,12 +542,12 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "FACHADA" &&
         this.currentProducto == "MASTER_1000" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         (this.currentTipo == "C2" || this.currentTipo == "C3")
       ) {
         this.listSISTEMA = [
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -573,13 +575,13 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "FACHADA" &&
         this.currentProducto == "CANALETA" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         this.currentTipo == "C1"
       ) {
         this.listSISTEMA = [
           { key: "POLYESTER", value: 2 },
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -587,12 +589,12 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "FACHADA" &&
         this.currentProducto == "CANALETA" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         (this.currentTipo == "C2" || this.currentTipo == "C3")
       ) {
         this.listSISTEMA = [
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -620,13 +622,13 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "FACHADA" &&
         this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         this.currentTipo == "C1"
       ) {
         this.listSISTEMA = [
           { key: "POLYESTER", value: 2 },
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -634,12 +636,12 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "FACHADA" &&
         this.currentProducto == "CUBIERTA_ARQUITECTONICA" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         (this.currentTipo == "C2" || this.currentTipo == "C3")
       ) {
         this.listSISTEMA = [
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -667,13 +669,13 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "FACHADA" &&
         this.currentProducto == "TEJA_SIN_TRASLAPO" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         this.currentTipo == "C1"
       ) {
         this.listSISTEMA = [
           { key: "POLYESTER", value: 2 },
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -681,12 +683,12 @@ export class SistemaPinturasComponent implements OnInit {
         this.currentSector == "CONSTRUCCION" &&
         this.currentUso == "FACHADA" &&
         this.currentProducto == "TEJA_SIN_TRASLAPO" &&
-        this.currentCategoria == "RECIDENCIAL" &&
+        this.currentCategoria == "RESIDENCIAL" &&
         (this.currentTipo == "C2" || this.currentTipo == "C3")
       ) {
         this.listSISTEMA = [
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -720,7 +722,7 @@ export class SistemaPinturasComponent implements OnInit {
         this.listSISTEMA = [
           { key: "POLYESTER", value: 2 },
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -733,7 +735,7 @@ export class SistemaPinturasComponent implements OnInit {
       ) {
         this.listSISTEMA = [
           { key: "SUPER_POLYESTER", value: 5 },
-          { key: "PVDF_57", value: 7 },
+          // { key: "PVDF_57", value: 7 },
           { key: "PVDF_1820", value: 10 },
           { key: "PVDF_CLEAR", value: 20 }
         ];
@@ -763,16 +765,14 @@ export class SistemaPinturasComponent implements OnInit {
         (this.currentProducto == "SILOS" ||
           this.currentProducto == "AGROINDUSTRIA" ||
           this.currentProducto == "MAQUINA_INDUSTRIALES") &&
-        this.currentCategoria == "GALVANIZADO_400" &&
         this.currentTipo == ""
       ) {
-        this.listSISTEMA = [{ key: "GALVANIZADO", value: 5 }];
+        this.listSISTEMA = [{ key: "GALVANIZADO", value: 0 }];
       } else if (
         this.currentSector == "INDUSTRIAL" &&
         this.currentUso == "REFRIGERACION" &&
         (this.currentProducto == "LINEA_BLANCA" ||
           this.currentProducto == "REFRIGERACION_COMERCIAL") &&
-        this.currentCategoria == "" &&
         this.currentTipo == ""
       ) {
         this.listSISTEMA = [{ key: "SUPER_POLYESTER", value: 5 }];
@@ -782,6 +782,17 @@ export class SistemaPinturasComponent implements OnInit {
         this.showRecomendation = true;
       }
       this.currentSistema = 0;
+      if(this.currentTipo == "C1"){
+        this.currentSistema = 1;
+      }
+      if(this.currentTipo == "C2" || this.currentTipo == "C3" || this.currentTipo == "C4" || this.currentTipo == "C5_I" || this.currentTipo == "C5_M"){
+        this.currentSistema = 0;
+      }
+      // if(this.listSISTEMA.length > 1){
+      //   this.currentSistema = 1;
+      // }
+      
+
     }
   }
 }
