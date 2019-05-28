@@ -6,6 +6,15 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2daddc', endColorstr='#29c2ad',GradientType=1 ); /* IE6-9 */
 }
 
+#app-new-provider.no-bg {
+  background: transparent;
+}
+
+.no-border {
+  border-top: 0;
+  border-bottom: 0;
+}
+
 .whiteLine {
   height: 1px;
   background-color: var(--white);

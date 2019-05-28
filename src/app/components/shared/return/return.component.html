@@ -1,18 +1,27 @@
 <div class="row">
   <div class="col-12 text-center">
-    <small>En caso de devolución al usuario click en <span class="text-primary link"
-                                                           (click)="onlinkClick();">Devolución</span>
+    <small
+      >En caso de devolución al usuario click en
+      <span class="text-primary link" (click)="onlinkClick()">Devolución</span>
     </small>
   </div>
   <div class="col-12 animated fadeIn faster mt-3" *ngIf="returned">
-      <div class="form-group">
-        <input type="text"
-               class="form-control"
-               placeholder="Razón de la devolución"
-               required
-               [disabled]="loading"
-               #returnReason>
-      </div>
-      <button class="btn btn-danger btn-block" type="submit" (click)="onButtonClick(returnReason);">Devolver</button>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Razón de la devolución"
+        required
+        [disabled]="loading"
+        #returnReason
+      />
+    </div>
+    <button
+      class="btn btn-danger btn-block"
+      type="button"
+      (click)="onButtonClick(returnReason)"
+    >
+      Devolver
+    </button>
   </div>
 </div>

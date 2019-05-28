@@ -1,254 +1,379 @@
-<section id="app-stage-b">
-  <app-logo-and-social></app-logo-and-social>
+<section
+  id="app-stage-b"
+  [ngClass]="{ 'animated fadeIn fast': !__approved, 'no-bg': __approved }"
+>
+  <app-logo-and-social *ngIf="!__approved"></app-logo-and-social>
+
   <div class="container">
     <div class="row">
-      <div class="col-12 text-white text-center mt-5">
+      <div class="col-12 text-white text-center mt-5" *ngIf="!__approved">
         <h4 class="mt-5">Pre Selección Estapa B</h4>
-        <hr class="whiteLine">
+        <hr class="whiteLine" />
       </div>
-    </div>
-    <div class="row">
-      <div class="col text-center">
-        <app-timeline [currentStep]="step"></app-timeline>
+      <div class="col-12 text-center">
+        <app-timeline [currentStep]="step" *ngIf="!__approved"></app-timeline>
       </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col">
-        <div class="card">
-          <app-form-title [text]="'soportes para operadores ecónomicos autorizados (oea)'"></app-form-title>
-          <div class="row mt-3">
-            <div class="col text-justify">
-              <p>En consideración a la resolución 000015 del 2016 impartida por la DIRECCIÓN GENERAL DE IMPUESTOS Y
-                ADUANAS NACIONALES, por la cual se reglamentan los requisitos mínimos obligatorios para calificarse como
-                Operador Económico Autorizado en Colombia. Así mismo en cumplimiento a la Normativa BASC - Ext
-                (Exportador) Se solicita a ustedes, asociados de negocios de la cadena de suministo de Acerias de
-                Colombia - ACESCO SAS, asegurar y demostrar alineación con los requisitos mínimos de seguridad de la
-                circular 006 del 16 de Septiembre del 2016. A través de los compromisos adquiridos en la manifestación
-                anexa.</p>
-              <p>Dichos requisitos pueden ser auditados por parte de la compañía Acerias de Colombia - ACECO SAS, con el
-                fin de preservar la seguridad en la cadena de suministro; manifiesto que la organización tiene buenas
-                practicas de seguridad a lo largo de la cadena de suministro acorde a nuestros riesgos. Por lo cual
-                garantizamos que:</p>
-            </div>
-          </div>
-          <div class="row border">
+
+      <div class="col-12">
+        <div
+          *ngIf="!isAdminUser || __approved"
+          class="card"
+          [ngClass]="{ 'no-border': __approved }"
+        >
+          <div class="row">
+            <!--  -->
             <div class="col-12">
-              <div class="row">
-                <div class="col-8">
-                  <ul class="list-inline">
-                    <!-- <li class="list-inline-item">
-                      <app-toggle [disabled]="isAdminUser"
-                        [model]="stageB.minimumSafetyRequirements"
-                        [prop]="'minimumSafetyRequirements'"
-                        (updatedValue)="updatedValue($event);">
-                      </app-toggle>
-                    </li> -->
-                    <li class="list-inline-item">
-                      <b><p>Autoevaluación de los requisitos mínimos de seguridad</p></b>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-4 text-right">
-                  <span (click)="toggleList('selfEvaluation')" class="icon">
-                    <fa-icon [icon]="faCaretDown" *ngIf="!lists.selfEvaluation"></fa-icon>
-                    <fa-icon [icon]="faCaretUp" *ngIf="lists.selfEvaluation"></fa-icon>
-                  </span>
-                </div>
-              </div>
-              <div class="container animated fadeIn faster" *ngIf="lists.selfEvaluation">
-                <div class="row border-top" *ngFor="let toggle of selfEvaluationToggles">
-                  <div class="col-8">
-                    <p class="mt-2">{{toggle.text}}</p>
+              <app-form-title [text]="'aspectos de seguridad'"></app-form-title>
+            </div>
+            <div class="col-12 text-justify mt-3">
+              <p>
+                ACESCO está comprometida con la prevención de actividades
+                ilícitas y la materilización de riesgos que atenten contra la
+                integridad de su cadena de suministro y/o la continuidad de sus
+                operaciones, alineadas a las normativas de seguridad aduaneras
+                vigentes. Por lo anterior se solicita a nuestros asociados de
+                negocio asegurar y demostrar alineación con nuestros requisitos
+                de seguridad, los cuales podrán ser auditados por ACESCO.
+              </p>
+            </div>
+            <div class="col-12 mt-3">
+              <div class="row border">
+                <div class="col-12">
+                  <div
+                    class="row __title"
+                    (click)="toggleList('selfEvaluation')"
+                  >
+                    <div class="col-8 title-checks">
+                      Autoevaluación de los requisitos mínimos de seguridad
+                    </div>
+                    <div class="col-4 text-right">
+                      <span class="icon">
+                        <fa-icon
+                          [icon]="faCaretDown"
+                          *ngIf="!lists.selfEvaluation"
+                        ></fa-icon>
+                        <fa-icon
+                          [icon]="faCaretUp"
+                          *ngIf="lists.selfEvaluation"
+                        ></fa-icon>
+                      </span>
+                    </div>
                   </div>
-                  <div class="col-4 text-right">
-                    <p>
+                </div>
+                <div
+                  class="col-12 animated fadeIn faster"
+                  *ngIf="lists.selfEvaluation"
+                >
+                  <div
+                    class="row border-top"
+                    *ngFor="let toggle of selfEvaluationToggles"
+                  >
+                    <div class="col-8 padding">{{ toggle.text }}</div>
+                    <div class="col-4 text-right padding">
                       NO
-                      <app-toggle [disabled]="isAdminUser"
+                      <app-toggle
+                        [disabled]="isAdminUser"
                         [prop]="toggle.model"
                         [model]="toggle.value"
-                        (updatedValue)="updatedValue($event);">
-                      </app-toggle>
+                        (updatedValue)="updatedValue($event)"
+                      ></app-toggle>
                       SI
-                    </p>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-group" *ngIf="toggle.model === 'inadequateProposals'">
-                      <input type="text"
-                             class="form-control"
-                             placeholder="Cual?"
-                             [(ngModel)]="stageB.inadequateProposalsWhat"
-                             #inadequateProposalsWhat="ngModel"
-                             [disabled]="!stageB.inadequateProposals || loading || isAdminUser"
-                             name="inadequateProposalsWhat">
+                    </div>
+                    <div
+                      class="col-12 form-group"
+                      *ngIf="toggle.model === 'inadequateProposals'"
+                    >
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Cual?"
+                        [(ngModel)]="stageB.inadequateProposalsWhat"
+                        #inadequateProposalsWhat="ngModel"
+                        [disabled]="
+                          !stageB.inadequateProposals || loading || isAdminUser
+                        "
+                        name="inadequateProposalsWhat"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="row border-left border-bottom border-right">
+                <div class="col-12">
+                  <div class="row __title" (click)="toggleList('manifest')">
+                    <div class="col-8 title-checks">
+                      <ul class="list-inline">
+                        <li class="list-inline-item">
+                          <app-toggle
+                            [disabled]="isAdminUser"
+                            [model]="stageB.manifest"
+                            [prop]="'manifest'"
+                            (updatedValue)="updatedValue($event)"
+                          >
+                          </app-toggle>
+                        </li>
+                        <li class="list-inline-item">
+                          <p>
+                            Manifiesto de cumplimiento de los requisitos minimos
+                            de seguridad
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span class="icon">
+                        <fa-icon
+                          [icon]="faCaretDown"
+                          *ngIf="!lists.manifest"
+                        ></fa-icon>
+                        <fa-icon
+                          [icon]="faCaretUp"
+                          *ngIf="lists.manifest"
+                        ></fa-icon>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="col-12 animated fadeIn faster"
+                  *ngIf="lists.manifest"
+                >
+                  <div class="row">
+                    <div class="col-6 text-justify">
+                      <p>
+                        • <b>Administración del riesgo</b>: Nos comprometemos a
+                        gestionar de nuestra organización, con el fin de evitar
+                        su materialización y agregar valor a nuestras
+                        operaciones y a las relaciones comerciales y
+                        contractuales existentes.
+                      </p>
+                      <p>
+                        •
+                        <b>Seguridad de nuestros asociados de negocios:</b>
+                        contamos con un proceso exigente de selección y
+                        verigicación de proveedores, clientes de nuestra cadena
+                        logística evitando actividades ilicitas que nos puedan
+                        afectar.
+                      </p>
+                      <p>
+                        • <b>Seguridad de la mercancía y/o servicio:</b> la
+                        mercancía o los servicios ofrecidos cuentan con las
+                        medidas de seguridad requeridas para mantener la
+                        integridad de los mismos, con el fin de prevenir la
+                        ocurrencia de incidentes de seguridad.
+                      </p>
+                      <p>
+                        • <b>Controles de acceso físico:</b> las instalaciones
+                        de nuestra compañía son seguras y tienen medidas de
+                        seguridad requeridas para prevenir el acceso no
+                        autorizado a las mismas, mantener el control de
+                        empleados y visitantes, y proteger los bienes.
+                      </p>
+                      <p>
+                        • <b>Seguridad de nuestro personal:</b> nuestra
+                        organización posee mecanismos de selección, contratación
+                        y verificación que garantiza que el persona vinculado y
+                        subcontratado es competente, y se encuentra libre
+                        vínculos con actividades ilicítas.
+                      </p>
+                      <p>
+                        • <b>Seguridad de nuestros procesos:</b> los procesos de
+                        nuestra organización, incluidos almacenamiento,
+                        distribución y transporte de la mercancía, son
+                        transparentes y cuentan con los controles necesarios
+                        para garantizar integridad y seguridad.
+                      </p>
+                    </div>
+                    <div class="col-6 text-justify">
+                      <p>
+                        La información de nuestros proveedores u clientes, de la
+                        mercancía y/o el servicio prestado se encuentra
+                        protegida y disponible para verificación en cumplimiento
+                        de las normativas de seguridad que le apliquen.
+                      </p>
+                      <p>
+                        Cuando se presentan irregularidades, actividades
+                        ilicitas o sospechosas en nuestra cadena de suministro
+                        éstas serán reportadas de manera oportuna a las
+                        autoridades competentes.
+                      </p>
+                      <p>
+                        • <b>Seguridad fisica:</b> nuestras instalaciones,
+                        perimetros y alrededores son vigilados y monitoreados a
+                        través de los controles requeridos para protegernos de
+                        actividades ilícitas que nos puedan afectar.
+                      </p>
+                      <p>
+                        •
+                        <b>Entrenamientos y conciencia de amenazas:</b> contamos
+                        con procesos de capacitaciones y divulgaciones
+                        orientados a formar al personal de toda la organización,
+                        con el fin de generar conciencia sobre las amenazas
+                        externas e internas de nuestra cadena de suministro.
+                      </p>
+                      <p>
+                        Todo lo manifestado anteriormente es verificacble y
+                        dicha información estrá disponible para nuestros
+                        clientes en las circustancias que lo ameriten.
+                      </p>
+                      <p>
+                        • <b>Seguridad de la información:</b> La información de
+                        nuestros proveedores y clientes, de la mercancía es la
+                        y/o servicio prestado se encuentra protegida y
+                        disponible para verificación en cumplimiento de la
+                        normativas de seguridad que le apliquen.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row border">
+                <div class="col-12">
+                  <div class="row __title" (click)="toggleList('physicalSecurityAgreements')">
+                    <div class="col-8 title-checks">Acuerdos de seguridad fisica</div>
+                    <div class="col-4 text-right">
+                      <span class="icon">
+                        <fa-icon [icon]="faCaretDown" *ngIf="!lists.physicalSecurityAgreements"></fa-icon>
+                        <fa-icon [icon]="faCaretUp" *ngIf="lists.physicalSecurityAgreements"></fa-icon>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 animated fadeIn faster" *ngIf="lists.physicalSecurityAgreements">
+                  <div class="row">
+                    <div class="col">
+                      <p>Declaro nuestro compromiso total con la prevención de actividades ilicitas y en especial
+                        aquellas
+                        asociadas con el contrabando de mercancias, narcoticos y terrorismo a través del comercio
+                        legitimo. Por lo anterior.</p>
+                    </div>
+                  </div>
+                  <div class="row border-top" *ngFor="let toggle of physicalSecurityAgreementsToggles">
+                    <div class="col-8">
+                      <p class="mt-2">{{toggle.text}}</p>
+                    </div>
+                    <div class="col-4 text-right">
+                      <p>
+                        NO
+                        <app-toggle [disabled]="isAdminUser" [prop]="toggle.model" [model]="toggle.value"
+                          (updatedValue)="updatedValue($event);">
+                        </app-toggle>
+                        SI
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <!--  -->
+            <div class="col-12 mt-3">
+              <app-form-title
+                [text]="'anexo de documentos obligatorios'"
+              ></app-form-title>
             </div>
           </div>
-          <div class="row border-left border-bottom border-right">
-            <div class="col-12">
-              <div class="row">
-                <div class="col-8">
-                  <ul class="list-inline">
-                    <!-- <li class="list-inline-item">
-                      <app-toggle [disabled]="isAdminUser"
-                        [model]="stageB.manifest"
-                        [prop]="'manifest'"
-                        (updatedValue)="updatedValue($event);">
-                      </app-toggle>
-                    </li> -->
-                    <li class="list-inline-item">
-                      <b><p>Manifiesto de cumplimiento de los requisitos mínimos de seguridad</p></b>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-4 text-right">
-                  <span (click)="toggleList('manifest')" class="icon">
-                    <fa-icon [icon]="faCaretDown" *ngIf="!lists.manifest"></fa-icon>
-                    <fa-icon [icon]="faCaretUp" *ngIf="lists.manifest"></fa-icon>
-                  </span>
-                </div>
+          <div *ngIf="!__approved">
+            <div class="row border" *ngFor="let toggle of annex1Toggles">
+              <div class="col-md-6 col-sm-12 padding">
+                {{ toggle.text }}
               </div>
-              <div class="container animated fadeIn faster" *ngIf="lists.manifest">
-                <div class="row">
-                  <div class="col-6 text-justify">
-                    <p>
-                      • <b>Seguridad de nuestros asociados de negocios:</b> contamos con un proceso exigente de
-                      selección y verigicación de proveedores, clientes de nuestra cadena logística evitando actividades
-                      ilicitas que nos puedan afectar.
-                    </p>
-                    <p>
-                      • <b>Seguridad de la mercanciía y/o servicio:</b> la mercancía o los servicios ofrecidos cuentan
-                      con las medidas de seguridad requeridas para mantener la integridad de los mismos, con el fin de
-                      prevenir la ocurrencia de incidentes de seguridad.
-                    </p>
-                    <p>
-                      • <b>Controles de acceso fisico:</b> las instalaciones de nuestra compañia son seguras y tienen
-                      medidas de seguridad requeridas para prevenir el acceso no autorizado a las mismas, mantener el
-                      control de empleados y visitantes, y proteger los bienes.
-                    </p>
-                    <p>
-                      • <b>Seguridad de neustro personal:</b> nuestra organización posee mecanismos de selección,
-                      contratación y verificación que garantiza que el persona vinculado y subcontratado es competente,
-                      y se encuentra libre vínculos con actividades ilicítas.
-                    </p>
-                    <p>
-                      • <b>Seguridad de neustros procesos:</b> los procesos de nuestra organización, incluidos
-                      almacenamiento, distribución y transporte de la mercancía, son transparentes y cuentan con los
-                      controles necesarios para garantizar integridad y seguridad.
-                    </p>
-                  </div>
-                  <div class="col-6">
-                    <p>
-                      La información de nuestros proveedores u clientes, de la mercancía y/o el servicio prestado se
-                      encuentra protegida y disponible para verificación en cumplimiento de las normativas de seguridad
-                      que le apliquen.
-                    </p>
-                    <p>
-                      Cuando se presentan irregularidades, actividades ilicitas o sospechosas en nuestra cadena de
-                      suministro éstas serán reportadas de manera oportuna a las autoridades competentes.
-                    </p>
-                    <p>
-                      • <b>Seguridad fisica:</b> nuestras instalaciones, perimetros y alrededores son vigilados y
-                      monitoreados a través de los controles requeridos para protegernos de actividades ilícitas que nos
-                      puedan afectar.
-                    </p>
-                    <p>
-                      • <b>Entrenamientos y conciencia de amenazas:</b> contamos con procesos de capacitaciones y
-                      divulgaciones orientados a formar al personal de toda la organización, con el fin de generar
-                      conciencia sobre las amenazas externas e internas de nuestra cadena de suministro.
-                    </p>
-                    <p>
-                      Todo lo manifestado anteriormente es verificacble y dicha información estrá disponible para
-                      nuestros clientes en las circustancias que lo ameriten.
-                    </p>
-                  </div>
+              <div class="col-md-6 col-sm-12 padding">
+                <div class="form-group">
+                  <input
+                    type="file"
+                    class="form-control-file"
+                    (change)="fileChange($event, toggle.model)"
+                    accept=".pdf,.doc,.docx"
+                  />
                 </div>
               </div>
             </div>
           </div>
-          <div class="row mb-3 border-left border-bottom border-right">
-            <div class="col-12">
-              <div class="row">
-                <div class="col-8">
-                  <ul class="list-inline">
-                    <!-- <li class="list-inline-item">
-                      <app-toggle [disabled]="isAdminUser"
-                        [model]="stageB.physicalSecurityAgreements"
-                        [prop]="'manifest'"
-                        (updatedValue)="updatedValue($event);">
-                      </app-toggle>
-                    </li> -->
-                    <li class="list-inline-item">
-                      <b><p>Acuerdos de seguridad fisica</p></b>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-4 text-right">
-                  <span (click)="toggleList('physicalSecurityAgreements')" class="icon">
-                    <fa-icon [icon]="faCaretDown" *ngIf="!lists.physicalSecurityAgreements"></fa-icon>
-                    <fa-icon [icon]="faCaretUp" *ngIf="lists.physicalSecurityAgreements"></fa-icon>
-                  </span>
-                </div>
-              </div>
-              <div class="container animated fadeIn faster" *ngIf="lists.physicalSecurityAgreements">
-                <div class="row">
-                  <div class="col">
-                    <p>Declaro nuestro compromiso total con la prevención de actividades ilicitas y en especial aquellas
-                      asociadas con el contrabando de mercancias, narcoticos y terrorismo a través del comercio
-                      legitimo. Por lo anterior.</p>
-                  </div>
-                </div>
-                <div class="row border-top" *ngFor="let toggle of physicalSecurityAgreementsToggles">
-                  <div class="col-8">
-                    <p class="mt-2">{{toggle.text}}</p>
-                  </div>
-                  <div class="col-4 text-right">
-                    <p>
-                      NO
-                      <app-toggle [disabled]="isAdminUser"
-                        [prop]="toggle.model"
-                        [model]="toggle.value"
-                        (updatedValue)="updatedValue($event);">
-                      </app-toggle>
-                      SI
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <app-form-title [text]="'anexo de documentos obligatorios'"></app-form-title>
-          <div class="row border" *ngFor="let toggle of annex1Toggles">
-            <div class="col-8">
-              <p>{{toggle.text}}</p>
-            </div>
-            <div class="col-4">
-              <div class="form-group">
-                <input
-                  type="file"
-                  class="form-control-file"
-                  (change)="fileChange($event, toggle.model)"
-                  accept=".pdf,.doc,.docx">
-              </div>
-            </div>
-          </div>
+          <!--  -->
           <div class="row border" *ngFor="let toggle of annex2Toggles">
-            <div class="col-8">
-              <p>{{toggle.text}}</p>
+            <div class="col-8 padding">
+              {{ toggle.text }}
             </div>
-            <div class="col-4 text-right">
-              <app-toggle [disabled]="isAdminUser" [model]="toggle.value" [prop]="toggle.model"
-                          (updatedValue)="updatedValue($event)"></app-toggle>
+            <div class="col-4 text-right padding">
+              <app-toggle
+                [disabled]="isAdminUser"
+                [model]="toggle.value"
+                [prop]="toggle.model"
+                (updatedValue)="updatedValue($event)"
+              ></app-toggle>
             </div>
           </div>
-          <button type="button" class="acesco-button" (click)="onSubmit()" aria-disabled="loading" *ngIf="!isAdminUser">Enviar</button>
-          <button (click)="autoFill();">Rellenar</button>
-          <app-return [user]="this.user" *ngIf="this.user"></app-return>
+          <!--  -->
+          <div class="row">
+            <div class="col text-center">
+              <div
+                *ngIf="successMessage"
+                class="alert alert-success mt-3"
+                role="alert"
+              >
+                {{ successMessage }}
+              </div>
+              <button
+                *ngIf="!isAdminUser && user.stageb_id == null"
+                type="button"
+                (click)="onSubmit()"
+                class="acesco-button"
+                [disabled]="isAdminUser || loading"
+              >
+                Enviar
+                <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+                <fa-icon
+                  [icon]="faSpinner"
+                  *ngIf="loading"
+                  [spin]="true"
+                ></fa-icon>
+              </button>
+            </div>
+          </div>
+          <button
+            (click)="autoFill()"
+            *ngIf="!isAdminUser && user.stageb_id == 0"
+          >
+            Rellenar
+          </button>
         </div>
+        <div class="card" *ngIf="isAdminUser && !__approved">
+          <div class="row">
+            <div class="col-12">
+              <app-form-title
+                [text]="'verificación de documentación anexada'"
+              ></app-form-title>
+            </div>
+            <div class="col-12 mt-3">
+              <div class="text-center">
+                Para ver los documentos haga click en <b>Descargar</b>
+              </div>
+              <button
+                class="acesco-button mt-4 max-300"
+                (click)="downloadFile()"
+              >
+                Descargar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="acesco-button mt-4 max-500"
+          type="button"
+          (click)="approval()"
+          *ngIf="isAdminUser && !__approved"
+          [disabled]="loading"
+        >
+          Aprobar
+          <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
+          <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>
+        </button>
+        <app-return [user]="this.id" *ngIf="id && !__approved"></app-return>
       </div>
     </div>
   </div>
-  <app-footer></app-footer>
+
+  <app-footer *ngIf="!__approved"></app-footer>
 </section>

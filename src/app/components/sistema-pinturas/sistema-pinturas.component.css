@@ -1,0 +1,217 @@
+.paint-system-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.paint-system-content .paint-system-title {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.paint-system-content .paint-system-title span,
+.paint-system-content .paint-system-title p {
+  display: inline-block;
+  position: relative;
+}
+.paint-system-content .paint-system-title > span {
+  font-size: 20px;
+}
+
+.paint-system-content .paint-system-title > span::after,
+.paint-system-content .paint-system-title.subtitel p::after {
+  content: "";
+  position: absolute;
+  border-radius: 4px;
+  left: 10%;
+  width: 80%;
+  height: 3px;
+  background: #2daddc; /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    #2daddc 0%,
+    #29c2ad 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    left,
+    #2daddc 0%,
+    #29c2ad 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    #2daddc 0%,
+    #29c2ad 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2daddc', endColorstr='#29c2ad',GradientType=1 ); /* IE6-9 */
+  bottom: -10px;
+}
+
+.paint-system-content .paint-system-title.subtitel p::after {
+  bottom: -15px;
+}
+
+.paint-system-content .paint-system-title.subtitel span::after {
+  display: none;
+}
+
+.paint-system-items {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+  flex-flow: wrap;
+}
+
+.paint-system-item {
+  border: 1px solid #c3c3c3;
+  cursor: pointer;
+  max-width: 250px;
+  margin-bottom: 10px;
+}
+
+.paint-system-item img {
+  padding: 10px 25px;
+  max-height: 140px;
+  max-width: 100%;
+}
+
+.paint-system-items.psi-1 .paint-system-item {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.psi-title {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  border-top: 1px solid #c3c3c3;
+  display: block;
+  height: calc(100% - 137px);
+}
+
+.psi-title.active {
+  color: #fff;
+  background: #2d30dc;
+}
+
+.psi-2 .paint-system-item img {
+  padding: 0;
+}
+
+.display-flex {
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  border: 1px solid #c3c3c3;
+}
+.border-body {
+  border: 1px solid #c3c3c3;
+  border-top: 0;
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+.flex-space {
+  flex: 1 auto;
+}
+
+.paint-system-content.psc-5 {
+  max-width: 600px;
+}
+
+.paint-system-content.psc-6 {
+  max-width: 600px;
+  padding: 10px;
+}
+.btn-recomendation {
+  padding: 0 15px;
+  padding-bottom: 15px;
+}
+.btn-recomendation .btn {
+  display: inline;
+  margin-right: 10px;
+  color: #6c757d;
+  background: #fff;
+  border: none;
+}
+
+.psc-6 {
+  background: #c3c3c3;
+  margin-bottom: 20px;
+}
+.psc-6 > h2 {
+  font-size: 15px;
+  padding: 7px 15px;
+  margin: 0;
+}
+.psc-6 img {
+  display: inline-block;
+  width: 50%;
+  max-height: 250px;
+  margin-bottom: 10px;
+}
+.psc6 {
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+  padding: 15px;
+}
+
+.psc6 h2 {
+  font-size: 15px;
+}
+
+.psc6 h1 {
+  font-size: 20px;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.psc6 h1:after {
+  content: "";
+  position: absolute;
+  border-radius: 4px;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background: #2daddc; /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    #2daddc 0%,
+    #29c2ad 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    left,
+    #2daddc 0%,
+    #29c2ad 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    #2daddc 0%,
+    #29c2ad 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2daddc', endColorstr='#29c2ad',GradientType=1 ); /* IE6-9 */
+  bottom: -6px;
+}
+
+.separator {
+  height: 1px;
+  background: #fff;
+}
+
+.paint-system-content.psc ul {
+  text-align: center;
+  padding: 0;
+}
+
+.paint-system-content.psc ul .paint-system-content.psc ul li {
+  list-style: none;
+}
+
+.paint-system-content.psc ul li {
+  display: inline-block;
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.paint-system-content.psc ul li:hover {
+  background: #c3c3c3;
+}

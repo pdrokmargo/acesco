@@ -13,6 +13,7 @@ import { StageBComponent } from './components/procesco/stage-b/stage-b.component
 import { AdminComponent } from './components/procesco/admin/admin.component';
 import { DescriptionsComponent } from './components/procesco/descriptions/descriptions.component';
 import { RoofSimulatorComponent } from './components/roof-simulator/roof-simulator.component';
+import { ApprovedProfileComponent } from './components/procesco/approved-profile/approved-profile.component';
 
 export const ROUTES: Routes = [
   { path: 'main', component: MainComponent },
@@ -27,6 +28,7 @@ export const ROUTES: Routes = [
   { path: 'procesco/preseleccionEtapaA/:id', component: StageAComponent },
   { path: 'procesco/preseleccionEtapaB', component: StageBComponent },
   { path: 'procesco/preseleccionEtapaB/:id', component: StageBComponent },
+  { path: 'procesco/perfilAprobado/:id', component: ApprovedProfileComponent },
   { path: 'sistema-de-garantias', component: SistemaDeGarantiasComponent },
   { path: 'simulador-de-cubiertas', component: RoofSimulatorComponent },
   { path: 'faq', component: FaqComponent },
