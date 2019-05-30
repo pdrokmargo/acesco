@@ -1208,7 +1208,7 @@
                   {{ successMessage }}
                 </div>
                 <button
-                  *ngIf="isAdminUser && __approved"
+                *ngIf="!isAdminUser && !__approved"
                   type="submit"
                   class="acesco-button"
                   [disabled]="isAdminUser || loading || stageAForm.invalid"
@@ -1244,7 +1244,7 @@
           </button>
           <app-return
             *ngIf="this.id && !__approved"
-            [user]="id && !__approved"
+            [user]="id"
           ></app-return>
         </div>
       </div>

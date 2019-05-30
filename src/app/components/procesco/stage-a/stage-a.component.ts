@@ -190,6 +190,12 @@ export class StageAComponent {
       this.stageA["pep_info"].push(pep_info);
     }
 
+    this.stageA["pep_name"] = "";
+    this.stageA["pep_identification"] = "";
+    this.stageA["society_position"] = "";
+    this.stageA["public_position"] = "";
+    this.stageA["linkup_date"] = "";
+    this.stageA["unlink_date"] = "";
     
   }
   removePEP(i){
