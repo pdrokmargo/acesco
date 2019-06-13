@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col text-center" *ngFor="let step of steps; let i = index;">
+  <div class="col text-center" *ngFor="let step of steps; let i = index; last as isLast">
     <ul class="list-inline">
       <li class="list-inline-item">
         <div class="left-line" *ngIf="i !== 0" [ngClass]="{'active': currentStep >= i}"></div>
@@ -8,7 +8,7 @@
         <div class="timelineCircle" [ngClass]="{'active': currentStep >= i}">{{i+1}}</div>
       </li>
       <li class="list-inline-item">
-        <div class="right-line" *ngIf="i !== 3" [ngClass]="{'active': currentStep >= i }"></div>
+        <div class="right-line" *ngIf="!isLast" [ngClass]="{'active': currentStep >= i }"></div>
       </li>
     </ul>
     <p class="text-white">{{step.label}}</p>

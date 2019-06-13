@@ -1,7 +1,4 @@
-<section
-  id="app-stage-b"
-  [ngClass]="{ 'animated fadeIn fast': !__approved, 'no-bg': __approved }"
->
+<section id="app-stage-b" [ngClass]="{ 'animated fadeIn fast': !__approved, 'no-bg': __approved }">
   <app-logo-and-social *ngIf="!__approved"></app-logo-and-social>
 
   <div class="container">
@@ -13,13 +10,105 @@
       <div class="col-12 text-center">
         <app-timeline [currentStep]="step" *ngIf="!__approved"></app-timeline>
       </div>
-
+      
       <div class="col-12">
-        <div
-          *ngIf="!isAdminUser || __approved"
-          class="card"
-          [ngClass]="{ 'no-border': __approved }"
-        >
+        <div *ngIf="!isAdminUser || __approved" class="card" [ngClass]="{ 'no-border': __approved }">
+            <div class="col-12 text-justify mt-3">
+                <p>Yo (Pedro Camargo), identificado con cédula de ciudadanía (1143120421) en representación de la empresa
+                  (EMPRESA) con (DocID) (ID number) </p><br>
+              </div>
+          <div class="row">
+            <div class="col-12">
+              <app-form-title [text]="'código de ética y  política conflicto de interés'"></app-form-title>
+            </div>
+
+
+            
+            <div class="col-12 mt-3">
+              <div class="row border-left border-bottom border-right">
+                <div class="col-12 animated fadeIn faster">
+                  <div class="row">
+                      <div class="col-12 padding">Hago constar que he leído, entiendo y acepto todas las condiciones establecidas en el Código de ética de ACESCO COLOMBIA S.A.S.  Entiendo que su cumplimiento obligatorio es con el objetivo de mejorar las relaciones en una marco de transparencia y valores, e identificar situaciones en nuestro relacionamiento que pudiesen atentar contra la sostenibilidad de nuestras empresas.  Esta aceptación, tiene validez para todos los efectos contractuales y legales con la organización.</div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="row __title" (click)="toggleList('manifest')">
+                    <div class="col-8 title-checks">
+                      <ul class="list-inline">
+                        <li class="list-inline-item">
+                          <app-toggle [disabled]="isAdminUser" [model]="stageB.manifest" [prop]="'manifest'"
+                            (updatedValue)="updatedValue($event)">
+                          </app-toggle>
+                        </li>
+                        <li class="list-inline-item">
+                          <p>
+                            Aceptación de Código de Ética
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+              <div class="col-12">
+                <app-form-title [text]="'declaración de posibles conflictos de interés'"></app-form-title>
+              </div>
+  
+  
+              
+              <div class="col-12 mt-3">
+                <div class="row">
+                  <div class="col-12 animated fadeIn faster">
+                    <div class="row">
+                        <div class="col-12 animated fadeIn faster">
+                            <div class="row border-top">
+                                <div class="col-12 padding">Los conflictos de interés son aquellas situaciones en las que un proveedor de bienes o servicios de la Organización, pudiera ser influido para tomar acciones que afecten el cabal cumplimiento de las obligaciones contractuales o la libertad e independencia en la toma de decisiones en una determinada situación, específicamente por motivos relacionados con sus propios intereses económicos. Es responsabilidad de todos los proveedores de la Organización, revelar cualquier vínculo que pudiera estar relacionado con la prestación de sus bienes y/o servicios, y de este modo, gestionar apropiadamente esos conflictos existentes o potenciales.</div>
+                                <div class="col-12 animated fadeIn faster">
+                                    <div class="row border-top">
+                                      <div class="col-8 padding">Mantiene usted o algún familiar suyo, algún tipo de relación de parentesco: cónyuge o compañero (a) permanente o cualquier miembro cercano de su familia   o; puede mantener una relación profesional como Ex empleado de ACESCO COLOMBIA S.A.S, Ex compañero de trabajo y allegado; o mantiene alguna actividad económica en conjunto, con uno de los funcionarios o accionistas de la empresa ACESCO COLOMBA S.A.S?</div>
+                                      <div class="col-4 text-right padding">
+                                        NO
+                                        <app-toggle [disabled]="isAdminUser"></app-toggle>
+                                        SI
+                                      </div>
+                                      <div class="col-12 form-group">
+                                        <input type="text" class="form-control" placeholder="Cual?" />
+                                      </div>
+                                    </div>
+                                  </div>
+                                <div class="col-12 padding">
+                      Certifico que he dado respuesta a las preguntas de manera completa y verificable, así como garantizo que he leído, entiendo y acepto la política de conflicto de interés. Me comprometo a actualizar la información en el formulario de declaración cada vez que existan cambios en las circunstancias y cada vez que me sea solicitado por la empresa ACESCO COLOMBIA S.A.S.
+                  </div>
+                            </div></div>
+                  <div class="col-12">
+                      <div class="row __title" (click)="toggleList('manifest')">
+                        <div class="col-8 title-checks">
+                          <ul class="list-inline">
+                            <li class="list-inline-item">
+                              <app-toggle [disabled]="isAdminUser" [model]="stageB.manifest" [prop]="'manifest'"
+                                (updatedValue)="updatedValue($event)">
+                              </app-toggle>
+                            </li>
+                            <li class="list-inline-item">
+                              <p>
+                                Aceptación de Declaración de Conflictos de Interés
+                              </p>
+                            </li>
+                          </ul>
+                        </div>
+    
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           <div class="row">
             <!--  -->
             <div class="col-12">
@@ -39,61 +128,32 @@
             <div class="col-12 mt-3">
               <div class="row border">
                 <div class="col-12">
-                  <div
-                    class="row __title"
-                    (click)="toggleList('selfEvaluation')"
-                  >
+                  <div class="row __title" (click)="toggleList('selfEvaluation')">
                     <div class="col-8 title-checks">
                       Autoevaluación de los requisitos mínimos de seguridad
                     </div>
                     <div class="col-4 text-right">
                       <span class="icon">
-                        <fa-icon
-                          [icon]="faCaretDown"
-                          *ngIf="!lists.selfEvaluation"
-                        ></fa-icon>
-                        <fa-icon
-                          [icon]="faCaretUp"
-                          *ngIf="lists.selfEvaluation"
-                        ></fa-icon>
+                        <fa-icon [icon]="faCaretDown" *ngIf="!lists.selfEvaluation"></fa-icon>
+                        <fa-icon [icon]="faCaretUp" *ngIf="lists.selfEvaluation"></fa-icon>
                       </span>
                     </div>
                   </div>
                 </div>
-                <div
-                  class="col-12 animated fadeIn faster"
-                  *ngIf="lists.selfEvaluation"
-                >
-                  <div
-                    class="row border-top"
-                    *ngFor="let toggle of selfEvaluationToggles"
-                  >
+                <div class="col-12 animated fadeIn faster" *ngIf="lists.selfEvaluation">
+                  <div class="row border-top" *ngFor="let toggle of selfEvaluationToggles">
                     <div class="col-8 padding">{{ toggle.text }}</div>
                     <div class="col-4 text-right padding">
                       NO
-                      <app-toggle
-                        [disabled]="isAdminUser"
-                        [prop]="toggle.model"
-                        [model]="toggle.value"
-                        (updatedValue)="updatedValue($event)"
-                      ></app-toggle>
+                      <app-toggle [disabled]="isAdminUser" [prop]="toggle.model" [model]="toggle.value"
+                        (updatedValue)="updatedValue($event)"></app-toggle>
                       SI
                     </div>
-                    <div
-                      class="col-12 form-group"
-                      *ngIf="toggle.model === 'inadequateProposals'"
-                    >
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Cual?"
-                        [(ngModel)]="stageB.inadequateProposalsWhat"
-                        #inadequateProposalsWhat="ngModel"
-                        [disabled]="
+                    <div class="col-12 form-group" *ngIf="toggle.model === 'inadequateProposals'">
+                      <input type="text" class="form-control" placeholder="Cual?"
+                        [(ngModel)]="stageB.inadequateProposalsWhat" #inadequateProposalsWhat="ngModel" [disabled]="
                           !stageB.inadequateProposals || loading || isAdminUser
-                        "
-                        name="inadequateProposalsWhat"
-                      />
+                        " name="inadequateProposalsWhat" />
                     </div>
                   </div>
                 </div>
@@ -104,12 +164,8 @@
                     <div class="col-8 title-checks">
                       <ul class="list-inline">
                         <li class="list-inline-item">
-                          <app-toggle
-                            [disabled]="isAdminUser"
-                            [model]="stageB.manifest"
-                            [prop]="'manifest'"
-                            (updatedValue)="updatedValue($event)"
-                          >
+                          <app-toggle [disabled]="isAdminUser" [model]="stageB.manifest" [prop]="'manifest'"
+                            (updatedValue)="updatedValue($event)">
                           </app-toggle>
                         </li>
                         <li class="list-inline-item">
@@ -122,23 +178,14 @@
                     </div>
                     <div class="col-4 text-right">
                       <span class="icon">
-                        <fa-icon
-                          [icon]="faCaretDown"
-                          *ngIf="!lists.manifest"
-                        ></fa-icon>
-                        <fa-icon
-                          [icon]="faCaretUp"
-                          *ngIf="lists.manifest"
-                        ></fa-icon>
+                        <fa-icon [icon]="faCaretDown" *ngIf="!lists.manifest"></fa-icon>
+                        <fa-icon [icon]="faCaretUp" *ngIf="lists.manifest"></fa-icon>
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div
-                  class="col-12 animated fadeIn faster"
-                  *ngIf="lists.manifest"
-                >
+                <div class="col-12 animated fadeIn faster" *ngIf="lists.manifest">
                   <div class="row">
                     <div class="col-6 text-justify">
                       <p>
@@ -268,24 +315,18 @@
             </div>
             <!--  -->
             <div class="col-12 mt-3">
-              <app-form-title
-                [text]="'anexo de documentos obligatorios'"
-              ></app-form-title>
+              <app-form-title [text]="'anexo de documentos obligatorios'"></app-form-title>
             </div>
           </div>
           <div *ngIf="!__approved">
             <div class="row border" *ngFor="let toggle of annex1Toggles">
-              <div class="col-md-6 col-sm-12 padding">
+              <div class="col-md-6 col-sm-12 padding" *ngIf="toggle.visibible">
                 {{ toggle.text }}
               </div>
-              <div class="col-md-6 col-sm-12 padding">
+              <div class="col-md-6 col-sm-12 padding" *ngIf="toggle.visibible">
                 <div class="form-group">
-                  <input
-                    type="file"
-                    class="form-control-file"
-                    (change)="fileChange($event, toggle.model)"
-                    accept=".pdf,.doc,.docx"
-                  />
+                  <input type="file" class="form-control-file" (change)="fileChange($event, toggle.model)"
+                    accept=".pdf,.doc,.docx" />
                 </div>
               </div>
             </div>
@@ -296,76 +337,46 @@
               {{ toggle.text }}
             </div>
             <div class="col-4 text-right padding">
-              <app-toggle
-                [disabled]="isAdminUser"
-                [model]="toggle.value"
-                [prop]="toggle.model"
-                (updatedValue)="updatedValue($event)"
-              ></app-toggle>
+              <app-toggle [disabled]="isAdminUser" [model]="toggle.value" [prop]="toggle.model"
+                (updatedValue)="updatedValue($event)"></app-toggle>
             </div>
           </div>
           <!--  -->
           <div class="row">
             <div class="col text-center">
-              <div
-                *ngIf="successMessage"
-                class="alert alert-success mt-3"
-                role="alert"
-              >
+              <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
                 {{ successMessage }}
               </div>
-              <button
-                *ngIf="!isAdminUser && user.stageb_id == null"
-                type="button"
-                (click)="onSubmit()"
-                class="acesco-button"
-                [disabled]="isAdminUser || loading"
-              >
+              <button *ngIf="!isAdminUser && user.stageb_id == null" type="button" (click)="onSubmit()"
+                class="acesco-button" [disabled]="isAdminUser || loading">
                 Enviar
                 <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
-                <fa-icon
-                  [icon]="faSpinner"
-                  *ngIf="loading"
-                  [spin]="true"
-                ></fa-icon>
+                <fa-icon [icon]="faSpinner" *ngIf="loading" [spin]="true"></fa-icon>
               </button>
             </div>
           </div>
-          <button
-            (click)="autoFill()"
-            *ngIf="!isAdminUser && user.stageb_id == 0"
-          >
+          <button (click)="autoFill()" *ngIf="!isAdminUser && user.stageb_id == 0">
             Rellenar
           </button>
         </div>
         <div class="card" *ngIf="isAdminUser && !__approved">
           <div class="row">
             <div class="col-12">
-              <app-form-title
-                [text]="'verificación de documentación anexada'"
-              ></app-form-title>
+              <app-form-title [text]="'verificación de documentación anexada'"></app-form-title>
             </div>
             <div class="col-12 mt-3">
               <div class="text-center">
                 Para ver los documentos haga click en <b>Descargar</b>
               </div>
-              <button
-                class="acesco-button mt-4 max-300"
-                (click)="downloadFile()"
-              >
+              <button class="acesco-button mt-4 max-300" (click)="downloadFile()">
                 Descargar
               </button>
             </div>
           </div>
         </div>
 
-        <button
-          class="acesco-button mt-4 max-500"
-          type="button"
-          (click)="approval()"
-          *ngIf="isAdminUser && !__approved"
-          [disabled]="loading"
-        >
+        <button class="acesco-button mt-4 max-500" type="button" (click)="approval()" *ngIf="isAdminUser && !__approved"
+          [disabled]="loading">
           Aprobar
           <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
           <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="loading"></fa-icon>

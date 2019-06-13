@@ -1,6 +1,6 @@
 /**
- * @author  Sergio Zapata
- * @contact sergio8016@gmail.com
+ * @author  Pedro Camargo
+ * @contact pedrocamargo@imagilogic.com
  * @version 1.0, 29/01/09
  */
 

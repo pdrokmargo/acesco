@@ -6,21 +6,27 @@
   <div class="container">
     <div class="row" *ngIf="!__approved">
       <div class="col-12 text-white text-center mt-5">
-        <h4 class="mt-5">Pre Registro</h4>
+        <h4 *ngIf="national == 1" class="mt-5">Registro</h4><h4 *ngIf="national == 0" class="mt-5">Register</h4>
         <hr class="whiteLine" />
         <p>
-          <b>Estimado proveedor: </b>Para un debido proceso de inscripción como
+            <b *ngIf="national == 0">Dear supplier: </b><b *ngIf="national == 1">Estimado proveedor: </b><span *ngIf="national == 1"> Para un debido proceso de inscripción como
           proveedor de ACESCO le pedimos ingresar a la opción FAQ para que pueda conocer los diferentes
           requisitos de seguridad, acuerdos de confidencialidad y acuerdos de ética, etc
-          que rigen nuestro relacionamiento con proveedores.
+          que rigen nuestro relacionamiento con proveedores.</span>
+          <span *ngIf="national == 0"> For a due process of registration as a provider of ACESCO or update your data, thank you to fill out.</span>
         </p>
       </div>
     </div>
-    <div class="row" *ngIf="!__approved">
+    <div class="row" *ngIf="!__approved && national == 1">
       <div class="col">
-        <app-timeline [currentStep]="step"></app-timeline>
+        <app-timeline [national]="1" [currentStep]="step"></app-timeline>
       </div>
     </div>
+    <div class="row" *ngIf="!__approved && national == 0">
+        <div class="col">
+          <app-timeline [national]="0" [currentStep]="step"></app-timeline>
+        </div>
+      </div>
     <div class="row">
       <div class="col">
         <div class="card" [ngClass]="{ 'no-border': __approved }">
@@ -30,7 +36,8 @@
             (ngSubmit)="onSubmit(providerForm)"
             novalidate
           >
-            <app-form-title [text]="'Autorizaciones'"></app-form-title>
+            <app-form-title *ngIf="national == 1" [text]="'Autorizaciones'"></app-form-title>
+            <app-form-title *ngIf="national == 0" [text]="'Authorizations'"></app-form-title>
             <div class="row justify-content-between">
               <div class="col-6 pr-4 box">
                 <div class="row mt-3">
@@ -45,38 +52,39 @@
                     </app-toggle>
                   </div>
                   <div class="col-10 text-justify dataProtection right">
-                    <p>
+                    <p *ngIf="national == 1">
                       PROTECCION DE DATOS PERSONALES. Autorizo de forma previa,
-                      volutaria, expresa y explicita a ACERIAS DE COLOMBIA
-                      ACESCO S.A.S. como responsable del tratamiento de los
+                      volutaria, expresa y explícita a ACESCO COLOMBIA
+                      como responsable del tratamiento de los
                       datos personales en virtud de las relaciones comerciales,
                       los cuales serán compilados, almacenados, consultados,
                       usados, compartidos e intercambiados, para las siguientes
                       finalizades legítimas de acuerdo con la Política de
                       Proteccion de Datos Personales que se encuentra en la
                       página web
-                      <a href="www.acesco.com" target="_blank"
-                        >www.acesco.com:</a
+                      <a href="https://www.acesco.com.co" target="_blank"
+                        >www.acesco.com.co</a
                       >
                     </p>
+                    <p *ngIf="national == 0">
+                        PERSONAL DATA PROTECTION. I authorize previously, voluntarily, expressly and explicitly ACERÍAS DE COLOMBIA ACESCO S.A.S. as responsible for the processing of personal data by virtue of commercial relations, which will be compiled, stored, consulted, used, shared and exchanged, for the following legitimate purposes in accordance with the Personal Data Protection Policy found in the website
+                        <a href="https://www.acesco.com.co" target="_blank"
+                          >www.acesco.com.co</a
+                        >
+                      </p>
 
                     <ul class="text-justify">
                       <li>
-                        Contactar con fines comerciales, de servicio al cliente
-                        publicitarios.
+                          Contact for commercial purposes, customer service, advertising.
                       </li>
                       <li>
-                        Cumplir obligaciones contractuales, sin limitarse a
-                        facturación, pagos o asuntos lógicos.
+                          Comply with contractual obligations, not limited to billing, payments or logistic issues.
                       </li>
                       <li>
-                        Enviar noticias e información relevante sobre productos,
-                        politicas y eventos.
+                          Send news and relevant information about products, policies and events
                       </li>
                       <li>
-                        Cumplir obligaciones legales y enviar reportes o
-                        información a las autoridades, sin limitarse a asuntos
-                        laborales, tributarios, migratorios.
+                          Comply with legal obligations and send reports or information to the authorities, without being limited to labor, tax, and immigration issues.
                       </li>
                     </ul>
                   </div>
@@ -94,35 +102,46 @@
                     ></app-toggle>
                   </div>
                   <div class="col-10 habeas">
-                    <p>
+                    <p *ngIf="national == 1">
                       HABEAS DATA FINANCIERO. Autorizo expresa e
-                      irrevocablemente a ACERIAS DE COLOMBIA ACESCO S.A.S. o a
+                      irrevocablemente a ACESCO COLOMBIA o a
                       quien represente sus derechos u ostente en el futuro
                       cualquier titulo la calidad de acreedor a:
                     </p>
-                    <ul class="text-justify">
+                    <p *ngIf="national == 0">
+                        HABEAS DATA FINANCIERO. I expressly and irrevocably authorize ACERÍAS DE COLOMBIA ACESCO S.A.S. or whoever represents their rights or holds in the future, in any capacity, the status of creditor to:
+                      </p>
+                    <ul class="text-justify" *ngIf="national == 0">
                       <li>
-                        Consultar en cualquier tiempo en Centrales de Riesgo a
-                        toda la información que se refiere a mi comportamiento
-                        crediticio, financiero y comercial, solicitudes de
-                        credito e información socioeconómica.
+                          Consult at any time in the Credit Bureaus all the information that refers to my credit, financial and commercial behavior, credit applications and socioeconomic information
                       </li>
                       <li>
-                        Suministrar, reportar y divulgar a centrales de Riesgo,
-                        de manera directa o indirecta a través den entidades
-                        publicas que ejerzan control y vigilancia sobre los
-                        datos financieros toda la información descrita en el
-                        literal a/o la que haya entregado o consten en registros
-                        o bases de datos públicas para conocer mi desempeño como
-                        deudor, capacidad de pago o valoración en riesgo,
-                        cumplimiento oportuno o incumplimiento de obligaciones
-                        crediticias o deberes de contenido patrimonial. Asi
-                        mismo, autorizo a ACERIAS DE COLOMBIA ACESCO S.A.S. como
-                        a las Centrales de Riesgo, a conservar información
-                        descrita anteriormente, debidamente actualizada y
-                        durante el periodo de tiempo necesario.
+                          Supply, report and disclose to Risk Centers, directly or indirectly through public entities exercising control and surveillance over financial data, all the information described in subparagraph a) or that which has been delivered or recorded in records or public databases to know my performance as debtor, ability to pay or valuation at risk, timely compliance or breach of credit obligations or obligations of patrimonial content. I also authorize ACERIAS DE COLOMBIA ACESCO S.A.S. as to the Risk Centers, to keep the information described above, duly updated and for the necessary period of time.
                       </li>
                     </ul>
+                    <ul class="text-justify" *ngIf="national == 1">
+                        <li>
+                          Consultar en cualquier tiempo en Centrales de Riesgo a
+                          toda la información que se refiere a mi comportamiento
+                          crediticio, financiero y comercial, solicitudes de
+                          credito e información socioeconómica.
+                        </li>
+                        <li>
+                          Suministrar, reportar y divulgar a centrales de Riesgo,
+                          de manera directa o indirecta a través den entidades
+                          publicas que ejerzan control y vigilancia sobre los
+                          datos financieros toda la información descrita en el
+                          literal a/o la que haya entregado o consten en registros
+                          o bases de datos públicas para conocer mi desempeño como
+                          deudor, capacidad de pago o valoración en riesgo,
+                          cumplimiento oportuno o incumplimiento de obligaciones
+                          crediticias o deberes de contenido patrimonial. Asi
+                          mismo, autorizo a ACESCO COLOMBIA como
+                          a las Centrales de Riesgo, a conservar información
+                          descrita anteriormente, debidamente actualizada y
+                          durante el periodo de tiempo necesario.
+                        </li>
+                      </ul>
                   </div>
                 </div>
               </div>
@@ -148,7 +167,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Persona de contacto en ACESCO*"
+                    [placeholder]="placeholderSub.whoRefers"
                     [(ngModel)]="preRegister.whoRefers"
                     [ngClass]="{
                       'is-invalid':
@@ -237,14 +256,14 @@
                 </div>
               </div>
             </div>
-            <app-form-title [text]="'información general'"></app-form-title>
+            <app-form-title [text]="'información general de proveedor'"></app-form-title>
             <div class="row mt-3">
               <div class="col-12">
                 <div class="form-row">
                   <div class="form-group col-3">
-                    <p class="text-center mt-1">Documento de identidad</p>
+                    <p class="text-center mt-1">Tipo de documento</p>
                   </div>
-                  <div class="form-group col-1">
+                  <div class="form-group col-2">
                     <select
                       class="form-control"
                       [(ngModel)]="preRegister.documentType_id"
@@ -275,7 +294,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-5">
                     <input
                       type="text"
                       class="form-control"
@@ -437,33 +456,98 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <app-form-title [text]="'representante legal'"></app-form-title>
+            <div class="row mt-3">
               <div class="col-12">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Nombres y apellidos del representante legal:*"
-                    [disabled]="isAdminUser || loading"
-                    required
-                    [(ngModel)]="preRegister.legalRepresentative"
-                    [ngClass]="{
-                      'is-invalid':
-                        serviceDescription.errors?.required &&
-                        serviceDescription.touched
-                    }"
-                    name="legalRepresentative"
-                    #legalRepresentative="ngModel"
-                  />
-                  <div
-                    *ngIf="
-                      legalRepresentative.errors?.required &&
-                      legalRepresentative.touched
-                    "
-                  >
-                    <span class="text-danger">Este campo es obligatorio</span>
+                <div class="form-row">
+                  <div class="form-group col-3">
+                    <p class="text-center mt-1">Tipo de documento</p>
+                  </div>
+                  <div class="form-group col-2">
+                    <select
+                      class="form-control"
+                      [(ngModel)]="preRegister.legalRepresentativeDocType_id"
+                      [ngClass]="{
+                        'is-invalid':
+                        legalRepresentativeDocType_id.errors?.required &&
+                        legalRepresentativeDocType_id.touched
+                      }"
+                      name="legalRepresentativeDocType_id"
+                      #legalRepresentativeDocType_id="ngModel"
+                      required
+                      [disabled]="isAdminUser || loading"
+                    >
+                      <option [ngValue]="null">Elije uno*</option>
+                      <option
+                        *ngFor="let documentRef of documentTypes"
+                        [ngValue]="documentRef"
+                        >{{ documentRef.description }}</option
+                      >
+                    </select>
+                    <div
+                      *ngIf="
+                      legalRepresentativeDocType_id.errors?.required &&
+                      legalRepresentativeDocType_id.touched
+                      "
+                    >
+                      <span class="text-danger">Este campo es obligatorio</span>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="No.:*"
+                      [disabled]="false"
+                      required
+                      name="legalRepresentativeDocNumber"
+                      #legalRepresentativeDocNumber="ngModel"
+                      [(ngModel)]="preRegister.legalRepresentativeDocNumber"
+                      [ngClass]="{
+                        'is-invalid':
+                        legalRepresentativeDocNumber.errors?.required &&
+                        legalRepresentativeDocNumber.touched
+                      }"
+                    />
+                    <div
+                      *ngIf="
+                      legalRepresentativeDocNumber.errors?.required &&
+                      legalRepresentativeDocNumber.touched
+                      "
+                    >
+                      <span class="text-danger">Este campo es obligatorio</span>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="col-12">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Nombres y apellidos del representante legal:*"
+                      [disabled]="isAdminUser || loading"
+                      required
+                      [(ngModel)]="preRegister.legalRepresentative"
+                      [ngClass]="{
+                        'is-invalid':
+                          serviceDescription.errors?.required &&
+                          serviceDescription.touched
+                      }"
+                      name="legalRepresentative"
+                      #legalRepresentative="ngModel"
+                    />
+                    <div
+                      *ngIf="legalRepresentative.errors?.required &&
+                        legalRepresentative.touched"
+                    >
+                      <span class="text-danger">Este campo es obligatorio</span>
+                    </div>
+                  </div>
+                </div>
+
               <div class="col-4">
                 <div class="form-group">
                   <input

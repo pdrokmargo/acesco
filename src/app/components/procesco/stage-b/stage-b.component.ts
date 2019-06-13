@@ -1,6 +1,6 @@
 /**
- * @author  Sergio Zapata
- * @contact sergio8016@gmail.com
+ * @author  Pedro Camargo
+ * @contact pedrocamargo@imagilogic.com
  * @version 1.0, 10/01/08
  */
 
@@ -312,64 +312,124 @@ export class StageBComponent {
         model: "chamberCommerce",
         value: false,
         text:
-          "Certificado de cámara de comercio (Vigencia no mayor a un (1) mes)."
+          "Certificado de cámara de comercio (Vigencia no mayor a un (1) mes).",
+          visibible: true
       },
       {
         model: "identificationCard",
         value: false,
-        text: "Fotocopia de la cédula del representante legal."
+        text: "Fotocopia de la cédula del representante legal.",
+        visibible: true
       },
       {
         model: "rut",
         value: false,
-        text: "Copia del RUT (Fecha de impresión no mayor a un (1) mes)."
+        text: "Copia del RUT (Fecha de impresión no mayor a un (1) mes).",
+        visibible: false
       },
       {
         model: "shareholdingStructure",
         value: false,
-        text: "Composición accionaria."
+        text: "Composición accionaria.",
+        visibible: true
+      },
+      {
+        model: "constanciaBancaria",
+        value: false,
+        text: "Constacia Bancaria  (no mayor a un (1) mes).",
+        visibible: true
       },
       {
         model: "rucAndBasc",
         value: false,
         text:
-          "Copias de la calificación en ruc y de las certificaciones/acreditaciones en sistemas de gestión, BASC y sello de producto que pose vigentes."
-      }
-    ];
-    this.annex2Toggles = [
-      // { model: 'annex6', value: false, text: 'Declaración de compromiso de seguridad (anexo pagina 6)' },
+          "Copias de la calificación en ruc y de las certificaciones/acreditaciones en sistemas de gestión, BASC y sello de producto que pose vigentes.",
+          visibible: true
+      },
+      {
+        model: "securityKnowledgeSign",
+        value: false,
+        text: "Firma Archivo Conocimiento de los aspectos de seguridad asociados de negocio.",
+        visibible: true
+      },
+      {
+        model: "manifestSecuritySign",
+        value: false,
+        text: "Firma Archivo Manifiesto de cumplimiento de los requisitos mínimos de seguridad",
+        visibible: true
+      },
       {
         model: "safetyData",
         value: false,
-        text: "Ficha de seguridad de los productos"
+        text: "Ficha de seguridad de los productos",
+        visibible: true
       } /* Sólo pstrarla cuando la clasificación sea químicos o proveedor haya marcada alto */,
       {
         model: "contingencyPlan",
         value: false,
-        text: "Plan de contingencia - preparación y respuesta ante emergencias."
+        text: "Plan de contingencia - preparación y respuesta ante emergencias.",
+        visibible: true
       },
       {
         model: "productSpecifications",
         value: false,
-        text: "Ficha técnica del producto cone specificaciones."
+        text: "Ficha técnica del producto cone specificaciones.",
+        visibible: true
       },
       {
         model: "sustainabilityReport",
         value: false,
-        text: "Reporte de sostenibilidad."
+        text: "Reporte de sostenibilidad.",
+        visibible: true
       },
       {
         model: "technicalStandards",
         value: false,
-        text: "Certificados de normas técnicas que le apliquen."
+        text: "Certificados de normas técnicas que le apliquen.",
+        visibible: true
       },
       {
         model: "relationshipRequirements",
         value: false,
-        text: "Requisitos varios especificos del relaciónamiento con Acesco"
+        text: "Requisitos varios especificos del relaciónamiento con Acesco",
+        visibible: true
       }
     ];
+    this.annex2Toggles = [
+      // { model: 'annex6', value: false, text: 'Declaración de compromiso de seguridad (anexo pagina 6)' },
+      // {
+      //   model: "safetyData",
+      //   value: false,
+      //   text: "Ficha de seguridad de los productos"
+      // } /* Sólo pstrarla cuando la clasificación sea químicos o proveedor haya marcada alto */,
+      // {
+      //   model: "contingencyPlan",
+      //   value: false,
+      //   text: "Plan de contingencia - preparación y respuesta ante emergencias."
+      // },
+      // {
+      //   model: "productSpecifications",
+      //   value: false,
+      //   text: "Ficha técnica del producto cone specificaciones."
+      // },
+      // {
+      //   model: "sustainabilityReport",
+      //   value: false,
+      //   text: "Reporte de sostenibilidad."
+      // },
+      // {
+      //   model: "technicalStandards",
+      //   value: false,
+      //   text: "Certificados de normas técnicas que le apliquen."
+      // },
+      // {
+      //   model: "relationshipRequirements",
+      //   value: false,
+      //   text: "Requisitos varios especificos del relaciónamiento con Acesco"
+      // }
+    ];
     this.selfEvaluation = false;
+
     this.stageB = {
       acescoElementsProtection: false,
       activitiesAsSocialReason: false,

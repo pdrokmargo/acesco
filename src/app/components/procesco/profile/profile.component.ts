@@ -1,6 +1,6 @@
 /**
- * @author  Sergio Zapata
- * @contact sergio8016@gmail.com
+ * @author  Pedro Camargo
+ * @contact pedrocamargo@imagilogic.com
  * @version 1.0, 29/12/08
  */
 
@@ -111,9 +111,19 @@ export class ProfileComponent implements AfterViewInit {
     } else {
       const supplier = this.internationalOptions[0].active;
       const inHouse = this.internationalOptions[1].active;
+      const national = 0;
       this.procescoService.updateUser(
-        { supplier: supplier, inHouse: inHouse },
+        { supplier: supplier, inHouse: inHouse, national: national },
         "profile"
+      ).subscribe(
+        (response: any) => {
+          this.loading = false;
+          this.router.navigate(["procesco/nuevoProveedor"]);
+        },
+        error1 => {
+          console.error(error1);
+          this.loading = false;
+        }
       );
     }
   }

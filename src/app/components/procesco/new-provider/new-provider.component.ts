@@ -1,6 +1,6 @@
 /**
- * @author  Sergio Zapata
- * @contact sergio8016@gmail.com
+ * @author  Pedro Camargo
+ * @contact pedrocamargo@imagilogic.com
  * @version 1.0, 29/12/08
  */
 
@@ -32,6 +32,8 @@ export class NewProviderComponent {
   @Output() emitEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   preRegister: any;
+  placeholderSub: {};
+  national: any;
   hideStuff = false;
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
@@ -55,14 +57,22 @@ export class NewProviderComponent {
     public procescoService: ProcescoService,
     private activatedRoute: ActivatedRoute
   ) {
+    this.placeholderSub = {whoRefers: ''};
     this.activatedRoute.params.subscribe(
       activeRoute => {
         if (activeRoute["id"]) {
           this.isAdminUser = true;
           
           this.procescoService.getUserById(activeRoute["id"]).subscribe(
-            ({ currentStep, id, preregistro_id }: any) => {
+            ({ currentStep, id, preregistro_id, national }: any) => {
               this.step = currentStep;
+              this.national = national;
+              if(national == 1)
+              {
+                this.placeholderSub['whoRefers'] = 'Persona de contacto en ACESCO*';
+              }else{
+                this.placeholderSub['whoRefers'] = 'Contact Person in ACESCO*';
+              }
               this.id = id;
               this.preregistro_id = preregistro_id;
               this.procescoService
@@ -87,6 +97,10 @@ export class NewProviderComponent {
                                   this.preRegister.documentType_id = this.documentTypes.find(
                                     el =>
                                       el.id === this.preRegister.documentType_id
+                                  );
+                                  this.preRegister.legalRepresentativeDocType_id = this.documentTypes.find(
+                                    el =>
+                                      el.id === this.preRegister.legalRepresentativeDocType_id
                                   );
                                   this.preRegister.classification_id = this.classifications.find(
                                     el =>
@@ -139,6 +153,7 @@ export class NewProviderComponent {
             ({ name, currentStep, national }) => {
               this.preRegister.documentNumber = name;
               this.step = currentStep;
+              this.national = national;
               this.procescoService.getCountriesList().subscribe(
                 countries => {
                   this.countries = [...countries];
@@ -146,6 +161,8 @@ export class NewProviderComponent {
                     this.preRegister.country_id = this.countries.find(
                       el => el.name === "Colombia"
                     );
+                  }else{
+                    this.national = national;
                   }
                 },
                 error1 => {
@@ -174,6 +191,8 @@ export class NewProviderComponent {
       classification_id: null,
       serviceDescription: null,
       documentType_id: null,
+      legalRepresentativeDocType_id: null,
+      legalRepresentativeDocNumber: null,
       documentNumber: null,
       documentIssued: null,
       businessName: null,
@@ -277,10 +296,11 @@ export class NewProviderComponent {
   }
   onSubmit(form: NgForm) {
     this.loading = true;
-    const { country_id, classification_id, documentType_id } = this.preRegister;
+    const { country_id, classification_id, documentType_id, legalRepresentativeDocType_id } = this.preRegister;
     this.preRegister.country_id = country_id.id;
     this.preRegister.classification_id = classification_id.id;
     this.preRegister.documentType_id = documentType_id.id;
+    this.preRegister.legalRepresentativeDocType_id = legalRepresentativeDocType_id.id;
     this.procescoService.updateUser(this.preRegister, "pre-register").subscribe(
       (response: any) => {
         console.log(response);

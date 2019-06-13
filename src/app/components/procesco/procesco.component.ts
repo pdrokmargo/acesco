@@ -55,8 +55,8 @@ export class ProcescoComponent implements AfterViewInit {
 
     this.buttons = [
       {text: 'FAQ\'s', icon: faQuestionCircle},
-      {text: 'Registro', icon: faListAlt},
-      {text: 'Evaluación', icon: faClipboardCheck}
+      {text: 'Portal Procesco', icon: faListAlt},
+      // {text: 'Portal Procesco', icon: faClipboardCheck}
     ];
 
     this.explanation = '';
@@ -83,10 +83,13 @@ export class ProcescoComponent implements AfterViewInit {
       }
       case 1: {
         this.showLogin = true;
+        this.showRegister = false;
         break;
       }
       case 2: {
-        this.router.navigate(['evaluacion']);
+        this.showLogin = true;
+        this.showRegister = false;
+        // this.router.navigate(['evaluacion']);
         break;
       }
       case 3: {
@@ -100,11 +103,11 @@ export class ProcescoComponent implements AfterViewInit {
   showExplanation(index: number) {
     switch (index) {
       case 0: {
-        this.explanation = 'Preguntas frecuentes.';
+        this.explanation = 'Preguntas y Respuestas Frecuentes.';
         break;
       }
       case 1: {
-        this.explanation = 'Proceso para registrarse como proveedor.';
+        this.explanation = 'Proveedores que desean iniciar, continuar o mantener el proceso de relacionamiento con Acesco.';
         break;
       }
       case 2: {
