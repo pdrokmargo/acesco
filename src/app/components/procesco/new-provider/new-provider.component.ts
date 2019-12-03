@@ -17,6 +17,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ProcescoService } from "../../../services/procesco.service";
 import { UserInterface } from "../../../Interfaces/user.interface";
 import { NgForm } from "@angular/forms";
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: "app-new-provider",
@@ -32,14 +33,19 @@ export class NewProviderComponent {
   @Output() emitEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   preRegister: any;
-  placeholderSub: {};
+  placeholderSubES: {whoRefers: "Persona"};
+  placeholderSubEN: {whoRefers: "Person"};
+  placeholderSub: any;
   national: any;
+  language: any;
   hideStuff = false;
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
   height: number;
   now: Date = new Date();
   classifications: any[] = [];
+  classifications_es: any[] = [];
+  classifications_en: any[] = [];
   documentTypes: any[] = [];
   countries: any[] = [];
   loading: boolean;
@@ -56,23 +62,17 @@ export class NewProviderComponent {
     private cdRef: ChangeDetectorRef,
     public procescoService: ProcescoService,
     private activatedRoute: ActivatedRoute
-  ) {
-    this.placeholderSub = {whoRefers: ''};
+  ) {    
     this.activatedRoute.params.subscribe(
       activeRoute => {
         if (activeRoute["id"]) {
           this.isAdminUser = true;
           
           this.procescoService.getUserById(activeRoute["id"]).subscribe(
-            ({ currentStep, id, preregistro_id, national }: any) => {
+            ({ currentStep, id, preregistro_id, language }: any) => {
+              console.log('sdsds'); 
               this.step = currentStep;
-              this.national = national;
-              if(national == 1)
-              {
-                this.placeholderSub['whoRefers'] = 'Persona de contacto en ACESCO*';
-              }else{
-                this.placeholderSub['whoRefers'] = 'Contact Person in ACESCO*';
-              }
+              this.language = language;
               this.id = id;
               this.preregistro_id = preregistro_id;
               this.procescoService
@@ -136,6 +136,14 @@ export class NewProviderComponent {
           this.procescoService.getClassificationsList().subscribe(
             classifications => {
               this.classifications = [...classifications];
+              this.classifications.forEach(classi => {
+                if(classi.classification_en != undefined || classi.classification_en != null){
+                  this.classifications_en.push(classi);
+                }
+                if(classi.classification != undefined || classi.classification != null){
+                  this.classifications_es.push(classi);
+                }
+              });
             },
             error1 => {
               console.error(error1);
@@ -150,10 +158,16 @@ export class NewProviderComponent {
             }
           );
           this.procescoService.getLogedUser().subscribe(
-            ({ name, currentStep, national }) => {
+            ({ name, currentStep, language, national }) => {
+              if(language == 1)
+              {
+                this.changeSubs(1);
+              }else{
+                this.changeSubs(0);
+              }
               this.preRegister.documentNumber = name;
               this.step = currentStep;
-              this.national = national;
+              this.language = language;
               this.procescoService.getCountriesList().subscribe(
                 countries => {
                   this.countries = [...countries];
@@ -182,6 +196,9 @@ export class NewProviderComponent {
     );
     const day = ("0" + this.now.getDate()).slice(-2);
     const month = ("0" + (this.now.getMonth() + 1)).slice(-2);
+    this.placeholderSub = {
+      whoRefers: null
+    }
     this.preRegister = {
       whoRefers: null,
       id: null,
@@ -226,7 +243,63 @@ export class NewProviderComponent {
       productSealName: null
     };
   }
-
+  changeSubs(national){
+    if(national==0){
+      //English subs
+      this.placeholderSub.requiredField = "This field is required";
+      this.placeholderSub.which = "Which?";
+      this.placeholderSub.chooseSocialObject = "Choose according social object";
+      this.placeholderSub.seeDescriptions = "Descriptions";
+      this.placeholderSub.whoRefers = "Contact person in Acesco*";
+      this.placeholderSub.classification = "Classification";
+      this.placeholderSub.descriptionServiceOrGoodOffered = "Description of service or good offered*";
+      this.placeholderSub.supplierGeneralInformation = "General Information of the company";
+      this.placeholderSub.documentType = "Document Type";
+      this.placeholderSub.chooseOne = "Choose one*";
+      this.placeholderSub.businessName = "Company name or full name*";
+      this.placeholderSub.legalInformation = "Legal Information";
+      this.placeholderSub.legalRepresentativeName = "Legal representative name and surname";
+      this.placeholderSub.supplierContactInformation = "Contact Information of the company";
+      this.placeholderSub.contactName = "Contact Person*";
+      this.placeholderSub.position = "Position*";
+      this.placeholderSub.address = "Address*";
+      this.placeholderSub.state = "State*";
+      this.placeholderSub.city = "City*";
+      this.placeholderSub.zipCode = "ZipCode*";
+      this.placeholderSub.telephone = "Telephone";
+      this.placeholderSub.mobile = "Mobile";
+      this.placeholderSub.email = "E-mail";
+      this.placeholderSub.website = "Website";
+    }else{
+      //Spsnish subs
+      this.placeholderSub.requiredField = "Este campo es obligatorio";
+      this.placeholderSub.which = "Cuál?";
+      this.placeholderSub.chooseSocialObject = "Escoja de acuerdo con objeto social";
+      this.placeholderSub.seeDescriptions = "Descripciones";
+      this.placeholderSub.whoRefers = "Persona de contacto en Acesco*";
+      this.placeholderSub.classification = "Clasificación";
+      this.placeholderSub.descriptionServiceOrGoodOffered = "Descripción de bien o servicio a ofrecer*";
+      this.placeholderSub.supplierGeneralInformation = "información general de proveedor";
+      this.placeholderSub.documentType = "Tipo de documento";
+      this.placeholderSub.chooseOne = "Elije uno*";
+      this.placeholderSub.businessName = "Razón social/Nombre completo*";
+      this.placeholderSub.legalInformation = "Información Legal";
+      this.placeholderSub.legalRepresentativeName = "Nombres y apellidos del representante legal:*";
+      this.placeholderSub.supplierContactInformation = "Datos de contacto del proveedor";
+      this.placeholderSub.contactName = "Persona de Contacto*";
+      this.placeholderSub.position = "Cargo*";
+      this.placeholderSub.address = "Dirección*";
+      this.placeholderSub.state = "Estado*";
+      this.placeholderSub.city = "Ciudad*";
+      this.placeholderSub.zipCode = "Código postal*";
+      this.placeholderSub.telephone = "Teléfono";
+      this.placeholderSub.mobile = "Celular";
+      this.placeholderSub.email = "Correo electrónico";
+      this.placeholderSub.website = "Sitio web";
+      
+      
+    }
+  }
   updateValue(newValue: ToggleInterface) {
     if (newValue.key2) {
       this.preRegister[newValue.key][newValue.key2] = newValue.value;
@@ -312,11 +385,12 @@ export class NewProviderComponent {
     );
   }
   updated() {
-    const { country_id, classification_id, documentType_id } = this.preRegister;
+    const { country_id, classification_id, documentType_id, language } = this.preRegister;
+    this.preRegister.language = language.id;
     this.preRegister.country_id = country_id.id;
     this.preRegister.classification_id = classification_id.id;
     this.preRegister.documentType_id = documentType_id.id;
-
+    
     this.procescoService.updateUser(this.preRegister, "pre-register").subscribe(
       rs => {
         this.procescoService
@@ -369,3 +443,4 @@ export class NewProviderComponent {
     );
   }
 }
+

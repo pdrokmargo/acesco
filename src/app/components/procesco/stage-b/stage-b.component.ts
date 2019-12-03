@@ -53,6 +53,7 @@ export class StageBComponent {
   annex1Toggles: any[] = [];
   annex2Toggles: any[] = [];
   isAdminUser: boolean;
+  language: any;
 
   constructor(
     public procescoService: ProcescoService,
@@ -69,6 +70,7 @@ export class StageBComponent {
             (user: any) => {
               this.user = user;
               this.step = user.currentStep;
+              this.language = user.language;
               this.procescoService
                 .getStepById(user.stageb_id, "stage-b")
                 .subscribe(
@@ -82,6 +84,10 @@ export class StageBComponent {
                     });
                     this.annex1Toggles.forEach(element => {
                       element.value = this.stageB[element.model];
+                      element.visibible = this.annexApplies(element.model);
+                      console.log(element.visibible);
+                      console.log(element.model);
+                      console.log(this.annexApplies(element.model));
                     });
                     this.annex2Toggles.forEach(element => {
                       element.value = this.stageB[element.model];
@@ -102,7 +108,11 @@ export class StageBComponent {
               this.step = user.currentStep;
               this.id = user.id;
               this.user = user;
+              this.language = user.language;
               this.step = user.currentStep;
+              this.annex1Toggles.forEach(element => {
+                element.visibible = this.annexApplies(element.model);
+              });
               if (user.stageb_id > 0) {
                 this.procescoService
                   .getStepById(user.stageb_id, "stage-b")
@@ -325,7 +335,7 @@ export class StageBComponent {
         model: "rut",
         value: false,
         text: "Copia del RUT (Fecha de impresión no mayor a un (1) mes).",
-        visibible: false
+        visibible: true
       },
       {
         model: "shareholdingStructure",
@@ -447,7 +457,7 @@ export class StageBComponent {
       inadequateProposals: false,
       inadequateProposalsWhat: null,
       legalRequirementsAndRegulations: false,
-      manifest: true,
+      manifest: false,
       minimumSafetyRequirements: true,
       perimetersControl: false,
       physicalAccessControls: false,
@@ -476,6 +486,9 @@ export class StageBComponent {
 
   updatedValue(event: ToggleInterface) {
     this.stageB[event.key] = event.value;
+    // if(this.stageB["manifest"]){
+    //   this.lists["lists"] = true;
+    // }
   }
 
   toggleList(list: string) {
@@ -555,7 +568,39 @@ export class StageBComponent {
       .updateUser(this.stageB, "stage-b")
       .subscribe(res => this.emitEvent.emit(true), err => console.error(err));
   }
-
+  annexApplies(file){
+    if(file == 'chamberCommerce'){
+      if(this.user['pre_registro']['classification_id'] > 0){
+          return true;
+      }
+    }
+    if(file == 'identificationCard'){
+      if(this.user['pre_registro']['classification_id'] > 0){
+          return true;
+      }
+    }
+    if(file == 'rut'){
+      if(this.user['pre_registro']['classification_id'] > 0){
+          return true;
+      }
+    }
+    // if(file == 'chamberCommerce'){
+    //   if(this.user['pre_registro']['classification_id'] == 1){
+    //       return true;
+    //   }
+    // }
+    // if(file == 'chamberCommerce'){
+    //   if(this.user['pre_registro']['classification_id'] == 1){
+    //       return true;
+    //   }
+    // }
+    // if(file == 'chamberCommerce'){
+    //   if(this.user['pre_registro']['classification_id'] == 1){
+    //       return true;
+    //   }
+    // }
+    return false;
+  }
   downloadFile() {
     this.procescoService
       .GET_FILE(`download-documents/${this.user.name}`)

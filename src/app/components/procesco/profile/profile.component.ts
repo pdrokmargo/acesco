@@ -26,6 +26,8 @@ export class ProfileComponent implements AfterViewInit {
 
   nationalOptions: any[] = [];
   internationalOptions: any[] = [];
+  placeholderSub: any;
+  language: any;
   languageOptions: any[] = [];
   loading: boolean;
   faCaretRight = faCaretRight;
@@ -40,6 +42,9 @@ export class ProfileComponent implements AfterViewInit {
     private cdRef: ChangeDetectorRef,
     public procescoService: ProcescoService
   ) {
+    this.placeholderSub = {
+      whoRefers: null
+    };
     this.nationalOptions = [
       { label: "Proveedor", value: "proveedor", active: false },
       { label: "Tercero", value: "tercero", active: false },
@@ -60,7 +65,8 @@ export class ProfileComponent implements AfterViewInit {
     ];
     this.procescoService.getLogedUser().subscribe((user: any) => {
       console.log(user);
-
+      this.changeSubs(user.language);
+      this.language = user.language;
       if (user.preregistro_id) {
         switch (user.national) {
           case 0:
@@ -79,6 +85,70 @@ export class ProfileComponent implements AfterViewInit {
         }
       }
     });
+  }
+
+  changeSubs(language){
+    if(language==0){
+      //English subs
+      this.placeholderSub.supplierProfile = "Supplier Profile";
+      this.placeholderSub.national = "National";
+      this.placeholderSub.international = "International";
+      this.placeholderSub.select = "Select";
+      this.placeholderSub.requiredField = "This field is required";
+      this.placeholderSub.chooseSocialObject = "Choose according social object";
+      this.placeholderSub.seeDescriptions = "Descriptions";
+      this.placeholderSub.whoRefers = "Contact person in Acesco*";
+      this.placeholderSub.classification = "Classification";
+      this.placeholderSub.descriptionServiceOrGoodOffered = "Description of service or good offered*";
+      this.placeholderSub.supplierGeneralInformation = "General Information of the company";
+      this.placeholderSub.documentType = "Document Type";
+      this.placeholderSub.chooseOne = "Choose one*";
+      this.placeholderSub.businessName = "Company name or full name*";
+      this.placeholderSub.legalInformation = "Legal Information";
+      this.placeholderSub.legalRepresentativeName = "Legal representative name and surname";
+      this.placeholderSub.supplierContactInformation = "Contact Information of the company";
+      this.placeholderSub.contactName = "Contact Person*";
+      this.placeholderSub.position = "Position*";
+      this.placeholderSub.address = "Address*";
+      this.placeholderSub.state = "State*";
+      this.placeholderSub.city = "City*";
+      this.placeholderSub.zipCode = "ZipCode*";
+      this.placeholderSub.telephone = "Telephone";
+      this.placeholderSub.mobile = "Mobile";
+      this.placeholderSub.email = "E-mail";
+      this.placeholderSub.website = "Website";
+    }else{
+      //Spsnish subs
+      this.placeholderSub.supplierProfile = "Definición de Perfil";
+      this.placeholderSub.national = "Nacional";
+      this.placeholderSub.international = "International";
+      this.placeholderSub.select = "Seleccionar";
+      this.placeholderSub.requiredField = "Este campo es obligatorio";
+      this.placeholderSub.chooseSocialObject = "Escoja de acuerdo con objeto social";
+      this.placeholderSub.seeDescriptions = "Descripciones";
+      this.placeholderSub.whoRefers = "Persona de contacto en Acesco*";
+      this.placeholderSub.classification = "Clasificación";
+      this.placeholderSub.descriptionServiceOrGoodOffered = "Descripción de bien o servicio a ofrecer*";
+      this.placeholderSub.supplierGeneralInformation = "información general de proveedor";
+      this.placeholderSub.documentType = "Tipo de documento";
+      this.placeholderSub.chooseOne = "Elije uno*";
+      this.placeholderSub.businessName = "Razón social/Nombre completo*";
+      this.placeholderSub.legalInformation = "Información Legal";
+      this.placeholderSub.legalRepresentativeName = "Nombres y apellidos del representante legal:*";
+      this.placeholderSub.supplierContactInformation = "Datos de contacto del proveedor";
+      this.placeholderSub.contactName = "Persona de Contacto*";
+      this.placeholderSub.position = "Cargo*";
+      this.placeholderSub.address = "Dirección*";
+      this.placeholderSub.state = "Estado*";
+      this.placeholderSub.city = "Ciudad*";
+      this.placeholderSub.zipCode = "Código postal*";
+      this.placeholderSub.telephone = "Teléfono";
+      this.placeholderSub.mobile = "Celular";
+      this.placeholderSub.email = "Correo electrónico";
+      this.placeholderSub.website = "Sitio web";
+      
+      
+    }
   }
 
   ngAfterViewInit() {

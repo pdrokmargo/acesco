@@ -54,8 +54,8 @@ export class ProcescoComponent implements AfterViewInit {
     ];
 
     this.buttons = [
-      {text: 'FAQ\'s', icon: faQuestionCircle},
-      {text: 'Portal Procesco', icon: faListAlt},
+      {text: 'Directrices', icon: faQuestionCircle},
+      {text: 'Portal Proveedores Acesco', icon: faListAlt},
       // {text: 'Portal Procesco', icon: faClipboardCheck}
     ];
 
@@ -103,7 +103,7 @@ export class ProcescoComponent implements AfterViewInit {
   showExplanation(index: number) {
     switch (index) {
       case 0: {
-        this.explanation = 'Preguntas y Respuestas Frecuentes.';
+        this.explanation = 'Información relevante.';
         break;
       }
       case 1: {
