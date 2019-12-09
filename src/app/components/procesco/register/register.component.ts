@@ -31,14 +31,17 @@ export class RegisterComponent {
   errorMessage: string;
   successMessage: string;
   redirectMessage: string;
+  languages: any;
 
   constructor(private router: Router, private cdRef: ChangeDetectorRef, public procescoService: ProcescoService) {
     this.user = {
       name: null,
       email: null,
       password: null,
-      password_confirmation: null
+      password_confirmation: null,
+      language: null
     };
+    this.languages = ['Nacional', 'Internacional'];
     this.passwordsMatch = true;
     this.loading = false;
   }
