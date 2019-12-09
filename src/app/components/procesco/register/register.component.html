@@ -37,6 +37,26 @@
     <div *ngIf="email.errors?.required && email.touched"><span class="text-danger">Este campo es obligatorio</span>
     </div>
     <div *ngIf="email.errors?.pattern && email.touched"><span class="text-danger">This email is invalid</span></div>
+    <select
+      class="form-control"
+      [(ngModel)]="user.language"
+      [ngClass]="{
+                      'is-invalid':
+                        language.errors?.required &&
+                        language.touched
+                    }"
+      name="language"
+      required
+      #language="ngModel"
+      [disabled]="isAdminUser || loading"
+    >
+      <option [ngValue]="null">Tipo de proveedor*</option>
+      <option
+        *ngFor="let language of languages"
+        [ngValue]="language"
+      >{{ language }}</option
+      >
+    </select>
     <hr class="blueLine">
     <div class="form-group">
       <fa-icon [icon]="faUnlock" class="input-icon"></fa-icon>
@@ -54,7 +74,8 @@
     </div>
     <div *ngIf="password.errors?.required && password.touched"><span
       class="text-danger">Este campo es obligatorio</span></div>
-    <div *ngIf="password.errors?.minlength"><span class="text-danger">Debe ser de almenos {{ password.errors.minlength.requiredLength }} caracteres</span>
+    <div *ngIf="password.errors?.minlength"><span
+      class="text-danger">Debe ser de almenos {{ password.errors.minlength.requiredLength }} caracteres</span>
     </div>
     <div *ngIf="!passwordsMatch && password.touched"><span class="text-danger">Las contraseñas no coinciden</span></div>
     <div class="form-group">
@@ -76,7 +97,8 @@
     </div>
     <div *ngIf="password_confirmation.errors?.minlength">
       <span
-        class="text-danger">Debe ser de almenos {{ password_confirmation.errors.minlength.requiredLength }} caracteres</span>
+        class="text-danger">Debe ser de almenos {{ password_confirmation.errors.minlength.requiredLength }}
+        caracteres</span>
     </div>
     <div *ngIf="!passwordsMatch && password_confirmation.touched">
       <span class="text-danger">Las contraseñas no coinciden</span>

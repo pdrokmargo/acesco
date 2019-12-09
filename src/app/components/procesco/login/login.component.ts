@@ -61,16 +61,16 @@ export class LoginComponent {
           this.router.navigate(["procesco/admin"]);
         } else {
           switch (this.user.currentStep) {
+            // case 0:
+            //   this.router.navigate(["procesco/perfil"]);
+            //   break;
             case 0:
-              this.router.navigate(["procesco/perfil"]);
-              break;
-            case 1:
               this.router.navigate(["procesco/preseleccionEtapaA"]);
               break;
-            case 2:
+            case 1:
               this.router.navigate(["procesco/preseleccionEtapaB"]);
               break;
-            case 3:
+            case 2:
               this.router.navigate(["procesco/perfilAprobado/" + this.user.id]);
               break;
           }
