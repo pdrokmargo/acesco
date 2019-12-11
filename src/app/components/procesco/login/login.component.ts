@@ -45,7 +45,8 @@ export class LoginComponent {
     };
     this.user = {
       name: null,
-      password: null
+      password: null,
+      national: null
     };
     this.loading = false;
   }
