@@ -6,23 +6,23 @@
   <div class="container">
     <div class="row" *ngIf="!__approved">
       <div class="col-12 text-white text-center mt-5">
-        <h4 *ngIf="national == 1" class="mt-5">Registro</h4><h4 *ngIf="national == 0" class="mt-5">Register</h4>
+        <h4 *ngIf="language == 1" class="mt-5">Registro</h4><h4 *ngIf="language == 0" class="mt-5">Register</h4>
         <hr class="whiteLine" />
         <p>
-            <b *ngIf="national == 0">Dear supplier: </b><b *ngIf="national == 1">Estimado proveedor: </b><span *ngIf="national == 1"> Para un debido proceso de inscripción como
-          proveedor de ACESCO le pedimos ingresar a la opción FAQ para que pueda conocer los diferentes
+            <b *ngIf="language == 0">Dear supplier: </b><b *ngIf="language == 1">Estimado proveedor: </b><span *ngIf="language == 1"> Para un debido proceso de inscripción como
+          proveedor de ACESCO le pedimos ingresar a la opción DIRECTRICES para que pueda conocer los diferentes
           requisitos de seguridad, acuerdos de confidencialidad y acuerdos de ética, etc
           que rigen nuestro relacionamiento con proveedores.</span>
-          <span *ngIf="national == 0"> For a due process of registration as a provider of ACESCO or update your data, thank you to fill out.</span>
+          <span *ngIf="language == 0"> For a due process of registration as a provider of ACESCO or update your data, thank you to fill out.</span>
         </p>
       </div>
     </div>
-    <div class="row" *ngIf="!__approved && national == 1">
+    <div class="row" *ngIf="!__approved && language == 1">
       <div class="col">
         <app-timeline [national]="1" [currentStep]="step"></app-timeline>
       </div>
     </div>
-    <div class="row" *ngIf="!__approved && national == 0">
+    <div class="row" *ngIf="!__approved && language == 0">
         <div class="col">
           <app-timeline [national]="0" [currentStep]="step"></app-timeline>
         </div>
@@ -36,8 +36,8 @@
             (ngSubmit)="onSubmit(providerForm)"
             novalidate
           >
-            <app-form-title *ngIf="national == 1" [text]="'Autorizaciones'"></app-form-title>
-            <app-form-title *ngIf="national == 0" [text]="'Authorizations'"></app-form-title>
+            <app-form-title *ngIf="language == 1" [text]="'Autorizaciones'"></app-form-title>
+            <app-form-title *ngIf="language == 0" [text]="'Authorizations'"></app-form-title>
             <div class="row justify-content-between">
               <div class="col-6 pr-4 box">
                 <div class="row mt-3">
@@ -52,7 +52,7 @@
                     </app-toggle>
                   </div>
                   <div class="col-10 text-justify dataProtection right">
-                    <p *ngIf="national == 1">
+                    <p *ngIf="language == 1">
                       PROTECCION DE DATOS PERSONALES. Autorizo de forma previa,
                       volutaria, expresa y explícita a ACESCO COLOMBIA
                       como responsable del tratamiento de los
@@ -66,14 +66,32 @@
                         >www.acesco.com.co</a
                       >
                     </p>
-                    <p *ngIf="national == 0">
+                    <p *ngIf="language == 0">
                         PERSONAL DATA PROTECTION. I authorize previously, voluntarily, expressly and explicitly ACERÍAS DE COLOMBIA ACESCO S.A.S. as responsible for the processing of personal data by virtue of commercial relations, which will be compiled, stored, consulted, used, shared and exchanged, for the following legitimate purposes in accordance with the Personal Data Protection Policy found in the website
                         <a href="https://www.acesco.com.co" target="_blank"
                           >www.acesco.com.co</a
                         >
                       </p>
-
-                    <ul class="text-justify">
+                      <ul class="text-justify" *ngIf="language == 1">
+                        <li>
+                          Contactar con fines comerciales, de servicio al cliente
+                          publicitarios.
+                        </li>
+                        <li>
+                          Cumplir obligaciones contractuales, sin limitarse a
+                          facturación, pagos o asuntos lógicos.
+                        </li>
+                        <li>
+                          Enviar noticias e información relevante sobre productos,
+                          politicas y eventos.
+                        </li>
+                        <li>
+                          Cumplir obligaciones legales y enviar reportes o
+                          información a las autoridades, sin limitarse a asuntos
+                          laborales, tributarios, migratorios.
+                        </li>
+                      </ul>
+                    <ul class="text-justify" *ngIf="language == 0">
                       <li>
                           Contact for commercial purposes, customer service, advertising.
                       </li>
@@ -102,16 +120,16 @@
                     ></app-toggle>
                   </div>
                   <div class="col-10 habeas">
-                    <p *ngIf="national == 1">
+                    <p *ngIf="language == 1">
                       HABEAS DATA FINANCIERO. Autorizo expresa e
                       irrevocablemente a ACESCO COLOMBIA o a
                       quien represente sus derechos u ostente en el futuro
                       cualquier titulo la calidad de acreedor a:
                     </p>
-                    <p *ngIf="national == 0">
+                    <p *ngIf="language == 0">
                         HABEAS DATA FINANCIERO. I expressly and irrevocably authorize ACERÍAS DE COLOMBIA ACESCO S.A.S. or whoever represents their rights or holds in the future, in any capacity, the status of creditor to:
                       </p>
-                    <ul class="text-justify" *ngIf="national == 0">
+                    <ul class="text-justify" *ngIf="language == 0">
                       <li>
                           Consult at any time in the Credit Bureaus all the information that refers to my credit, financial and commercial behavior, credit applications and socioeconomic information
                       </li>
@@ -119,7 +137,7 @@
                           Supply, report and disclose to Risk Centers, directly or indirectly through public entities exercising control and surveillance over financial data, all the information described in subparagraph a) or that which has been delivered or recorded in records or public databases to know my performance as debtor, ability to pay or valuation at risk, timely compliance or breach of credit obligations or obligations of patrimonial content. I also authorize ACERIAS DE COLOMBIA ACESCO S.A.S. as to the Risk Centers, to keep the information described above, duly updated and for the necessary period of time.
                       </li>
                     </ul>
-                    <ul class="text-justify" *ngIf="national == 1">
+                    <ul class="text-justify" *ngIf="language == 1">
                         <li>
                           Consultar en cualquier tiempo en Centrales de Riesgo a
                           toda la información que se refiere a mi comportamiento
@@ -167,7 +185,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    [placeholder]="placeholderSub.whoRefers"
+                    [placeholder]="placeholderSub?.whoRefers"
                     [(ngModel)]="preRegister.whoRefers"
                     [ngClass]="{
                       'is-invalid':
@@ -180,13 +198,14 @@
                     [disabled]="isAdminUser || loading"
                   />
                   <div *ngIf="whoRefers.errors?.required && whoRefers.touched">
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <select
+                  
+                  <select 
                     class="form-control"
                     [(ngModel)]="preRegister.classification_id"
                     [ngClass]="{
@@ -199,12 +218,11 @@
                     #classification_id="ngModel"
                     [disabled]="isAdminUser || loading"
                   >
-                    <option [ngValue]="null">Clasificación*</option>
-                    <option
-                      *ngFor="let classification of classifications"
+                    <option [ngValue]="null">{{placeholderSub?.classification}}*</option>
+                    <option 
+                      *ngFor="let classification of (language == 1 ? classifications_es : classifications_en)"
                       [ngValue]="classification"
-                      >{{ classification.classification }}</option
-                    >
+                      >{{ language == 1 ? classification.classification : classification.classification_en }}</option>
                   </select>
                   <div
                     *ngIf="
@@ -212,19 +230,18 @@
                       classification_id.touched
                     "
                   >
-                    <label class="text-danger">Este campo es obligatorio</label>
+                    <label class="text-danger">{{placeholderSub?.requiredField}}</label>
                   </div>
                 </div>
               </div>
               <div class="col-6">
                 <p>
-                  Escoja de acuerdo con objeto social
+                  {{placeholderSub?.chooseSocialObject}}
                   <a
                     class="text-primary link"
                     target="_blank"
                     routerLink="descripciones"
-                    >Descripciones</a
-                  >
+                    >{{placeholderSub?.seeDescriptions}}</a>
                 </p>
               </div>
               <div class="col-12">
@@ -241,7 +258,7 @@
                     name="serviceDescription"
                     #serviceDescription="ngModel"
                     [disabled]="isAdminUser || loading"
-                    placeholder="Descripcion de bien o servicio a ofrecer*"
+                    [placeholder]="placeholderSub?.descriptionServiceOrGoodOffered"
                     maxlength="200"
                     required
                   ></textarea>
@@ -251,17 +268,17 @@
                       serviceDescription.touched
                     "
                   >
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
             </div>
-            <app-form-title [text]="'información general de proveedor'"></app-form-title>
+            <app-form-title [text]="placeholderSub?.supplierGeneralInformation"></app-form-title>
             <div class="row mt-3">
               <div class="col-12">
                 <div class="form-row">
                   <div class="form-group col-3">
-                    <p class="text-center mt-1">Tipo de documento</p>
+                    <p class="text-center mt-1">{{placeholderSub?.documentType}}</p>
                   </div>
                   <div class="form-group col-2">
                     <select
@@ -277,12 +294,11 @@
                       required
                       [disabled]="isAdminUser || loading"
                     >
-                      <option [ngValue]="null">Elije uno*</option>
+                      <option [ngValue]="null">{{placeholderSub?.chooseOne}}</option>
                       <option
                         *ngFor="let documentRef of documentTypes"
                         [ngValue]="documentRef"
-                        >{{ documentRef.description }}</option
-                      >
+                        >{{ documentRef.description }}</option>
                     </select>
                     <div
                       *ngIf="
@@ -290,7 +306,7 @@
                         documentType_id.touched
                       "
                     >
-                      <span class="text-danger">Este campo es obligatorio</span>
+                      <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                     </div>
                   </div>
 
@@ -316,10 +332,10 @@
                         documentNumber.touched
                       "
                     >
-                      <span class="text-danger">Este campo es obligatorio</span>
+                      <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                     </div>
                   </div>
-                  <div class="form-group col-md-2">
+                  <div class="form-group col-md-2" *ngIf="language == 1">
                     <input
                       type="text"
                       class="form-control"
@@ -341,7 +357,7 @@
                         documentIssued.touched
                       "
                     >
-                      <span class="text-danger">Este campo es obligatorio</span>
+                      <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                     </div>
                   </div>
                 </div>
@@ -390,7 +406,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Razón social/Nombre completo*"
+                    [placeholder]="placeholderSub?.businessName"
                     [disabled]="isAdminUser || loading"
                     required
                     [(ngModel)]="preRegister.businessName"
@@ -406,11 +422,11 @@
                       businessName.errors?.required && businessName.touched
                     "
                   >
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-6" *ngIf="language == 1">
                 <div class="form-group">
                   <input
                     type="text"
@@ -432,11 +448,11 @@
                       commercialName.errors?.required && commercialName.touched
                     "
                   >
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-6" *ngIf="language == 1">
                 <div class="form-group">
                   <input
                     type="text"
@@ -452,17 +468,17 @@
                     #ciiu="ngModel"
                   />
                   <div *ngIf="ciiu.errors?.required && ciiu.touched">
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
             </div>
-            <app-form-title [text]="'representante legal'"></app-form-title>
+            <app-form-title [text]="placeholderSub?.legalInformation"></app-form-title>
             <div class="row mt-3">
               <div class="col-12">
                 <div class="form-row">
                   <div class="form-group col-3">
-                    <p class="text-center mt-1">Tipo de documento</p>
+                    <p class="text-center mt-1">{{placeholderSub?.documentType}}</p>
                   </div>
                   <div class="form-group col-2">
                     <select
@@ -478,7 +494,7 @@
                       required
                       [disabled]="isAdminUser || loading"
                     >
-                      <option [ngValue]="null">Elije uno*</option>
+                      <option [ngValue]="null">{{placeholderSub?.chooseOne}}</option>
                       <option
                         *ngFor="let documentRef of documentTypes"
                         [ngValue]="documentRef"
@@ -491,7 +507,7 @@
                       legalRepresentativeDocType_id.touched
                       "
                     >
-                      <span class="text-danger">Este campo es obligatorio</span>
+                      <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                     </div>
                   </div>
 
@@ -517,7 +533,7 @@
                       legalRepresentativeDocNumber.touched
                       "
                     >
-                      <span class="text-danger">Este campo es obligatorio</span>
+                      <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                     </div>
                   </div>
                 </div>
@@ -527,7 +543,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Nombres y apellidos del representante legal:*"
+                      [placeholder]="placeholderSub?.legalRepresentativeName"
                       [disabled]="isAdminUser || loading"
                       required
                       [(ngModel)]="preRegister.legalRepresentative"
@@ -543,12 +559,12 @@
                       *ngIf="legalRepresentative.errors?.required &&
                         legalRepresentative.touched"
                     >
-                      <span class="text-danger">Este campo es obligatorio</span>
+                      <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                     </div>
                   </div>
                 </div>
 
-              <div class="col-4">
+              <div class="col-4" *ngIf="language == 1">
                 <div class="form-group">
                   <input
                     type="text"
@@ -567,11 +583,11 @@
                   <div
                     *ngIf="profession?.errors?.required && profession.touched"
                   >
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
-              <div class="col-4">
+              <div class="col-4" *ngIf="language == 1">
                 <div class="form-group">
                   <input
                     type="text"
@@ -589,7 +605,7 @@
                   />
                 </div>
               </div>
-              <div class="col-4">
+              <div class="col-4" *ngIf="language == 1">
                 <div class="form-group">
                   <input
                     type="text"
@@ -608,7 +624,7 @@
               </div>
             </div>
             <app-form-title
-              [text]="'Datos de contacto del proveedor'"
+              [text]="placeholderSub?.supplierContactInformation"
             ></app-form-title>
             <div class="row mt-3">
               <div class="col 8">
@@ -616,7 +632,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Persona de contacto:*"
+                    [placeholder]="placeholderSub?.contactName"
                     [disabled]="isAdminUser || loading"
                     required
                     [(ngModel)]="preRegister.contactName"
@@ -630,7 +646,7 @@
                   <div
                     *ngIf="contactName.errors?.required && contactName.touched"
                   >
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
@@ -639,7 +655,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Cargo:*"
+                    [placeholder]="placeholderSub?.position"
                     [disabled]="isAdminUser || loading"
                     required
                     [(ngModel)]="preRegister.position"
@@ -651,7 +667,7 @@
                     #position="ngModel"
                   />
                   <div *ngIf="position.errors?.required && position.touched">
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
@@ -660,7 +676,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Dirección:*"
+                    [placeholder]="placeholderSub?.address"
                     required
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.address"
@@ -671,7 +687,7 @@
                     #address="ngModel"
                   />
                   <div *ngIf="address.errors?.required && address.touched">
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
@@ -699,7 +715,7 @@
                     <div
                       *ngIf="country_id.errors?.required && country_id.touched"
                     >
-                      <span class="text-danger">Este campo es obligatorio</span>
+                      <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                     </div>
                   </div>
                 </div>
@@ -710,7 +726,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Dpto:*"
+                    [placeholder]="placeholderSub?.state"
                     required
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.dpto"
@@ -721,7 +737,7 @@
                     #dpto="ngModel"
                   />
                   <div *ngIf="dpto.errors?.required && dpto.touched">
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
@@ -730,7 +746,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Ciudad:*"
+                    [placeholder]="placeholderSub?.city"
                     required
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.city"
@@ -741,7 +757,7 @@
                     #city="ngModel"
                   />
                   <div *ngIf="city.errors?.required && city.touched">
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
@@ -750,7 +766,7 @@
                   <input
                     type="number"
                     class="form-control"
-                    placeholder="Codigo postal:*"
+                    [placeholder]="placeholderSub?.zipCode"
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.zipcode"
                     [ngClass]="{
@@ -760,7 +776,7 @@
                     #zipcode="ngModel"
                   />
                   <div *ngIf="zipcode.errors?.required && zipcode.touched">
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
@@ -769,7 +785,7 @@
                   <input
                     type="number"
                     class="form-control"
-                    placeholder="Telefono:*"
+                    [placeholder]="placeholderSub?.telephone"
                     required
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.phone"
@@ -780,7 +796,7 @@
                     #phone="ngModel"
                   />
                   <div *ngIf="phone.errors?.required && phone.touched">
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
@@ -789,7 +805,7 @@
                   <input
                     type="number"
                     class="form-control"
-                    placeholder="Celular:*"
+                    [placeholder]="placeholderSub?.mobile"
                     required
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.mobile"
@@ -800,7 +816,7 @@
                     #mobile="ngModel"
                   />
                   <div *ngIf="mobile.errors?.required && mobile.touched">
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
@@ -833,7 +849,7 @@
                     #email="ngModel"
                   />
                   <div *ngIf="email.errors?.required && email.touched">
-                    <span class="text-danger">Este campo es obligatorio</span>
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
               </div>
@@ -842,7 +858,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Pagina Web:"
+                    [placeholder]="placeholderSub?.website"
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.website"
                     name="website"
@@ -857,7 +873,7 @@
             <div class="row text-block mt-3 managementSystemInformation">
               <div class="col-2 rule">
                 <span
-                  >ISO 9001: SI
+                  >ISO 9001: NO
                   <app-toggle
                     [disabled]="isAdminUser"
                     [model]="preRegister.iso9001"
@@ -865,12 +881,12 @@
                     [loading]="loading"
                     (updatedValue)="updateValue($event)"
                   ></app-toggle>
-                  NO
+                  <span *ngIf="language == 1">SI</span><span *ngIf="language == 0">YES</span>
                 </span>
               </div>
               <div class="col-2 rule">
                 <span
-                  >ISO 14001: SI
+                  >ISO 14001: NO
                   <app-toggle
                     [disabled]="isAdminUser"
                     [model]="preRegister.iso14001"
@@ -878,12 +894,12 @@
                     [loading]="loading"
                     (updatedValue)="updateValue($event)"
                   ></app-toggle>
-                  NO
+                  <span *ngIf="language == 1">SI</span><span *ngIf="language == 0">YES</span>
                 </span>
               </div>
               <div class="col-2 rule">
                 <span
-                  >ISO 45001: SI
+                  >ISO 45001: NO
                   <app-toggle
                     [disabled]="isAdminUser"
                     [model]="preRegister.oshas18001"
@@ -891,12 +907,12 @@
                     [loading]="loading"
                     (updatedValue)="updateValue($event)"
                   ></app-toggle>
-                  NO
+                  <span *ngIf="language == 1">SI</span><span *ngIf="language == 0">YES</span>
                 </span>
               </div>
               <div class="col-6 antiCorruptionPolicy">
-                <span
-                  >Tiene política de anti corrupción y soborno: NO
+                <span>
+                  <span *ngIf="language == 1">Tiene política de anti corrupción y soborno:</span><span *ngIf="language == 0">Tiene política de anti corrupción y soborno:</span> NO
                   <app-toggle
                     [disabled]="isAdminUser"
                     [prop]="'antiCorruptionPolicy'"
@@ -904,12 +920,12 @@
                     [model]="preRegister.antiCorruptionPolicy"
                     (updatedValue)="updateValue($event)"
                   ></app-toggle>
-                  SI</span
+                  <span *ngIf="language == 1">SI</span><span *ngIf="language == 0">YES</span></span
                 >
               </div>
               <div class="col-6 sustainability">
                 <span
-                  >Ha publicado en el último año un reporte de sostenibilidad?
+                  ><span *ngIf="language == 1">Ha publicado en el último año un reporte de sostenibilidad?</span><span *ngIf="language == 0">Have you issued some sustainability report?</span>
                   NO
                   <app-toggle
                     [disabled]="isAdminUser"
@@ -918,13 +934,12 @@
                     [model]="preRegister.sustainability"
                     (updatedValue)="updateValue($event)"
                   ></app-toggle>
-                  SI</span
-                >
+                  <span *ngIf="language == 1">SI</span><span *ngIf="language == 0"> YES</span></span>
               </div>
               <div class="col-6 dueDiligence">
-                <span
-                  >Tiene implementado un sistema o programa para la prevención y
-                  control del riesgo (LA/FT, OEA, BASC) NO
+                <span>
+                   <span *ngIf="language == 1">Tiene implementado un sistema o programa para la prevención y
+                      control del riesgo (LA/FT, OEA, BASC)</span><span *ngIf="language == 0">(LA/FT, OEA, BASC)</span> NO
                   <app-toggle
                     [disabled]="isAdminUser"
                     [prop]="'dueDiligence'"
@@ -932,13 +947,13 @@
                     [model]="preRegister.dueDiligence"
                     (updatedValue)="updateValue($event)"
                   ></app-toggle>
-                  SI</span
+                  <span *ngIf="language == 1">SI</span><span *ngIf="language == 0">YES</span></span
                 >
               </div>
               <div class="col-6 socialResponsability">
                 <span
-                  >Tiene implementado un programa de responsabilidad social o
-                  posee una Fundación? NO
+                  ><span *ngIf="language == 1">Tiene implementado un programa de responsabilidad social o
+                  posee una Fundación? </span><span *ngIf="language == 0">Do you have a non-profit or nonprofit foundation? </span> NO
                   <app-toggle
                     [disabled]="isAdminUser"
                     [prop]="'socialResponsability'"
@@ -946,13 +961,13 @@
                     [model]="preRegister.socialResponsability"
                     (updatedValue)="updateValue($event)"
                   ></app-toggle>
-                  SI</span
+                  <span *ngIf="language == 1">SI</span><span *ngIf="language == 0">YES</span></span
                 >
                 <div class="form-group">
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Cual?"
+                    [placeholder]="placeholderSub?.which"
                     [disabled]="
                       isAdminUser ||
                       !preRegister.socialResponsability ||
@@ -965,8 +980,8 @@
                 </div>
               </div>
               <div class="col-6 productSeal">
-                <span
-                  >Posee sello de producto NO
+                <span>
+                    <span *ngIf="language == 1">Posee sello de producto </span><span *ngIf="language == 0">Do you have a product stamp? </span> NO
                   <app-toggle
                     [disabled]="isAdminUser"
                     [prop]="'productSeal'"
@@ -974,13 +989,13 @@
                     [model]="preRegister.productSeal"
                     (updatedValue)="updateValue($event)"
                   ></app-toggle>
-                  SI</span
+                  <span *ngIf="language == 1">SI</span><span *ngIf="language == 0">YES</span></span
                 >
                 <div class="form-group">
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Cual?"
+                    [placeholder]="placeholderSub?.which"
                     [disabled]="isAdminUser || !preRegister.productSeal || loading"
                     [(ngModel)]="preRegister.productSealName"
                     name="productSealName"

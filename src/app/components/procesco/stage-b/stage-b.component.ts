@@ -325,7 +325,7 @@ export class StageBComponent {
         model: "rut",
         value: false,
         text: "Copia del RUT (Fecha de impresión no mayor a un (1) mes).",
-        visibible: false
+        visibible: true
       },
       {
         model: "shareholdingStructure",

@@ -53,6 +53,7 @@ export class RegisterComponent {
 
   onSubmit(form: NgForm) {
     form.value['user_profile_id'] = 2;
+    form.value['language'] = this.user.language;
     this.loading = true;
     this.procescoService.createNewUser(form.value).subscribe((response: any) => {
       this.successMessage = 'Usuario creado satisfactoriamente';
