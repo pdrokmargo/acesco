@@ -35,9 +35,9 @@ export class ConfirmationComponent {
 
     this.steps = [
       {position: 'fake'},
-      {position: 'Primera', stepText: 'Pre - registro'},
-      {position: 'Segunda', stepText: 'Pre - selección-etapa A'},
-      {position: 'Tercera', stepText: 'Pre - selección-etapa B'},
+      {position: 'Primera', stepText: 'Registro'},
+      {position: 'Segunda', stepText: 'Información Financiera'},
+      {position: 'Tercera', stepText: 'Control Documental'},
     ];
     this.loading = false;
   }

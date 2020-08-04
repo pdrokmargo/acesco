@@ -1,7 +1,4 @@
 <div class="card animated fadeIn fast">
-  <h5 class="card-title">Acesco
-    <fa-icon [icon]="faGoogleDrive"></fa-icon>
-  </h5>
   <form class="register-form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
     <div class="form-group">
       <fa-icon [icon]="faUser" class="input-icon"></fa-icon>
@@ -37,7 +34,28 @@
     <div *ngIf="email.errors?.required && email.touched"><span class="text-danger">Este campo es obligatorio</span>
     </div>
     <div *ngIf="email.errors?.pattern && email.touched"><span class="text-danger">This email is invalid</span></div>
+    <hr class="blueLine">
     <select
+      class="form-control"
+      [(ngModel)]="user.supplier_type"
+      [ngClass]="{
+                      'is-invalid':
+                        supplierType.errors?.required &&
+                        supplierType.touched
+                    }"
+      name="supplierType"
+      required
+      #supplierType="ngModel"
+      [disabled]="isAdminUser || loading"
+      (change)="changeLanguage()"
+    >
+      <option [ngValue]="null">Tipo de proveedor*</option>
+      <option [ngValue]="suppliersType[0]">Nacional</option>
+      <option [ngValue]="suppliersType[1]">Internacional</option>
+    </select>
+    <br *ngIf="showLanguage">
+    <select
+      *ngIf="showLanguage"
       class="form-control"
       [(ngModel)]="user.language"
       [ngClass]="{
@@ -50,12 +68,9 @@
       #language="ngModel"
       [disabled]="isAdminUser || loading"
     >
-      <option [ngValue]="null">Tipo de proveedor*</option>
-      <option
-        *ngFor="let language of languages"
-        [ngValue]="language"
-      >{{ language }}</option
-      >
+      <option [ngValue]="null">Seleccione idioma</option>
+      <option [ngValue]="languages[0]">Español</option>
+      <option [ngValue]="languages[1]">Ingles</option>
     </select>
     <hr class="blueLine">
     <div class="form-group">

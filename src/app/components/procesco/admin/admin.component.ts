@@ -23,7 +23,7 @@ export class AdminComponent {
 
   constructor(public procescoService: ProcescoService, private router: Router) {
     this.loading = true;
-    this.states = ["Pre selección", "Etapa A", "Etapa B", "Seleccionado"];
+    this.states = ["Registro", "Información Financiera", "Control Documental", "Seleccionado"];
     this.tableTitles = [
       { label: "id" },
       { label: "Razón Social" },
