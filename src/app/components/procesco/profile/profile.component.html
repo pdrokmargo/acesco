@@ -13,7 +13,7 @@
   <div class="container">
     <header class="row" *ngIf="!approved">
       <div class="col-12">
-        <h3 class="text-center mt-5">Definición Perfil / Supplier Profile</h3>
+        <h3 class="text-center mt-5">{{placeholderSub?.supplierProfile}}</h3>
         <hr class="whiteLine mt-5" />
       </div>
     </header>
@@ -22,15 +22,16 @@
         <div class="card" [ngClass]="{ 'no-border': approved }">
           <div class="row">
             <div class="col-6 left">
-              <h3 class="title">Nacional</h3>
+              <h3 class="title">{{placeholderSub?.national}}</h3>
               <hr class="lightBlueLine" />
+              <div class="container selectButton">
               <button
                   class="acesco-button"
                   (click)="submitProfile(1)"
-                  [disabled]="loading"
+                  [disabled]="loading || language == 0"
                   *ngIf="!approved"
                 >
-                  Seleccionar
+                {{placeholderSub?.select}}
                   <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
                   <fa-icon
                     [icon]="faSpinner"
@@ -38,6 +39,7 @@
                     [spin]="true"
                   ></fa-icon>
                 </button>
+              </div>
               <div class="container">
                   
                 <!-- <div
@@ -60,16 +62,16 @@
               </div>
             </div>
             <div class="col-6 right">
-              <h3 class="title">International</h3>
+              <h3 class="title">{{placeholderSub?.international}}</h3>
               <hr class="lightBlueLine" />
-              <div class="container">
+              <div class="container selectButton">
                   <button
                   class="acesco-button"
                   (click)="submitProfile()"
                   [disabled]="loading"
                   *ngIf="!approved"
                 >
-                  Seleccionar
+                {{placeholderSub?.select}}
                   <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
                   <fa-icon
                     [icon]="faSpinner"
