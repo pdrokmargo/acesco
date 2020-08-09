@@ -45,7 +45,8 @@ export class LoginComponent {
     };
     this.user = {
       name: null,
-      password: null
+      password: null,
+      national: null
     };
     this.loading = false;
   }
@@ -61,9 +62,6 @@ export class LoginComponent {
           this.router.navigate(["procesco/admin"]);
         } else {
           switch (this.user.currentStep) {
-            // case 0:
-            //   this.router.navigate(["procesco/perfil"]);
-            //   break;
             case 0:
               this.router.navigate(["procesco/nuevoProveedor"]);
               break;

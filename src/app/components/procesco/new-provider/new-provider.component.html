@@ -72,8 +72,26 @@
                           >www.acesco.com.co</a
                         >
                       </p>
-
-                    <ul class="text-justify">
+                      <ul class="text-justify" *ngIf="language == 1">
+                        <li>
+                          Contactar con fines comerciales, de servicio al cliente
+                          publicitarios.
+                        </li>
+                        <li>
+                          Cumplir obligaciones contractuales, sin limitarse a
+                          facturación, pagos o asuntos lógicos.
+                        </li>
+                        <li>
+                          Enviar noticias e información relevante sobre productos,
+                          politicas y eventos.
+                        </li>
+                        <li>
+                          Cumplir obligaciones legales y enviar reportes o
+                          información a las autoridades, sin limitarse a asuntos
+                          laborales, tributarios, migratorios.
+                        </li>
+                      </ul>
+                    <ul class="text-justify" *ngIf="language == 0">
                       <li>
                           Contact for commercial purposes, customer service, advertising.
                       </li>

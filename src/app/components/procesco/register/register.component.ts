@@ -31,7 +31,9 @@ export class RegisterComponent {
   errorMessage: string;
   successMessage: string;
   redirectMessage: string;
+  suppliersType: any;
   languages: any;
+  showLanguage: boolean;
 
   constructor(private router: Router, private cdRef: ChangeDetectorRef, public procescoService: ProcescoService) {
     this.user = {
@@ -39,15 +41,19 @@ export class RegisterComponent {
       email: null,
       password: null,
       password_confirmation: null,
-      language: null
+      language: null,
+      supplier_type: null
     };
-    this.languages = ['Nacional', 'Internacional'];
+    this.suppliersType = ['Nacional', 'Internacional'];
+    this.languages = ['Español', 'Ingles'];
     this.passwordsMatch = true;
     this.loading = false;
+    this.showLanguage = this.user.language === 'Nacional';
   }
 
   onSubmit(form: NgForm) {
     form.value['user_profile_id'] = 2;
+    form.value['language'] = this.user.language;
     this.loading = true;
     this.procescoService.createNewUser(form.value).subscribe((response: any) => {
       this.successMessage = 'Usuario creado satisfactoriamente';
@@ -70,6 +76,13 @@ export class RegisterComponent {
 
   validatePasswords() {
     this.passwordsMatch = this.user.password === this.user.password_confirmation;
+  }
+
+  changeLanguage() {
+    console.log(this.user);
+    this.user.language = this.user.supplier_type === 'Nacional' ? 'Español' : null;
+    this.showLanguage = this.user.supplier_type === 'Internacional';
+    console.log(this.showLanguage);
   }
 
   backHome() {
