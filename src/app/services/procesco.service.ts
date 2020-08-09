@@ -46,6 +46,14 @@ export class ProcescoService {
       .pipe(map((data: any) => data.documents));
   }
 
+  getActividadesEconomicasList() {
+    const url = `${this.nodeUrl}/actividades-economicas`;
+    const headers = this.getHeader();
+    return this.http
+      .get(url, { headers })
+      .pipe(map((data: any) => data.act_economicas));
+  }
+
   getCurrencies() {
     const url = `${this.nodeUrl}/currencies`;
     const headers = this.getHeader();

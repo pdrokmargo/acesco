@@ -47,6 +47,7 @@ export class NewProviderComponent {
   classifications_es: any[] = [];
   classifications_en: any[] = [];
   documentTypes: any[] = [];
+  ciiuCodes: any[] = [];
   countries: any[] = [];
   loading: boolean;
   step: string;
@@ -66,11 +67,18 @@ export class NewProviderComponent {
     this.activatedRoute.params.subscribe(
       activeRoute => {
         if (activeRoute["id"]) {
+          
           this.isAdminUser = true;
           
           this.procescoService.getUserById(activeRoute["id"]).subscribe(
             ({ currentStep, id, preregistro_id, language }: any) => {
-              console.log('sdsds'); 
+
+              if(language == 1)
+              {
+                this.changeSubs(1);
+              }else{
+                this.changeSubs(0);
+              }
               this.step = currentStep;
               this.language = language;
               this.id = id;
@@ -91,22 +99,35 @@ export class NewProviderComponent {
                               .subscribe(
                                 classifications => {
                                   this.classifications = [...classifications];
-                                  this.preRegister.country_id = this.countries.find(
-                                    el => el.id === this.preRegister.country_id
-                                  );
-                                  this.preRegister.documentType_id = this.documentTypes.find(
-                                    el =>
-                                      el.id === this.preRegister.documentType_id
-                                  );
-                                  this.preRegister.legalRepresentativeDocType_id = this.documentTypes.find(
-                                    el =>
-                                      el.id === this.preRegister.legalRepresentativeDocType_id
-                                  );
-                                  this.preRegister.classification_id = this.classifications.find(
-                                    el =>
-                                      el.id ===
-                                      this.preRegister.classification_id
-                                  );
+                                  this.procescoService.getActividadesEconomicasList().subscribe(
+                                      act_economicas => {
+                                      this.ciiuCodes = [...act_economicas];
+                                      
+                                      // this.preRegister.country_id = this.countries.find(
+                                      //   el => el.id === this.preRegister.country_id
+                                      // );
+                                      this.preRegister.country_id = this.countries.find(
+                                        el => el.id === this.preRegister.country_id
+                                      );
+                                      this.preRegister.documentType_id = this.documentTypes.find(
+                                        el =>
+                                          el.id === this.preRegister.documentType_id
+                                      );
+                                      this.preRegister.legalRepresentativeDocType_id = this.documentTypes.find(
+                                        el =>
+                                          el.id === this.preRegister.legalRepresentativeDocType_id
+                                      );
+                                      console.log(this.preRegister.classification_id);
+                                      // this.preRegister.classification_id = this.classifications.find(
+                                      //   el =>
+                                      //     el.id ===
+                                      //     this.preRegister.classification_id
+                                      // );
+                                    },
+                                    error1 => {
+                                      console.error(error1);
+                                    }
+                                    );
                                 },
                                 error1 => {
                                   console.error(error1);
@@ -144,6 +165,14 @@ export class NewProviderComponent {
                   this.classifications_es.push(classi);
                 }
               });
+            },
+            error1 => {
+              console.error(error1);
+            }
+          );
+          this.procescoService.getActividadesEconomicasList().subscribe(
+            act_economicas => {
+            this.ciiuCodes = [...act_economicas];
             },
             error1 => {
               console.error(error1);
@@ -256,6 +285,7 @@ export class NewProviderComponent {
       this.placeholderSub.supplierGeneralInformation = "General Information of the company";
       this.placeholderSub.documentType = "Document Type";
       this.placeholderSub.chooseOne = "Choose one*";
+      this.placeholderSub.ciiu = "CIIU";
       this.placeholderSub.businessName = "Company name or full name*";
       this.placeholderSub.legalInformation = "Legal Information";
       this.placeholderSub.legalRepresentativeName = "Legal representative name and surname";
@@ -282,6 +312,7 @@ export class NewProviderComponent {
       this.placeholderSub.supplierGeneralInformation = "información general de proveedor";
       this.placeholderSub.documentType = "Tipo de documento";
       this.placeholderSub.chooseOne = "Elije uno*";
+      this.placeholderSub.ciiu = "CIIU";
       this.placeholderSub.businessName = "Razón social/Nombre completo*";
       this.placeholderSub.legalInformation = "Información Legal";
       this.placeholderSub.legalRepresentativeName = "Nombres y apellidos del representante legal:*";
@@ -371,7 +402,7 @@ export class NewProviderComponent {
     this.loading = true;
     const { country_id, classification_id, documentType_id, legalRepresentativeDocType_id } = this.preRegister;
     this.preRegister.country_id = country_id.id;
-    this.preRegister.classification_id = classification_id.id;
+    this.preRegister.classification_id = classification_id;
     this.preRegister.documentType_id = documentType_id.id;
     this.preRegister.legalRepresentativeDocType_id = legalRepresentativeDocType_id.id;
     this.procescoService.updateUser(this.preRegister, "pre-register").subscribe(

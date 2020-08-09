@@ -31,11 +31,12 @@
               <td>
                 {{user['pre_registro']['businessName']}}
               </td>
-              <td>{{ user['pre_registro']['commercialName'] || 'Sin diligenciar'}}</td>
-              <td>{{ user['pre_registro']['ciiu'] || 'Sin diligenciar'}}</td>
-              <td>{{ user['pre_registro']['documentType_id'] || 'Sin diligenciar'}}</td>
-              <td>{{ user['pre_registro']['documentNumber'] || 'Sin diligenciar'}}</td>
-              <td>{{ user['pre_registro']['documentIssued'] || 'Sin diligenciar'}}</td>
+              <!-- <td>{{ user['pre_registro']['commercialName'] || 'Sin diligenciar'}}</td> -->
+              <!-- <td>{{ user['pre_registro']['ciiu'] || 'Sin diligenciar'}}</td> -->
+              <!-- <td>{{ user['pre_registro']['documentType_id'] || 'Sin diligenciar'}}</td>
+              <td>{{ user['pre_registro']['documentNumber'] || 'Sin diligenciar'}}</td> -->
+              <td>{{user['pre_registro']['documentType_id']}} {{ user['pre_registro']['documentNumber'] || 'Sin diligenciar'}}</td> 
+              <!-- <td>{{ user['pre_registro']['documentIssued'] || 'Sin diligenciar'}}</td> -->
               <td>{{ user['pre_registro']['classification_id'] || 'Sin diligenciar'}}</td>
               <td>{{ user['pre_registro']['dpto'] || 'Sin diligenciar'}}</td>
               <td>{{ user['pre_registro']['city'] || 'Sin diligenciar'}}</td>
@@ -43,11 +44,11 @@
               <td>{{ user['pre_registro']['phone'] || 'Sin diligenciar'}}</td>
               <td>{{ user['pre_registro']['mobile'] || 'Sin diligenciar'}}</td>
               <td>{{ user['pre_registro']['email'] || 'Sin diligenciar'}}</td>
-              <td>{{states[user.currentStep]}}</td>
               <td>{{ user['pre_registro']['created_at'] || 'Sin diligenciar'}}</td>
-              <td>{{ user['pre_registro']['whoRefers'] || 'Sin diligenciar'}}</td>
+              <!-- <td>{{ user['pre_registro']['whoRefers'] || 'Sin diligenciar'}}</td> -->
               <td>{{(user.national === 1) ? 'Nacional' : 'Internacional'}}</td>
-              <td>{{user.status === 1 ? 'U' : 'A'}}</td>
+              <!-- <td>{{user.status === 1 ? 'U' : 'A'}}</td> -->
+              <td>{{states[user.currentStep]}} {{user.status === 1 ? '(U)' : '(A)'}}</td>
               <td>
                 <button class="acesco-button" (click)="onButtonClick(user);" [disabled]="user.status === 1">Seleccionar</button>
               </td>

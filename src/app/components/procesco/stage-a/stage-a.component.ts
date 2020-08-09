@@ -51,6 +51,7 @@ export class StageAComponent {
   paymentConditionToggles: any[] = [];
   currencies: any[] = [];
   languages: any[] = [];
+  ciiuCodes: any[] = [];
 
   constructor(
     private cdRef: ChangeDetectorRef,
@@ -73,6 +74,14 @@ export class StageAComponent {
 
                   this.stageA = { ...stage_a };
                   this.stageA["pep_info"] = JSON.parse(this.stageA["pep_info"]);
+                  this.procescoService.getActividadesEconomicasList().subscribe(
+                    act_economicas => {
+                    this.ciiuCodes = [...act_economicas];
+                    },
+                    error1 => {
+                      console.error(error1);
+                    }
+                  );
                 },
                 error1 => {
                   console.error(error1);
@@ -87,6 +96,14 @@ export class StageAComponent {
           this.procescoService.getLogedUser().subscribe(
             ({ currentStep }: any) => {
               this.step = currentStep;
+              this.procescoService.getActividadesEconomicasList().subscribe(
+                act_economicas => {
+                this.ciiuCodes = [...act_economicas];
+                },
+                error1 => {
+                  console.error(error1);
+                }
+              );
             },
             error1 => {
               console.error(error1);
@@ -146,11 +163,16 @@ export class StageAComponent {
       commercialReferenceName3: null,
       commercialReferencePhone3: null,
       commercialReferenceContact3: null,
-      personalReferenceName: null,
-      personalReferenceEmail: null,
-      personalReferencePosition: null,
-      personalReferencePhone: null,
-      personalReferenceMobile: null
+      // personalReferenceName: null,
+      // personalReferenceEmail: null,
+      // personalReferencePosition: null,
+      // personalReferencePhone: null,
+      // personalReferenceMobile: null,
+      bankReferenceName: null,
+      bankReferenceBranchName: null,
+      bankReferenceNameContact: null,
+      bankReferenceMobile: null,
+      bankReferenceEmail: null      
     };
     this.reserved_space = {
       language_id: null,
@@ -347,11 +369,16 @@ export class StageAComponent {
       commercialReferenceName3: "commercialReferenceName3",
       commercialReferencePhone3: 8478917259,
       commercialReferenceContact3: "commercialReferenceContact3",
-      personalReferenceName: "personalReferenceName",
-      personalReferenceEmail: "personalReferenceEmail",
-      personalReferencePosition: "personalReferencePosition",
-      personalReferencePhone: 8478917259,
-      personalReferenceMobile: 98479817421
+      // personalReferenceName: "personalReferenceName",
+      // personalReferenceEmail: "personalReferenceEmail",
+      // personalReferencePosition: "personalReferencePosition",
+      // personalReferencePhone: 8478917259,
+      // personalReferenceMobile: 98479817421
+      bankReferenceName: "bankReferenceName",
+      bankReferenceBranchName: "bankReferenceBranchName",
+      bankReferenceNameContact: "bankReferenceNameContact",
+      bankReferenceMobile: 98479817421,
+      bankReferenceEmail: "bankReferenceEmail" 
     };
   }
 

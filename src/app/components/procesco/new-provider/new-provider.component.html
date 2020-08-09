@@ -202,8 +202,8 @@
                   >
                     <option [ngValue]="null">{{placeholderSub?.classification}}*</option>
                     <option 
-                      *ngFor="let classification of (language == 1 ? classifications_es : classifications_en)"
-                      [ngValue]="classification"
+                      *ngFor="let classification of classifications"
+                      [ngValue]="classification.id"
                       >{{ language == 1 ? classification.classification : classification.classification_en }}</option>
                   </select>
                   <div
@@ -408,7 +408,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6" *ngIf="language == 1">
+              <div class="col-5" *ngIf="language == 1">
                 <div class="form-group">
                   <input
                     type="text"
@@ -434,7 +434,32 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6" *ngIf="language == 1">
+              <div class="form-group col-1">
+                <p class="text-center mt-1">{{placeholderSub?.ciiu}}</p>
+              </div>
+              <div class="form-group col-6">
+                <select
+                  class="form-control"
+                  [(ngModel)]="preRegister.ciiu"
+                  [ngClass]="{
+                    'is-invalid':
+                    ciiu.errors?.required &&
+                    ciiu.touched
+                  }"
+                  name="ciiu"
+                  #ciiu="ngModel"
+                  required
+                  [disabled]="isAdminUser || loading"
+                >
+                  <option [ngValue]="null">{{placeholderSub?.ciiu}}</option>
+                  <option
+                    *ngFor="let ciiuCode of ciiuCodes"
+                    [ngValue]="ciiuCode.id"
+                    >{{ ciiuCode.codigo }} | {{ ciiuCode.descripcion }}</option
+                  >
+                </select>
+              </div>
+              <!-- <div class="col-6" *ngIf="language == 1">
                 <div class="form-group">
                   <input
                     type="text"
@@ -453,7 +478,7 @@
                     <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
             <app-form-title [text]="placeholderSub?.legalInformation"></app-form-title>
             <div class="row mt-3">

@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row" *ngIf="!__approved">
       <div class="col-12 text-white text-center mt-5">
-        <h4 class="mt-5">Pre Selección Estapa A</h4>
+        <h4 class="mt-5">Información Financiera</h4>
         <hr class="whiteLine" />
       </div>
     </div>
@@ -384,7 +384,7 @@
                 </div>
               </div>
               <div class="col-12 border-left border-right border-bottom">
-                <p>Impuesto de industria y comercio</p>
+                <b>Impuesto de industria y comercio</b>
                 <div class="row">
                   <div class="col-2">
                     <ul class="list-inline">
@@ -402,7 +402,7 @@
                       </li>
                     </ul>
                   </div>
-                  <div class="col-5">
+                  <!-- <div class="col-5">
                     <div class="form-group">
                       <input
                         type="number"
@@ -435,8 +435,33 @@
                         >
                       </div>
                     </div>
+                  </div> -->
+                  <!-- <div class="form-group col-1">
+                    <p class="text-center mt-1">{{placeholderSub?.ciiu}}</p>
+                  </div> -->
+                  <div class="form-group col-6">
+                    <select
+                      class="form-control"
+                      [(ngModel)]="stageA.industryAndCommerceTaxCodBogota"
+                      [ngClass]="{
+                        'is-invalid':
+                        industryAndCommerceTaxCodBogota.errors?.required &&
+                        industryAndCommerceTaxCodBogota.touched
+                      }"
+                      name="industryAndCommerceTaxCodBogota"
+                      #industryAndCommerceTaxCodBogota="ngModel"
+                      required
+                      [disabled]="isAdminUser || loading || !stageA.industryAndCommerceTaxBogota"
+                    >
+                      <option [ngValue]="null">CIIU*</option>
+                      <option style="max-width: 50px;"
+                        *ngFor="let ciiuCode of ciiuCodes"
+                        [ngValue]="ciiuCode.id"
+                        >{{ ciiuCode.codigo }} | {{ ciiuCode.descripcion }}</option
+                      >
+                    </select>
                   </div>
-                  <div class="col-5">
+                  <div class="col-3">
                     <div class="form-group">
                       <input
                         type="text"
@@ -489,7 +514,7 @@
                       </li>
                     </ul>
                   </div>
-                  <div class="col-5">
+                  <!-- <div class="col-5">
                     <div class="form-group">
                       <input
                         type="number"
@@ -522,8 +547,30 @@
                         >
                       </div>
                     </div>
+                  </div> -->
+                  <div class="form-group col-6">
+                    <select
+                      class="form-control"
+                      [(ngModel)]="stageA.industryAndCommerceTaxCodMalambo"
+                      [ngClass]="{
+                        'is-invalid':
+                        industryAndCommerceTaxCodMalambo.errors?.required &&
+                        industryAndCommerceTaxCodMalambo.touched
+                      }"
+                      name="industryAndCommerceTaxCodMalambo"
+                      #industryAndCommerceTaxCodMalambo="ngModel"
+                      required
+                      [disabled]="isAdminUser || loading || !stageA.industryAndCommerceTaxMalambo"
+                    >
+                      <option [ngValue]="null">CIIU*</option>
+                      <option style="max-width: 50px;"
+                        *ngFor="let ciiuCode of ciiuCodes"
+                        [ngValue]="ciiuCode.id"
+                        >{{ ciiuCode.codigo }} | {{ ciiuCode.descripcion }}</option
+                      >
+                    </select>
                   </div>
-                  <div class="col-5">
+                  <div class="col-3">
                     <div class="form-group">
                       <input
                         type="text"
@@ -565,7 +612,6 @@
                     <div class="form-group">
                       <input
                         type="text"
-                        appMycurrency
                         class="form-control"
                         placeholder="Otro*"
                         [(ngModel)]="stageA.industryAndCommerceTaxOther"
@@ -582,7 +628,7 @@
                       />
                     </div>
                   </div>
-                  <div class="col-4">
+                  <!-- <div class="col-4">
                     <div class="form-group">
                       <input
                         type="number"
@@ -601,8 +647,30 @@
                         "
                       />
                     </div>
+                  </div> -->
+                  <div class="form-group col-6">
+                    <select
+                      class="form-control"
+                      [(ngModel)]="stageA.industryAndCommerceTaxOther"
+                      [ngClass]="{
+                        'is-invalid':
+                        industryAndCommerceTaxOther.errors?.required &&
+                        industryAndCommerceTaxOther.touched
+                      }"
+                      name="industryAndCommerceTaxOther"
+                      #industryAndCommerceTaxOther="ngModel"
+                      required
+                      [disabled]="isAdminUser || loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo"
+                    >
+                      <option [ngValue]="null">CIIU*</option>
+                      <option style="max-width: 50px;"
+                        *ngFor="let ciiuCode of ciiuCodes"
+                        [ngValue]="ciiuCode.id"
+                        >{{ ciiuCode.codigo }} | {{ ciiuCode.descripcion }}</option
+                      >
+                    </select>
                   </div>
-                  <div class="col-5">
+                  <div class="col-3">
                     <div class="form-group">
                       <input
                         type="text"
@@ -659,7 +727,7 @@
                     type="text"
                     class="form-control"
                     appMycurrency
-                    placeholder="Ingresos operacionales*"
+                    placeholder="($) Ingresos operacionales*"
                     [(ngModel)]="stageA.tributaryOperationalIncome"
                     [ngClass]="{
                       'is-invalid':
@@ -974,22 +1042,22 @@
                     type="text"
                     class="form-control"
                     placeholder="Entidad bancaria*"
-                    [(ngModel)]="stageA.personalReferenceName"
+                    [(ngModel)]="stageA.bankReferenceName"
                     [ngClass]="{
                       'is-invalid':
-                        personalReferenceName.errors?.required &&
-                        personalReferenceName.touched
+                      bankReferenceName.errors?.required &&
+                      bankReferenceName.touched
                     }"
-                    name="personalReferenceName"
+                    name="bankReferenceName"
                     minlength="2"
-                    #personalReferenceName="ngModel"
+                    #bankReferenceName="ngModel"
                     required
                     [disabled]="isAdminUser || loading"
                   />
                   <div
                     *ngIf="
-                      personalReferenceName.errors?.required &&
-                      personalReferenceName.touched
+                    bankReferenceName.errors?.required &&
+                    bankReferenceName.touched
                     "
                   >
                     <span class="text-danger">Este campo es obligatorio</span>
@@ -1002,22 +1070,22 @@
                     type="text"
                     class="form-control"
                     placeholder="Sucursal bancaria*"
-                    [(ngModel)]="stageA.personalReferenceEmail"
+                    [(ngModel)]="stageA.bankReferenceBranchName"
                     [ngClass]="{
                       'is-invalid':
-                        personalReferenceEmail.errors?.required &&
-                        personalReferenceEmail.touched
+                        bankReferenceBranchName.errors?.required &&
+                        bankReferenceBranchName.touched
                     }"
-                    name="personalReferenceEmail"
+                    name="bankReferenceBranchName"
                     minlength="2"
-                    #personalReferenceEmail="ngModel"
+                    #bankReferenceBranchName="ngModel"
                     required
                     [disabled]="isAdminUser || loading"
                   />
                   <div
                     *ngIf="
-                      personalReferenceEmail.errors?.required &&
-                      personalReferenceEmail.touched
+                      bankReferenceBranchName.errors?.required &&
+                      bankReferenceBranchName.touched
                     "
                   >
                     <span class="text-danger">Este campo es obligatorio</span>
@@ -1032,22 +1100,22 @@
                     type="text"
                     class="form-control"
                     placeholder="Funcionario*"
-                    [(ngModel)]="stageA.personalReferencePosition"
+                    [(ngModel)]="stageA.bankReferenceNameContact"
                     [ngClass]="{
                       'is-invalid':
-                        personalReferencePosition.errors?.required &&
-                        personalReferencePosition.touched
+                        bankReferenceNameContact.errors?.required &&
+                        bankReferenceNameContact.touched
                     }"
-                    name="personalReferencePosition"
+                    name="bankReferenceNameContact"
                     minlength="2"
-                    #personalReferencePosition="ngModel"
+                    #bankReferenceNameContact="ngModel"
                     required
                     [disabled]="isAdminUser || loading"
                   />
                   <div
                     *ngIf="
-                      personalReferencePosition.errors?.required &&
-                      personalReferencePosition.touched
+                      bankReferenceNameContact.errors?.required &&
+                      bankReferenceNameContact.touched
                     "
                   >
                     <span class="text-danger">Este campo es obligatorio</span>
@@ -1060,22 +1128,23 @@
                     type="number"
                     class="form-control"
                     placeholder="Teléfono/Celular:*"
-                    [(ngModel)]="stageA.personalReferencePhone"
+                    [(ngModel)]="stageA.bankReferenceMobile"
                     [ngClass]="{
                       'is-invalid':
-                        personalReferencePhone.errors?.required &&
-                        personalReferencePhone.touched
+                        bankReferenceMobile.errors?.required &&
+                        bankReferenceMobile.touched
                     }"
-                    name="personalReferencePhone"
+                    name="bankReferenceMobile"
                     minlength="2"
-                    #personalReferencePhone="ngModel"
+                    maxlength="20"
+                    #bankReferenceMobile="ngModel"
                     required
                     [disabled]="isAdminUser || loading"
                   />
                   <div
                     *ngIf="
-                      personalReferencePhone.errors?.required &&
-                      personalReferencePhone.touched
+                      bankReferenceMobile.errors?.required &&
+                      bankReferenceMobile.touched
                     "
                   >
                     <span class="text-danger">Este campo es obligatorio</span>
@@ -1088,22 +1157,22 @@
                     type="text"
                     class="form-control"
                     placeholder="E-mail:*"
-                    [(ngModel)]="stageA.personalReferenceMobile"
+                    [(ngModel)]="stageA.bankReferenceEmail"
                     [ngClass]="{
                       'is-invalid':
-                        personalReferenceMobile.errors?.required &&
-                        personalReferenceMobile.touched
+                      bankReferenceEmail.errors?.required &&
+                        bankReferenceEmail.touched
                     }"
-                    name="personalReferenceMobile"
+                    name="bankReferenceEmail"
                     minlength="2"
-                    #personalReferenceMobile="ngModel"
+                    #bankReferenceEmail="ngModel"
                     required
                     [disabled]="isAdminUser || loading"
                   />
                   <div
                     *ngIf="
-                      personalReferenceMobile.errors?.required &&
-                      personalReferenceMobile.touched
+                      bankReferenceEmail.errors?.required &&
+                      bankReferenceEmail.touched
                     "
                   >
                     <span class="text-danger">Este campo es obligatorio</span>
@@ -1112,7 +1181,7 @@
               </div>
             </div>
             <app-form-title
-              [text]="'espacio reservado para la compañia acesco'"
+              [text]="'espacio reservado para la compañía acesco'"
               *ngIf="isAdminUser"
             ></app-form-title>
             <div class="row" *ngIf="isAdminUser">

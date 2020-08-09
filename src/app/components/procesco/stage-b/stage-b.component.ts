@@ -137,7 +137,7 @@ export class StageBComponent {
 
     this.lists = {
       selfEvaluation: true,
-      manifest: false,
+      manifest: true,
       physicalSecurityAgreements: false
     };
     this.selfEvaluationToggles = [

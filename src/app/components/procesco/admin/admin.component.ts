@@ -23,15 +23,16 @@ export class AdminComponent {
 
   constructor(public procescoService: ProcescoService, private router: Router) {
     this.loading = true;
-    this.states = ["Pre selección", "Etapa A", "Etapa B", "Seleccionado"];
+    this.states = ["Registro", "Información Financiera", "Control Documental", "Seleccionado"];
     this.tableTitles = [
       { label: "id" },
       { label: "Razón Social" },
-      { label: "Razón Comercial" },
-      { label: "Codigo CIUU" },
-      { label: "Tipo Identificación" },
-      { label: "Numero Identificación" },
-      { label: "Ciudad Exp IDE" },
+      // { label: "Razón Comercial" },
+      // { label: "Codigo CIUU" },
+      { label: "Identificación" },
+      // { label: "Tipo Identificación" },
+      // { label: "Numero Identificación" },
+      // { label: "Ciudad Exp IDE" },
       { label: "Tipo Clasific." },
       { label: "Departamento" },
       { label: "Ciudad" },
@@ -39,11 +40,11 @@ export class AdminComponent {
       { label: "Teléfono" },
       { label: "Celular" },
       { label: "Email" },
-      { label: "Estado" },
       { label: "Fecha Elaboración" },
-      { label: "Persona contacto Acesco" },
+      // { label: "Persona contacto Acesco" },
       { label: "Tipo Perfil" },
-      { label: "Tipo Estado Rol" },
+      { label: "Estado" },
+      // { label: "Tipo Estado Rol" },
       { label: "" }
     ];
     this.procescoService.getAllUsers().subscribe((response: any) => {
