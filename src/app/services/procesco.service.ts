@@ -107,7 +107,11 @@ export class ProcescoService {
     const headers = this.getHeader();
     return this.http.put(url, params, { headers });
   }
-
+  getRepresentative(id: number) {
+    const url = `${this.nodeUrl}/representative/${id}}`;
+    const headers = this.getHeader();
+    return this.http.get(url, { headers });
+  }
   getUserById(id: any) {
     const url = `${this.nodeUrl}/users/${id}}`;
     const headers = this.getHeader();
