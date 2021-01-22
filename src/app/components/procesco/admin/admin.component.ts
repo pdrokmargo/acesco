@@ -72,7 +72,7 @@ export class AdminComponent {
       this.loading = false;
       this.procescoService
         .getClassificationsList()
-        .subscribe((classifications: any) => {
+        .subscribe((classifications: any) => {          
           this.userList.forEach(user => {
             const selectedClass = classifications.find(
               classification =>
@@ -120,7 +120,6 @@ export class AdminComponent {
   }
 
   search(searchText: any) {
-    console.log('entro');
     this.procescoService.getAllUsers(searchText).subscribe(
       (response: any) => {
         this.userList = response.data;
