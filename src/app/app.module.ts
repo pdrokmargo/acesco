@@ -8,6 +8,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { ROUTES } from "./app.routes";
 
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { AppComponent } from "./app.component";
 import { MainComponent } from "./components/main/main.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
@@ -89,7 +90,8 @@ import { SistemaPinturasComponent } from './components/sistema-pinturas/sistema-
     FormsModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added
+    AutocompleteLibModule
   ],
   providers: [MyCurrencyPipe],
   bootstrap: [AppComponent]

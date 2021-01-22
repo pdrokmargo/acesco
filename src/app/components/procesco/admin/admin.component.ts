@@ -120,6 +120,7 @@ export class AdminComponent {
   }
 
   search(searchText: any) {
+    console.log('entro');
     this.procescoService.getAllUsers(searchText).subscribe(
       (response: any) => {
         this.userList = response.data;
