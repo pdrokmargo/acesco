@@ -79,10 +79,13 @@ export class StageAComponent {
                   this.procescoService.getActividadesEconomicasList().subscribe(
                     act_economicas => {
                     this.ciiuCodes = [...act_economicas];
+                    const ciuuInitialOne = this.ciiuCodes.find(item => item.id === stage_a.industryAndCommerceTaxCodBogota);
+                    const ciuuInitialTwo = this.ciiuCodes.find(item => item.id === stage_a.industryAndCommerceTaxCodMalambo);
+                    const ciuuInitialThree = this.ciiuCodes.find(item => item.id === stage_a.industryAndCommerceTaxCodOther);
                     this.ciiuInitial = [
-                      this.ciiuCodes.find(item => item.id === stage_a.industryAndCommerceTaxCodBogota).descripcion || '',
-                      this.ciiuCodes.find(item => item.id === stage_a.industryAndCommerceTaxCodMalambo).descripcion || '',
-                      this.ciiuCodes.find(item => item.id === stage_a.industryAndCommerceTaxCodOther).descripcion || '',
+                      ciuuInitialOne ? ciuuInitialOne.descripcion : '',
+                      ciuuInitialTwo ? ciuuInitialTwo.descripcion : '',
+                      ciuuInitialThree ? ciuuInitialThree.descripcion : '',
                     ];
                     },
                     error1 => {
