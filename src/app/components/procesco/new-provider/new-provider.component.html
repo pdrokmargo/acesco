@@ -167,10 +167,10 @@
             <div class="row mt-5">
               <div class="col-6">
                 <div class="form-group">
+                  <label>Fecha de desvinculación*</label>
                   <input
                     type="date"
                     class="form-control"
-                    placeholder="Fecha de desvinculación*"
                     [(ngModel)]="preRegister.created_at"
                     name="created_at"
                     minlength="2"
@@ -182,10 +182,10 @@
               </div>
               <div class="col-6">
                 <div class="form-group">
+                  <label>{{placeholderSub?.whoRefers}}</label>
                   <input
                     type="text"
                     class="form-control"
-                    [placeholder]="placeholderSub?.whoRefers"
                     [(ngModel)]="preRegister.whoRefers"
                     [ngClass]="{
                       'is-invalid':
@@ -202,9 +202,19 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-8">
                 <div class="form-group">
-                  
+                  <label>
+                    {{placeholderSub?.classification}}*(
+                    <span>
+                      {{placeholderSub?.chooseSocialObject}}
+                      <a
+                        class="text-primary link"
+                        target="_blank"
+                        routerLink="descripciones"
+                        >{{placeholderSub?.seeDescriptions}}</a>
+                    </span>)
+                  </label>
                   <select 
                     class="form-control"
                     [(ngModel)]="preRegister.classification_id"
@@ -218,7 +228,7 @@
                     #classification_id="ngModel"
                     [disabled]="isAdminUser || loading"
                   >
-                    <option [ngValue]="null">{{placeholderSub?.classification}}*</option>
+                    <option [ngValue]="null">-- Seleccione una opción --</option>
                     <option 
                       *ngFor="let classification of classifications"
                       [ngValue]="classification.id"
@@ -234,7 +244,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6">
+              <!--div class="col-6">
                 <p>
                   {{placeholderSub?.chooseSocialObject}}
                   <a
@@ -243,9 +253,10 @@
                     routerLink="descripciones"
                     >{{placeholderSub?.seeDescriptions}}</a>
                 </p>
-              </div>
+              </div -->
               <div class="col-12">
                 <div class="form-group">
+                  <label>{{placeholderSub?.descriptionServiceOrGoodOffered}}</label>
                   <textarea
                     class="form-control"
                     rows="6"
@@ -258,7 +269,6 @@
                     name="serviceDescription"
                     #serviceDescription="ngModel"
                     [disabled]="isAdminUser || loading"
-                    [placeholder]="placeholderSub?.descriptionServiceOrGoodOffered"
                     maxlength="200"
                     required
                   ></textarea>
@@ -275,91 +285,108 @@
             </div>
             <app-form-title [text]="placeholderSub?.supplierGeneralInformation"></app-form-title>
             <div class="row mt-3">
-              <div class="col-12">
-                <div class="form-row">
-                  <div class="form-group col-3">
-                    <p class="text-center mt-1">{{placeholderSub?.documentType}}</p>
-                  </div>
-                  <div class="form-group col-2">
-                    <select
-                      class="form-control"
-                      [(ngModel)]="preRegister.documentType_id"
-                      [ngClass]="{
-                        'is-invalid':
-                          documentType_id.errors?.required &&
-                          documentType_id.touched
-                      }"
-                      name="documentType_id"
-                      #documentType_id="ngModel"
-                      required
-                      [disabled]="isAdminUser || loading"
-                    >
-                      <option [ngValue]="null">{{placeholderSub?.chooseOne}}</option>
-                      <option
-                        *ngFor="let documentRef of documentTypes"
-                        [ngValue]="documentRef"
-                        >{{ documentRef.description }}</option>
-                    </select>
-                    <div
-                      *ngIf="
+              <div class="col-4">
+                <div class="form-group">
+                  <label>{{placeholderSub?.documentType}}</label>
+                  <select
+                    class="form-control"
+                    [(ngModel)]="preRegister.documentType_id"
+                    [ngClass]="{
+                      'is-invalid':
                         documentType_id.errors?.required &&
                         documentType_id.touched
-                      "
-                    >
-                      <span class="text-danger">{{placeholderSub?.requiredField}}</span>
-                    </div>
-                  </div>
-
-                  <div class="form-group col-md-5">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="No.:*"
-                      [disabled]="true"
-                      required
-                      name="documentNumber"
-                      #documentNumber="ngModel"
-                      [(ngModel)]="preRegister.documentNumber"
-                      [ngClass]="{
-                        'is-invalid':
-                          documentNumber.errors?.required &&
-                          documentNumber.touched
                       }"
-                    />
-                    <div
-                      *ngIf="
+                    name="documentType_id"
+                    #documentType_id="ngModel"
+                    required
+                    [disabled]="isAdminUser || loading"
+                  >
+                    <option [ngValue]="null">{{placeholderSub?.chooseOne}}</option>
+                    <option
+                      *ngFor="let documentRef of documentTypes"
+                      [ngValue]="documentRef"
+                    >{{ documentRef.description }}</option>
+                  </select>
+                  <div
+                    *ngIf="
+                      documentType_id.errors?.required &&
+                      documentType_id.touched
+                    "
+                  >
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <label>Número de documento</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [disabled]="true"
+                    required
+                    name="documentNumber"
+                    #documentNumber="ngModel"
+                    [(ngModel)]="preRegister.documentNumber"
+                    [ngClass]="{
+                      'is-invalid':
                         documentNumber.errors?.required &&
                         documentNumber.touched
-                      "
-                    >
-                      <span class="text-danger">{{placeholderSub?.requiredField}}</span>
-                    </div>
+                    }"
+                  />
+                  <div
+                    *ngIf="
+                      documentNumber.errors?.required &&
+                      documentNumber.touched
+                    "
+                  >
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                   </div>
-                  <div class="form-group col-md-2" *ngIf="language == 1">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="De:*"
-                      [disabled]="isAdminUser || loading"
-                      required
-                      [(ngModel)]="preRegister.documentIssued"
-                      [ngClass]="{
-                        'is-invalid':
-                          documentIssued.errors?.required &&
-                          documentIssued.touched
-                      }"
-                      name="documentIssued"
-                      #documentIssued="ngModel"
-                    />
-                    <div
-                      *ngIf="
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group" *ngIf="language == 1">
+                  <label>Expedida en </label>
+                  <ng-autocomplete
+                    [initialValue]="documentIssuedInitial"
+                    [data]="cityList"
+                    (selected)='selectCity($event)'
+                    [itemTemplate]="itemTemplate"
+                    [disabled]="isAdminUser || loading"
+                    [notFoundTemplate]="notFoundTemplate">                                 
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                    <a>
+                      <span [innerHTML]="item"></span>
+                    </a>
+                  </ng-template>
+                    
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                  <!--input
+                    type="text"
+                    class="form-control"
+                    [disabled]="isAdminUser || loading"
+                    required
+                    [(ngModel)]="preRegister.documentIssued"
+                    [ngClass]="{
+                      'is-invalid':
                         documentIssued.errors?.required &&
                         documentIssued.touched
-                      "
-                    >
-                      <span class="text-danger">{{placeholderSub?.requiredField}}</span>
-                    </div>
-                  </div>
+                    }"
+                    name="documentIssued"
+                    #documentIssued="ngModel"
+                  />
+                  <div
+                    *ngIf="
+                      documentIssued.errors?.required &&
+                      documentIssued.touched
+                    "
+                  >
+                    <span class="text-danger">{{placeholderSub?.requiredField}}</span>
+                  </div -->
                 </div>
               </div>
               <div class="col-12" *ngIf="showNaturalPersonaBody()">
@@ -403,10 +430,10 @@
               </div>
               <div class="col-12 mt-3">
                 <div class="form-group">
+                  <label>{{placeholderSub?.businessName}}</label>
                   <input
                     type="text"
                     class="form-control"
-                    [placeholder]="placeholderSub?.businessName"
                     [disabled]="isAdminUser || loading"
                     required
                     [(ngModel)]="preRegister.businessName"
@@ -426,12 +453,12 @@
                   </div>
                 </div>
               </div>
-              <div class="col-5" *ngIf="language == 1">
+              <div class="col-6" *ngIf="language == 1">
                 <div class="form-group">
+                  <label>Razón comercial*</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Razón comercial*"
                     [disabled]="isAdminUser || loading"
                     required
                     [(ngModel)]="preRegister.commercialName"
@@ -452,30 +479,51 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group col-1">
-                <p class="text-center mt-1">{{placeholderSub?.ciiu}}</p>
-              </div>
-              <div class="form-group col-6">
-                <select
-                  class="form-control"
-                  [(ngModel)]="preRegister.ciiu"
-                  [ngClass]="{
-                    'is-invalid':
-                    ciiu.errors?.required &&
-                    ciiu.touched
-                  }"
-                  name="ciiu"
-                  #ciiu="ngModel"
-                  required
-                  [disabled]="isAdminUser || loading"
-                >
-                  <option [ngValue]="null">{{placeholderSub?.ciiu}}</option>
-                  <option
-                    *ngFor="let ciiuCode of ciiuCodes"
-                    [ngValue]="ciiuCode.id"
-                    >{{ ciiuCode.codigo }} | {{ ciiuCode.descripcion }}</option
+              <div class="col-6">
+                <div class="form-group">
+                  <label>{{placeholderSub?.ciiu}}</label>
+                  <ng-autocomplete
+                    [initialValue]="ciiuInitial"
+                    [data]="ciiuCodes"
+                    [searchKeyword]="keyword"
+                    (selected)='selectEvent($event)'
+                    [disabled]="isAdminUser || loading"
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate">                                 
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                    <a>
+                      <span [innerHTML]="item.codigo"></span>
+                      |
+                      <span [innerHTML]="item.descripcion"></span>
+                    </a>
+                  </ng-template>
+                    
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                  <!--select
+                    class="form-control"
+                    [(ngModel)]="preRegister.ciiu"
+                    [ngClass]="{
+                      'is-invalid':
+                      ciiu.errors?.required &&
+                      ciiu.touched
+                    }"
+                    name="ciiu"
+                    #ciiu="ngModel"
+                    required
+                    [disabled]="isAdminUser || loading"
                   >
-                </select>
+                    <option [ngValue]="null"></option>
+                    <option
+                      *ngFor="let ciiuCode of ciiuCodes"
+                      [ngValue]="ciiuCode.id"
+                      >{{ ciiuCode.codigo }} | {{ ciiuCode.descripcion }}</option
+                    >
+                  </select-->
+                </div>
               </div>
               <!-- <div class="col-6" *ngIf="language == 1">
                 <div class="form-group">
@@ -500,13 +548,10 @@
             </div>
             <app-form-title [text]="placeholderSub?.legalInformation"></app-form-title>
             <div class="row mt-3">
-              <div class="col-12">
-                <div class="form-row">
-                  <div class="form-group col-3">
-                    <p class="text-center mt-1">{{placeholderSub?.documentType}}</p>
-                  </div>
-                  <div class="form-group col-2">
-                    <select
+              <div class="col-6">
+                <div class="form-group">
+                  <label>{{placeholderSub?.documentType}}</label>
+                  <select
                       class="form-control"
                       [(ngModel)]="preRegister.legalRepresentativeDocType_id"
                       [ngClass]="{
@@ -534,13 +579,14 @@
                     >
                       <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                     </div>
-                  </div>
-
-                  <div class="form-group col-md-6">
-                    <input
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Número de documento</label>
+                  <input
                       type="text"
                       class="form-control"
-                      placeholder="No.:*"
                       [disabled]="false"
                       required
                       name="legalRepresentativeDocNumber"
@@ -560,15 +606,14 @@
                     >
                       <span class="text-danger">{{placeholderSub?.requiredField}}</span>
                     </div>
-                  </div>
                 </div>
               </div>
               <div class="col-12">
                   <div class="form-group">
+                    <label>{{placeholderSub?.legalRepresentativeName}}</label>
                     <input
                       type="text"
                       class="form-control"
-                      [placeholder]="placeholderSub?.legalRepresentativeName"
                       [disabled]="isAdminUser || loading"
                       required
                       [(ngModel)]="preRegister.legalRepresentative"
@@ -591,10 +636,10 @@
 
               <div class="col-4" *ngIf="language == 1">
                 <div class="form-group">
+                  <label>Profesión u oficio:*</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Profesión u oficio:*"
                     [disabled]="isAdminUser || loading"
                     required
                     [(ngModel)]="preRegister.profession"
@@ -614,10 +659,11 @@
               </div>
               <div class="col-4" *ngIf="language == 1">
                 <div class="form-group">
+                  <label>Tarjeta o registro profesional No:</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Tarjeta o registro profesional No:"
+                    placeholder=""
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.professionalCard"
                     [ngClass]="{
@@ -632,10 +678,11 @@
               </div>
               <div class="col-4" *ngIf="language == 1">
                 <div class="form-group">
+                  <label>Expedido por:</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Expedido por:"
+                    placeholder=""
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.issuedBy"
                     [ngClass]="{
@@ -654,10 +701,10 @@
             <div class="row mt-3">
               <div class="col 8">
                 <div class="form-group">
+                  <label>{{placeholderSub?.contactName}}</label>
                   <input
                     type="text"
                     class="form-control"
-                    [placeholder]="placeholderSub?.contactName"
                     [disabled]="isAdminUser || loading"
                     required
                     [(ngModel)]="preRegister.contactName"
@@ -677,10 +724,10 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>{{placeholderSub?.position}}</label>
                   <input
                     type="text"
                     class="form-control"
-                    [placeholder]="placeholderSub?.position"
                     [disabled]="isAdminUser || loading"
                     required
                     [(ngModel)]="preRegister.position"
@@ -698,10 +745,10 @@
               </div>
               <div class="col-8">
                 <div class="form-group">
+                  <label>{{placeholderSub?.address}}</label>
                   <input
                     type="text"
                     class="form-control"
-                    [placeholder]="placeholderSub?.address"
                     required
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.address"
@@ -719,6 +766,7 @@
               <div class="col-4">
                 <div class="form-group">
                   <div class="form-group">
+                    <label>País</label>
                     <select
                       class="form-control"
                       [(ngModel)]="preRegister.country_id"
@@ -748,10 +796,10 @@
 
               <div class="col-4">
                 <div class="form-group">
+                  <label>{{placeholderSub?.state}}</label>
                   <input
                     type="text"
                     class="form-control"
-                    [placeholder]="placeholderSub?.state"
                     required
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.dpto"
@@ -768,10 +816,10 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>{{placeholderSub?.city}}</label>
                   <input
                     type="text"
                     class="form-control"
-                    [placeholder]="placeholderSub?.city"
                     required
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.city"
@@ -788,10 +836,10 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>{{placeholderSub?.zipCode}}</label>
                   <input
                     type="number"
                     class="form-control"
-                    [placeholder]="placeholderSub?.zipCode"
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.zipcode"
                     [ngClass]="{
@@ -807,10 +855,10 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>{{placeholderSub?.telephone}}</label>
                   <input
                     type="number"
                     class="form-control"
-                    [placeholder]="placeholderSub?.telephone"
                     required
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.phone"
@@ -827,10 +875,10 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>{{placeholderSub?.mobile}}</label>
                   <input
                     type="number"
                     class="form-control"
-                    [placeholder]="placeholderSub?.mobile"
                     required
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.mobile"
@@ -847,10 +895,11 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>Fax:</label>
                   <input
                     type="number"
                     class="form-control"
-                    placeholder="Fax:"
+                    placeholder=""
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.fax"
                     name="fax"
@@ -860,10 +909,11 @@
               </div>
               <div class="col-6">
                 <div class="form-group">
+                  <label>E-mail:*</label>
                   <input
                     type="email"
                     class="form-control"
-                    placeholder="E-mail:*"
+                    placeholder=""
                     required
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.email"
@@ -880,10 +930,10 @@
               </div>
               <div class="col-6">
                 <div class="form-group">
+                  <label>{{placeholderSub?.website}}</label>
                   <input
                     type="text"
                     class="form-control"
-                    [placeholder]="placeholderSub?.website"
                     [disabled]="isAdminUser || loading"
                     [(ngModel)]="preRegister.website"
                     name="website"
@@ -989,10 +1039,10 @@
                   <span *ngIf="language == 1">SI</span><span *ngIf="language == 0">YES</span></span
                 >
                 <div class="form-group">
+                  <label>{{placeholderSub?.which}}</label>
                   <input
                     type="text"
                     class="form-control"
-                    [placeholder]="placeholderSub?.which"
                     [disabled]="
                       isAdminUser ||
                       !preRegister.socialResponsability ||
@@ -1017,10 +1067,10 @@
                   <span *ngIf="language == 1">SI</span><span *ngIf="language == 0">YES</span></span
                 >
                 <div class="form-group">
+                  <label>{{placeholderSub?.which}}</label>
                   <input
                     type="text"
                     class="form-control"
-                    [placeholder]="placeholderSub?.which"
                     [disabled]="isAdminUser || !preRegister.productSeal || loading"
                     [(ngModel)]="preRegister.productSealName"
                     name="productSealName"

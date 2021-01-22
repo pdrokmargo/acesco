@@ -50,10 +50,11 @@
               </div>
               <div *ngIf="stageA.pep" class="mt-3 col-6">
                 <div class="form-group">
+                  <label>Nombres y Apellidos*</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Nombres y Apellidos*"
+                    placeholder=""
                     [(ngModel)]="stageA.pep_name"
                     [ngClass]="{
                       'is-invalid':
@@ -72,10 +73,11 @@
               </div>
               <div *ngIf="stageA.pep" class="mt-3 col-6">
                 <div class="form-group">
+                  <label>Identificación*</label>
                   <input
                     type="number"
                     class="form-control"
-                    placeholder="Identificación*"
+                    placeholder=""
                     [(ngModel)]="stageA.pep_identification"
                     [ngClass]="{
                       'is-invalid':
@@ -100,10 +102,11 @@
               </div>
               <div *ngIf="stageA.pep" class="col-6">
                 <div class="form-group">
+                  <label>Cargo en la sociedad*</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Cargo en la sociedad*"
+                    placeholder=""
                     [(ngModel)]="stageA.society_position"
                     [ngClass]="{
                       'is-invalid':
@@ -128,10 +131,11 @@
               </div>
               <div *ngIf="stageA.pep" class="col-6">
                 <div class="form-group">
+                  <label>Cargo público*</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Cargo público*"
+                    placeholder=""
                     [(ngModel)]="stageA.public_position"
                     [ngClass]="{
                       'is-invalid':
@@ -258,10 +262,11 @@
                   <b> SI</b>
                 </p>
                 <div class="form-group">
+                  <label>Res. No.*</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Res. No.*"
+                    placeholder=""
                     [(ngModel)]="stageA.greatContributorRes"
                     [ngClass]="{
                       'is-invalid':
@@ -286,6 +291,7 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label>Fecha de resolución</label>
                   <input
                     type="date"
                     class="form-control"
@@ -327,10 +333,11 @@
                   <b> SI</b>
                 </p>
                 <div class="form-group">
+                  <label>Res. No.*</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Res. No.*"
+                    placeholder=""
                     [(ngModel)]="stageA.selfWithholdingByRentRes"
                     [ngClass]="{
                       'is-invalid':
@@ -355,6 +362,7 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label>Fecha de resolución</label>
                   <input
                     type="date"
                     class="form-control"
@@ -386,7 +394,7 @@
               <div class="col-12 border-left border-right border-bottom">
                 <b>Impuesto de industria y comercio</b>
                 <div class="row">
-                  <div class="col-2">
+                  <div class="col-2 pt-4">
                     <ul class="list-inline">
                       <li class="list-inline-item">
                         Bogotá
@@ -440,7 +448,29 @@
                     <p class="text-center mt-1">{{placeholderSub?.ciiu}}</p>
                   </div> -->
                   <div class="form-group col-6">
-                    <select
+                    <label>CIIU</label>
+                    <ng-autocomplete
+                    [initialValue]="ciiuInitial[0]"
+                    [data]="ciiuCodes"
+                    [searchKeyword]="keyword"
+                    (selected)='selectCiiuOne($event)'
+                    [disabled]="isAdminUser || loading || !stageA.industryAndCommerceTaxBogota"
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate">                                 
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                    <a>
+                      <span [innerHTML]="item.codigo"></span>
+                      |
+                      <span [innerHTML]="item.descripcion"></span>
+                    </a>
+                  </ng-template>
+                    
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                    <!--select
                       class="form-control"
                       [(ngModel)]="stageA.industryAndCommerceTaxCodBogota"
                       [ngClass]="{
@@ -459,15 +489,16 @@
                         [ngValue]="ciiuCode.id"
                         >{{ ciiuCode.codigo }} | {{ ciiuCode.descripcion }}</option
                       >
-                    </select>
+                    </select-->
                   </div>
                   <div class="col-3">
                     <div class="form-group">
+                      <label>Tarifa:*</label>
                       <input
                         type="text"
                         appMycurrency
                         class="form-control"
-                        placeholder="Tarifa:*"
+                        placeholder=""
                         [(ngModel)]="stageA.industryAndCommerceTaxRateBogota"
                         [ngClass]="{
                           'is-invalid':
@@ -498,7 +529,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-2">
+                  <div class="col-2 pt-4">
                     <ul class="list-inline">
                       <li class="list-inline-item">
                         Malambo
@@ -549,7 +580,29 @@
                     </div>
                   </div> -->
                   <div class="form-group col-6">
-                    <select
+                    <label>CIIU</label>
+                    <ng-autocomplete
+                    [initialValue]="ciiuInitial[1]"
+                    [data]="ciiuCodes"
+                    [searchKeyword]="keyword"
+                    (selected)='selectCiiuTwo($event)'
+                    [disabled]="isAdminUser || loading || !stageA.industryAndCommerceTaxMalambo"
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate">                                 
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                    <a>
+                      <span [innerHTML]="item.codigo"></span>
+                      |
+                      <span [innerHTML]="item.descripcion"></span>
+                    </a>
+                  </ng-template>
+                    
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                    <!--select
                       class="form-control"
                       [(ngModel)]="stageA.industryAndCommerceTaxCodMalambo"
                       [ngClass]="{
@@ -568,15 +621,16 @@
                         [ngValue]="ciiuCode.id"
                         >{{ ciiuCode.codigo }} | {{ ciiuCode.descripcion }}</option
                       >
-                    </select>
+                    </select -->
                   </div>
                   <div class="col-3">
                     <div class="form-group">
+                      <label>Tarifa:*</label>
                       <input
                         type="text"
                         class="form-control"
                         appMycurrency
-                        placeholder="Tarifa:*"
+                        placeholder=""
                         [(ngModel)]="stageA.industryAndCommerceTaxRateMalambo"
                         [ngClass]="{
                           'is-invalid':
@@ -610,10 +664,11 @@
                 <div class="row">
                   <div class="col-3">
                     <div class="form-group">
+                      <label>Otro*</label>
                       <input
                         type="text"
                         class="form-control"
-                        placeholder="Otro*"
+                        placeholder=""
                         [(ngModel)]="stageA.industryAndCommerceTaxOther"
                         name="industryAndCommerceTaxOther"
                         minlength="2"
@@ -649,7 +704,29 @@
                     </div>
                   </div> -->
                   <div class="form-group col-6">
-                    <select
+                    <label>CIIU</label>
+                    <ng-autocomplete
+                    [initialValue]="ciiuInitial[2]"
+                    [data]="ciiuCodes"
+                    [searchKeyword]="keyword"
+                    (selected)='selectCiiuThree($event)'
+                    [disabled]="isAdminUser || loading || stageA.industryAndCommerceTaxBogota || stageA.industryAndCommerceTaxMalambo"
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate">                                 
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                    <a>
+                      <span [innerHTML]="item.codigo"></span>
+                      |
+                      <span [innerHTML]="item.descripcion"></span>
+                    </a>
+                  </ng-template>
+                    
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                    <!--select
                       class="form-control"
                       [(ngModel)]="stageA.industryAndCommerceTaxOther"
                       [ngClass]="{
@@ -668,15 +745,16 @@
                         [ngValue]="ciiuCode.id"
                         >{{ ciiuCode.codigo }} | {{ ciiuCode.descripcion }}</option
                       >
-                    </select>
+                    </select -->
                   </div>
                   <div class="col-3">
                     <div class="form-group">
+                      <label>Tarifa:*</label>
                       <input
                         type="text"
                         appMycurrency
                         class="form-control"
-                        placeholder="Tarifa:*"
+                        placeholder=""
                         [(ngModel)]="stageA.industryAndCommerceTaxRateOther"
                         name="industryAndCommerceTaxRateOther"
                         minlength="2"
@@ -698,6 +776,7 @@
             <div class="row mt-3">
               <div class="col-4">
                 <div class="form-group">
+                  <label>Año tributario</label>
                   <input
                     type="text"
                     class="form-control"
@@ -723,11 +802,12 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>($) Ingresos operacionales*</label>
                   <input
                     type="text"
                     class="form-control"
                     appMycurrency
-                    placeholder="($) Ingresos operacionales*"
+                    placeholder=""
                     [(ngModel)]="stageA.tributaryOperationalIncome"
                     [ngClass]="{
                       'is-invalid':
@@ -752,11 +832,12 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>Gastos operacionales*</label>
                   <input
                     type="text"
                     class="form-control"
                     appMycurrency
-                    placeholder="Gastos operacionales*"
+                    placeholder=""
                     [(ngModel)]="stageA.tributaryOperationalExpenses"
                     [ngClass]="{
                       'is-invalid':
@@ -783,11 +864,12 @@
             <div class="row mt-3">
               <div class="col-4">
                 <div class="form-group">
+                  <label>Total Ingresos*</label>
                   <input
                     type="text"
                     class="form-control"
                     appMycurrency
-                    placeholder="Total Ingresos*"
+                    placeholder=""
                     [(ngModel)]="stageA.totalIncome"
                     [ngClass]="{
                       'is-invalid':
@@ -808,11 +890,12 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>Total Activos*</label>
                   <input
                     type="text"
                     class="form-control"
                     appMycurrency
-                    placeholder="Total Activos*"
+                    placeholder=""
                     [(ngModel)]="stageA.totalActive"
                     [ngClass]="{
                       'is-invalid':
@@ -833,11 +916,12 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>Total Pasivos*</label>
                   <input
                     type="text"
                     class="form-control"
                     appMycurrency
-                    placeholder="Total Pasivos*"
+                    placeholder=""
                     [(ngModel)]="stageA.totalPassive"
                     [ngClass]="{
                       'is-invalid':
@@ -863,10 +947,11 @@
             <div class="row mt-3">
               <div class="col-4">
                 <div class="form-group">
+                  <label>Empresa 1*</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Empresa 1*"
+                    placeholder=""
                     [(ngModel)]="stageA.commercialReferenceName1"
                     [ngClass]="{
                       'is-invalid':
@@ -891,10 +976,11 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>Telefono:*</label>
                   <input
                     type="number"
                     class="form-control"
-                    placeholder="Telefono:*"
+                    placeholder=""
                     [(ngModel)]="stageA.commercialReferencePhone1"
                     [ngClass]="{
                       'is-invalid':
@@ -919,10 +1005,11 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>Contacto: *</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Contacto: *"
+                    placeholder=""
                     [(ngModel)]="stageA.commercialReferenceContact1"
                     [ngClass]="{
                       'is-invalid':
@@ -949,10 +1036,11 @@
             <div class="row mt-3">
               <div class="col-4">
                 <div class="form-group">
+                  <label>Empresa 2</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Empresa 2"
+                    placeholder=""
                     [(ngModel)]="stageA.commercialReferenceName2"
                     name="commercialReferenceName2"
                     minlength="2"
@@ -963,10 +1051,11 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>Telefono:</label>
                   <input
                     type="number"
                     class="form-control"
-                    placeholder="Telefono:"
+                    placeholder=""
                     [(ngModel)]="stageA.commercialReferencePhone2"
                     name="commercialReferencePhone2"
                     minlength="2"
@@ -977,10 +1066,11 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>Contacto:</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Contacto:"
+                    placeholder=""
                     [(ngModel)]="stageA.commercialReferenceContact2"
                     name="commercialReferenceContact2"
                     minlength="2"
@@ -993,10 +1083,11 @@
             <div class="row mt-3">
               <div class="col-4">
                 <div class="form-group">
+                  <label>Empresa 3</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Empresa 3"
+                    placeholder=""
                     [(ngModel)]="stageA.commercialReferenceName3"
                     name="commercialReferenceName3"
                     minlength="2"
@@ -1007,10 +1098,11 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>Telefono:</label>
                   <input
                     type="number"
                     class="form-control"
-                    placeholder="Telefono:"
+                    placeholder=""
                     [(ngModel)]="stageA.commercialReferencePhone3"
                     name="commercialReferencePhone3"
                     minlength="2"
@@ -1021,10 +1113,11 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>Contacto:</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Contacto:"
+                    placeholder=""
                     [(ngModel)]="stageA.commercialReferenceContact3"
                     name="commercialReferenceContact3"
                     minlength="2"
@@ -1038,10 +1131,11 @@
             <div class="row mt-3">
               <div class="col-8">
                 <div class="form-group">
+                  <label>Entidad bancaria*</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Entidad bancaria*"
+                    placeholder=""
                     [(ngModel)]="stageA.bankReferenceName"
                     [ngClass]="{
                       'is-invalid':
@@ -1066,10 +1160,11 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>Sucursal bancaria*</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Sucursal bancaria*"
+                    placeholder=""
                     [(ngModel)]="stageA.bankReferenceBranchName"
                     [ngClass]="{
                       'is-invalid':
@@ -1096,10 +1191,11 @@
             <div class="row">
               <div class="col-4">
                 <div class="form-group">
+                  <label>Funcionario*</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Funcionario*"
+                    placeholder=""
                     [(ngModel)]="stageA.bankReferenceNameContact"
                     [ngClass]="{
                       'is-invalid':
@@ -1124,10 +1220,11 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>Teléfono/Celular:*</label>
                   <input
                     type="number"
                     class="form-control"
-                    placeholder="Teléfono/Celular:*"
+                    placeholder=""
                     [(ngModel)]="stageA.bankReferenceMobile"
                     [ngClass]="{
                       'is-invalid':
@@ -1153,10 +1250,11 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
+                  <label>E-mail:*</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="E-mail:*"
+                    placeholder=""
                     [(ngModel)]="stageA.bankReferenceEmail"
                     [ngClass]="{
                       'is-invalid':

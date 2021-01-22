@@ -72,7 +72,7 @@ export class AdminComponent {
       this.loading = false;
       this.procescoService
         .getClassificationsList()
-        .subscribe((classifications: any) => {
+        .subscribe((classifications: any) => {          
           this.userList.forEach(user => {
             const selectedClass = classifications.find(
               classification =>

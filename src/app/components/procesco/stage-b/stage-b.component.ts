@@ -41,7 +41,8 @@ export class StageBComponent {
   faCaretUp = faCaretUp;
   faSpinner = faSpinner;
   height: number;
-  loading: boolean;
+  loading: boolean = false;
+  loadingTwo: boolean = false;
   step: number;
   user: any = {};
   id: number;
@@ -707,12 +708,14 @@ export class StageBComponent {
     return false;
   }
   downloadFile() {
+    this.loadingTwo = true;
     this.procescoService
       .GET_FILE(`download-documents/${this.user.name}`)
       .subscribe((res: any) => {
         const blob = new Blob([res], {
           type: "application/zip"
         });
+        this.loadingTwo = false;
         const url = window.URL.createObjectURL(blob);
         window.open(url);
       });

@@ -400,8 +400,18 @@
               <div class="text-center">
                 Para ver los documentos haga click en <b>Descargar</b>
               </div>
-              <button class="acesco-button mt-4 max-300" (click)="downloadFile()">
+              <button
+                class="acesco-button mt-4 max-300"
+                (click)="downloadFile()"
+                [disabled]="loading  || loadingTwo"
+              >
                 Descargar
+                <fa-icon [icon]="faCaretRight" *ngIf="!loadingTwo"></fa-icon>
+                <fa-icon
+                  [icon]="faSpinner"
+                  [spin]="true"
+                  *ngIf="loadingTwo"
+                ></fa-icon>
               </button>
             </div>
           </div>

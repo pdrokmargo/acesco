@@ -17,7 +17,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ProcescoService } from "../../../services/procesco.service";
 import { UserInterface } from "../../../Interfaces/user.interface";
 import { NgForm } from "@angular/forms";
-import { forEach } from '@angular/router/src/utils/collection';
+import { cities } from '../../../../utils/cities';
 
 @Component({
   selector: "app-new-provider",
@@ -31,7 +31,10 @@ export class NewProviderComponent {
     this.isAdminUser = false;
   }
   @Output() emitEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+  cityList: string[] = cities;
+  keyword: string = 'descripcion';
+  ciiuInitial: string = '';
+  documentIssuedInitial: string = '';
   preRegister: any;
   placeholderSubES: {whoRefers: "Persona"};
   placeholderSubEN: {whoRefers: "Person"};
@@ -101,8 +104,13 @@ export class NewProviderComponent {
                                   this.classifications = [...classifications];
                                   this.procescoService.getActividadesEconomicasList().subscribe(
                                       act_economicas => {
-                                      this.ciiuCodes = [...act_economicas];
                                       
+                                      this.ciiuCodes = [...act_economicas];
+                                      this.ciiuInitial = this.ciiuCodes.find(item => item.id === this.preRegister.ciiu).descripcion;
+                                      this.documentIssuedInitial = register.documentIssued;
+                                      // document.getElementsByTagName
+                                      // console.log(this.preRegister.ciiu)
+                                      // console.log(this.ciiuCodes)
                                       // this.preRegister.country_id = this.countries.find(
                                       //   el => el.id === this.preRegister.country_id
                                       // );
@@ -272,6 +280,26 @@ export class NewProviderComponent {
       productSealName: null
     };
   }
+
+  selectEvent(item) {
+    this.preRegister.ciiu = item.id;
+    // do something with selected item
+  }
+
+  selectCity(item) {
+    this.preRegister.documentIssued = item;
+    // do something with selected item
+  }
+
+  onChangeSearch(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+  
+  onFocused(e){
+    // do something when input is focused
+  }
+
   changeSubs(national){
     if(national==0){
       //English subs

@@ -35,6 +35,8 @@ export class StageAComponent {
 
   @Output() emitEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  keyword: string = 'descripcion'
+  ciiuInitial: string[] = ['', '', ''];
   faCaretRight = faCaretRight;
   faSpinner = faSpinner;
   height: number;
@@ -77,6 +79,14 @@ export class StageAComponent {
                   this.procescoService.getActividadesEconomicasList().subscribe(
                     act_economicas => {
                     this.ciiuCodes = [...act_economicas];
+                    const ciuuInitialOne = this.ciiuCodes.find(item => item.id === stage_a.industryAndCommerceTaxCodBogota);
+                    const ciuuInitialTwo = this.ciiuCodes.find(item => item.id === stage_a.industryAndCommerceTaxCodMalambo);
+                    const ciuuInitialThree = this.ciiuCodes.find(item => item.id === stage_a.industryAndCommerceTaxCodOther);
+                    this.ciiuInitial = [
+                      ciuuInitialOne ? ciuuInitialOne.descripcion : '',
+                      ciuuInitialTwo ? ciuuInitialTwo.descripcion : '',
+                      ciuuInitialThree ? ciuuInitialThree.descripcion : '',
+                    ];
                     },
                     error1 => {
                       console.error(error1);
@@ -291,6 +301,27 @@ export class StageAComponent {
       },
       error1 => console.error(error1)
     );
+  }
+
+  selectCiiuOne(item) {
+    this.stageA = {
+      ...this.stageA,
+      industryAndCommerceTaxCodBogota: item.id
+    };
+  }
+
+  selectCiiuTwo(item) {
+    this.stageA = {
+      ...this.stageA,
+      industryAndCommerceTaxCodMalambo: item.id
+    };
+  }
+
+  selectCiiuThree(item) {
+    this.stageA = {
+      ...this.stageA,
+      industryAndCommerceTaxCodOther: item.id
+    };
   }
 
   approval() {
