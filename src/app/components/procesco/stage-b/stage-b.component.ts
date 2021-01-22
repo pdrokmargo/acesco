@@ -54,6 +54,7 @@ export class StageBComponent {
   annex2Toggles: any[] = [];
   isAdminUser: boolean;
   language: any;
+  legalRepresentative: any = {};
 
   constructor(
     public procescoService: ProcescoService,
@@ -65,7 +66,6 @@ export class StageBComponent {
       activeRoute => {
         if (activeRoute["id"]) {
           this.isAdminUser = true;
-
           this.procescoService.getUserById(activeRoute.id).subscribe(
             (user: any) => {
               this.user = user;
@@ -85,9 +85,6 @@ export class StageBComponent {
                     this.annex1Toggles.forEach(element => {
                       element.value = this.stageB[element.model];
                       element.visibible = this.annexApplies(element.model);
-                      console.log(element.visibible);
-                      console.log(element.model);
-                      console.log(this.annexApplies(element.model));
                     });
                     this.annex2Toggles.forEach(element => {
                       element.value = this.stageB[element.model];
@@ -103,8 +100,36 @@ export class StageBComponent {
             }
           );
         } else {
+          console.log("here is where you have to get representative.")
           this.procescoService.getLogedUser().subscribe(
             user => {
+              this.procescoService.getRepresentative(user.id).subscribe(
+                (representative: any) => {
+                  console.log(representative.representative);
+                  let rep = representative.representative;
+                  let docType = "";
+                  if(rep.docType == 1){
+                    rep.docType = "cédula de ciudadanía";
+                  }else if(rep.docType == 2){
+                    rep.docType = "NIT";
+                  }
+                  if(rep.docTypeBusiness == 1){
+                    rep.docTypeBusiness = "cédula de ciudadanía";
+                  }else if(rep.docTypeBusiness == 2){
+                    rep.docTypeBusiness = "NIT";
+                  }
+                  this.legalRepresentative = {name: rep.name, 
+                    docType: rep.docType, 
+                    businessName: rep.businessName, 
+                    docNumber: rep.docNumber,
+                    docBusinessNumber: rep.docBusinessNumber,
+                    docTypeBusiness: rep.docTypeBusiness,
+                  };
+                },
+                  error1 => {
+                    console.error(error1);
+                  }
+                );
               this.step = user.currentStep;
               this.id = user.id;
               this.user = user;
@@ -113,6 +138,7 @@ export class StageBComponent {
               this.annex1Toggles.forEach(element => {
                 element.visibible = this.annexApplies(element.model);
               });
+
               if (user.stageb_id > 0) {
                 this.procescoService
                   .getStepById(user.stageb_id, "stage-b")
@@ -180,7 +206,7 @@ export class StageBComponent {
         model: "storageAndTransportIntegrity",
         value: false,
         text:
-          "Cuenta con procedimientos para garantizar la integridad y seguridad de los procesos relativos al manejo, almacenamiento y transporte de carga en la caena de suministro."
+          "Cuenta con procedimientos para garantizar la integridad y seguridad de los procesos relativos al manejo, almacenamiento y transporte de carga en la cadena de suministro."
       },
       {
         model: "shippingDocumentation",
@@ -204,13 +230,13 @@ export class StageBComponent {
         model: "physicalAccessControls",
         value: false,
         text:
-          "Tienen controles de acceso fisico en las instalaciones de la empresa que ingluya medidas de seguridad para prevenir el acceso no autorizado a las instalaciones tanto de empleados como visitantes."
+          "Tienen controles de acceso físico en las instalaciones de la empresa que incluya medidas de seguridad para prevenir el acceso no autorizado a las instalaciones tanto de empleados como visitantes."
       },
       {
         model: "perimetersControl",
         value: false,
         text:
-          "Implementa medidas que aranticen la seguridad de todas sus instalaciones, asi como la vigilancia y control de los perimetros exterior e interior."
+          "Implementa medidas que garanticen la seguridad de todas sus instalaciones, asi como la vigilancia y control de los perimetros exterior e interior."
       },
       {
         model: "dissuasionElements",
@@ -234,7 +260,7 @@ export class StageBComponent {
         model: "authoritiesReporting",
         value: false,
         text:
-          "Cuenta con instrumentos para reportar a las autoridades nacionale so extranjeras los casos en que detecten irregularidades o actividades ilegales o sospechosas en sus cadenas de suministro."
+          "Cuenta con instrumentos para reportar a las autoridades nacionales ó extranjeras los casos en que detecten irregularidades o actividades ilegales o sospechosas en sus cadenas de suministro."
       },
       {
         model: "economicActivityEvidence",
@@ -252,7 +278,7 @@ export class StageBComponent {
         model: "inadequateProposals",
         value: false,
         text:
-          "Se han recibido propuestas inadecuadas por parte de algun asociado de negocio (Negocios no seguros, metodologias de pagos en efectivo, cambios, presiones para el embarque sin documentación u omisiones de aranceles). Si la respuesta es afirmativa relacionar en las observaciones cuáles fueron las propuestas."
+          "Se han recibido propuestas inadecuadas por parte de algún asociado de negocio (Negocios no seguros, metodologías de pagos en efectivo, cambios, presiones para el embarque sin documentación u omisiones de aranceles). Si la respuesta es afirmativa relacionar en las observaciones cuáles fueron las propuestas."
       }
     ];
     this.physicalSecurityAgreementsToggles = [
@@ -266,19 +292,19 @@ export class StageBComponent {
         model: "protectionProgram",
         value: false,
         text:
-          "Implementaremos un programa de protección al alcance de oda la compañia a través del cual se garantice que los bienes y/o serivcios suministrados se encuentran libres de cualquier tipo de actividad ilícita."
+          "Implementaremos un programa de protección al alcance de toda la compañía a través del cual se garantice que los bienes y/o serivcios suministrados se encuentran libres de cualquier tipo de actividad ilícita."
       },
       {
         model: "physicalSecurityGuarantee",
         value: false,
         text:
-          "Garantizaremos la seguridad fisica de las instalaciones o sitios en los cuales ejecutamos las actividades asociadas al siministro de bienes y servicios para proteger si integridad."
+          "Garantizaremos la seguridad física de las instalaciones o sitios en los cuales ejecutamos las actividades asociadas al siministro de bienes y servicios para proteger si integridad."
       },
       {
         model: "illicitActivitiesAbsence",
         value: false,
         text:
-          "Desarollaremos procesos de selcción y mantenimiento de persona orientados al aseguramiento de su confiabilidad, incluyendo la ausencia de vinculación con actividades ilicitas incluyendo el lavado de activos y la financiación del terrorismo."
+          "Desarollaremos procesos de selección y mantenimiento de persona orientados al aseguramiento de su confiabilidad, incluyendo la ausencia de vinculación con actividades ilícitas incluyendo el lavado de activos y la financiación del terrorismo."
       },
       {
         model: "confidentiality",
@@ -401,7 +427,56 @@ export class StageBComponent {
       {
         model: "relationshipRequirements",
         value: false,
-        text: "Requisitos varios especificos del relaciónamiento con Acesco",
+        text: "Requisitos varios específicos del relacionamiento con Acesco",
+        visibible: true
+      },
+      {
+        model: "aprovechamientoForestal",
+        value: false,
+        text: "Certificado aprovechamiento forestal.",
+        visibible: true
+      },
+      {
+        model: "salvoConductoMovilizacion",
+        value: false,
+        text: "Salvo conducto para movilización.",
+        visibible: true
+      },
+      {
+        model: "relacionVehiculos",
+        value: false,
+        text: "Relación vehículos de transporte a usar (placa , tipo vehículo, marca, modelo, cantidad y combustible).",
+        visibible: true
+      },
+      {
+        model: "planMantenimientoVehicular",
+        value: false,
+        text: "Plan mantenimiento vehicular por vehículo contratado.",
+        visibible: true
+      },
+      {
+        model: "cursoBasicoManejo",
+        value: false,
+        text: "Curso básico de manejo y transporte de mercancía.",
+        visibible: true
+      },
+      {
+        model: "pesv",
+        value: false,
+        text: "Carta de radicación ante la entidad competente de su plan estratégico de seguridad vial (PESV).",
+        visibible: true
+      },
+      {
+        model: "specialContingencyPlan",
+        value: false,
+        text: "Plan de contingencia y control pertinente a su servicio.",
+        visibible: true
+      },
+      
+      {
+        model: "approvalContingencyPlan",
+        value: false,
+        text: "Radicación y aprobación de plan de contingencia por parte de la autoridad pertinente.",
         visibible: true
       }
     ];
@@ -441,6 +516,8 @@ export class StageBComponent {
     this.selfEvaluation = false;
 
     this.stageB = {
+      isRelatedToAcesco: false,
+      reasonRelatedToAcesco: "",
       acescoElementsProtection: false,
       activitiesAsSocialReason: false,
       additionalSafetyMeasures: false,
@@ -458,6 +535,8 @@ export class StageBComponent {
       inadequateProposalsWhat: null,
       legalRequirementsAndRegulations: false,
       manifest: false,
+      ethicCode: false,
+      relatedToAcescoManifest: false,
       minimumSafetyRequirements: true,
       perimetersControl: false,
       physicalAccessControls: false,
@@ -569,36 +648,62 @@ export class StageBComponent {
       .subscribe(res => this.emitEvent.emit(true), err => console.error(err));
   }
   annexApplies(file){
+    let c: any;
+    if(this.user['pre_registro']){
+     c = this.user['pre_registro']['classification_id'];
+    }
     if(file == 'chamberCommerce'){
-      if(this.user['pre_registro']['classification_id'] > 0){
+      if(c > 0){
           return true;
       }
     }
     if(file == 'identificationCard'){
-      if(this.user['pre_registro']['classification_id'] > 0){
+      if(c > 0){
           return true;
       }
     }
     if(file == 'rut'){
-      if(this.user['pre_registro']['classification_id'] > 0){
+      if(c > 0){
           return true;
       }
     }
-    // if(file == 'chamberCommerce'){
-    //   if(this.user['pre_registro']['classification_id'] == 1){
-    //       return true;
-    //   }
-    // }
-    // if(file == 'chamberCommerce'){
-    //   if(this.user['pre_registro']['classification_id'] == 1){
-    //       return true;
-    //   }
-    // }
-    // if(file == 'chamberCommerce'){
-    //   if(this.user['pre_registro']['classification_id'] == 1){
-    //       return true;
-    //   }
-    // }
+    if(file == 'shareholdingStructure'){
+      if(c > 0){
+          return true;
+      }
+    }
+    if(file == 'constanciaBancaria'){
+      if(c > 0){
+          return true;
+      }
+    }
+    if(file == 'rucAndBasc'){
+      if(c > 0){
+          return true;
+      }
+    }
+      
+    if(file == 'safetyData' || file == 'contingencyPlan' || file == 'productSpecifications'){
+      /*1:Agencia de publicidad 2:Alimentos/aseo/medicina 12:Gases industriales 16:Materia prima 20:Plastico/caucho/fibras 
+      21:Quimicos/combustibles 28:Servicios generales 29:Servicios Informaticos*/
+      if(c == 1 || c == 2 || c == 12 || c == 16 || c == 20 || c == 21 || c == 28 || c == 29){
+          return true;
+      }
+    }
+
+    if(file == 'aprovechamientoForestal' || file == 'salvoConductoMovilizacion'){
+      /*3:Aserraderos*/
+      if(c == 3){
+          return true;
+      }
+    }
+
+    if(file == 'relacionVehiculos' || file == 'planMantenimientoVehicular' || file == 'cursoBasicoManejo' || file == 'pesv' || file == 'specialContingencyPlan' || file == 'approvalContingencyPlan'){
+      /*31:Servicios Logisticos 35:Transporte carga, 36:personal, 37:maritimo y 38:paqueteo*/
+      if(c == 31 || c == 35 || c == 36 || c == 37 || c == 38){
+          return true;
+      }
+    }
     return false;
   }
   downloadFile() {

@@ -23,8 +23,8 @@
       <div class="col-12">
         <div *ngIf="!isAdminUser || __approved" class="card" [ngClass]="{ 'no-border': __approved }">
           <div class="col-12 text-justify mt-3">
-            <p>Yo (Pedro Camargo), identificado con cédula de ciudadanía (1143120421) en representación de la empresa
-              (EMPRESA) con (DocID) (ID number) </p><br>
+            <p>Yo <b>{{legalRepresentative.name}}</b>, identificado con <b>{{legalRepresentative.docType}} </b> <b>{{legalRepresentative.docNumber}}</b> en representación de la empresa
+              <b>{{legalRepresentative.businessName}}</b> con <b>{{legalRepresentative.docTypeBusiness}} </b><b>{{legalRepresentative.docBusinessNumber}}</b> </p><br>
           </div>
           <div class="row">
             <div class="col-12">
@@ -46,11 +46,11 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <div class="row __title" (click)="toggleList('manifest')">
+                  <div class="row __title" (click)="toggleList('ethicCode')">
                     <div class="col-8 title-checks">
                       <ul class="list-inline">
                         <li class="list-inline-item">
-                          <app-toggle [disabled]="isAdminUser" [model]="stageB.manifest" [prop]="'manifest'"
+                          <app-toggle [disabled]="isAdminUser" [model]="stageB.ethicCode" [prop]="'ethicCode'"
                             (updatedValue)="updatedValue($event)">
                           </app-toggle>
                         </li>
@@ -98,11 +98,12 @@
                               uno de los funcionarios o accionistas de la empresa ACESCO COLOMBA S.A.S?</div>
                             <div class="col-4 text-right padding">
                               NO
-                              <app-toggle [disabled]="isAdminUser"></app-toggle>
+                              <app-toggle [disabled]="isAdminUser" [prop]="'isRelatedToAcesco'" [model]="stageB.isRelatedToAcesco"
+                        (updatedValue)="updatedValue($event)"></app-toggle>
                               SI
                             </div>
                             <div class="col-12 form-group">
-                              <input type="text" class="form-control" placeholder="Cual?" />
+                              <input type="text" [disabled]="!stageB.isRelatedToAcesco"  class="form-control" [(ngModel)]="stageB.reasonRelatedToAcesco" placeholder="Cual?" />
                             </div>
                           </div>
                         </div>
@@ -115,11 +116,11 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <div class="row __title" (click)="toggleList('manifest')">
+                      <div class="row __title" (click)="toggleList('relatedToAcescoManifest')">
                         <div class="col-8 title-checks">
                           <ul class="list-inline">
                             <li class="list-inline-item">
-                              <app-toggle [disabled]="isAdminUser" [model]="stageB.manifest" [prop]="'manifest'"
+                              <app-toggle [disabled]="isAdminUser" [model]="stageB.relatedToAcescoManifest" [prop]="'relatedToAcescoManifest'"
                                 (updatedValue)="updatedValue($event)">
                               </app-toggle>
                             </li>
@@ -344,7 +345,7 @@
             </div>
             <!--  -->
             <div class="col-12 mt-3">
-              <app-form-title [text]="'anexo de documentos obligatorios'"></app-form-title>
+              <app-form-title [text]="'anexo de documentos obligatorios (Sólo PDF)'"></app-form-title>
             </div>
           </div>
           <div *ngIf="!__approved">
@@ -356,7 +357,7 @@
                 <div class="col-md-6 col-sm-12 padding">
                   <div class="form-group">
                     <input type="file" class="form-control-file" (change)="fileChange($event, toggle.model)"
-                      accept=".pdf,.doc,.docx" />
+                      accept=".pdf" />
                   </div>
                 </div>
               </div>
@@ -379,7 +380,7 @@
                 {{ successMessage }}
               </div>
               <button *ngIf="!isAdminUser && user.stageb_id == null" type="button" (click)="onSubmit()"
-                class="acesco-button" [disabled]="isAdminUser || loading">
+                class="acesco-button" [disabled]="isAdminUser || loading || !stageB.manifest || !stageB.relatedToAcescoManifest || !stageB.ethicCode">
                 Enviar
                 <fa-icon [icon]="faCaretRight" *ngIf="!loading"></fa-icon>
                 <fa-icon [icon]="faSpinner" *ngIf="loading" [spin]="true"></fa-icon>
