@@ -118,6 +118,11 @@ export class AdminComponent {
       }
     }
   }
+  
+  logOut () {
+    localStorage.setItem("acctkn", '');
+    this.router.navigateByUrl('/procesco');
+  }
 
   search(searchText: any) {
     this.procescoService.getAllUsers(searchText).subscribe(
