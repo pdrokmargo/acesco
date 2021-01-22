@@ -139,7 +139,7 @@ export class ProfileComponent implements AfterViewInit {
       this.placeholderSub.contactName = "Persona de Contacto*";
       this.placeholderSub.position = "Cargo*";
       this.placeholderSub.address = "Dirección*";
-      this.placeholderSub.state = "Estado*";
+      this.placeholderSub.state = "Departamento*";
       this.placeholderSub.city = "Ciudad*";
       this.placeholderSub.zipCode = "Código postal*";
       this.placeholderSub.telephone = "Teléfono";
