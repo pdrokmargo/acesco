@@ -103,7 +103,7 @@
                               SI
                             </div>
                             <div class="col-12 form-group">
-                              <input type="text" [disabled]="!stageB.isRelatedToAcesco"  class="form-control" [(ngModel)]="stageB.reasonRelatedToAcesco" placeholder="Cual?" />
+                              <input type="text" [disabled]="!stageB.isRelatedToAcesco"  class="form-control" [(ngModel)]="stageB.reasonRelatedToAcesco" placeholder="¿Grado de consanguinidad ó afinidad?" />
                             </div>
                           </div>
                         </div>
@@ -126,7 +126,7 @@
                             </li>
                             <li class="list-inline-item">
                               <p>
-                                Aceptación de Declaración de Conflictos de Interés
+                                Aceptación de <a href="acesco.com.co/somos/codigo-de-etica/">Declaración de Conflictos de Interés</a>
                               </p>
                             </li>
                           </ul>
@@ -180,7 +180,7 @@
                       SI
                     </div>
                     <div class="col-12 form-group" *ngIf="toggle.model === 'inadequateProposals'">
-                      <input type="text" class="form-control" placeholder="Cual?"
+                      <input type="text" class="form-control" placeholder="¿Cuál?"
                         [(ngModel)]="stageB.inadequateProposalsWhat" #inadequateProposalsWhat="ngModel" [disabled]="
                           !stageB.inadequateProposals || loading || isAdminUser
                         " name="inadequateProposalsWhat" />

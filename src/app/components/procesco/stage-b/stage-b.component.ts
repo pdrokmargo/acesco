@@ -367,7 +367,7 @@ export class StageBComponent {
       {
         model: "shareholdingStructure",
         value: false,
-        text: "Composición accionaria.",
+        text: "Composición accionaria. (Detallada hasta la última persona natural)",
         visibible: true
       },
       {
